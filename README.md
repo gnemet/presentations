@@ -1,24 +1,29 @@
 # presentations
 
-Public publishing surface for the claude-base platform's presentation decks — the one place a
-deck is reachable from every tier (a laptop, a server, a customer's browser) without a login.
+The home of the claude-base platform's public presentation decks — **source and generated files
+together, one folder per deck**. A deck that lives here has no other copy anywhere: projects that
+want to show it link to this repo (or to its GitHub Pages URL) instead of embedding it.
 
-Every deck here is a **generated copy**. Its source — the `<topic>.deck.md` — stays in the
-project it explains and is rebuilt there with `/deck build`; only the self-contained `.html` is
-copied into this repo. Never edit a deck here: change the source, rebuild, copy again.
-
-Open a deck straight from disk (`file://…`) or through GitHub Pages at <https://gnemet.github.io/presentations/> (deck URLs follow the repo path, e.g. `docs/presentation/presentation-sdd.html`). Keys: `←/→` navigate,
+Open a deck straight from disk (`file://…`) or through GitHub Pages at
+<https://gnemet.github.io/presentations/> (deck URLs follow the repo path). Keys: `←/→` navigate,
 `?` help, `t` theme, `#talk` in the URL selects the short leaders cut where a deck defines one.
 
 ## Decks
 
-| Deck | Title | Source (repo · path · commit) |
-|---|---|---|
-| [`presentation-sdd.html`](docs/presentation/presentation-sdd.html) | Spec-driven Development (SdD) — módszertan, gyakorlati példával (v5) · HU · ~30 min talk / ~45 min full | infra-forge · `docs/presentation/presentation-sdd.deck.md` · `de66d842` (branch `docs/deck-sdd-public`) |
+| Folder | Deck | Title | Origin |
+|---|---|---|---|
+| `spec-driven/` | [`presentation-sdd.html`](spec-driven/presentation-sdd.html) · [notes](spec-driven/presentation-sdd-notes.md) | Spec-driven Development (SdD) — módszertan, gyakorlati példával (v5) · HU · ~30 min talk / ~45 min full | moved here from infra-forge `docs/presentation/` on 2026-09-28 (last copy there: `de66d842`); infra-forge's About page links here |
 
-## Adding a deck
+Each folder holds `<topic>.deck.md` (the source of truth), `<topic>.html` and `<topic>-notes.md`
+(both generated — never hand-edited).
 
-1. In the source repo: edit the `.deck.md`, run `/deck build`, commit source + generated files there.
-2. Copy the generated `.html` into `docs/presentation/` here (same filename).
-3. Add or update the row above with the source repo, path and commit.
-4. Commit and push `main`.
+## Editing a deck
+
+1. Edit `<folder>/<topic>.deck.md`.
+2. Rebuild in place with the platform deck pipeline (`/deck build <abs path to the .deck.md>` in
+   a claude-base session); it rewrites the `.html` and `-notes.md` beside the source.
+3. Run the deck smoke (`claude-base/docs/presentation/render/smoke-deck.mjs <html>`), review dark and
+   light screenshots, then commit all three files together and push `main`.
+
+This repo is **public**: keep credentials, internal hostnames, server names and customer data out of
+every deck; a deck that needs them belongs behind a project's authenticated route, not here.
