@@ -2,7 +2,7 @@
 
 > Generated from presentation-sdd.deck.md by DOC-deck_build — do not edit.
 
-## 1. Spec-driven Development (SdD)
+## 1. Spec-driven Development (SdD) (#s1)
 
 ⏱ 0:45 — Mondd ki az ígéretet, ne a tartalomjegyzéket: *„Fél óra múlva tudni fogod, hogyan írunk kódot
 úgy, hogy a nagy részét egy gép írja, mégis mi felelünk érte."*
@@ -17,7 +17,7 @@ ha csúszol, a *(ha van idő)* blokkokat hagyd ki először. A `#talk` cut (a fe
 Java-fejlesztők · vezetők · üzleti elemzők. A git ebben a cégben **új** (az SVN most megy ki) —
 ezt sose feltételezd ismertnek, de ne is kérj bocsánatot érte.
 
-## 2. Spec-driven Development — ahogy a Vishy család házat épít Verőcén
+## 2. Spec-driven Development — ahogy a Vishy család házat épít Verőcén (#s2)
 
 ⏱ 2:00 — A hasonlat végigkíséri az egészet, ezért érdemes rá időt szánni. A kulcs: **senki nem kezd
 falat húzni tervrajz nélkül**, és a műszaki ellenőr nem azért van, mert nem bízunk a kőművesben.
@@ -32,13 +32,13 @@ Kérdezz vissza a terembe: *„Ki írt már olyan kódot, amit fél év múlva �
 általában felmegy a kéz. Ez a dia arról szól, hogy a tervrajz **nem a bürokrácia**, hanem az,
 ami miatt hat hónap múlva is meg tudod mondani, hogy **miért** úgy van.
 
-## 3. A probléma — 20 év Linux-infrastruktúra
+## 3. A probléma — 20 év Linux-infrastruktúra (#s3)
 
 ⏱ 3:15 — 20 év Linux-infrastruktúra, dokumentálatlanul. Ez a valódi feladat, amiből az egész példa jön.
 Ne menj bele a technikai részletbe — a lényeg, hogy ez **nem laborpélda**: éles rendszer,
 éles kockázattal, és van egy határidő.
 
-## 4. Mi a Spec-driven Development? — a lánc TdD-vel és validációval zárva
+## 4. Mi a Spec-driven Development? — a lánc TdD-vel és validációval zárva (#s4)
 
 ⏱ 5:30 — A nyolc lépéses lánc. **Ne olvasd fel** — mutass rá háromra:
 
@@ -67,7 +67,7 @@ mindenki ismeri, ezért működik.
 Enélkül a terem azt viheti haza, hogy az EARS, a Markdown, a git és a Claude Code
 **kötelező előírás** — és az első kérdés az lesz, hogy „ki írta elő?".
 
-## 5. LLM + agent — és hogyan olvassa az AI a repót?
+## 5. LLM + agent — és hogyan olvassa az AI a repót? (#s5)
 
 ⏱ 7:30 — A négy alapfogalom (LLM · token · context window · prompt) gyors, de **két dolgot nyomatékosíts**.
 
@@ -130,7 +130,7 @@ leírjuk, mit láttunk.)*
 
 Zárómondat: *„az aranyhal-memóriájú agentnek a repo a memóriája"* — ez vezet át a következő diára.
 
-## 6. Hol dolgozik az AI? — a development-platform munkaterület
+## 6. Hol dolgozik az AI? — a development-platform munkaterület (#s5b)
 
 ⏱ 9:15 — Itt a Java-fejlesztők kapcsolódnak be. A fa-ábra bal oldalt ismerős: **workspace, egymás melletti
 projektek**. A különbség egyetlen mondatban: **a szabályok is a munkaterületen laknak**, nem a
@@ -147,7 +147,7 @@ ugyanígy fér el mellettük, a szerkezet nem változik.
 *(ha van idő)* A `▸ Amit a Java-világból ismersz` táblázat öt sora pontosan erre a közönségre
 készült — ha látod, hogy kapaszkodót keresnek, nyisd ki; ez a leggyorsabb megnyugtatás.
 
-## 7. Miért git? — mert a kis diff az emberi kapu
+## 7. Miért git? — mert a kis diff az emberi kapu (#s5c)
 
 ⏱ 11:30 — **Ne git-tanfolyamot tarts.** Két gondolatot adj át, és a másodikra szánd az idő nagyobb felét.
 
@@ -190,15 +190,15 @@ nincs SVN-megfelelője**, és pont az az A9 verifikációs kapuja. Használd vé
 rövidítést: a céges GitLab ezt a szót írja ki, a „PR" a GitHub szóhasználata — ne keverd, mert
 a teremben az MR az, amit holnap látni fognak.
 
-## 8. A 11 axióma — a platform alaptörvénye
+## 8. A 11 axióma — a platform alaptörvénye (#s6)
 
 _(no notes)_
 
-## 9. Alaptörvény → fizika → projekt-szabály — és mindet ember írja
+## 9. Alaptörvény → fizika → projekt-szabály — és mindet ember írja (#s7)
 
 _(no notes)_
 
-## 10. Miért kontextus-alapú a fejlesztés? — erősítő vs. rövidítés
+## 10. Miért kontextus-alapú a fejlesztés? — erősítő vs. rövidítés (#s8)
 
 ⏱ 13:30 — **Első fele — a tézis.** Erősítő vs. rövidítés. Egy mondat: az AI **nem rövidíti le** a
 gondolkodást, hanem **felerősíti** azt, amit beleteszel — jó specből gyorsan lesz jó kód, üres
@@ -237,21 +237,21 @@ hogy „mostantól angolul kell dolgozniuk", és az nem igaz:
 *(Ha jön a kérdés, hogy „nem lehetne mindent magyarul?" — de lehetne, csak drágább, rosszabbul
 kereshető, és a kód felé úgyis fordítani kell. Ez mérési kérdés, nem identitás-kérdés.)*
 
-## 11. Négy lépés — a szándéktól a bizonyított kódig
+## 11. Négy lépés — a szándéktól a bizonyított kódig (#s8b)
 
 _(no notes)_
 
-## 12. Hogyan fejlődött a terület — és hol áll az infra-forge
+## 12. Hogyan fejlődött a terület — és hol áll az infra-forge (#s8c)
 
 _(no notes)_
 
-## 13. Az AI a munka középpontja — az ember a kontroll középpontja
+## 13. Az AI a munka középpontja — az ember a kontroll középpontja (#s9)
 
 ⏱ 14:45 — A diasor tézise. A vezetőknek: **nem a fejlesztőt váltjuk ki, hanem a szűk keresztmetszetet
 mozdítjuk el** — a szűk keresztmetszet mostantól a **review és az átvétel**, azaz emberi
 kapacitás. Ezt a mondatot érdemes szó szerint kimondani.
 
-## 14. Miért dokumentum? Miért Markdown? — egy fájl, három arc
+## 14. Miért dokumentum? Miért Markdown? — egy fájl, három arc (#s10)
 
 ⏱ 16:45 — **Ez a diasor leglátványosabb pillanata — élő demó, ne olvasd fel.** A képernyőn egyetlen
 valódi fájl van: `pipelines/ops_dep_extract.md`. **Minden éjjel 04:00-kor magától** lefut:
@@ -286,19 +286,19 @@ tér vissza: egy „legalább 1 él" teszt az első éjszakán piros lett volna.
 *(Ha a demó nem indul — pl. régi böngésző —, ne bűvészkedj: a három nézet nyomtatásban egymás
 alatt is megjelenik, és a lényeg egy mondatban elmondható.)*
 
-## 15. Egy igazságforrás + a dokumentum a kód — nem kettő, nem nulla
+## 15. Egy igazságforrás + a dokumentum a kód — nem kettő, nem nulla (#s10b)
 
 _(no notes)_
 
-## 16. Felülről lefelé — adatbázis → backend → frontend → AI-felület
+## 16. Felülről lefelé — adatbázis → backend → frontend → AI-felület (#s10c)
 
 _(no notes)_
 
-## 17. SDD + BRD, és az ötrétegű dokumentumtérkép — valós fájlokkal
+## 17. SDD + BRD, és az ötrétegű dokumentumtérkép — valós fájlokkal (#s11)
 
 _(no notes)_
 
-## 18. EARS — öt mondatminta, amiből teszt lesz
+## 18. EARS — öt mondatminta, amiből teszt lesz (#s11c)
 
 ⏱ 19:00 — **Ez a BA-k dia**ja, és a diasor egyik csúcspontja. Menj végig az öt soron, de gyorsan —
 a táblázat magát magyarázza. Amin **lassíts**, az az alsó kártyapár:
@@ -314,7 +314,7 @@ A táblázatban a ház az elsődleges példa; minden sor alatt egy hétköznapi 
 A zárómondat, amit vigyenek haza: *az EARS-kikötés a szerződés szövege* — a BA írja, a fejlesztő
 olvassa, az AI implementálja, a teszt bizonyítja.
 
-## 19. Egy követelménytől az átvett funkcióig — nyolc lépés, egy valódi példán
+## 19. Egy követelménytől az átvett funkcióig — nyolc lépés, egy valódi példán (#s11d)
 
 ⏱ 21:30 — A leggyakorlatiasabb dia; itt a fejlesztők figyelnek a legjobban. Ne olvasd fel mind a nyolc
 sort — vezesd végig **ugyanazt az egy példát** a házon („Télen ne fázzunk" → `E1`), és mutasd,
@@ -328,7 +328,7 @@ Két helyen állj meg:
 - **Az alsó piros doboz:** az üres spec **nem semleges** — fel van töltve az AI találgatásaival.
   Ez a mondat szokott megmaradni az emberekben.
 
-## 20. TdD — a teszt az EARS-kikötés gépi fele
+## 20. TdD — a teszt az EARS-kikötés gépi fele (#s11e)
 
 ⏱ 23:30 — Jelezd, hogy ez **új elem** a módszertanunkban. A közönség fele ismeri a TdD-t 15 éve — nekik
 azt mondd el, ami **megváltozott**:
@@ -344,19 +344,19 @@ bukó tesztet. Ezért (1) a teszt előbb kerül commitba, (2) **a review a teszt
 
 Záró: spec, teszt és kód **ugyanannak az állításnak három alakja**.
 
-## 21. Négy motor, nem egy ötödik — katalógus-vezérelt eszközök
+## 21. Négy motor, nem egy ötödik — katalógus-vezérelt eszközök (#s15)
 
 _(no notes)_
 
-## 22. Mi a RAG — és miért kell a fejlesztéshez is?
+## 22. Mi a RAG — és miért kell a fejlesztéshez is? (#s16)
 
 _(no notes)_
 
-## 23. Vektor → él → property-graph — a visszakeresés rétegei
+## 23. Vektor → él → property-graph — a visszakeresés rétegei (#s17)
 
 _(no notes)_
 
-## 24. „Ne ázzon be a pince" — egy igény végig a láncon
+## 24. „Ne ázzon be a pince" — egy igény végig a láncon (#s12)
 
 ⏱ 24:30 — Visszatérünk a Vishy-házhoz. A 2. dia azt mutatta, **ki** mit csinál; ez a dia **egyetlen igényt** követ
 végig — a család mondatától a műszaki ellenőrig. Szoftverismeret nem kell hozzá, ezért mindenki
@@ -378,13 +378,13 @@ akkor kell rögzíteni, amikor még meg lehet nézni.
 Az alsó két kártya a 2. dia két kapuját hívja vissza: a **műszaki ellenőr** a tervet nézi
 (verifikáció), a **család** az első eső után azt, hogy erre volt-e szüksége (validáció).
 
-## 25. Négy döntés, ami megformálta a házat
+## 25. Négy döntés, ami megformálta a házat (#s13)
 
 ⏱ 25:15 — A négy kérdés–válasz pár lényege egyetlen mondatban: **minden döntés emberi döntés volt**, és
 mindegyik EARS-kikötésként került a tervre. A brigád — nálunk az AI — egyet sem hozott meg
 helyettünk. Ha van idő, a „két szint" kérdésnél mondd ki: *ez a legkisebb diff (A10) a házon.*
 
-## 26. Claude Code mint fejlesztőtárs — a fegyelmező keret
+## 26. Claude Code mint fejlesztőtárs — a fegyelmező keret (#s19)
 
 ⏱ 26:15 — A táblázatból a **hookra** menj rá: *a kapu nem kérés, hanem mechanikus erő.* A házon: amíg az
 ellenőr nem vette át a vasszerelést, nem öntenek betont. Nálunk a **szabály-kapu** blokkolja a
@@ -395,7 +395,7 @@ szándékos (a direkt út megengedett ott, ahol a repó arra jogosult). A blokko
 
 Vezetői olvasat: a szabály **kikényszerítve** van, nem remélve.
 
-## 27. Az építési napló — a bizonyíték nem emlékezet, hanem bejegyzés
+## 27. Az építési napló — a bizonyíték nem emlékezet, hanem bejegyzés (#s20)
 
 ⏱ 27:15 — Itt fizet vissza a 7. dia. A háznál mindenki tudja: vitában **az építési napló dönt**, nem az
 emlékezet és nem a kivitelező becslése. A mondat, ami átvisz a számokhoz: *„nálunk a git log
@@ -428,7 +428,7 @@ bizonyítékként. Ha rákérdeznek (*ki becsülte? milyen scope-pal? hány FTE?
 „nincs mögötte dokumentált WBS — ezért mondom nagyságrendnek." Ha nem akarod megvédeni,
 **hagyd ki**, és csak a git-számokat mondd; a dia enélkül is működik.
 
-## 28. És mi épült? — az alkalmazás, amit az IT-csoport használ
+## 28. És mi épült? — az alkalmazás, amit az IT-csoport használ (#s20b)
 
 ⏱ 28:00 — **Ez a dia a ház fényképe.** Eddig a tervrajzot, a brigádot és a naplót néztük — itt az, ami
 belőle lett. Ha egyetlen mondatot mondasz el róla: *„nem kódot írtunk, alkalmazást építettünk;
@@ -446,7 +446,7 @@ emberi kapun megy — a 18. dia ezt bontja ki. Ne mondd el itt előre.
 hagyd el, az úgyis a leggyengébb pont. Ez a dia válaszolja meg, amit a vezető valójában kérdez:
 *„és mi lett belőle?"*
 
-## 29. Három kapu a házon — és a két módszertani kapu
+## 29. Három kapu a házon — és a két módszertani kapu (#s21)
 
 ⏱ 29:00 — A vezetők diaja. **Négy kapu, mindegyik mögött ember** — a házon három (engedély, kulcs, két
 aláírás); az engedély egyben a verifikációs kapu (MR: review, *aztán* merge), a validáció a negyedik. Az AI egyiket sem tudja megnyitni
@@ -463,7 +463,7 @@ jogosultsággal, önállóan futnak. Ez nem kibúvó, hanem a lényeg: **a kapu 
 rendszer megváltozik** — nem ott, ahol csak leírjuk, mit láttunk. Ha ezt nem mondod ki, egy
 figyelmes fejlesztő pont ezt fogja megkérdezni, és jogosan.
 
-## 30. Négy döntés, ami a vezetőé — és az első lépés holnap
+## 30. Négy döntés, ami a vezetőé — és az első lépés holnap (#s22)
 
 ⏱ 29:45 — Ne foglald össze, amit már elmondtál — **négy döntést adj a vezetők kezébe**: hová teszik a
 kapacitást (review + átvétel, nem gépelés), hol van a tudás (dokumentumban, nem fejekben), mit
@@ -473,11 +473,11 @@ szándékosan nincs a listán: az a **következmény**, nem a cél.
 A zöld sávot mondd ki szó szerint, ez a hívás cselekvésre: *„egy kicsi, valódi igény, végigvive
 — nem pilot-program."* Ha kérdezik, mivel kezdjék: ezzel.
 
-## 31. Hogyan kezdj AI-fejlesztésbe? — útravaló
+## 31. Hogyan kezdj AI-fejlesztésbe? — útravaló (#s23)
 
 _(no notes)_
 
-## 32. Köszönjük a figyelmet!
+## 32. Köszönjük a figyelmet! (#s24)
 
 ⏱ 30:30 — Három mondat, aztán kérdések:
 
@@ -495,6 +495,6 @@ több **döntés, review és átvétel**. Ezek egyike sem delegálható gépnek 
 **„Honnan tudom, hogy nem hazudik?"** — Nem tudod a szövegéből, ezért nem is abból ellenőrzöd:
 zöld teszt, olvasható diff, futó rendszer. A 13. és 18. dia erről szól.
 
-## 33. Források & szabványok — minden technológia hivatkozva
+## 33. Források & szabványok — minden technológia hivatkozva (#s25)
 
 _(no notes)_

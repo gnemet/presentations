@@ -13,9 +13,7 @@ meta: [{icon: calendar, text: "2026"}]
      Extracted 2026-09-24 from the hand-built deck; the generated HTML replaced the hand-built
      original after the side-by-side review (urgent task sdd-deck-no-source, 2026-09-25). -->
 
-
-<!-- #s1 -->
-## Spec-driven Development (SdD) {layout=title}
+## Spec-driven Development (SdD) {layout=title id=s1}
 
 A specifikáció a szerződés, a dokumentum a kód — az ember dönt, az AI végrehajt.
 Egy módszertan — házépítés-hasonlattal, valódi példával, és azzal, hogy *hogyan épül így egy alkalmazás lépésről lépésre* — nem kódot írunk, a kód csak eszköz.
@@ -37,10 +35,7 @@ Java-fejlesztők · vezetők · üzleti elemzők. A git ebben a cégben **új** 
 ezt sose feltételezd ismertnek, de ne is kérj bocsánatot érte.
 ```
 
-
-
-<!-- #s2 -->
-## Spec-driven Development — ahogy a Vishy család házat épít Verőcén {label="A hasonlat"}
+## Spec-driven Development — ahogy a Vishy család házat épít Verőcén {label="A hasonlat" id=s2}
 
 > Az SdD lánc nem absztrakció. Mindenki el tud képzelni egy házépítést — és azt is, mi történik tervrajz nélkül. Nézzük végig **ugyanazzal a négy emberi szereplővel**, mint a módszertan — a tervrajztól a beköltözésig.
 
@@ -85,10 +80,9 @@ Kérdezz vissza a terembe: *„Ki írt már olyan kódot, amit fél év múlva �
 ami miatt hat hónap múlva is meg tudod mondani, hogy **miért** úgy van.
 ```
 
+## A probléma — 20 év Linux-infrastruktúra {label="A valós feladat" badge="infra-forge · kihagyható" id=s3}
 
-
-<!-- #s3 -->
-## A probléma — 20 év Linux-infrastruktúra {label="A valós feladat" badge="infra-forge · kihagyható"}
+--- {layout=stats}
 
 ### ~500 {accent=blue}
 Linux VM
@@ -101,6 +95,8 @@ disztribúció-család (CentOS 4–8, OEL 4–9, Debian, SUSE…)
 
 ### sok {accent=red}
 EOL rendszer · technikai adósság
+
+---
 
 ### :magnifying-glass: Mit kell megtalálni? {accent=blue}
 - Megosztott / gyenge **hitelesítő adatok** gépek között
@@ -132,20 +128,38 @@ Ne menj bele a technikai részletbe — a lényeg, hogy ez **nem laborpélda**: 
 éles kockázattal, és van egy határidő.
 ```
 
+## Mi a Spec-driven Development? — a lánc TdD-vel és validációval zárva {label="A módszertan · valós spec" id=s4}
 
+--- {layout=flow}
 
-<!-- #s4 -->
-## Mi a Spec-driven Development? — a lánc TdD-vel és validációval zárva {label="A módszertan · valós spec"}
+### Szándék
+`01` — mit és miért *(ember)*
 
-1. `01` **Szándék** — mit és miért *(ember)*
-2. `02` **Specifikáció** — requirements (EARS) *(ember + AI)*
-3. `03` **Terv** — design — a „hogyan" *(ember + AI)*
-4. `04` **Feladatok** — tasks — függőségi lánc *(AI)*
-5. `05 · TdD · RED` **Bukó teszt** — a kikötés kódra fordítva — **a kód előtt** *(ember + AI)*
-6. `06 · TdD · GREEN` **Megvalósítás** — a kivitelezés — kód, amíg a teszt zöld nem lesz *(AI)*
-7. `07` **Verifikáció** — build · teljes tesztfutás · review *(AI + ember)*
-8. `08` **Validáció** — átvétel — „a jót építettük?" *(ember (QA))*
-9. `09` **Használat** — az alkalmazás üzemel — és az első hiányból **új szándék** lesz *(ember (végfelhasználó))*
+### Specifikáció
+`02` — requirements (EARS) *(ember + AI)*
+
+### Terv
+`03` — design — a „hogyan" *(ember + AI)*
+
+### Feladatok
+`04` — tasks — függőségi lánc *(AI)*
+
+### Bukó teszt
+`05 · TdD · RED` — a kikötés kódra fordítva — **a kód előtt** *(ember + AI)*
+
+### Megvalósítás
+`06 · TdD · GREEN` — a kivitelezés — kód, amíg a teszt zöld nem lesz *(AI)*
+
+### Verifikáció
+`07` — build · teljes tesztfutás · review *(AI + ember)*
+
+### Validáció
+`08` — átvétel — „a jót építettük?" *(ember (QA))*
+
+### Használat
+`09` — az alkalmazás üzemel — és az első hiányból **új szándék** lesz *(ember (végfelhasználó))*
+
+---
 
 ### :x-circle: Vibe coding {accent=red}
 - Prompt → kód → „jónak tűnik" → merge
@@ -197,6 +211,8 @@ O1 [~] Where SMTP is set, notify_fleet_collect shall email a summary; else soft-
 
 A státuszjel az SSOT: [x] verifikált · [~] részleges · [ ] nyitott. Ez a „MIT"; a `design.md` a „HOGYAN".
 
+---
+
 > **A házon:** család (szándék) → építész (engedélyezési terv) → kiviteli terv → próbakocka a betonozáskor → brigád → műszaki ellenőr → a család átveszi → beköltözés. · SdD-ben: 01 → 02–03 → 04 → 05 TdD → 06 → 07 → 08 → 09 — ugyanaz a kilenc lépés, ugyanazokkal a kapukkal.
 
 ```notes
@@ -228,10 +244,7 @@ Enélkül a terem azt viheti haza, hogy az EARS, a Markdown, a git és a Claude 
 **kötelező előírás** — és az első kérdés az lesz, hogy „ki írta elő?".
 ```
 
-
-
-<!-- #s5 -->
-## LLM + agent — és hogyan olvassa az AI a repót? {label="Alapfogalmak — LLM , agent, szabály-betöltés"}
+## LLM + agent — és hogyan olvassa az AI a repót? {label="Alapfogalmak — LLM , agent, szabály-betöltés" id=s5}
 
 ### :brain: LLM {accent=blue}
 Nagy nyelvi **modell** — egy *modelltípus* a sok közül (van beágyazó-, rerank-, látómodell is). Szövegből szöveget jósol. A **súlyai nem változnak** attól, hogy beszélgetsz vele — magától nem szerez új tudást; amit tud, az a tanítás + amit most a kontextusába tettek.
@@ -245,14 +258,27 @@ Amit a modell *egyszerre lát* — és semmi mást. **Nem végtelen:** néhány 
 ### Prompt {accent=peach}
 A teljes bemenet: feladat + szabályok + kontextus. A „prompt engineering" valójában *kontextus-szerkesztés*.
 
----
+--- {layout=flow}
 
-1. `1` **Kérés** — feladat + betöltött szabályok
-2. `2` **Terv** — lépésekre bontás
-3. `3` **Eszközhívás** — fájl · shell · DB
-4. `4` **Megfigyelés** — eredmény vissza a kontextusba
-5. `5` **Ismétlés** — amíg a cél nem teljesül
-6. `6` **Verifikáció** — build · teszt · jelentés
+### Kérés
+`1` — feladat + betöltött szabályok
+
+### Terv
+`2` — lépésekre bontás
+
+### Eszközhívás
+`3` — fájl · shell · DB
+
+### Megfigyelés
+`4` — eredmény vissza a kontextusba
+
+### Ismétlés
+`5` — amíg a cél nem teljesül
+
+### Verifikáció
+`6` — build · teszt · jelentés
+
+---
 
 **Az agent négy arca — ki irányítja a lépéseket?**
 
@@ -278,15 +304,28 @@ Egy célt kap, és **maga dönti el** a lépéseket — lépésenkénti emberi j
 
 **Nálunk:** olvasni önállóan — **minden írás kapun megy át** (A6).
 
+---
+
 > :shield: Az LLM **statisztikai szövegjósló**: a **súlyai nem változnak** a beszélgetéstől, és amit az aktuális kontextus vagy az eszközei nem hoztak be, arra **abban a lépésben nem tud támaszkodni** — csak újrakombinál, és magabiztosan téved. *(Friss tényhez az **agent** jut hozzá: fájlt olvas, DB-t kérdez, eszközt hív.)* A context window ráadásul **véges** — nem fér bele a rendszer, tehát *minden session választ*, mit olvas be. Ezért tesszük a tudást **dokumentumokba**, amit minden session újratölt: *az aranyhal-memóriájú agentnek a repo a memóriája*. A modell felejt — **a platform nem**.
 > Mint a [*Memento*](https://www.youtube.com/watch?v=ZbGGd4JUwdE) hőse: nincs hosszú távú memóriája, **minden nap emlékek nélkül kezdődik** — ezért **mindent leír** (cetli, polaroid, tetoválás), és abból rakja össze, hol tart. Minden session egy ilyen új nap.
 
+--- {layout=flow}
+
 **Hogyan olvassa az AI a repót? — a szabály-hierarchia**
 
-1. `betöltés: session start` **Platform axiómák** — all_rules_for_claude.md + 00_axioms.md — csak a L1 kerül be kényszeredetten
-2. `betöltés: session start` **Projekt CLAUDE.md** — infra-forge-specifikus delták, státusz, tiltások
-3. `betöltés: session start` **.claude/** — hooks · skills · memory · MCP konfiguráció
-4. `igény szerint · RAG` **L2–L3 szabályok, spec-ek, kód** — amit a feladat megkíván — az agent olvassa be, vagy vektortárból keres vissza
+### Platform axiómák
+`betöltés: session start` — all_rules_for_claude.md + 00_axioms.md — csak a L1 kerül be kényszeredetten
+
+### Projekt CLAUDE.md
+`betöltés: session start` — infra-forge-specifikus delták, státusz, tiltások
+
+### .claude/
+`betöltés: session start` — hooks · skills · memory · MCP konfiguráció
+
+### L2–L3 szabályok, spec-ek, kód
+`igény szerint · RAG` — amit a feladat megkíván — az agent olvassa be, vagy vektortárból keres vissza
+
+---
 
 **▸ Mélyebben: mi az LLM *valójában* · és mi az agent**
 
@@ -307,6 +346,8 @@ A temperature azt állítja, milyen messze merészkedik a legvalószínűbb útt
 
 **→ ezért SdD:** a spec és a szabályok a koherencia-korlát — bennük szabad, kívül kontrollált.
 
+---
+
 ### Nálunk: Claude Code {accent=sky}
 Terminálban futó agent. Olvassa a repót, szerkeszt, buildel, commitol — a projekt szabályfájljai szerint.
 
@@ -316,7 +357,11 @@ Terminálban futó agent. Olvassa a repót, szerkeszt, buildel, commitol — a p
 - Session-ök között **felejti a beszélgetést** — aranyhal-memória; ami megmarad, azt a *repo* őrzi, nem a modell
 - Magabiztosan tud tévedni
 
+---
+
 > Új viselkedést nem „promptolgatással" érünk el, hanem a szabályfájl módosításával — ami diffelhető, review-zható, és *minden jövőbeli session örökli*.
+
+---
 
 > **A házon:** A brigád minden reggel emlékezet nélkül érkezik: a tervrajzból és az építési naplóból tudja, hol tart. · SdD-ben: A spec, a szabályok és a git log az AI memóriája; a context window az aznapi munkaasztal.
 
@@ -383,10 +428,7 @@ leírjuk, mit láttunk.)*
 Zárómondat: *„az aranyhal-memóriájú agentnek a repo a memóriája"* — ez vezet át a következő diára.
 ```
 
-
-
-<!-- #s5b -->
-## Hol dolgozik az AI? — a development-platform munkaterület {label="A fejlesztői környezet" badge="infra-forge · kihagyható"}
+## Hol dolgozik az AI? — a development-platform munkaterület {label="A fejlesztői környezet" badge="infra-forge · kihagyható" id=s5b}
 
 Nem IDE-plugin és nem varázsdoboz: egy **terminál**, egy **munkaterület-gyökér**, és mellette egymás mellett a repók. Aki Eclipse-ben workspace-t használt, annak ez ismerős — a különbség az, hogy itt **a szabályok is a munkaterületen laknak**, nem a wikiben.
 
@@ -455,10 +497,7 @@ ugyanígy fér el mellettük, a szerkezet nem változik.
 készült — ha látod, hogy kapaszkodót keresnek, nyisd ki; ez a leggyorsabb megnyugtatás.
 ```
 
-
-
-<!-- #s5c -->
-## Miért git? — mert a kis diff az emberi kapu {label="A verziókövetés — SVN → git"}
+## Miért git? — mert a kis diff az emberi kapu {label="A verziókövetés — SVN → git" id=s5c}
 
 A git nálunk nem divat, hanem **a módszertan hordozója**. Ha az AI írja a kód nagy részét, akkor az egyetlen dolog, amit az ember végig kézben tart, **a változás** — és a git pontosan azt teszi olvashatóvá, felülvizsgálhatóvá és visszavonhatóvá.
 
@@ -522,6 +561,8 @@ git switch -c fix/masodik-hiba
 
 > **Egy szokás, amit érdemes átvenni:** a commit-üzenet mondja meg, *melyik követelményt* teljesíti (`feat(fleet): E2 — content_hash stabil, ha nincs változás`). Így a git history és a spec összeolvasható — és az AI is meg tudja mondani, hol tart a munka.
 
+---
+
 > **A házon:** Egyszerre egy fal, amit a műszaki ellenőr még végig tud nézni; a tegnapi naplóbejegyzést nem radírozzák ki. · SdD-ben: Kis diff = egy review-egység; minden lépés a saját próbakockájával (TdD-teszt) megy be.
 
 ```notes
@@ -567,10 +608,7 @@ rövidítést: a céges GitLab ezt a szót írja ki, a „PR" a GitHub szóhaszn
 a teremben az MR az, amit holnap látni fognak.
 ```
 
-
-
-<!-- #s6 -->
-## A 11 axióma — a platform alaptörvénye {label="A szabályok — Szint 1" skip=talk}
+## A 11 axióma — a platform alaptörvénye {label="A szabályok — Szint 1" skip=talk id=s6}
 
 > Tizenegy, projekt- és technológia-független alapelv — nálunk kőbe vésve, nem javaslat: ugyanazok az axiómák Go-ban vagy Rustban, PostgreSQL-en vagy Oracle-ön.
 >
@@ -582,7 +620,7 @@ a teremben az MR az, amit holnap látni fognak.
 
 ### Alap · A1–A4 {accent=blue}
 
-**A1 · Egy igazság! — SSOT.** Minden tény egy helyen — no hardcode, no duplication; entity spec, pipeline `.md`, LOV az authoritative source; a többi generálódik vagy hivatkozza. → s10b ↗
+**A1 · Egy igazság! — SSOT.** Minden tény egy helyen — no hardcode, no duplication; entity spec, pipeline `.md`, LOV az authoritative source; a többi generálódik vagy hivatkozza. [→ s10b ↗](#s10b)
 
 **A2 · A dokumentum a kód! — Doc=Code.**`.md` spec = source of truth ÉS futtatható/generátor input. Két forma: (1) SDD spec → generated code (entity spec → DDL+CRUD); (2) pf-pipeline `.md` = maga a futtatható — nem generál kódot, hanem közvetlenül fut. Ha spec és kód eltér → spec nyer, a kód regenerálódik.
 
@@ -592,7 +630,7 @@ a teremben az MR az, amit holnap látni fognak.
 
 ### Irány / szerep · A5–A7 {accent=mauve}
 
-**A5 · Felülről lefelé! — DB→BE→FE→AI.** DB first (entity spec → tárolt funkciók, no inline DML) → thin BE → generated FE → **AI-felület legvégül** (skill · MCP · persona, generálva); sosem kézzel, amit feljebb spec birtokol. → s10c ↗
+**A5 · Felülről lefelé! — DB→BE→FE→AI.** DB first (entity spec → tárolt funkciók, no inline DML) → thin BE → generated FE → **AI-felület legvégül** (skill · MCP · persona, generálva); sosem kézzel, amit feljebb spec birtokol. [→ s10c ↗](#s10c)
 
 **A6 · AI orchestrál, ember kapuzik! — AI = orchestrator, human = control.** Adapters, MCP tools, tárolt funkciók = AI's hands, built by humans; AI wields them; reads autonomous within policy; writes gated by human (MR / hash-reveal / admin-grant) or rule (hooks, RLS, RBAC); agent can never self-escalate.
 
@@ -612,10 +650,7 @@ a teremben az MR az, amit holnap látni fognak.
 
 > **A házon:** Az építési szabványok — minden házra érvényesek, és a terv fölött állnak. · SdD-ben: Az axiómák a spec fölötti alaptörvény: ha ütköznek, az axióma nyer.
 
-
-
-<!-- #s7 -->
-## Alaptörvény → fizika → projekt-szabály — és mindet ember írja {label="A szabályok — három szint" skip=talk}
+## Alaptörvény → fizika → projekt-szabály — és mindet ember írja {label="A szabályok — három szint" skip=talk id=s7}
 
 | Szint | Mi | Metafora | Ki írja | Példa |
 |---|---|---|---|---|
@@ -629,10 +664,7 @@ A fizikát nem lehet kicselezni — ha megsérted, nem áll össze a rendszer, a
 
 > **A házon:** szabvány → építéstechnológia → ennek a háznak a terve. · SdD-ben: L1 axióma → L2 platform-szabály → L3 projekt-szabály és spec.
 
-
-
-<!-- #s8 -->
-## Miért kontextus-alapú a fejlesztés? — erősítő vs. rövidítés {label="A tézis"}
+## Miért kontextus-alapú a fejlesztés? — erősítő vs. rövidítés {label="A tézis" id=s8}
 
 ### Szilárd híd — az erősítő {accent=green}
 - **Kontextus + szabály + terv** → megbízható architektúra.
@@ -660,6 +692,8 @@ A szabály, a spec, a kód és a hibaüzenet **ugyanazokat a szavakat** használ
 Kulcsszó, azonosító, könyvtár-dokumentáció, hibaüzenet, git-szótár — mind angol. Ha a spec magyar, minden mondat mögé **fordítási réteg** kerül, és a jelentés ott szivárog el. Egy nyelven tartva nincs mit félrefordítani.
 
 > :shield: **De nem mindent angolul — a vágás éles (A7):** az **infrastruktúra és az orchestráció** beszél angolul (szabályok, EARS-kikötések, kódbeli azonosítók, commit-üzenetek), az **üzleti tartomány marad magyarul** (a domén fogalmai, a felhasználónak szóló szövegek, ez a diasor is). A BA *nem* lesz angol nyelvű követelményíró: a szakterületi szó magyar marad, csak a kikötés váza angol.
+
+---
 
 > **A házon:** Szilárd híd vs. kártyavár: alap és statika nélkül a gyorsan felhúzott fal az első tehernél leomlik. · SdD-ben: A kontextus (spec + szabály) az alap — az AI erősítő, nem rövidítés; a TdD-teszt a statikai számítás.
 
@@ -702,10 +736,7 @@ hogy „mostantól angolul kell dolgozniuk", és az nem igaz:
 kereshető, és a kód felé úgyis fordítani kell. Ez mérési kérdés, nem identitás-kérdés.)*
 ```
 
-
-
-<!-- #s8b -->
-## Négy lépés — a szándéktól a bizonyított kódig {label="A fejlesztés lépései" skip=talk}
+## Négy lépés — a szándéktól a bizonyított kódig {label="A fejlesztés lépései" skip=talk id=s8b}
 
 ### 1 · Szándék → brief {accent=blue}
 Egy prompt, akár „vibe" szinten: *mit* akarunk és *miért*. Az AI ebből **briefet és követelmény-vázlatot** ír.
@@ -731,23 +762,33 @@ A 2. lépésben a teszt **leírása** (`tests.md`) születik; a 3. lépés **els
 kimenet
 **bizonyított „kész"** — gépi ellenőrzés, aztán a két emberi kapu (A9)
 
----
+--- {layout=flow}
 
-1. `1 · EMBER` **Szándék** — prompt / vibe → brief
-2. `2 · AI` **Spec** — EARS + terv + teszt-leírás
-3. `🔒 GATE` **Spec elfogadva** — ember jóváhagy, commit
-4. `3 · EMBER + AI` **Teszt piros → kód** — teszt: ember + AI · kód: AI — axióma · szabály · spec szerint
-5. `4 · AI` **Zöld** — build · teszt · smoke
-6. `🔒 GATE` **Review + átvétel** — verifikáció · validáció
+### Szándék
+`1 · EMBER` — prompt / vibe → brief
+
+### Spec
+`2 · AI` — EARS + terv + teszt-leírás
+
+### Spec elfogadva
+`🔒 GATE` — ember jóváhagy, commit
+
+### Teszt piros → kód
+`3 · EMBER + AI` — teszt: ember + AI · kód: AI — axióma · szabály · spec szerint
+
+### Zöld
+`4 · AI` — build · teszt · smoke
+
+### Review + átvétel
+`🔒 GATE` — verifikáció · validáció
+
+---
 
 > **A csavar:** a prompt csak a **kiindulópont**, nem a módszer. A „vibe" az első lépésben helyénvaló — utána a spec veszi át, és a **teszt dönti el**, mikor van kész. Az ember a két kapunál irányít (**A6**).
 
 > **A házon:** szándék → engedélyezési terv + a próbakocka előírása → kivitelezés → a kocka eltörik: bírja? · SdD-ben: brief → spec + `tests.md` → kód → TdD: piros → zöld.
 
-
-
-<!-- #s8c -->
-## Hogyan fejlődött a terület — és hol áll az infra-forge {label="A terület fejlődése" skip=talk}
+## Hogyan fejlődött a terület — és hol áll az infra-forge {label="A terület fejlődése" skip=talk id=s8c}
 
 ### :chat-circle-dots: 1 · Prompt engineering {accent=blue}
 Egyetlen utasítás → egyetlen válasz; az AI megáll, és a következő promptra vár.
@@ -773,21 +814,31 @@ Felfedez · cselekszik · ellenőriz · ismétel — egy stabil cél felé, ön�
 infra-forge
 **AI-önkontroll** — a *megcélzott* hurok: manifest → CI futtatja → `ops_validate_deployment` 0–100 → drift esetén újraépít. A remediációs ág ma **áll** (2026-09-09).
 
----
+--- {layout=flow}
 
-1. `DISCOVER` **Observe** — collect → SCD2 artefakt
-2. `DISCOVER` **Understand** — AI elemzés → findings
-3. `ACT` **Plan** — OpenTofu `tfvars` / base-config manifest tervezet
-4. `🔒 GATE` **Emberi kapu** — GitLab MR — ember jóváhagy
-5. `ACT → VERIFY` **Deploy + Verify** — CI alkalmazza · validációs pont 0–100
-6. `REPEAT` **Confirm / Recreate** — pont ≥ küszöb → lezár · drift → újraépít
+### Observe
+`DISCOVER` — collect → SCD2 artefakt
+
+### Understand
+`DISCOVER` — AI elemzés → findings
+
+### Plan
+`ACT` — OpenTofu `tfvars` / base-config manifest tervezet
+
+### Emberi kapu
+`🔒 GATE` — GitLab MR — ember jóváhagy
+
+### Deploy + Verify
+`ACT → VERIFY` — CI alkalmazza · validációs pont 0–100
+
+### Confirm / Recreate
+`REPEAT` — pont ≥ küszöb → lezár · drift → újraépít
+
+---
 
 > **A csavar:** a hurok teljes — de az **emberi kapu benne van**. Az AI tervez, a GitLab CI alkalmaz, az ember jóváhagy (**A6**). Ez nem „az ember kilép a hurokból", hanem **kapuvezérelt autonómia**.
 
-
-
-<!-- #s9 -->
-## Az AI a munka középpontja — az ember a kontroll középpontja {label="A stratégia"}
+## Az AI a munka középpontja — az ember a kontroll középpontja {label="A stratégia" id=s9}
 
 ### :hand: Kezeket építünk az AI-nak — két rétegben {accent=teal}
 - **Motor** (pipeline-forge, entity-forge, GoBI / datagrid): generikus, **két hívója van** — az *alkalmazás* is futtatja (ütemezés, UI), és az *AI* is. Közös alap, nem csak az AI‑é.
@@ -801,10 +852,15 @@ Az ember tartja a **kapukat** (MR / hash-reveal / admin-grant). Az `agent` princ
 ### Az AI anyanyelve: Markdown + angol {accent=sky}
 Ezért él a logika olvasható dokumentumban (pipeline, spec, szabály) — ez a *miért* a Document=Code mögött.
 
----
+--- {layout=flow}
 
-1. `RÉGI` **AI mint LÉPÉS** — az ember orchestrál, az AI egy-egy részfeladatot old meg
-2. `ÚJ` **AI mint ORCHESTRÁTOR** — az AI vezényli a folyamatot, az ember a kapuknál dönt
+### AI mint LÉPÉS
+`RÉGI` — az ember orchestrál, az AI egy-egy részfeladatot old meg
+
+### AI mint ORCHESTRÁTOR
+`ÚJ` — az AI vezényli a folyamatot, az ember a kapuknál dönt
+
+---
 
 > **A házon:** A brigád dolgozik, a tulajdonos és az ellenőr a kapuknál áll; a darut a brigád és a gépész is használja. · SdD-ben: Az AI végzi a lépéseket, az ember tartja a kapukat — a motornak két hívója van: az alkalmazás és az AI.
 
@@ -814,10 +870,7 @@ mozdítjuk el** — a szűk keresztmetszet mostantól a **review és az átvéte
 kapacitás. Ezt a mondatot érdemes szó szerint kimondani.
 ```
 
-
-
-<!-- #s10 -->
-## Miért dokumentum? Miért Markdown? — egy fájl, három arc {label="A formátum · egy valódi, futó artefaktum"}
+## Miért dokumentum? Miért Markdown? — egy fájl, három arc {label="A formátum · egy valódi, futó artefaktum" id=s10}
 
 Ez a `pipelines/ops_dep_extract.md` — **minden éjjel 04:00-kor magától lefutó**, élő pipeline: a flotta pillanatképeiből kiszámolja a szolgáltatás-függőségeket (DNS · NFS · LDAP · SMTP) → naplóz → átszinkronizálja a függőségi gráfot → lezár. **Egyetlen Markdown-fájl**, nincs mellette kód. Váltsd a nézetet — *ugyanaz a fájl* mind a három.
 
@@ -914,11 +967,24 @@ A közös végpont, ahová mindkét ág érkezik.
 
 Amit **csak a motor** lát: öt lépés, mindegyik a saját *típusával* — és **két ág**. A RAW ezt szövegként mutatta, a DOC prózaként — itt **végrehajtási terv**.
 
-1. `1 · db_query` **Extract Dependencies** — infra.dep_extract_from_snapshots() · hibánál → 4
-2. `2 · log` **Log Result** — siker → 3
-3. `3 · pipeline` **Sync Graph Store** — → OPS-graph_sync (9 lépés) · critical: false · → 5
-4. `4 · log` **Log Run Failure — csak hibaágon** — on_error célpont — sikeres futásnál kimarad
-5. `5 · log` **Done** — mindkét ág itt ér véget
+--- {layout=flow}
+
+### Extract Dependencies
+`1 · db_query` — infra.dep_extract_from_snapshots() · hibánál → 4
+
+### Log Result
+`2 · log` — siker → 3
+
+### Sync Graph Store
+`3 · pipeline` — → OPS-graph_sync (9 lépés) · critical: false · → 5
+
+### Log Run Failure — csak hibaágon
+`4 · log` — on_error célpont — sikeres futásnál kimarad
+
+### Done
+`5 · log` — mindkét ág itt ér véget
+
+---
 
 | name | schedule | tenant | trigger |
 |---|---|---|---|
@@ -976,6 +1042,8 @@ A `#`…`######` hierarchia adja a szerkezetet — a RAG *fejezetenként* darabo
 
 A fenti `ops_dep_extract.md` pontosan így épül fel: **frontmatter** (név, ütemezés, tenant) + **próza** (a miért) + **`## Step:` szakaszok** (a futtatható lépések). Az ember a prózát olvassa, a git a diffet, az LLM az egészet — a motor pedig a lépéseket futtatja, sorban.
 
+---
+
 > **A házon:** A tervrajz nem utólagos leírás — a brigád ebből épít, és ha a fal eltér tőle, a falat bontják. · SdD-ben: Document = Code: ugyanaz a fájl a spec, a dokumentáció és a futtatható.
 
 ```notes
@@ -1013,10 +1081,7 @@ tér vissza: egy „legalább 1 él" teszt az első éjszakán piros lett volna.
 alatt is megjelenik, és a lényeg egy mondatban elmondható.)*
 ```
 
-
-
-<!-- #s10b -->
-## Egy igazságforrás + a dokumentum a kód — nem kettő, nem nulla {label="Az alapelv — A1 + A2" skip=talk}
+## Egy igazságforrás + a dokumentum a kód — nem kettő, nem nulla {label="Az alapelv — A1 + A2" skip=talk id=s10b}
 
 ### Az adatbázis az igazságforrás (A1) {accent=blue}
 
@@ -1050,10 +1115,7 @@ alatt is megjelenik, és a lényeg egy mondatban elmondható.)*
 
 > **A házon:** Egy hiteles tervrajz a helyszínen — nem kettő, és nem a brigád fejében. · SdD-ben: A1 + A2: egy igazságforrás, és az maga a futtatható.
 
-
-
-<!-- #s10c -->
-## Felülről lefelé — adatbázis → backend → frontend → AI-felület {label="Az alapelv — A5" skip=talk badge="infra-forge · kihagyható"}
+## Felülről lefelé — adatbázis → backend → frontend → AI-felület {label="Az alapelv — A5" skip=talk badge="infra-forge · kihagyható" id=s10c}
 
 > :info: Adatmodell → vékony backend → ahol lehet, generált frontend → **AI-felület**. Soha ne írj kézzel olyat, amit feljebb egy spec már meghatároz. *A négy réteg együtt az alkalmazás.*
 
@@ -1088,23 +1150,29 @@ alatt is megjelenik, és a lényeg egy mondatban elmondható.)*
 - Olvasás önállóan, **írás kapun** (A6)
 - *`skills/*.md` + `pipelines/*.md`*
 
----
+--- {layout=flow}
 
 **Oldd meg ott, ahol él — az adat a DB-ben él**
 
-1. `1 · ELŐSZÖR` **DB-eszközzel** — halmazművelet, tárolt függvény, index
-2. `2 · MÉRÉS` **Jó és elég gyors?** — helyes eredmény **és** teljesítmény — mérve
-3. `3 · HA NEM` **Másik megoldás** — lassú vagy drága → a szomszéd rétegben (BE)
-4. `4 · RÖGZÍTÉS` **A „miért" a specbe** — design.md: mi bukott el, miért itt lett
+### DB-eszközzel
+`1 · ELŐSZÖR` — halmazművelet, tárolt függvény, index
+
+### Jó és elég gyors?
+`2 · MÉRÉS` — helyes eredmény **és** teljesítmény — mérve
+
+### Másik megoldás
+`3 · HA NEM` — lassú vagy drága → a szomszéd rétegben (BE)
+
+### A „miért" a specbe
+`4 · RÖGZÍTÉS` — design.md: mi bukott el, miért itt lett
+
+---
 
 > **Mi hová tartozik:** **DB** — szűrés, rendezés, összesítés · **BE** — transzport, auth, session · **FE** — megjelenítés · **AI** — a tierek *elérése*, nem a logikájuk. Ha a munka a BE-be kerül, az adatot akkor is csak tárolt függvényen át érjük el: a *hely* mozdulhat, a *hozzáférés módja* nem. **Az invariáns:** az igény változik → az entitásspec vagy a pipeline-fájl változik → a generált kód frissül. Nem fordítva.
 
 > **A házon:** Alap → falak → tető → berendezés; senki nem a tetővel kezdi. · SdD-ben: DB → BE → FE → AI — felülről lefelé, a spec szerint.
 
-
-
-<!-- #s11 -->
-## SDD + BRD, és az ötrétegű dokumentumtérkép — valós fájlokkal {label="Dokumentumtípusok — blueprintek + a térkép" skip=talk}
+## SDD + BRD, és az ötrétegű dokumentumtérkép — valós fájlokkal {label="Dokumentumtípusok — blueprintek + a térkép" skip=talk id=s11}
 
 > Két dolog, egy rövidítés — ne keverd össze.
 >
@@ -1194,13 +1262,10 @@ forrás: Beck, *TdD by Example*
 
 > Az irány mindig **felülről lefelé**: szabály → terv → spec → futtatható artefaktum → tükör (HTML, Confluence, Jira). Lefelé sosem írunk kézzel olyat, amit feljebb spec birtokol.
 
-
-
-<!-- #s11c -->
-## EARS — öt mondatminta, amiből teszt lesz {label="A követelmény nyelve — EARS"}
+## EARS — öt mondatminta, amiből teszt lesz {label="A követelmény nyelve — EARS" id=s11c}
 
 **E**asy **A**pproach to **R**equirements **S**yntax — [Alistair Mavin](https://alistairmavin.com/ears/), Rolls-Royce. Nem szabvány-bürokrácia: **öt mondatsablon**, ami a „legyen gyors és felhasználóbarát" típusú kívánságot olyan kikötéssé alakítja, amit *egy gép is el tud dönteni*. Ez a BA legfontosabb új eszköze.
-Nem önálló tervrajz: az **EARS a BRD (követelmény-réteg) mondattana** — nálunk a `requirements.md`-ben él, és onnan hivatkozza a design, a task és a teszt.→ s4 ↗
+Nem önálló tervrajz: az **EARS a BRD (követelmény-réteg) mondattana** — nálunk a `requirements.md`-ben él, és onnan hivatkozza a design, a task és a teszt.[→ s4 ↗](#s4)
 
 | Kód | Minta | Sablon | A Vishy-házon :code: és ugyanaz a minta a szoftverben |
 |---|---|---|---|
@@ -1244,10 +1309,7 @@ A zárómondat, amit vigyenek haza: *az EARS-kikötés a szerződés szövege* �
 olvassa, az AI implementálja, a teszt bizonyítja.
 ```
 
-
-
-<!-- #s11d -->
-## Egy követelménytől az átvett funkcióig — nyolc lépés, egy valódi példán {label="A napi munkamenet — lépésről lépésre"}
+## Egy követelménytől az átvett funkcióig — nyolc lépés, egy valódi példán {label="A napi munkamenet — lépésről lépésre" id=s11d}
 
 A példa végig ugyanaz, a Vishy-házon: **„Télen ne fázzunk."** — ebből lesz az `E1` kikötés (az EARS-diáról), a próba, majd a kivitelezés. Minden sor alatt kis betűvel: **mi ennek a megfelelője a szoftverben**. A lépések a lényeg, nem a példa.
 
@@ -1280,18 +1342,28 @@ Két helyen állj meg:
   Ez a mondat szokott megmaradni az emberekben.
 ```
 
-
-
-<!-- #s11e -->
-## TdD — a teszt az EARS-kikötés gépi fele {label="Új elem — TdD"}
+## TdD — a teszt az EARS-kikötés gépi fele {label="Új elem — TdD" id=s11e}
 
 A teszt-vezérelt fejlesztés nem új ([Kent Beck, 2002](https://www.oreilly.com/library/view/test-driven-development/0321146530/)) — de **LLM mellett más a szerepe**. Régen a fejlesztő fegyelmét pótolta. Most azt a kérdést válaszolja meg, amit egy magabiztos géptől másképp nem lehet: *„tényleg kész van, vagy csak annak hangzik?"*
 
-1. `01` **EARS-kikötés** — az eldönthető állítás *(ember + AI)*
-2. `02 · RED` **Bukó teszt** — a kikötés kódra fordítva — és commitolva *(ember + AI)*
-3. `03 · GREEN` **A legkisebb kód** — ami zöldre viszi *(AI)*
-4. `04` **Refaktor** — a zöld végig zöld marad *(AI)*
-5. `05` **Review** — az ember **a tesztet is** olvassa *(ember)*
+--- {layout=flow}
+
+### EARS-kikötés
+`01` — az eldönthető állítás *(ember + AI)*
+
+### Bukó teszt
+`02 · RED` — a kikötés kódra fordítva — és commitolva *(ember + AI)*
+
+### A legkisebb kód
+`03 · GREEN` — ami zöldre viszi *(AI)*
+
+### Refaktor
+`04` — a zöld végig zöld marad *(AI)*
+
+### Review
+`05` — az ember **a tesztet is** olvassa *(ember)*
+
+---
 
 ### Az AI nem tud blöffölni {accent=green}
 A „kész vagyok" egy nyelvi modelltől **nem bizonyíték** — a magabiztos hang ingyen van. A zöld tesztfutás viszont tény. A teszt az egyetlen visszajelzés, amit az AI *nem tud meggyőzően előadni*. Ha a tesztet is az AI vázolja, a review **a tesztet olvassa először** — ez a tartóelem.
@@ -1336,10 +1408,7 @@ bukó tesztet. Ezért (1) a teszt előbb kerül commitba, (2) **a review a teszt
 Záró: spec, teszt és kód **ugyanannak az állításnak három alakja**.
 ```
 
-
-
-<!-- #s15 -->
-## Négy motor, nem egy ötödik — katalógus-vezérelt eszközök {label="Az eszközök · a négy motor" skip=talk badge="infra-forge · kihagyható"}
+## Négy motor, nem egy ötödik — katalógus-vezérelt eszközök {label="Az eszközök · a négy motor" skip=talk badge="infra-forge · kihagyható" id=s15}
 
 > Négy generikus motor visz mindent — **ötödiket nem írunk**: ha új képesség kell, a motort **kívülről bővítjük** (adapter · feature · katalógus-bejegyzés), sosem forkoljuk újra (A4).
 
@@ -1377,12 +1446,11 @@ Nem könyvtár, hanem **hordozható módszer**: a spec maga a definíció. Ugyan
 
 > A közös elv: **adat a katalógusban, viselkedés a motorban** — a kettő határa a review-felület.
 
+---
+
 > **A házon:** Szabványos, előre gyártott elemek — zsalu, ajtótok, födémpanel: nem minden háznál találják fel újra. · SdD-ben: A négy motor és a foundation: a spec ezekből választ, ötödiket nem ír (A4).
 
-
-
-<!-- #s16 -->
-## Mi a RAG — és miért kell a fejlesztéshez is? {label="AI-infrastruktúra" skip=talk badge="infra-forge · kihagyható"}
+## Mi a RAG — és miért kell a fejlesztéshez is? {label="AI-infrastruktúra" skip=talk badge="infra-forge · kihagyható" id=s16}
 
 **A teljes tudás, amire a fejlesztés épül — mérve a GitLab-projekteken (2026-09-22)**
 
@@ -1409,13 +1477,24 @@ Nem könyvtár, hanem **hordozható módszer**: a spec maga a definíció. Ugyan
 - A kérdésre **előbb a releváns chunkokat** keresi vissza — nem az egész repót.
 - Csak azt tölti be, ami a feladathoz kell — **forrásmegjelöléssel**.
 
----
+--- {layout=flow}
 
-1. `1` **Kérdés** — magyarul
-2. `2` **Beágyazás** — embedding (vektor)
-3. `3` **Vektoros keresés** — pgvector · lokális `rag_db`
-4. `4` **Top találatok** — releváns chunkok
-5. `5` **Olvasás** — a megjelölt fájl
+### Kérdés
+`1` — magyarul
+
+### Beágyazás
+`2` — embedding (vektor)
+
+### Vektoros keresés
+`3` — pgvector · lokális `rag_db`
+
+### Top találatok
+`4` — releváns chunkok
+
+### Olvasás
+`5` — a megjelölt fájl
+
+---
 
 ### Fejlesztői RAG — lokális rag_db {accent=mauve}
 **A repó a kollekció**: minden platform-repo egy gyűjtemény. Claude Code ebből keresi vissza a releváns szabályt / doc-ot / spec-et — nem a teljes fát olvassa. **Ez a dev-láb.**
@@ -1427,10 +1506,7 @@ Nincs központi RAG-adatbázis: minden termék a **saját éles DB-jében** tart
 
 > **A házon:** A tervtár: a brigád nem visz mindent a zsebében, de tudja, hol keresse. · SdD-ben: RAG: a teljes tudásból az adott SdD-lépéshez szükséges rész kerül a kontextusba.
 
-
-
-<!-- #s17 -->
-## Vektor → él → property-graph — a visszakeresés rétegei {label="AI-infrastruktúra · a visszakeresés rétegei" skip=talk badge="infra-forge · kihagyható"}
+## Vektor → él → property-graph — a visszakeresés rétegei {label="AI-infrastruktúra · a visszakeresés rétegei" skip=talk badge="infra-forge · kihagyható" id=s17}
 
 > A lapos vektor-keresés a „**miről szól?**" kérdésre jó: a szöveg → sűrű **jelentés-vektor**, a kérdéshez **cosine**-közeli chunkok jönnek vissza — nem kulcsszó, hanem *jelentés* („Dell laptop" megtalálja a „hordozható számítógép"-et is). De a „**mi mire hivatkozik?**", „**ki ért hozzá?**" kérdés **kapcsolat** — azt gráffal kérdezzük.
 
@@ -1460,12 +1536,23 @@ Az **éleket** (X hivatkozik Y-ra; ugyanaz a személy két forrásban) külön g
 | fejlesztői gép · 19 beta3 | valós wiki-gráf másolata (7 347 él) | 1–2 ugrás **azonos** a mai CTE-vel; 2-ugrásos lánc gyorsabb (0,29 vs 0,42 ms); irányítatlan él lassú (18–115×), nincs változó hosszú út |
 | éles szerver · fő RAG-klaszter | `iier01_db` — **461 752** `cross_refs` él, PG 18.4 — **az iiriki élesben használja**: `/iier2/value-graph` | **élesben**, hordozható SQL-lel: minden találatnál ott a gráf-útvonal (SharePoint-hely → mappa → dokumentum → tábla); egy kapcsolóval ugyanez a keresés a `19/search` side-caron SQL/PGQ-val fut, a két idő egymás mellett. **Még hátra:** a klaszter frissítése a 19 GA után; az alap PG ≥ 16 marad, a natív gráf-lekérdezés csak 19+ szerveren |
 
+--- {layout=flow}
+
 **Hogyan használjuk fejlesztés közben — egy kérdés útja**
 
-1. `1 · VEKTOR` **Tájékozódás** — `/rag-search type:rules …` — a releváns chunkok, forrásfájllal
-2. `2 · ÉL` **Kapcsolatok** — `/rag-connections` — mi hivatkozik rá, mi épül rá (1–2 ugrás)
-3. `3 · PONTOSAN` **Olvasás** — csak a megjelölt fájl(ok) — `Read`
-4. `4 · FRISSÍTÉS` **Újra-beágyazás** — `/rag-embed` — csak ami változott (`content_hash`)
+### Tájékozódás
+`1 · VEKTOR` — `/rag-search type:rules …` — a releváns chunkok, forrásfájllal
+
+### Kapcsolatok
+`2 · ÉL` — `/rag-connections` — mi hivatkozik rá, mi épül rá (1–2 ugrás)
+
+### Olvasás
+`3 · PONTOSAN` — csak a megjelölt fájl(ok) — `Read`
+
+### Újra-beágyazás
+`4 · FRISSÍTÉS` — `/rag-embed` — csak ami változott (`content_hash`)
+
+---
 
 | A fejlesztő kérdése | Réteg · eszköz | Miért ez |
 |---|---|---|
@@ -1490,10 +1577,7 @@ Az **éleket** (X hivatkozik Y-ra; ugyanaz a személy két forrásban) külön g
 
 > **A házon:** A tervtár mutatója: nem csak mi van benne, hanem mi mire hivatkozik (statika → alaprajz → anyaglista). · SdD-ben: Vektor = jelentés, él = kapcsolat — melyik spec mire épül, mit érint egy változás.
 
-
-
-<!-- #s12 -->
-## „Ne ázzon be a pince" — egy igény végig a láncon {label="Esettanulmány · a Vishy-ház"}
+## „Ne ázzon be a pince" — egy igény végig a láncon {label="Esettanulmány · a Vishy-ház" id=s12}
 
 > A 2. dián azt láttuk, **ki** mit csinál. Most **egyetlen igényt** követünk végig a Vishy család házán: a család mondatától a műszaki ellenőrig — és megnézzük, hol dönt benne az ember.
 
@@ -1521,6 +1605,8 @@ Az **éleket** (X hivatkozik Y-ra; ugyanaz a személy két forrásban) külön g
 
 > :info: A sorrend nem esetleges: **nem tervezhetsz alapot, amíg nem tudod, mi van a talajban.** A felmérés mondja meg, mire kell építeni; a kivitelezés azt, hogyan. A kettőt *más szakember* végzi, és külön is tévedhet — ezért kerül mindkettő írásban a tervre, nem szóban a helyszínre.
 
+--- {layout=stats}
+
 ### 140M Ft {accent=blue}
 keret — a család szándéka
 
@@ -1533,6 +1619,8 @@ betonosztály — a mérce előre rögzítve
 ### 28 nap {accent=peach}
 kötés, aztán törik a próbakocka
 
+---
+
 ### A kikötés — EARS-mondat (a BRD-ben) {accent=teal}
 - **Szándék** (a család): *„Ne ázzon be a pince."* — homályos, nem számon kérhető.
 - **Kikötés** (az építész): ***Ha** a talajvíz a pinceszint fölé emelkedik, **akkor** a pince falai és padlója szárazak maradnak.*
@@ -1542,6 +1630,8 @@ kötés, aztán törik a próbakocka
 - A terv **előre** rögzíti: **nyomáspróba** a szigetelésen, **mielőtt** visszatöltik a földet.
 - A betonozáskor **próbakocka** — nem utólag választjuk ki, melyik falat mérjük meg (TdD).
 - **Miért előre?** A visszatöltött föld alatt a szigetelés *már nem látható* — utólag csak bontással ellenőrizhető.
+
+---
 
 ### Verifikáció — „jól építettük meg?" {accent=blue}
 
@@ -1573,10 +1663,7 @@ Az alsó két kártya a 2. dia két kapuját hívja vissza: a **műszaki ellenő
 (verifikáció), a **család** az első eső után azt, hogy erre volt-e szüksége (validáció).
 ```
 
-
-
-<!-- #s13 -->
-## Négy döntés, ami megformálta a házat {label="Esettanulmány · az emberi döntések"}
+## Négy döntés, ami megformálta a házat {label="Esettanulmány · az emberi döntések" id=s13}
 
 > A terv nem a semmiből jött: **emberi döntésekből** lett EARS-követelmény, majd fal. Négy kérdés, négy döntés — mindegyik egy-egy ellenőrizhető kikötés.
 
@@ -1604,10 +1691,7 @@ mindegyik EARS-kikötésként került a tervre. A brigád — nálunk az AI — 
 helyettünk. Ha van idő, a „két szint" kérdésnél mondd ki: *ez a legkisebb diff (A10) a házon.*
 ```
 
-
-
-<!-- #s19 -->
-## Claude Code mint fejlesztőtárs — a fegyelmező keret {label="A fegyelmező keret"}
+## Claude Code mint fejlesztőtárs — a fegyelmező keret {label="A fegyelmező keret" id=s19}
 
 Az építkezésnek is van **kerete**, ami nem a brigád jóindulatán múlik. Claude Code-nál ugyanezek a darabok vannak — gépiesen.
 
@@ -1634,10 +1718,7 @@ szándékos (a direkt út megengedett ott, ahol a repó arra jogosult). A blokko
 Vezetői olvasat: a szabály **kikényszerítve** van, nem remélve.
 ```
 
-
-
-<!-- #s20 -->
-## Az építési napló — a bizonyíték nem emlékezet, hanem bejegyzés {label="A bizonyíték · a Vishy-ház"}
+## Az építési napló — a bizonyíték nem emlékezet, hanem bejegyzés {label="A bizonyíték · a Vishy-ház" id=s20}
 
 > A Vishy-ház építésén **építési napló** fut: minden nap bejegyzés arról, ki mit csinált, milyen anyagból, ki ellenőrizte. Ha a beköltözés után vita van — *„ez nem így volt megbeszélve"* —, nem az emlékezet és nem a becslés dönt, hanem a **napló**.
 
@@ -1660,6 +1741,8 @@ A tegnapi bejegyzést nem javítják ki csendben — új bejegyzés mondja meg, 
 
 **Először a ház: mit csinál a kész alkalmazás · `ver=0.1.390` óta élesben**
 
+--- {layout=stats}
+
 ### ~500 {accent=blue}
 Linux VM a nyilvántartásban — ez a flotta, amit kezel
 
@@ -1679,6 +1762,8 @@ architekt/BA/QA + AI
 > :shield: Miért elég egy architekt/BA/QA? Ahogy a háznál sem a téglarakás a szűk keresztmetszet, hanem a **döntés, az ellenőrzés és az átvétel** — és azt ember végzi:
 > **megrendelő** (szándék) → **BA** (BRD, EARS) → **architekt** (SDD) → **AI** (teszt + kód) → **architekt** (review · verifikáció) → **megrendelő = QA** (validáció, átvétel).
 > A téglát az AI rakja — a három emberi kalap *egy emberen van*, de a lánc sorrendje és a kapuk **nem tűnnek el**.
+
+---
 
 > **A házon:** Az építési napló és a próbakocka jegyzőkönyve. · SdD-ben: A git log a napló — minden commit egy bejegyzés; a TdD-teszt futása a próbakocka jegyzőkönyve.
 
@@ -1715,10 +1800,7 @@ bizonyítékként. Ha rákérdeznek (*ki becsülte? milyen scope-pal? hány FTE?
 **hagyd ki**, és csak a git-számokat mondd; a dia enélkül is működik.
 ```
 
-
-
-<!-- #s20b -->
-## És mi épült? — az alkalmazás, amit az IT-csoport használ {label="A kész ház · az átadott alkalmazás" badge="infra-forge · kihagyható"}
+## És mi épült? — az alkalmazás, amit az IT-csoport használ {label="A kész ház · az átadott alkalmazás" badge="infra-forge · kihagyható" id=s20b}
 
 > A háznál sem a tégla a termék, és nem is a tervrajz: a **ház, amiben laknak**. Eddig a módszert néztük — itt az, ami belőle lett: egy **üzemelő alkalmazás**, amit reggel megnyit valaki, és megcsinálja vele a napi munkáját. A kód ennek csak az anyaga.
 
@@ -1740,12 +1822,23 @@ A VM-igény űrlapon indul, a nyilvántartásba kerül, onnan a GitLab CI hozza 
 
 **Ez az alap.** Azóta ugyanabból a láncból épült tovább: CVE- és NIS2-riportok · titok-keresés a flottán · függőségi gráf · IPAM és IT-szolgáltatás-katalógus · VM-igénylés OpenTofu-val · és a **Timi IT-portál**: csapat (távollét, ügyelet, standup), Jira-munkanapló, tudástár — egy felületen, AI-val a bejáratnál.
 
+--- {layout=flow}
+
 **Egy hétfő reggel — ugyanaz a lánc, csak a ház felől nézve**
 
-1. `1` **Belép** — céges AD-fiókkal — a jogosultsága dönti el, mit lát
-2. `2` **Rákeres** — „CentOS 6, éles" — a válasz a hajnali gyűjtésből van
-3. `3` **Megkérdezi** — az AI-tól, mi függ attól a géptől — leállítás-tervezéshez
-4. `4 · KAPU` **Ha beavatkozna** — az érzékeny érték feltárása és minden változtatás **emberi kapun** megy (A6)
+### Belép
+`1` — céges AD-fiókkal — a jogosultsága dönti el, mit lát
+
+### Rákeres
+`2` — „CentOS 6, éles" — a válasz a hajnali gyűjtésből van
+
+### Megkérdezi
+`3` — az AI-tól, mi függ attól a géptől — leállítás-tervezéshez
+
+### Ha beavatkozna
+`4 · KAPU` — az érzékeny érték feltárása és minden változtatás **emberi kapun** megy (A6)
+
+---
 
 > :shield: Ami a felhasználó felé **nem** látszik, mégis ez tartja: minden érzékeny érték már **tárolás előtt** álnevesítve van (`{{type:hash}}`), az eredeti külön, titkosítva; az AI az álnevesített oldalt olvassa. A validáció kérdése ezen a dián dől el: *„ezt akartuk?"* — és a válasz nem a commitok száma, hanem hogy a hétfő reggel **tényleg gyorsabb lett-e**.
 
@@ -1769,10 +1862,7 @@ hagyd el, az úgyis a leggyengébb pont. Ez a dia válaszolja meg, amit a vezet�
 *„és mi lett belőle?"*
 ```
 
-
-
-<!-- #s21 -->
-## Három kapu a házon — és a két módszertani kapu {label="Az emberi kontroll · a Vishy-ház"}
+## Három kapu a házon — és a két módszertani kapu {label="Az emberi kontroll · a Vishy-ház" id=s21}
 
 > A ház építésénél is van három pont, ahol a brigád **nem mehet tovább egyedül** — nem bizalmatlanságból, hanem mert ott a döntés következménye visszafordíthatatlan. A szoftverben ugyanez a három pont van.
 
@@ -1797,15 +1887,26 @@ A lakáshitel következő részletét a bank csak **mindkét házastárs aláír
 
 **Nálunk:** admin-jogot csak egy második admin megerősítésével lehet adni; az AI magának soha.
 
----
+--- {layout=flow}
 
 **Hol ülnek a kapuk az SdD láncban?**
 
-1. `1` **Szándék → spec** — BRD + EARS, SDD — a tervrajz
-2. `2 · TdD · RED` **Bukó teszt** — a próbakocka — a mérce a fal **előtt**
-3. `3 · GREEN` **Kód** — a brigád a terv szerint; ugyanaz a teszt zöldre vált
-4. `KAPU ① · VERIFIKÁCIÓ` **MR — review, aztán merge** — építési engedély + műszaki ellenőr: ember olvassa a diffet **és a tesztet** — a terv szerint épült?
-5. `KAPU · VALIDÁCIÓ` **Megrendelő = QA** — a család: ezt a házat akartuk?
+### Szándék → spec
+`1` — BRD + EARS, SDD — a tervrajz
+
+### Bukó teszt
+`2 · TdD · RED` — a próbakocka — a mérce a fal **előtt**
+
+### Kód
+`3 · GREEN` — a brigád a terv szerint; ugyanaz a teszt zöldre vált
+
+### MR — review, aztán merge
+`KAPU ① · VERIFIKÁCIÓ` — építési engedély + műszaki ellenőr: ember olvassa a diffet **és a tesztet** — a terv szerint épült?
+
+### Megrendelő = QA
+`KAPU · VALIDÁCIÓ` — a család: ezt a házat akartuk?
+
+---
 
 A **② kulcs** és a **③ két aláírás** nem a lánc egy pontján ül, hanem *végig* érvényes: üzem közben is, minden lépésnél — ezt a jogosultság és a napló kényszeríti ki, nem a jóindulat.
 
@@ -1830,10 +1931,7 @@ rendszer megváltozik** — nem ott, ahol csak leírjuk, mit láttunk. Ha ezt ne
 figyelmes fejlesztő pont ezt fogja megkérdezni, és jogosan.
 ```
 
-
-
-<!-- #s22 -->
-## Négy döntés, ami a vezetőé — és az első lépés holnap {label="Tanulságok — vezetőknek"}
+## Négy döntés, ami a vezetőé — és az első lépés holnap {label="Tanulságok — vezetőknek" id=s22}
 
 > A módszer nem az AI-ról szól, hanem arról, **hová teszed az embereidet**. A háznál sem a téglarakó a drága — hanem az építész, aki dönt, és a műszaki ellenőr, aki átveszi.
 
@@ -1871,16 +1969,26 @@ A zöld sávot mondd ki szó szerint, ez a hívás cselekvésre: *„egy kicsi, 
 — nem pilot-program."* Ha kérdezik, mivel kezdjék: ezzel.
 ```
 
+## Hogyan kezdj AI-fejlesztésbe? — útravaló {label="Tanulságok — hallgatóknak" skip=talk id=s23}
 
+--- {layout=flow}
 
-<!-- #s23 -->
-## Hogyan kezdj AI-fejlesztésbe? — útravaló {label="Tanulságok — hallgatóknak" skip=talk}
+### Szabályok
+`1` — írd le, mit szabad és mit nem — mielőtt promptolnál
 
-1. `1` **Szabályok** — írd le, mit szabad és mit nem — mielőtt promptolnál
-2. `2` **Spec, ne kód** — előbb a MIT dokumentumban, aztán a HOGYAN
-3. `3` **Kis lépések** — egy változás = egy diff = egy review
-4. `4` **Verify** — sose hidd el „kész" fordítás alapján
-5. `5` **Kontextus** — amit nem adsz oda, az nem létezik
+### Spec, ne kód
+`2` — előbb a MIT dokumentumban, aztán a HOGYAN
+
+### Kis lépések
+`3` — egy változás = egy diff = egy review
+
+### Verify
+`4` — sose hidd el „kész" fordítás alapján
+
+### Kontextus
+`5` — amit nem adsz oda, az nem létezik
+
+---
 
 ### Amit az iskolában még nem tanítanak {accent=sky}
 - A prompt nem varázsige — a *kontextus-szerkesztés* a szakma
@@ -1898,10 +2006,7 @@ A zöld sávot mondd ki szó szerint, ez a hívás cselekvésre: *„egy kicsi, 
 
 > **A házon:** Az első saját házadnál: előbb terv és szabvány, aztán falak — kicsiben, ellenőrizve. · SdD-ben: Szabály → spec → kis lépés → teszt (TdD) → verifikáció.
 
-
-
-<!-- #s24 -->
-## Köszönjük a figyelmet! {layout=title}
+## Köszönjük a figyelmet! {layout=title id=s24}
 
 A „köszönjük" többes szám szándékos: ezt a bemutatót **ember + AI** készítette — a módszertan saját bizonyítéka.
 
@@ -1925,10 +2030,7 @@ több **döntés, review és átvétel**. Ezek egyike sem delegálható gépnek 
 zöld teszt, olvasható diff, futó rendszer. A 13. és 18. dia erről szól.
 ```
 
-
-
-<!-- #s25 -->
-## Források & szabványok — minden technológia hivatkozva {label="Források & szabványok" skip=talk}
+## Források & szabványok — minden technológia hivatkozva {label="Források & szabványok" skip=talk id=s25}
 
 A bemutatóban említett minden szabvány és technológia a **hiteles forrására** mutat (kattintható, ellenőrzött linkek). *Mérünk és hivatkozunk — nem tippelünk.*
 
