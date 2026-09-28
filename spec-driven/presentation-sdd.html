@@ -1069,14 +1069,13 @@ Egy módszertan — házépítés-hasonlattal, valódi példával, és azzal, ho
 <li>A korreláció (ugyanaz a hash több tucat gépen) gépi feladat</li>
 <li>De: érzékeny adat + éles infrastruktúra — <strong>kontroll kell</strong></li>
 </ul>
-</div></article></div></div><div class="after-block block-cards"><div class="body after"><p><strong><svg class="i" aria-hidden="true"><use href="#i-target"/></svg> A célállapot — egységesítés és kontrollált deploy</strong></p>
-<ul>
+</div></article></div></div><div class="after-block block-cards"><div class="content-grid after-grid"><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-target"/></svg><h3>A célállapot — egységesítés és kontrollált deploy</h3></div><div class="body"><ul>
 <li><strong>VM-létrehozás: OpenTofu, GitLab-vezérelve</strong> — az egyetlen kontroller a GitLab CI/CD. Az infra-forge a <em>nyilvántartást</em> vezeti (<code>infra.vm_config</code>), azt tükrözi az <code>opentofu-vm-create</code> repóba, és a CI hajtja végre a vSphere felé — az infra-forge maga sosem provisionál, és vCenter-jelszót sem lát.</li>
 <li><strong>Alapkonfiguráció: Ansible</strong> — a létrehozás <em>után</em>, és <strong>a futtatás nem az infra-forge dolga</strong>: a CoreInfra <code>basic-configuration-all</code> <strong>kézi</strong> CI-job-ja futtatja a VM-en, <strong>operátori PAT-tal</strong> — és újraindítja a gépet. Az infra-forge csak <em>olvassa</em> a kívánt állapotot: az <code>OPS-sync_base_config</code> naponta (<code>0 6 * * *</code>) beolvassa a <code>hu.admin.infra/basic_configuration</code> repót <code>infra.base_config</code> draft sorokba, amiket a <code>/base-config</code> emberi kapu aktivál — ez lesz a drift-összehasonlítás alapja. <strong>Ami befagyott, az az <code>infra-forge-cd</code></strong> — az Ansible <em>provisioning</em> ága —, nem maga az Ansible.</li>
 <li><strong>Migráció a legfrissebbre</strong> — verzió- és platform-migráció (ROADMAP P14 Linux-unifikáció).</li>
 <li><strong>Két Linux-családra szűkítés</strong> — a ~9 családból kettő marad: Debian és Oracle Linux.</li>
 </ul>
-<blockquote>
+</div></article></div></div><div class="after-block block-cards"><div class="body after"><blockquote>
 <p>A kérdés nem az volt, hogy <em>tud-e segíteni az AI</em> — hanem hogy <strong>hogyan tartjuk szabályozott keretek között</strong>, miközben a fejlesztést is rá bízzuk. Erre a válasz a <strong>Spec-driven Development</strong>.</p>
 </blockquote>
 <blockquote>
@@ -1290,8 +1289,7 @@ Mint a <a href="https://www.youtube.com/watch?v=ZbGGd4JUwdE"><em>Memento</em></a
 <li><strong>A review érdemi marad.</strong> Az átnézhető diff az egyetlen, ami mellett a „megnéztem&quot; nem üres szó.</li>
 <li><strong>A könyvtár-változás nem robban.</strong> Nálunk egy közös könyvtár 16 repóra hat — ott a kis diff nem kényelem, hanem <em>a biztonság mértékegysége</em>.</li>
 </ul>
-<p><strong>Hogyan? — a második hiba útja</strong></p>
-<ol>
+</div></article></div></div><div class="after-block block-cards"><div class="content-grid after-grid"><article class="card accent-blue"><div class="card-head"><h3>Hogyan? — a második hiba útja</h3></div><div class="body"><ol>
 <li><strong>Észreveszed — és leírod, nem javítod.</strong> Jegy, urgent-lista vagy egy sor az MR leírásában: <em>„talált: X — külön MR&quot;</em>. Az AI ugyanígy tesz: az A10 minden session elején betöltődik, ezért <strong>jelez és kérdez</strong>, nem javít csendben.</li>
 <li><strong>Az első javítást egyedül zárod le</strong> — commit, MR; a diff csak a javításhoz szükséges sorokat érinti.</li>
 <li><strong>A második hiba saját ágat kap</strong> a <code>main</code>-ről, saját commitot, saját MR-t.</li>
@@ -1302,11 +1300,11 @@ Mint a <a href="https://www.youtube.com/watch?v=ZbGGd4JUwdE"><em>Memento</em></a
 git switch -c fix/masodik-hiba
 # javítás → commit → külön MR
 </code></pre>
-<p><strong>A kapu a review:</strong> ha a diff a követelményen kívüli fájlt vagy sort érint, az MR visszamegy — <em>„vágd ketté&quot;</em>. Cserébe mindkét javítás <strong>külön visszavonható</strong>, és a <code>git bisect</code> egyetlen okra mutat.</p>
+</div></article></div></div><div class="after-block block-cards"><div class="body after"><p><strong>A kapu a review:</strong> ha a diff a követelményen kívüli fájlt vagy sort érint, az MR visszamegy — <em>„vágd ketté&quot;</em>. Cserébe mindkét javítás <strong>külön visszavonható</strong>, és a <code>git bisect</code> egyetlen okra mutat.</p>
 <blockquote>
 <p>Java-hasonlat: ez ugyanaz a fegyelem, amit a jó commit-kultúrától mindig is vártunk — csak most <strong>nem opcionális</strong>. Amíg ember gépelt, a diff magától kicsi maradt, mert lassan nőtt. Egy gép mellett a méret korlátját <em>szándékosan</em> kell odatenni.</p>
 </blockquote>
-<p><strong>▸ SVN → git — a napi öt művelet, egymás mellett</strong></p>
+</div></div><div class="after-block block-cards"><div class="body after"><p><strong>▸ SVN → git — a napi öt művelet, egymás mellett</strong></p>
 <table>
 <thead>
 <tr>
@@ -1346,7 +1344,7 @@ git switch -c fix/masodik-hiba
 <blockquote>
 <p><strong>Egy szokás, amit érdemes átvenni:</strong> a commit-üzenet mondja meg, <em>melyik követelményt</em> teljesíti (<code>feat(fleet): E2 — content_hash stabil, ha nincs változás</code>). Így a git history és a spec összeolvasható — és az AI is meg tudja mondani, hol tart a munka.</p>
 </blockquote>
-</div></article></div></div><div class="after-block block-cards"><div class="body after"><blockquote>
+</div></div><div class="after-block block-cards"><div class="body after"><blockquote>
 <p><strong>A házon:</strong> Egyszerre egy fal, amit a műszaki ellenőr még végig tud nézni; a tegnapi naplóbejegyzést nem radírozzák ki. · SdD-ben: Kis diff = egy review-egység; minden lépés a saját próbakockájával (TdD-teszt) megy be.</p>
 </blockquote>
 </div></div>
@@ -1980,12 +1978,11 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 </div></li></ol></div><div class="after-block block-cards"><div class="content-grid after-grid cols-3"><article class="card accent-green"><div class="card-head"><h3>Az AI nem tud blöffölni</h3></div><div class="body"><p>A „kész vagyok&quot; egy nyelvi modelltől <strong>nem bizonyíték</strong> — a magabiztos hang ingyen van. A zöld tesztfutás viszont tény. A teszt az egyetlen visszajelzés, amit az AI <em>nem tud meggyőzően előadni</em>. Ha a tesztet is az AI vázolja, a review <strong>a tesztet olvassa először</strong> — ez a tartóelem.</p>
 </div></article><article class="card accent-teal"><div class="card-head"><h3>A gép önmagát javítja</h3></div><div class="body"><p>A piros teszt <strong>gépi hibaüzenet</strong>, amit az agent visszaolvas és amiből tovább dolgozik. Teszt nélkül minden kör emberi visszajelzést igényel — a tesztsor az, ami a <em>felügyelet nélküli</em> ciklust egyáltalán lehetővé teszi.</p>
 </div></article><article class="card accent-mauve"><div class="card-head"><h3>A regresszió ellen</h3></div><div class="body"><p>Ha az AI naponta több száz sort ír, a <strong>korábban megoldott</strong> problémák visszatérése a fő kockázat. Minden teljesített EARS-kikötés teszt formájában <em>bekerít</em> egy döntést: onnantól a gép őrzi, nem az emlékezet.</p>
-</div></article></div></div><div class="after-block block-cards"><div class="body after"><p><strong>Saját esetünk — 27 zöld, de üres futás</strong></p>
-<p>Az <code>ops_dep_extract</code> (a #s10 élő pipeline-ja) egy elírt tenant-hivatkozás miatt <strong>27 futáson át zöld volt</strong> — és <strong>egyetlen függőségi élt sem írt</strong>. A „sikeres&quot; futás csak annyit jelentett, hogy <em>nem volt hibaüzenet</em>. Két hétig (2026-08-28-ig) senki nem vette észre.</p>
+</div></article></div></div><div class="after-block block-cards"><div class="content-grid after-grid"><article class="card accent-red"><div class="card-head"><h3>Saját esetünk — 27 zöld, de üres futás</h3></div><div class="body"><p>Az <code>ops_dep_extract</code> (a #s10 élő pipeline-ja) egy elírt tenant-hivatkozás miatt <strong>27 futáson át zöld volt</strong> — és <strong>egyetlen függőségi élt sem írt</strong>. A „sikeres&quot; futás csak annyit jelentett, hogy <em>nem volt hibaüzenet</em>. Két hétig (2026-08-28-ig) senki nem vette észre.</p>
 <p><strong>EARS:</strong> <em>„Amikor az éjszakai futás lefut, a rendszernek a friss pillanatképekből legalább egy függőségi élt kell írnia.&quot;</em></p>
 <p><strong>RED-teszt:</strong> futtasd a lépést egy tesztadatbázison → <code>élek száma ≥ 1</code>?</p>
 <p><strong>→ az első éjszakán piros lett volna.</strong></p>
-<blockquote>
+</div></article></div></div><div class="after-block block-cards"><div class="body after"><blockquote>
 <p><svg class="i" aria-hidden="true"><use href="#i-warning"/></svg> <strong>A TdD-nek van egy új veszélye AI mellett:</strong> ha a teszt <em>a kód után</em> születik, az agent hajlamos olyan tesztet írni, amit a saját kódja biztosan teljesít — <em>vagy a bukó tesztet gyengíteni</em>. Ezért két vasszabály: <strong>(1)</strong> a teszt előbb kerül commitba, mint az implementáció; <strong>(2)</strong> a review a tesztet is nézi, nem csak a kódot. <em>A gyengített teszt zöld — és hazudik.</em></p>
 </blockquote>
 <blockquote>

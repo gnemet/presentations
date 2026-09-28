@@ -111,12 +111,14 @@ EOL rendszer · technikai adósság
 
 ---
 
-**:target: A célállapot — egységesítés és kontrollált deploy**
+### :target: A célállapot — egységesítés és kontrollált deploy {accent=green}
 
 - **VM-létrehozás: OpenTofu, GitLab-vezérelve** — az egyetlen kontroller a GitLab CI/CD. Az infra-forge a *nyilvántartást* vezeti (`infra.vm_config`), azt tükrözi az `opentofu-vm-create` repóba, és a CI hajtja végre a vSphere felé — az infra-forge maga sosem provisionál, és vCenter-jelszót sem lát.
 - **Alapkonfiguráció: Ansible** — a létrehozás *után*, és **a futtatás nem az infra-forge dolga**: a CoreInfra `basic-configuration-all` **kézi** CI-job-ja futtatja a VM-en, **operátori PAT-tal** — és újraindítja a gépet. Az infra-forge csak *olvassa* a kívánt állapotot: az `OPS-sync_base_config` naponta (`0 6 * * *`) beolvassa a `hu.admin.infra/basic_configuration` repót `infra.base_config` draft sorokba, amiket a `/base-config` emberi kapu aktivál — ez lesz a drift-összehasonlítás alapja. **Ami befagyott, az az `infra-forge-cd`** — az Ansible *provisioning* ága —, nem maga az Ansible.
 - **Migráció a legfrissebbre** — verzió- és platform-migráció (ROADMAP P14 Linux-unifikáció).
 - **Két Linux-családra szűkítés** — a ~9 családból kettő marad: Debian és Oracle Linux.
+
+---
 
 > A kérdés nem az volt, hogy *tud-e segíteni az AI* — hanem hogy **hogyan tartjuk szabályozott keretek között**, miközben a fejlesztést is rá bízzuk. Erre a válasz a **Spec-driven Development**.
 
@@ -531,7 +533,9 @@ Ki, mit, mikor, **és melyik spec alapján**. Az AI-val végzett munka auditálh
 - **A review érdemi marad.** Az átnézhető diff az egyetlen, ami mellett a „megnéztem" nem üres szó.
 - **A könyvtár-változás nem robban.** Nálunk egy közös könyvtár 16 repóra hat — ott a kis diff nem kényelem, hanem *a biztonság mértékegysége*.
 
-**Hogyan? — a második hiba útja**
+---
+
+### Hogyan? — a második hiba útja {accent=blue}
 
 1. **Észreveszed — és leírod, nem javítod.** Jegy, urgent-lista vagy egy sor az MR leírásában: *„talált: X — külön MR"*. Az AI ugyanígy tesz: az A10 minden session elején betöltődik, ezért **jelez és kérdez**, nem javít csendben.
 2. **Az első javítást egyedül zárod le** — commit, MR; a diff csak a javításhoz szükséges sorokat érinti.
@@ -545,9 +549,13 @@ git switch -c fix/masodik-hiba
 # javítás → commit → külön MR
 ```
 
+---
+
 **A kapu a review:** ha a diff a követelményen kívüli fájlt vagy sort érint, az MR visszamegy — *„vágd ketté"*. Cserébe mindkét javítás **külön visszavonható**, és a `git bisect` egyetlen okra mutat.
 
 > Java-hasonlat: ez ugyanaz a fegyelem, amit a jó commit-kultúrától mindig is vártunk — csak most **nem opcionális**. Amíg ember gépelt, a diff magától kicsi maradt, mert lassan nőtt. Egy gép mellett a méret korlátját *szándékosan* kell odatenni.
+
+---
 
 **▸ SVN → git — a napi öt művelet, egymás mellett**
 
@@ -1376,7 +1384,7 @@ Ha az AI naponta több száz sort ír, a **korábban megoldott** problémák vis
 
 ---
 
-**Saját esetünk — 27 zöld, de üres futás**
+### Saját esetünk — 27 zöld, de üres futás {accent=red}
 
 Az `ops_dep_extract` (a #s10 élő pipeline-ja) egy elírt tenant-hivatkozás miatt **27 futáson át zöld volt** — és **egyetlen függőségi élt sem írt**. A „sikeres" futás csak annyit jelentett, hogy *nem volt hibaüzenet*. Két hétig (2026-08-28-ig) senki nem vette észre.
 
@@ -1385,6 +1393,8 @@ Az `ops_dep_extract` (a #s10 élő pipeline-ja) egy elírt tenant-hivatkozás mi
 **RED-teszt:** futtasd a lépést egy tesztadatbázison → `élek száma ≥ 1`?
 
 **→ az első éjszakán piros lett volna.**
+
+---
 
 > :warning: **A TdD-nek van egy új veszélye AI mellett:** ha a teszt *a kód után* születik, az agent hajlamos olyan tesztet írni, amit a saját kódja biztosan teljesít — *vagy a bukó tesztet gyengíteni*. Ezért két vasszabály: **(1)** a teszt előbb kerül commitba, mint az implementáció; **(2)** a review a tesztet is nézi, nem csak a kódot. *A gyengített teszt zöld — és hazudik.*
 
