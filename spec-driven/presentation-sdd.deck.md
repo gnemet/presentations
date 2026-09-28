@@ -56,7 +56,7 @@ ezt sose feltételezd ismertnek, de ne is kérj bocsánatot érte.
 
 > :warning: **Az ellenpélda — „vibe építkezés":** a brigád **tervrajz nélkül** kezd falazni („majd menet közben kialakul"). A ház áll… amíg jön az első statikai teher. Senki nem tudja *miért* áll úgy — mert **a ház maga az egyetlen dokumentáció**; a bontás az egyetlen „refaktor".
 
-**▸ Három mondat, amit érdemes kimondani (és később visszahívunk)**
+--- {drill="▸ Három mondat, amit érdemes kimondani (és később visszahívunk)"}
 
 - *„A műszaki ellenőr azt nézi, hogy a terv szerint épült-e meg; a család azt, hogy azt a házat kapta-e, amire szüksége volt. Két kérdés, két emberi kapu."* → verifikáció ≠ validáció. (A tervet az építész még az építkezés *előtt* írja alá — az terv-jóváhagyás, nem a kész ház ellenőrzése.)
 - *„A brigád nem dönthet úgy, hogy 'inkább 2 szint lesz'. A scope a terven van."* → A10, legkisebb diff.
@@ -177,7 +177,7 @@ Ne menj bele a technikai részletbe — a lényeg, hogy ez **nem laborpélda**: 
 
 > :shield: **Az ember dönt, az AI végrehajt.** Az 05–06 lépéspár a **TdD**: a teszt *előbb* születik, mint a kód — róla külön dia lesz. A lánc **két emberi kapuval** zárul (A9): **Verifikáció** (a review emberi része) + **Validáció** (a QA-átvétel) — pontosan a ház: a **műszaki ellenőr** azt nézi, a terv szerint épült-e meg, a **család** azt, hogy azt kapta-e, amire szüksége volt. A **09** pedig zárja a kört: a ház nem a kulcsátadásnál ér véget — a család **beköltözik**, és amit ott hiányol, az lesz a következő szándék. A termék az **üzemelő alkalmazás**, nem a beolvasztott kód.
 
-**▸ Egy spec a lemezen — a flotta-gyűjtés EARS-követelményei (`docs/specs/fleet-collection/`)**
+--- {drill="▸ Egy spec a lemezen — a flotta-gyűjtés EARS-követelményei (docs/specs/fleet-collection/)"}
 
 Egy nem-triviális feature spec-mappája — **hat fájl**, minden réteg egy, az irány fentről lefelé. A `brief.md` (2026-07-13 óta) és a `tests.md` (2026-09-09 óta) **minden új specnél kötelező** — az infra/library tiernél is; a korábbi specek grandfatherelve maradnak, ezért látsz a repóban régebbi, ötfájlos mappákat is.
 
@@ -327,9 +327,7 @@ Egy célt kap, és **maga dönti el** a lépéseket — lépésenkénti emberi j
 ### L2–L3 szabályok, spec-ek, kód
 `igény szerint · RAG` — amit a feladat megkíván — az agent olvassa be, vagy vektortárból keres vissza
 
----
-
-**▸ Mélyebben: mi az LLM *valójában* · és mi az agent**
+--- {drill="▸ Mélyebben: mi az LLM valójában · és mi az agent"}
 
 Mi az LLM valójában? — és miért következik belőle az SdD
 
@@ -470,7 +468,7 @@ development-platform/ # a munkaterület gyökere
 
 > :info: A lényeg egy mondatban: **a repo a fejlesztői környezet.** Ami nincs a repóban — szabály, döntés, konfiguráció, tudás — az a felejtő agent számára **nem létezik**. Ezért kerül minden fájlba, és ezért lesz minden fájl *diffelhető*.
 
-**▸ Amit a Java-világból ismersz — és ami itt megfelel neki**
+--- {drill="▸ Amit a Java-világból ismersz — és ami itt megfelel neki"}
 
 | Eddig | Most | Miért jobb az AI-nak |
 |---|---|---|
@@ -479,6 +477,8 @@ development-platform/ # a munkaterület gyökere
 | `config.properties` a szerveren | env-profil + vault | Nincs „a teszten működött" — a profil a gépé, nem a kódé. |
 | Jenkins-job leírás a fejekben | pipeline `.md` a repóban | Az orchestráció is adat, nem szóbeli hagyomány. |
 | „Kérdezd meg Zolit" | spec-mappa + RAG-visszakeresés | A tudás nem megy szabadságra. |
+
+---
 
 > **A házon:** Az építési terület: a tervtár, a szabványok és a szomszéd épületek egy telken. · SdD-ben: A szabályok és a specek ugyanott laknak, ahol a kód — munka közben olvashatók, nem egy távoli wikiben.
 
@@ -518,7 +518,7 @@ Ki, mit, mikor, **és melyik spec alapján**. Az AI-val végzett munka auditálh
 
 > :warning: **És itt a fogás:** az AI-nak *nincs fáradtságjelzése*. Nem érzi, hogy nagy a diff — boldogan ír 2000 sort egy kérésre. Az ember viszont fárad, és a fáradt review **pecsételéssé** válik. Ezért a diff méretét **előre**, a specben és a taskokban kell korlátozni, nem utólag a review-n. *A kis diff nem stílus — ez tartja életben az emberi kaput (A10).*
 
-**▸ A kis diff technikája — hogyan marad átnézhető az, amit egy gép ír**
+--- {drill="▸ A kis diff technikája — hogyan marad átnézhető az, amit egy gép ír"}
 
 ### Az öt szabály {accent=green}
 - **Egy MR = egy önállóan átnézhető viselkedés.** Rendszerint egy EARS-kikötés; ha kettő elválaszthatatlan, mehet együtt — de **mindkettő azonosítója szerepeljen**. A mérce az átnézhetőség, nem a darabszám.
@@ -555,9 +555,7 @@ git switch -c fix/masodik-hiba
 
 > Java-hasonlat: ez ugyanaz a fegyelem, amit a jó commit-kultúrától mindig is vártunk — csak most **nem opcionális**. Amíg ember gépelt, a diff magától kicsi maradt, mert lassan nőtt. Egy gép mellett a méret korlátját *szándékosan* kell odatenni.
 
----
-
-**▸ SVN → git — a napi öt művelet, egymás mellett**
+--- {drill="▸ SVN → git — a napi öt művelet, egymás mellett"}
 
 | SVN | git | A lényegi különbség |
 |---|---|---|
@@ -882,9 +880,9 @@ kapacitás. Ezt a mondatot érdemes szó szerint kimondani.
 
 Ez a `pipelines/ops_dep_extract.md` — **minden éjjel 04:00-kor magától lefutó**, élő pipeline: a flotta pillanatképeiből kiszámolja a szolgáltatás-függőségeket (DNS · NFS · LDAP · SMTP) → naplóz → átszinkronizálja a függőségi gráfot → lezár. **Egyetlen Markdown-fájl**, nincs mellette kód. Váltsd a nézetet — *ugyanaz a fájl* mind a három.
 
-RAW — markdown forrás Ugyanaz a fájl: az ember **olvassa** (DOC), a git **diffeli** (RAW), a `bin/pf` **futtatja** (PIPELINE) — ez az **A2** (Document = Code).
+Ugyanaz a fájl: az ember **olvassa** (DOC), a git **diffeli** (RAW), a `bin/pf` **futtatja** (PIPELINE) — ez az **A2** (Document = Code).
 
-**RAW nézet — a markdown forrás**
+--- {face="RAW — markdown forrás"}
 
 ~~~~
 # ops_dep_extract — nightly service-dependency edge extraction
@@ -937,7 +935,7 @@ Reachable ONLY via the `on_error` jump above — never by falling through.
 ## Step: Done — log
 ~~~~
 
-**DOC nézet — ugyanez renderelve**
+--- {face="DOC — renderelt dokumentum"}
 
 **ops_dep_extract — éjszakai szolgáltatás-függőség kinyerés**
 
@@ -971,11 +969,9 @@ Csak hibaágon érhető el (`on_error`) — soha nem „esik bele" a sikeres fut
 
 A közös végpont, ahová mindkét ág érkezik.
 
-**PIPELINE nézet — futtatható lépések**
+--- {face="PIPELINE — futtatható lépések" layout=flow}
 
 Amit **csak a motor** lát: öt lépés, mindegyik a saját *típusával* — és **két ág**. A RAW ezt szövegként mutatta, a DOC prózaként — itt **végrehajtási terv**.
-
---- {layout=flow}
 
 ### Extract Dependencies
 `1 · db_query` — infra.dep_extract_from_snapshots() · hibánál → 4
@@ -1023,7 +1019,7 @@ Amit **csak a motor** lát: öt lépés, mindegyik a saját *típusával* — é
 
 > :info: Ha a tudás csak a kódban él, három olvasója van: a fordító, a szerző — és senki más.
 
-**▸ Document = Code · No bare SQL — a két következmény**
+--- {drill="▸ Document = Code · No bare SQL — a két következmény"}
 
 ### Document = Code {accent=green}
 A `.md` egyszerre a specifikáció ÉS a futtatható / generátor-bemenet. Nincs külön dokumentáció, ami elavulhatna.
@@ -1031,9 +1027,7 @@ A `.md` egyszerre a specifikáció ÉS a futtatható / generátor-bemenet. Nincs
 ### No bare SQL {accent=blue}
 A forrásfában nincs csupasz `.sql`. Minden kézi SQL markdown: frontmatter + a *miért* próza + egyetlen ````sql` blokk. A generált DDL specekből születik.
 
----
-
-**▸ Mi az a Markdown — és hogyan néz ki egy platform-fájl belülről**
+--- {drill="▸ Mi az a Markdown — és hogyan néz ki egy platform-fájl belülről"}
 
 ### Mi az a Markdown? {accent=teal}
 Pehelysúlyú, sima-szöveges jelölőnyelv ([CommonMark](https://commonmark.org/) szabvány). Néhány jel az egész: `# fejléc`, `- lista`, `| tábla |`, `**félkövér**`, ````kódblokk````. Olvasható nyersen és renderelve is.

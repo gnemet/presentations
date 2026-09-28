@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spec-driven Development (SdD) — módszertan, gyakorlati példával (v5)</title>
 <link rel="icon" href="data:,">
-<!-- deck-engine sha256=d8545880a6ca38d26da40098f042cbc5db6b80e15dcfebbb8e773a12f9ca3b34 -->
+<!-- deck-engine sha256=e1d59bc179c0f65b3abe55a7edb47bb18a5009439a46985d1249f9a1879a2951 -->
 <style></style>
 <style>/* deck-foundation engine — chrome + components (spec U1, U3).
  * Inlined verbatim into every generated deck, BEFORE the vibe and accent blocks, so a vibe
@@ -158,6 +158,62 @@ body {
   border-top: 1px solid var(--surface0);
   color: var(--overlay1);
   font-size: 0.75rem;
+}
+
+/* FD-U1/FD-U3: face group — one pane at a time, a token-only button bar the engine builds */
+.face-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.face-btn {
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--surface1);
+  border-radius: var(--deck-radius);
+  background: var(--surface0);
+  color: var(--subtext1);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.face-btn:hover,
+.face-btn:focus-visible {
+  color: var(--text);
+  border-color: var(--overlay0);
+  outline: none;
+}
+
+.face-btn[aria-pressed='true'] {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.face-pane[hidden] {
+  display: none;
+}
+
+/* FD-U2: drill — closed detail; the author's summary text is the only marker */
+details.drill > summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-weight: 600;
+  list-style: none;
+}
+
+details.drill > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.drill > summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+details.drill[open] > summary {
+  margin-bottom: var(--deck-gap);
 }
 
 /* SG-U2: the current slide's stable id, bottom right */
@@ -797,6 +853,24 @@ blockquote {
     overflow: visible;
   }
 
+  /* FD-E3: print shows every face (captioned) — drills are opened by the engine's beforeprint */
+  .face-bar {
+    display: none;
+  }
+
+  .face-pane[hidden] {
+    display: block;
+  }
+
+  .face-pane::before {
+    content: attr(data-face);
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--overlay1);
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
   /* CP-E1: print shows every line */
   .slide pre,
   .scroll-panel > .body {
@@ -1044,15 +1118,14 @@ Egy módszertan — házépítés-hasonlattal, valódi példával, és azzal, ho
 <blockquote>
 <p><svg class="i" aria-hidden="true"><use href="#i-warning"/></svg> <strong>Az ellenpélda — „vibe építkezés&quot;:</strong> a brigád <strong>tervrajz nélkül</strong> kezd falazni („majd menet közben kialakul&quot;). A ház áll… amíg jön az első statikai teher. Senki nem tudja <em>miért</em> áll úgy — mert <strong>a ház maga az egyetlen dokumentáció</strong>; a bontás az egyetlen „refaktor&quot;.</p>
 </blockquote>
-<p><strong>▸ Három mondat, amit érdemes kimondani (és később visszahívunk)</strong></p>
-<ul>
+</div><details class="after-block drill block-cards"><summary>▸ Három mondat, amit érdemes kimondani (és később visszahívunk)</summary><div class="body after"><ul>
 <li><em>„A műszaki ellenőr azt nézi, hogy a terv szerint épült-e meg; a család azt, hogy azt a házat kapta-e, amire szüksége volt. Két kérdés, két emberi kapu.&quot;</em> → verifikáció ≠ validáció. (A tervet az építész még az építkezés <em>előtt</em> írja alá — az terv-jóváhagyás, nem a kész ház ellenőrzése.)</li>
 <li><em>„A brigád nem dönthet úgy, hogy 'inkább 2 szint lesz'. A scope a terven van.&quot;</em> → A10, legkisebb diff.</li>
 <li><em>„Ha a terv és a fal eltér, nem a tervet írjuk át a falhoz — a falat bontjuk a tervhez.&quot;</em> → A2, Doc = Code.</li>
 <li><em>„A próbakockát a betonozáskor veszik — nem utólag választják ki, melyik falat mérjük meg.&quot;</em> → TdD: a mérce a munka <strong>előtt</strong> rögzül, különben ahhoz igazítjuk, ami éppen kijött.</li>
 </ul>
 <p>A tervrajz a szerződés — de fölötte ott a szabvány: a platform 11 axiómája, az <strong>alaptörvény</strong>.</p>
-</div>
+</div></details>
 </div>
 <div class="slide layout-free" id="s3" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A valós feladat</span><span class="badge">infra-forge · kihagyható</span></div><h2> A probléma — 20 év Linux-infrastruktúra</h2></div><div class="after-block block-stats"><div class="content-grid"><div class="card stat accent-blue"><div class="num">~500</div><div class="body"><p>Linux VM</p>
 </div></div><div class="card stat accent-teal"><div class="num">10</div><div class="body"><p>hypervisor host (6 VMware + 4 Hyper-V)</p>
@@ -1105,8 +1178,7 @@ Egy módszertan — házépítés-hasonlattal, valódi példával, és azzal, ho
 </div></article></div></div><div class="after-block block-cards"><div class="body after"><blockquote>
 <p><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg> <strong>Az ember dönt, az AI végrehajt.</strong> Az 05–06 lépéspár a <strong>TdD</strong>: a teszt <em>előbb</em> születik, mint a kód — róla külön dia lesz. A lánc <strong>két emberi kapuval</strong> zárul (A9): <strong>Verifikáció</strong> (a review emberi része) + <strong>Validáció</strong> (a QA-átvétel) — pontosan a ház: a <strong>műszaki ellenőr</strong> azt nézi, a terv szerint épült-e meg, a <strong>család</strong> azt, hogy azt kapta-e, amire szüksége volt. A <strong>09</strong> pedig zárja a kört: a ház nem a kulcsátadásnál ér véget — a család <strong>beköltözik</strong>, és amit ott hiányol, az lesz a következő szándék. A termék az <strong>üzemelő alkalmazás</strong>, nem a beolvasztott kód.</p>
 </blockquote>
-<p><strong>▸ Egy spec a lemezen — a flotta-gyűjtés EARS-követelményei (<code>docs/specs/fleet-collection/</code>)</strong></p>
-<p>Egy nem-triviális feature spec-mappája — <strong>hat fájl</strong>, minden réteg egy, az irány fentről lefelé. A <code>brief.md</code> (2026-07-13 óta) és a <code>tests.md</code> (2026-09-09 óta) <strong>minden új specnél kötelező</strong> — az infra/library tiernél is; a korábbi specek grandfatherelve maradnak, ezért látsz a repóban régebbi, ötfájlos mappákat is.</p>
+</div></div><details class="after-block drill block-cards"><summary>▸ Egy spec a lemezen — a flotta-gyűjtés EARS-követelményei (docs/specs/fleet-collection/)</summary><div class="body after"><p>Egy nem-triviális feature spec-mappája — <strong>hat fájl</strong>, minden réteg egy, az irány fentről lefelé. A <code>brief.md</code> (2026-07-13 óta) és a <code>tests.md</code> (2026-09-09 óta) <strong>minden új specnél kötelező</strong> — az infra/library tiernél is; a korábbi specek grandfatherelve maradnak, ezért látsz a repóban régebbi, ötfájlos mappákat is.</p>
 <pre><code>docs/specs/&lt;feature&gt;/
 ├── brief.md # BRD — miért / kinek / siker
 ├── requirements.md # SRS — MIT · EARS (U/E/S/X/O)
@@ -1134,7 +1206,7 @@ X1 [x] If infra_ai queries secrets.*, then the DB shall deny access
 O1 [~] Where SMTP is set, notify_fleet_collect shall email a summary; else soft-fail
 </code></pre>
 <p>A státuszjel az SSOT: [x] verifikált · [~] részleges · [ ] nyitott. Ez a „MIT&quot;; a <code>design.md</code> a „HOGYAN&quot;.</p>
-</div></article></div></div><div class="after-block block-cards"><div class="body after"><blockquote>
+</div></article></div></details><div class="after-block block-cards"><div class="body after"><blockquote>
 <p><strong>A házon:</strong> család (szándék) → építész (engedélyezési terv) → kiviteli terv → próbakocka a betonozáskor → brigád → műszaki ellenőr → a család átveszi → beköltözés. · SdD-ben: 01 → 02–03 → 04 → 05 TdD → 06 → 07 → 08 → 09 — ugyanaz a kilenc lépés, ugyanazokkal a kapukkal.</p>
 </blockquote>
 </div></div>
@@ -1168,15 +1240,14 @@ Mint a <a href="https://www.youtube.com/watch?v=ZbGGd4JUwdE"><em>Memento</em></a
 </div></li><li class="flow-step"><h3> Projekt CLAUDE.md</h3><div class="body"><p><code>betöltés: session start</code> — infra-forge-specifikus delták, státusz, tiltások</p>
 </div></li><li class="flow-step"><h3> .claude/</h3><div class="body"><p><code>betöltés: session start</code> — hooks · skills · memory · MCP konfiguráció</p>
 </div></li><li class="flow-step"><h3> L2–L3 szabályok, spec-ek, kód</h3><div class="body"><p><code>igény szerint · RAG</code> — amit a feladat megkíván — az agent olvassa be, vagy vektortárból keres vissza</p>
-</div></li></ol></div><div class="after-block block-cards"><div class="body after"><p><strong>▸ Mélyebben: mi az LLM <em>valójában</em> · és mi az agent</strong></p>
-<p>Mi az LLM valójában? — és miért következik belőle az SdD</p>
+</div></li></ol></div><details class="after-block drill block-cards"><summary>▸ Mélyebben: mi az LLM valójában · és mi az agent</summary><div class="body after"><p>Mi az LLM valójában? — és miért következik belőle az SdD</p>
 </div><div class="content-grid after-grid cols-3"><article class="card accent-blue"><div class="card-head"><h3>Statisztikai jóslás</h3></div><div class="body"><p>Következő-token-jóslás: tanult mintázat-folytatás, nem megértés. A magabiztos hang nem igazság-garancia.</p>
 <p><strong>→ ezért SdD:</strong> a kimenetet verifikálni kell — a leforduló kód még nem működő funkció.</p>
 </div></article><article class="card accent-teal"><div class="card-head"><h3>Nincs új tudás — új kombináció igen</h3></div><div class="body"><p>A tréningadatán és a kontextuson túl nem hoz új tudást; a meglévőből viszont új kombinációt állít elő. Nem <em>felfedez</em> — <em>újrarendez</em>.</p>
 <p><strong>→ ezért SdD:</strong> az üzleti igazságot (szabály, döntés, scope) neked kell megadnod — dokumentumként.</p>
 </div></article><article class="card accent-mauve"><div class="card-head"><h3>Kreativitás = szabályozott véletlen</h3></div><div class="body"><p>A temperature azt állítja, milyen messze merészkedik a legvalószínűbb úttól. A tiszta véletlen <em>zaj</em>; a hasznos újdonság meglepő ÉS koherens.</p>
 <p><strong>→ ezért SdD:</strong> a spec és a szabályok a koherencia-korlát — bennük szabad, kívül kontrollált.</p>
-</div></article></div></div><div class="after-block block-cards"><div class="content-grid after-grid cols-2"><article class="card accent-sky"><div class="card-head"><h3>Nálunk: Claude Code</h3></div><div class="body"><p>Terminálban futó agent. Olvassa a repót, szerkeszt, buildel, commitol — a projekt szabályfájljai szerint.</p>
+</div></article></div></details><div class="after-block block-cards"><div class="content-grid after-grid cols-2"><article class="card accent-sky"><div class="card-head"><h3>Nálunk: Claude Code</h3></div><div class="body"><p>Terminálban futó agent. Olvassa a repót, szerkeszt, buildel, commitol — a projekt szabályfájljai szerint.</p>
 </div></article><article class="card accent-red"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-warning"/></svg><h3>A korlátok</h3></div><div class="body"><ul>
 <li><strong>Csak azt látja, amit beolvasott</strong> — a többi repo, wiki, jegy nem létezik neki</li>
 <li>A context window <strong>véges</strong> — nem fér be minden, tehát <em>választani kell</em></li>
@@ -1223,8 +1294,7 @@ Mint a <a href="https://www.youtube.com/watch?v=ZbGGd4JUwdE"><em>Memento</em></a
 </div></article></div><div class="after-block block-cards"><div class="body after"><blockquote>
 <p><svg class="i" aria-hidden="true"><use href="#i-info"/></svg> A lényeg egy mondatban: <strong>a repo a fejlesztői környezet.</strong> Ami nincs a repóban — szabály, döntés, konfiguráció, tudás — az a felejtő agent számára <strong>nem létezik</strong>. Ezért kerül minden fájlba, és ezért lesz minden fájl <em>diffelhető</em>.</p>
 </blockquote>
-<p><strong>▸ Amit a Java-világból ismersz — és ami itt megfelel neki</strong></p>
-<table>
+</div></div><details class="after-block drill block-cards"><summary>▸ Amit a Java-világból ismersz — és ami itt megfelel neki</summary><div class="body after"><table>
 <thead>
 <tr>
 <th>Eddig</th>
@@ -1260,7 +1330,7 @@ Mint a <a href="https://www.youtube.com/watch?v=ZbGGd4JUwdE"><em>Memento</em></a
 </tr>
 </tbody>
 </table>
-<blockquote>
+</div></details><div class="after-block block-cards"><div class="body after"><blockquote>
 <p><strong>A házon:</strong> Az építési terület: a tervtár, a szabványok és a szomszéd épületek egy telken. · SdD-ben: A szabályok és a specek ugyanott laknak, ahol a kód — munka közben olvashatók, nem egy távoli wikiben.</p>
 </blockquote>
 </div></div>
@@ -1275,8 +1345,7 @@ Mint a <a href="https://www.youtube.com/watch?v=ZbGGd4JUwdE"><em>Memento</em></a
 <blockquote>
 <p><svg class="i" aria-hidden="true"><use href="#i-warning"/></svg> <strong>És itt a fogás:</strong> az AI-nak <em>nincs fáradtságjelzése</em>. Nem érzi, hogy nagy a diff — boldogan ír 2000 sort egy kérésre. Az ember viszont fárad, és a fáradt review <strong>pecsételéssé</strong> válik. Ezért a diff méretét <strong>előre</strong>, a specben és a taskokban kell korlátozni, nem utólag a review-n. <em>A kis diff nem stílus — ez tartja életben az emberi kaput (A10).</em></p>
 </blockquote>
-<p><strong>▸ A kis diff technikája — hogyan marad átnézhető az, amit egy gép ír</strong></p>
-</div><div class="content-grid after-grid cols-2"><article class="card accent-green"><div class="card-head"><h3>Az öt szabály</h3></div><div class="body"><ul>
+</div></div><details class="after-block drill block-cards"><summary>▸ A kis diff technikája — hogyan marad átnézhető az, amit egy gép ír</summary><div class="content-grid after-grid cols-2"><article class="card accent-green"><div class="card-head"><h3>Az öt szabály</h3></div><div class="body"><ul>
 <li><strong>Egy MR = egy önállóan átnézhető viselkedés.</strong> Rendszerint egy EARS-kikötés; ha kettő elválaszthatatlan, mehet együtt — de <strong>mindkettő azonosítója szerepeljen</strong>. A mérce az átnézhetőség, nem a darabszám.</li>
 <li><strong>A scope-ot a spec zárja le,</strong> mielőtt az első sor megszületne — így nincs mit „menet közben észrevenni&quot;.</li>
 <li><strong>Semmi alkalmi rendrakás.</strong> A hibajavítás hibajavítás; a mellette talált második hiba <em>külön diff</em>.</li>
@@ -1289,7 +1358,7 @@ Mint a <a href="https://www.youtube.com/watch?v=ZbGGd4JUwdE"><em>Memento</em></a
 <li><strong>A review érdemi marad.</strong> Az átnézhető diff az egyetlen, ami mellett a „megnéztem&quot; nem üres szó.</li>
 <li><strong>A könyvtár-változás nem robban.</strong> Nálunk egy közös könyvtár 16 repóra hat — ott a kis diff nem kényelem, hanem <em>a biztonság mértékegysége</em>.</li>
 </ul>
-</div></article></div></div><div class="after-block block-cards"><div class="content-grid after-grid"><article class="card accent-blue"><div class="card-head"><h3>Hogyan? — a második hiba útja</h3></div><div class="body"><ol>
+</div></article></div></details><div class="after-block block-cards"><div class="content-grid after-grid"><article class="card accent-blue"><div class="card-head"><h3>Hogyan? — a második hiba útja</h3></div><div class="body"><ol>
 <li><strong>Észreveszed — és leírod, nem javítod.</strong> Jegy, urgent-lista vagy egy sor az MR leírásában: <em>„talált: X — külön MR&quot;</em>. Az AI ugyanígy tesz: az A10 minden session elején betöltődik, ezért <strong>jelez és kérdez</strong>, nem javít csendben.</li>
 <li><strong>Az első javítást egyedül zárod le</strong> — commit, MR; a diff csak a javításhoz szükséges sorokat érinti.</li>
 <li><strong>A második hiba saját ágat kap</strong> a <code>main</code>-ről, saját commitot, saját MR-t.</li>
@@ -1304,8 +1373,7 @@ git switch -c fix/masodik-hiba
 <blockquote>
 <p>Java-hasonlat: ez ugyanaz a fegyelem, amit a jó commit-kultúrától mindig is vártunk — csak most <strong>nem opcionális</strong>. Amíg ember gépelt, a diff magától kicsi maradt, mert lassan nőtt. Egy gép mellett a méret korlátját <em>szándékosan</em> kell odatenni.</p>
 </blockquote>
-</div></div><div class="after-block block-cards"><div class="body after"><p><strong>▸ SVN → git — a napi öt művelet, egymás mellett</strong></p>
-<table>
+</div></div><details class="after-block drill block-cards"><summary>▸ SVN → git — a napi öt művelet, egymás mellett</summary><div class="body after"><table>
 <thead>
 <tr>
 <th>SVN</th>
@@ -1344,7 +1412,7 @@ git switch -c fix/masodik-hiba
 <blockquote>
 <p><strong>Egy szokás, amit érdemes átvenni:</strong> a commit-üzenet mondja meg, <em>melyik követelményt</em> teljesíti (<code>feat(fleet): E2 — content_hash stabil, ha nincs változás</code>). Így a git history és a spec összeolvasható — és az AI is meg tudja mondani, hol tart a munka.</p>
 </blockquote>
-</div></div><div class="after-block block-cards"><div class="body after"><blockquote>
+</div></details><div class="after-block block-cards"><div class="body after"><blockquote>
 <p><strong>A házon:</strong> Egyszerre egy fal, amit a műszaki ellenőr még végig tud nézni; a tegnapi naplóbejegyzést nem radírozzák ki. · SdD-ben: Kis diff = egy review-egység; minden lépés a saját próbakockájával (TdD-teszt) megy be.</p>
 </blockquote>
 </div></div>
@@ -1503,9 +1571,8 @@ git switch -c fix/masodik-hiba
 </div></div>
 </div>
 <div class="slide layout-free" id="s10" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A formátum · egy valódi, futó artefaktum</span></div><h2> Miért dokumentum? Miért Markdown? — egy fájl, három arc</h2></div><div class="body"><p>Ez a <code>pipelines/ops_dep_extract.md</code> — <strong>minden éjjel 04:00-kor magától lefutó</strong>, élő pipeline: a flotta pillanatképeiből kiszámolja a szolgáltatás-függőségeket (DNS · NFS · LDAP · SMTP) → naplóz → átszinkronizálja a függőségi gráfot → lezár. <strong>Egyetlen Markdown-fájl</strong>, nincs mellette kód. Váltsd a nézetet — <em>ugyanaz a fájl</em> mind a három.</p>
-<p>RAW — markdown forrás Ugyanaz a fájl: az ember <strong>olvassa</strong> (DOC), a git <strong>diffeli</strong> (RAW), a <code>bin/pf</code> <strong>futtatja</strong> (PIPELINE) — ez az <strong>A2</strong> (Document = Code).</p>
-<p><strong>RAW nézet — a markdown forrás</strong></p>
-<pre><code># ops_dep_extract — nightly service-dependency edge extraction
+<p>Ugyanaz a fájl: az ember <strong>olvassa</strong> (DOC), a git <strong>diffeli</strong> (RAW), a <code>bin/pf</code> <strong>futtatja</strong> (PIPELINE) — ez az <strong>A2</strong> (Document = Code).</p>
+</div><div class="after-block face-pane block-cards" data-face="RAW — markdown forrás"><div class="body after"><pre><code># ops_dep_extract — nightly service-dependency edge extraction
 
 &gt; **What it does**
 &gt; Derives service dependency edges from current snapshot data by calling
@@ -1554,8 +1621,7 @@ Reachable ONLY via the `on_error` jump above — never by falling through.
 
 ## Step: Done — log
 </code></pre>
-<p><strong>DOC nézet — ugyanez renderelve</strong></p>
-<p><strong>ops_dep_extract — éjszakai szolgáltatás-függőség kinyerés</strong></p>
+</div></div><div class="after-block face-pane block-cards" data-face="DOC — renderelt dokumentum" hidden><div class="body after"><p><strong>ops_dep_extract — éjszakai szolgáltatás-függőség kinyerés</strong></p>
 <blockquote>
 <p><strong>What it does</strong> — a friss gép-pillanatképekből (<code>machine_snapshot</code>) SQL-lel levezeti, melyik gép melyiktől függ: DNS, NFS, LDAP, SMTP. Idempotens; <strong>nincs benne LLM</strong>.</p>
 </blockquote>
@@ -1574,9 +1640,8 @@ tenant: _infra
 <p>Csak hibaágon érhető el (<code>on_error</code>) — soha nem „esik bele&quot; a sikeres futás.</p>
 <p><strong>## Step: Done — log</strong></p>
 <p>A közös végpont, ahová mindkét ág érkezik.</p>
-<p><strong>PIPELINE nézet — futtatható lépések</strong></p>
-<p>Amit <strong>csak a motor</strong> lát: öt lépés, mindegyik a saját <em>típusával</em> — és <strong>két ág</strong>. A RAW ezt szövegként mutatta, a DOC prózaként — itt <strong>végrehajtási terv</strong>.</p>
-</div><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3> Extract Dependencies</h3><div class="body"><p><code>1 · db_query</code> — infra.dep_extract_from_snapshots() · hibánál → 4</p>
+</div></div><div class="after-block face-pane block-flow" data-face="PIPELINE — futtatható lépések" hidden><div class="body after"><p>Amit <strong>csak a motor</strong> lát: öt lépés, mindegyik a saját <em>típusával</em> — és <strong>két ág</strong>. A RAW ezt szövegként mutatta, a DOC prózaként — itt <strong>végrehajtási terv</strong>.</p>
+</div><ol class="flow"><li class="flow-step"><h3> Extract Dependencies</h3><div class="body"><p><code>1 · db_query</code> — infra.dep_extract_from_snapshots() · hibánál → 4</p>
 </div></li><li class="flow-step"><h3> Log Result</h3><div class="body"><p><code>2 · log</code> — siker → 3</p>
 </div></li><li class="flow-step"><h3> Sync Graph Store</h3><div class="body"><p><code>3 · pipeline</code> — → OPS-graph_sync (9 lépés) · critical: false · → 5</p>
 </div></li><li class="flow-step"><h3> Log Run Failure — csak hibaágon</h3><div class="body"><p><code>4 · log</code> — on_error célpont — sikeres futásnál kimarad</p>
@@ -1642,17 +1707,15 @@ tenant: _infra
 <blockquote>
 <p><svg class="i" aria-hidden="true"><use href="#i-info"/></svg> Ha a tudás csak a kódban él, három olvasója van: a fordító, a szerző — és senki más.</p>
 </blockquote>
-<p><strong>▸ Document = Code · No bare SQL — a két következmény</strong></p>
-</div><div class="content-grid after-grid cols-2"><article class="card accent-green"><div class="card-head"><h3>Document = Code</h3></div><div class="body"><p>A <code>.md</code> egyszerre a specifikáció ÉS a futtatható / generátor-bemenet. Nincs külön dokumentáció, ami elavulhatna.</p>
+</div></div><details class="after-block drill block-cards"><summary>▸ Document = Code · No bare SQL — a két következmény</summary><div class="content-grid after-grid cols-2"><article class="card accent-green"><div class="card-head"><h3>Document = Code</h3></div><div class="body"><p>A <code>.md</code> egyszerre a specifikáció ÉS a futtatható / generátor-bemenet. Nincs külön dokumentáció, ami elavulhatna.</p>
 </div></article><article class="card accent-blue"><div class="card-head"><h3>No bare SQL</h3></div><div class="body"><p>A forrásfában nincs csupasz <code>.sql</code>. Minden kézi SQL markdown: frontmatter + a <em>miért</em> próza + egyetlen ````sql` blokk. A generált DDL specekből születik.</p>
-</div></article></div></div><div class="after-block block-cards"><div class="body after"><p><strong>▸ Mi az a Markdown — és hogyan néz ki egy platform-fájl belülről</strong></p>
-</div><div class="content-grid after-grid cols-3"><article class="card accent-teal"><div class="card-head"><h3>Mi az a Markdown?</h3></div><div class="body"><p>Pehelysúlyú, sima-szöveges jelölőnyelv (<a href="https://commonmark.org/">CommonMark</a> szabvány). Néhány jel az egész: <code># fejléc</code>, <code>- lista</code>, <code>| tábla |</code>, <code>**félkövér**</code>, <code>kódblokk</code>. Olvasható nyersen és renderelve is.</p>
+</div></article></div></details><details class="after-block drill block-cards"><summary>▸ Mi az a Markdown — és hogyan néz ki egy platform-fájl belülről</summary><div class="content-grid after-grid cols-3"><article class="card accent-teal"><div class="card-head"><h3>Mi az a Markdown?</h3></div><div class="body"><p>Pehelysúlyú, sima-szöveges jelölőnyelv (<a href="https://commonmark.org/">CommonMark</a> szabvány). Néhány jel az egész: <code># fejléc</code>, <code>- lista</code>, <code>| tábla |</code>, <code>**félkövér**</code>, <code>kódblokk</code>. Olvasható nyersen és renderelve is.</p>
 </div></article><article class="card accent-blue"><div class="card-head"><h3>A fejléc a modell térképe</h3></div><div class="body"><p>A <code>#</code>…<code>######</code> hierarchia adja a szerkezetet — a RAG <em>fejezetenként</em> darabol (chunk-by-chapter), így a modell célzottan a releváns szakaszt kapja vissza, nem az egész fájlt.</p>
 </div></article><article class="card accent-mauve"><div class="card-head"><h3>Három rész, egy fájl</h3></div><div class="body"><p><strong>1)</strong> YAML <em>frontmatter</em> — metaadat (név, sorrend, függőség, schedule).</p>
 <p><strong>2)</strong> Próza — a <em>miért</em>.</p>
 <p><strong>3)</strong> Egy vagy több <em>fenced</em> blokk — a futtatható tartalom (<code>sql</code> / <code>yaml</code> / lépések).</p>
 <p>A fenti <code>ops_dep_extract.md</code> pontosan így épül fel: <strong>frontmatter</strong> (név, ütemezés, tenant) + <strong>próza</strong> (a miért) + <strong><code>## Step:</code> szakaszok</strong> (a futtatható lépések). Az ember a prózát olvassa, a git a diffet, az LLM az egészet — a motor pedig a lépéseket futtatja, sorban.</p>
-</div></article></div></div><div class="after-block block-cards"><div class="body after"><blockquote>
+</div></article></div></details><div class="after-block block-cards"><div class="body after"><blockquote>
 <p><strong>A házon:</strong> A tervrajz nem utólagos leírás — a brigád ebből épít, és ha a fal eltér tőle, a falat bontják. · SdD-ben: Document = Code: ugyanaz a fájl a spec, a dokumentáció és a futtatható.</p>
 </blockquote>
 </div></div>
@@ -5374,6 +5437,8 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
  *
  * Contract with shell.html.tmpl: .slide[id][data-skip] (id = "s<index>" or the slide's own name) ·
  * .slide-counter [data-cur]/[data-tot] · .slide-id (footer readout of the current id) ·
+ * .after-block.face-pane[data-face] (consecutive panes form a face group; the engine inserts the
+ * .face-bar with [data-action="face"] buttons) · details.drill (native toggle, opened for print) ·
  * .progress-fill · .help-overlay[hidden] · [data-action] buttons · .mermaid-diagram[data-mermaid] ·
  * body[data-auto] (seconds, 0 = off). Colours and the Mermaid look come from the inlined vibe tokens.
  */
@@ -5443,6 +5508,47 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
   function edge(last) {
     const vis = visible();
     if (vis.length) show(last ? vis[vis.length - 1] : vis[0]);
+  }
+
+  // ── faces (FD-U1, FD-E2): consecutive .face-pane siblings form a group — one visible, a bar to switch
+  const faceGroups = [];
+  function showFace(group, i) {
+    group.active = i;
+    group.panes.forEach((p, k) => { p.hidden = k !== i; });
+    Array.from(group.bar.children).forEach((b, k) => b.setAttribute('aria-pressed', String(k === i)));
+  }
+  function buildFaceGroup(panes) {
+    const bar = document.createElement('div');
+    bar.className = 'face-bar';
+    bar.setAttribute('role', 'group');
+    bar.setAttribute('aria-label', 'Views of the same thing');
+    const group = { panes, bar, active: 0 };
+    panes.forEach((p, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'face-btn';
+      b.dataset.action = 'face';
+      b.textContent = p.dataset.face || String(i + 1);
+      b.title = 'Show this view (f cycles the views)';
+      b.addEventListener('click', () => showFace(group, i));
+      bar.appendChild(b);
+    });
+    panes[0].parentNode.insertBefore(bar, panes[0]);
+    faceGroups.push(group);
+    showFace(group, 0);
+  }
+  slides.forEach(slide => {
+    let run = [];
+    const flush = () => { if (run.length) buildFaceGroup(run); run = []; };
+    slide.querySelectorAll('.face-pane').forEach(p => {
+      if (run.length && p.previousElementSibling !== run[run.length - 1]) flush();
+      run.push(p);
+    });
+    flush();
+  });
+  function cycleFace() {
+    const group = faceGroups.find(g => current && current.contains(g.bar));
+    if (group) showFace(group, (group.active + 1) % group.panes.length);
   }
 
   // ── deep links (E6, SG-E1): #<slide id>, #talk, or #talk,<slide id> — any id a slide carries
@@ -5602,6 +5708,9 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
   // ── print (E5): light theme, every diagram rendered, one slide per page (CSS) ──
   let themeBeforePrint = null;
   window.addEventListener('beforeprint', () => {
+    // FD-E3: print shows every face and every drill open
+    faceGroups.forEach(g => g.panes.forEach(p => { p.hidden = false; }));
+    document.querySelectorAll('details.drill').forEach(d => { d.dataset.wasOpen = String(d.open); d.open = true; });
     themeBeforePrint = root.dataset.theme || '';
     if (themeKey() !== 'light') {
       applyTheme('light');
@@ -5610,6 +5719,8 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
     slides.forEach(schedule);
   });
   window.addEventListener('afterprint', () => {
+    faceGroups.forEach(g => showFace(g, g.active));
+    document.querySelectorAll('details.drill').forEach(d => { d.open = d.dataset.wasOpen === 'true'; delete d.dataset.wasOpen; });
     if (themeBeforePrint === null) return;
     const restore = themeBeforePrint;
     themeBeforePrint = null;
@@ -5653,6 +5764,9 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
     } else if (e.key === 't' || e.key === 'T') {
       e.preventDefault();
       toggleTheme();
+    } else if (e.key === 'f' || e.key === 'F') {
+      e.preventDefault();
+      cycleFace(); // FD-E2
     }
   });
 
