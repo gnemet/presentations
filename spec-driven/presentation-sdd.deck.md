@@ -1183,7 +1183,9 @@ alatt is megjelenik, és a lényeg egy mondatban elmondható.)*
 >
 > **SdD ⊃ { SDD, BRD (+EARS), TdD }** — a módszertan a keret; alatta a két tervrajz (az EARS a BRD kikötés-nyelve, nem külön dokumentum) és a bizonyíték. Az alábbi három csempe ezt a hármat bontja ki.
 
-### SDD — Software Design Description ([IEEE 1016-2009](https://standards.ieee.org/ieee/1016/4502/), referencia-modell) {accent=blue}
+### SDD — Software Design Description (IEEE 1016-2009, referencia-modell) {accent=blue}
+Szabvány: [IEEE 1016-2009](https://standards.ieee.org/ieee/1016/4502/).
+
 A *technikai* tervrajz: architektúra, adatmodellek, interfészek, komponens-viselkedés — a híd az üzleti igény és a kód között.
 
 - **Régen:** „halott dokumentum" — egyszer megírták, a kód elszaladt mellőle
@@ -1192,7 +1194,9 @@ A *technikai* tervrajz: architektúra, adatmodellek, interfészek, komponens-vis
 
 forrás: IEEE Std 1016
 
-### :buildings: BRD — Business Requirements Document ([ISO/IEC/IEEE 29148](https://www.iso.org/standard/72089.html)) {accent=peach}
+### :buildings: BRD — Business Requirements Document (ISO/IEC/IEEE 29148) {accent=peach}
+Szabvány: [ISO/IEC/IEEE 29148](https://www.iso.org/standard/72089.html).
+
 Az *üzleti* tervrajz: célok, scope, üzleti követelmények — *mit* érjen el a rendszer (a *hogyan* előtt). Workflow-k, adatáramlás, compliance; nagy szervezetnél több száz oldal, gyakran ellentmondásokkal.
 
 - **Gap-analízis:** az LLM beolvassa és jelzi az ellentmondásokat (40. oldal vs. 200. oldal)
