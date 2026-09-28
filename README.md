@@ -7,7 +7,7 @@ Every deck here is a **generated copy**. Its source — the `<topic>.deck.md` �
 project it explains and is rebuilt there with `/deck build`; only the self-contained `.html` is
 copied into this repo. Never edit a deck here: change the source, rebuild, copy again.
 
-Open a deck straight from disk (`file://…`) or through GitHub Pages. Keys: `←/→` navigate,
+Open a deck straight from disk (`file://…`) or through GitHub Pages at <https://gnemet.github.io/presentations/> (deck URLs follow the repo path, e.g. `docs/presentation/presentation-sdd.html`). Keys: `←/→` navigate,
 `?` help, `t` theme, `#talk` in the URL selects the short leaders cut where a deck defines one.
 
 ## Decks
