@@ -1499,10 +1499,10 @@ git switch -c fix/masodik-hiba
 </div><div class="content-grid after-grid cols-3"><article class="card accent-peach"><div class="card-head"><h3>Token — a magyar drágább</h3></div><div class="body"><p>Egy <strong>angol szó átlagosan ~5 karakter</strong>, egy token nagyjából <strong>4</strong> — így egy angol szó jellemzően egy-másfél token, sokszor egészben benne van a szótárban. A magyar <strong>toldalékol</strong>: egy szó több ragot hordoz, ritkábban szerepel egészben, ezért <strong>több darabra esik szét</strong>. Ugyanaz a tartalom magyarul <strong>érezhetően több token</strong> — ez kétszeresen fáj: <strong>drágább</strong>, és <strong>kevesebb fér</strong> a véges context windowba. (A pontos szorzó modellenként más; érdemes a saját specjeinken megmérni, mielőtt számot mondunk.)</p>
 </div></article><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-books"/></svg><h3>Egy nyelv — egy szótár</h3></div><div class="body"><p>A szabály, a spec, a kód és a hibaüzenet <strong>ugyanazokat a szavakat</strong> használja — nincs mit összepárosítani. Két nyelven ugyanaz a fogalom kétféleképp íródik le, és a visszakeresés is, a review is ezen a résen szivárog el. <em>A cél nem az angol, hanem hogy egy fogalomnak egy neve legyen (A1).</em></p>
 </div></article><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-code"/></svg><h3>A kód úgyis angol</h3></div><div class="body"><p>Kulcsszó, azonosító, könyvtár-dokumentáció, hibaüzenet, git-szótár — mind angol. Ha a spec magyar, minden mondat mögé <strong>fordítási réteg</strong> kerül, és a jelentés ott szivárog el. Egy nyelven tartva nincs mit félrefordítani.</p>
-<blockquote>
+</div></article></div></div><div class="after-block block-cards"><div class="body after"><blockquote>
 <p><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg> <strong>De nem mindent angolul — a vágás éles (A7):</strong> az <strong>infrastruktúra és az orchestráció</strong> beszél angolul (szabályok, EARS-kikötések, kódbeli azonosítók, commit-üzenetek), az <strong>üzleti tartomány marad magyarul</strong> (a domén fogalmai, a felhasználónak szóló szövegek, ez a diasor is). A BA <em>nem</em> lesz angol nyelvű követelményíró: a szakterületi szó magyar marad, csak a kikötés váza angol.</p>
 </blockquote>
-</div></article></div></div><div class="after-block block-cards"><div class="body after"><blockquote>
+</div></div><div class="after-block block-cards"><div class="body after"><blockquote>
 <p><strong>A házon:</strong> Szilárd híd vs. kártyavár: alap és statika nélkül a gyorsan felhúzott fal az első tehernél leomlik. · SdD-ben: A kontextus (spec + szabály) az alap — az AI erősítő, nem rövidítés; a TdD-teszt a statikai számítás.</p>
 </blockquote>
 </div></div>
@@ -2069,13 +2069,13 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 </div></article><article class="card accent-sky"><div class="card-head"><h3>foundation-pg</h3></div><div class="body"><p>Dinamikus SQL annotált kommentekkel, nem string-fűzéssel. <em>A minta:</em> a feltételes blokk a SQL-ben <strong>látszik</strong>, nem Go-ban rejtőzik.</p>
 </div></article><article class="card accent-mauve"><div class="card-head"><h3>foundation-ui</h3></div><div class="body"><p>Az app-shell: fejléc, sidebar, téma, login. <em>A minta:</em> minden felület ugyanúgy néz ki, mert ugyanonnan származik.</p>
 </div></article><article class="card accent-peach"><div class="card-head"><h3>foundation-wiki</h3></div><div class="body"><p>Nem könyvtár, hanem <strong>hordozható módszer</strong>: a spec maga a definíció. Ugyanarra a módszerre több termék is épülhet — a spec viszi át, nem a kód.</p>
-<blockquote>
+</div></article></div></div><div class="after-block block-cards"><div class="body after"><blockquote>
 <p><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg> <strong>A választás szabad, a forrás nem.</strong> A keretbe <em>beépülsz</em>, a könyvtárat <em>behivatkozod</em>, a mintát <em>követed</em>, a példából <em>kiindulsz</em> — hogy melyik illik a feladathoz, azt az AI dönti el. De a foundationből választ: ha ott van rá kanonikus megoldás, <strong>nem talál ki újat</strong>. Enélkül 16 repóban 16-féle naplózás születne, mind „helyes&quot;, mind más. A <code>foundation-*</code> így <strong>az AI tudástára</strong>: nem kész kódot ad, hanem <em>választékot — és a döntést, amit nem kell újra meghozni</em>.</p>
 </blockquote>
 <blockquote>
 <p>A közös elv: <strong>adat a katalógusban, viselkedés a motorban</strong> — a kettő határa a review-felület.</p>
 </blockquote>
-</div></article></div></div><div class="after-block block-cards"><div class="body after"><blockquote>
+</div></div><div class="after-block block-cards"><div class="body after"><blockquote>
 <p><strong>A házon:</strong> Szabványos, előre gyártott elemek — zsalu, ajtótok, födémpanel: nem minden háznál találják fel újra. · SdD-ben: A négy motor és a foundation: a spec ezekből választ, ötödiket nem ír (A4).</p>
 </blockquote>
 </div></div>
@@ -2142,13 +2142,13 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 </div></li><li class="flow-step"><h3> Olvasás</h3><div class="body"><p><code>5</code> — a megjelölt fájl</p>
 </div></li></ol></div><div class="after-block block-cards"><div class="content-grid after-grid cols-2"><article class="card accent-mauve"><div class="card-head"><h3>Fejlesztői RAG — lokális rag_db</h3></div><div class="body"><p><strong>A repó a kollekció</strong>: minden platform-repo egy gyűjtemény. Claude Code ebből keresi vissza a releváns szabályt / doc-ot / spec-et — nem a teljes fát olvassa. <strong>Ez a dev-láb.</strong></p>
 </div></article><article class="card accent-sky"><div class="card-head"><h3>Termék-RAG — a termék saját éles adatbázisában</h3></div><div class="body"><p>Nincs központi RAG-adatbázis: minden termék a <strong>saját éles DB-jében</strong> tartja a beágyazásait, tenantonként (<code>iier01_db</code>, <code>it_akos01_db</code>…). A tudás ott van, ahol az adat — és a jogosultság is ott érvényesül. <strong>A dev-láb és a termék-láb sosem keveredik.</strong></p>
-<blockquote>
+</div></article></div></div><div class="after-block block-cards"><div class="body after"><blockquote>
 <p><svg class="i" aria-hidden="true"><use href="#i-info"/></svg> <strong>Így használja Claude — fejlesztés közben:</strong> <code>/rag-search &quot;hol oldjuk fel a vault-ot?&quot;</code> → top találatok (<code>collection + source_file</code>) → és csak <strong>azt az egy fájlt</strong> nyitja meg (<code>Read</code>). Tájékozódás RAG-gel, pontos olvasás utána — a véges kontextust a <em>releváns</em> tudás tölti, nem a teljes repó.</p>
 </blockquote>
 <blockquote>
 <p><strong>A házon:</strong> A tervtár: a brigád nem visz mindent a zsebében, de tudja, hol keresse. · SdD-ben: RAG: a teljes tudásból az adott SdD-lépéshez szükséges rész kerül a kontextusba.</p>
 </blockquote>
-</div></article></div></div>
+</div></div>
 </div>
 <div class="slide layout-free align-top" id="s17" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">AI-infrastruktúra · a visszakeresés rétegei</span><span class="badge">infra-forge · kihagyható</span></div><h2> Vektor → él → property-graph — a visszakeresés rétegei</h2></div><div class="body"><blockquote>
 <p>A lapos vektor-keresés a „<strong>miről szól?</strong>&quot; kérdésre jó: a szöveg → sűrű <strong>jelentés-vektor</strong>, a kérdéshez <strong>cosine</strong>-közeli chunkok jönnek vissza — nem kulcsszó, hanem <em>jelentés</em> („Dell laptop&quot; megtalálja a „hordozható számítógép&quot;-et is). De a „<strong>mi mire hivatkozik?</strong>&quot;, „<strong>ki ért hozzá?</strong>&quot; kérdés <strong>kapcsolat</strong> — azt gráffal kérdezzük.</p>
@@ -2398,12 +2398,12 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 </div></div><div class="card stat accent-peach"><div class="num">1</div><div class="body"><p>architekt/BA/QA + AI</p>
 <p><strong>És csak azután a napló:</strong> 19 aktív fejlesztési nap, 390 commit, ~20 300 sor Go mellett ~26 500 sor Markdown — <em>több terv, mint fal</em>: a tervrajz nem lassította az építkezést, <strong>ez tette lehetővé</strong>. De <strong>ezek nem a mérce</strong>: a sor és a commit a felrakott tégla, nem a lakható ház — a mérce az <strong>átvett követelmény</strong> (lásd a vezetői tanulságokat). A „hagyományos&quot; ellenpont (nagyságrendileg 12–27 emberhónap) ráadásul <em>becslés</em>, dokumentált módszertan nélkül — <em>nagyságrend, nem bizonyíték</em>.</p>
 <p><strong>És ma</strong> (2026-09-24, ugyanabból a git logból): <code>v0.8.951</code> élesben · <strong>2 107 commit</strong> · <strong>81 aktív fejlesztési nap</strong> · ~35 900 sor Go + ~23 600 sor Go-teszt mellett <strong>~86 800 sor Markdown</strong> · 47 spec-mappa. Az arány nem romlott: <em>még mindig több a terv, mint a fal</em>. A TdD a naplóból is látszik: a 2026-09-09-i mandátum óta született <strong>16 új spec-mappa mind az első napon <code>tests.md</code>-vel jött</strong> (24 a 47-ből; a többi a mandátum előtti, grandfatherelt).</p>
-<blockquote>
+</div></div></div></div><div class="after-block block-cards"><div class="body after"><blockquote>
 <p><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg> Miért elég egy architekt/BA/QA? Ahogy a háznál sem a téglarakás a szűk keresztmetszet, hanem a <strong>döntés, az ellenőrzés és az átvétel</strong> — és azt ember végzi:
 <strong>megrendelő</strong> (szándék) → <strong>BA</strong> (BRD, EARS) → <strong>architekt</strong> (SDD) → <strong>AI</strong> (teszt + kód) → <strong>architekt</strong> (review · verifikáció) → <strong>megrendelő = QA</strong> (validáció, átvétel).
 A téglát az AI rakja — a három emberi kalap <em>egy emberen van</em>, de a lánc sorrendje és a kapuk <strong>nem tűnnek el</strong>.</p>
 </blockquote>
-</div></div></div></div><div class="after-block block-cards"><div class="body after"><blockquote>
+</div></div><div class="after-block block-cards"><div class="body after"><blockquote>
 <p><strong>A házon:</strong> Az építési napló és a próbakocka jegyzőkönyve. · SdD-ben: A git log a napló — minden commit egy bejegyzés; a TdD-teszt futása a próbakocka jegyzőkönyve.</p>
 </blockquote>
 </div></div>

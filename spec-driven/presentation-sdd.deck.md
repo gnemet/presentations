@@ -698,6 +698,8 @@ A szabály, a spec, a kód és a hibaüzenet **ugyanazokat a szavakat** használ
 ### :code: A kód úgyis angol {accent=blue}
 Kulcsszó, azonosító, könyvtár-dokumentáció, hibaüzenet, git-szótár — mind angol. Ha a spec magyar, minden mondat mögé **fordítási réteg** kerül, és a jelentés ott szivárog el. Egy nyelven tartva nincs mit félrefordítani.
 
+---
+
 > :shield: **De nem mindent angolul — a vágás éles (A7):** az **infrastruktúra és az orchestráció** beszél angolul (szabályok, EARS-kikötések, kódbeli azonosítók, commit-üzenetek), az **üzleti tartomány marad magyarul** (a domén fogalmai, a felhasználónak szóló szövegek, ez a diasor is). A BA *nem* lesz angol nyelvű követelményíró: a szakterületi szó magyar marad, csak a kikötés váza angol.
 
 ---
@@ -1447,6 +1449,8 @@ Az app-shell: fejléc, sidebar, téma, login. *A minta:* minden felület ugyanú
 ### foundation-wiki {accent=peach}
 Nem könyvtár, hanem **hordozható módszer**: a spec maga a definíció. Ugyanarra a módszerre több termék is épülhet — a spec viszi át, nem a kód.
 
+---
+
 > :shield: **A választás szabad, a forrás nem.** A keretbe *beépülsz*, a könyvtárat *behivatkozod*, a mintát *követed*, a példából *kiindulsz* — hogy melyik illik a feladathoz, azt az AI dönti el. De a foundationből választ: ha ott van rá kanonikus megoldás, **nem talál ki újat**. Enélkül 16 repóban 16-féle naplózás születne, mind „helyes", mind más. A `foundation-*` így **az AI tudástára**: nem kész kódot ad, hanem *választékot — és a döntést, amit nem kell újra meghozni*.
 
 > A közös elv: **adat a katalógusban, viselkedés a motorban** — a kettő határa a review-felület.
@@ -1506,6 +1510,8 @@ Nem könyvtár, hanem **hordozható módszer**: a spec maga a definíció. Ugyan
 
 ### Termék-RAG — a termék saját éles adatbázisában {accent=sky}
 Nincs központi RAG-adatbázis: minden termék a **saját éles DB-jében** tartja a beágyazásait, tenantonként (`iier01_db`, `it_akos01_db`…). A tudás ott van, ahol az adat — és a jogosultság is ott érvényesül. **A dev-láb és a termék-láb sosem keveredik.**
+
+---
 
 > :info: **Így használja Claude — fejlesztés közben:** `/rag-search "hol oldjuk fel a vault-ot?"` → top találatok (`collection + source_file`) → és csak **azt az egy fájlt** nyitja meg (`Read`). Tájékozódás RAG-gel, pontos olvasás utána — a véges kontextust a *releváns* tudás tölti, nem a teljes repó.
 
@@ -1763,6 +1769,8 @@ architekt/BA/QA + AI
 **És csak azután a napló:** 19 aktív fejlesztési nap, 390 commit, ~20 300 sor Go mellett ~26 500 sor Markdown — *több terv, mint fal*: a tervrajz nem lassította az építkezést, **ez tette lehetővé**. De **ezek nem a mérce**: a sor és a commit a felrakott tégla, nem a lakható ház — a mérce az **átvett követelmény** (lásd a vezetői tanulságokat). A „hagyományos" ellenpont (nagyságrendileg 12–27 emberhónap) ráadásul *becslés*, dokumentált módszertan nélkül — *nagyságrend, nem bizonyíték*.
 
 **És ma** (2026-09-24, ugyanabból a git logból): `v0.8.951` élesben · **2 107 commit** · **81 aktív fejlesztési nap** · ~35 900 sor Go + ~23 600 sor Go-teszt mellett **~86 800 sor Markdown** · 47 spec-mappa. Az arány nem romlott: *még mindig több a terv, mint a fal*. A TdD a naplóból is látszik: a 2026-09-09-i mandátum óta született **16 új spec-mappa mind az első napon `tests.md`-vel jött** (24 a 47-ből; a többi a mandátum előtti, grandfatherelt).
+
+---
 
 > :shield: Miért elég egy architekt/BA/QA? Ahogy a háznál sem a téglarakás a szűk keresztmetszet, hanem a **döntés, az ellenőrzés és az átvétel** — és azt ember végzi:
 > **megrendelő** (szándék) → **BA** (BRD, EARS) → **architekt** (SDD) → **AI** (teszt + kód) → **architekt** (review · verifikáció) → **megrendelő = QA** (validáció, átvétel).
