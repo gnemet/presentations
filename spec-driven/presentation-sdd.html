@@ -1793,25 +1793,7 @@ tenant: _infra
 </div></div>
 </div>
 <div class="slide layout-free align-top" id="s11" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Dokumentumtípusok — blueprintek &#43; a térkép</span></div><h2> SDD &#43; BRD, és az ötrétegű dokumentumtérkép — valós fájlokkal</h2></div><div class="body"><blockquote>
-<p>Két dolog, egy rövidítés — ne keverd össze.</p>
-<p>A módszertan az</p>
-<p>SdD = Spec-driven Development</p>
-<p>(</p>
-<p>szándék</p>
-<p>→ spec → terv → kód → verifikáció → validáció — lásd a korábbi diát).
-Ezen a dián viszont</p>
-<p>SDD = Software Design Description</p>
-<p>(</p>
-<p>IEEE 1016-2009</p>
-<p>—</p>
-<p>inaktív-fenntartott</p>
-<p>státuszú szabvány, nálunk</p>
-<p>referencia-modellként</p>
-<p>használva): egy konkrét</p>
-<p>dokumentumtípus</p>
-<p>, a technikai tervrajz. A módszertan írja elő, hogy ilyen blueprint</p>
-<p>készüljön</p>
-<p>— a kettő nem ugyanaz, csak a betűszó esik egybe.</p>
+<p>Két dolog, egy rövidítés — ne keverd össze. A módszertan az <strong>SdD = Spec-driven Development</strong> (szándék → spec → terv → kód → verifikáció → validáció — lásd a korábbi diát). Ezen a dián viszont <strong>SDD = Software Design Description</strong> (IEEE 1016-2009 — inaktív-fenntartott státuszú szabvány, nálunk referencia-modellként használva): egy konkrét dokumentumtípus, a technikai tervrajz. A módszertan írja elő, hogy ilyen blueprint készüljön — a kettő nem ugyanaz, csak a betűszó esik egybe.</p>
 <p><strong>SdD ⊃ { SDD, BRD (+EARS), TdD }</strong> — a módszertan a keret; alatta a két tervrajz (az EARS a BRD kikötés-nyelve, nem külön dokumentum) és a bizonyíték. Az alábbi három csempe ezt a hármat bontja ki.</p>
 </blockquote>
 </div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><h3>SDD — Software Design Description ([IEEE 1016-2009](https://standards.ieee.org/ieee/1016/4502/), referencia-modell)</h3></div><div class="body"><p>A <em>technikai</em> tervrajz: architektúra, adatmodellek, interfészek, komponens-viselkedés — a híd az üzleti igény és a kód között.</p>
@@ -2396,9 +2378,9 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 </div></div><div class="card stat accent-green"><div class="num">6 óra</div><div class="body"><p>ennyi időnként fut le magától a teljes flotta-ciklus</p>
 </div></div><div class="card stat accent-mauve"><div class="num">27 nap</div><div class="body"><p>az első mondattól az <strong>üzemelő alkalmazásig</strong></p>
 </div></div><div class="card stat accent-peach"><div class="num">1</div><div class="body"><p>architekt/BA/QA + AI</p>
-<p><strong>És csak azután a napló:</strong> 19 aktív fejlesztési nap, 390 commit, ~20 300 sor Go mellett ~26 500 sor Markdown — <em>több terv, mint fal</em>: a tervrajz nem lassította az építkezést, <strong>ez tette lehetővé</strong>. De <strong>ezek nem a mérce</strong>: a sor és a commit a felrakott tégla, nem a lakható ház — a mérce az <strong>átvett követelmény</strong> (lásd a vezetői tanulságokat). A „hagyományos&quot; ellenpont (nagyságrendileg 12–27 emberhónap) ráadásul <em>becslés</em>, dokumentált módszertan nélkül — <em>nagyságrend, nem bizonyíték</em>.</p>
+</div></div></div></div><div class="after-block block-cards"><div class="body after"><p><strong>És csak azután a napló:</strong> 19 aktív fejlesztési nap, 390 commit, ~20 300 sor Go mellett ~26 500 sor Markdown — <em>több terv, mint fal</em>: a tervrajz nem lassította az építkezést, <strong>ez tette lehetővé</strong>. De <strong>ezek nem a mérce</strong>: a sor és a commit a felrakott tégla, nem a lakható ház — a mérce az <strong>átvett követelmény</strong> (lásd a vezetői tanulságokat). A „hagyományos&quot; ellenpont (nagyságrendileg 12–27 emberhónap) ráadásul <em>becslés</em>, dokumentált módszertan nélkül — <em>nagyságrend, nem bizonyíték</em>.</p>
 <p><strong>És ma</strong> (2026-09-24, ugyanabból a git logból): <code>v0.8.951</code> élesben · <strong>2 107 commit</strong> · <strong>81 aktív fejlesztési nap</strong> · ~35 900 sor Go + ~23 600 sor Go-teszt mellett <strong>~86 800 sor Markdown</strong> · 47 spec-mappa. Az arány nem romlott: <em>még mindig több a terv, mint a fal</em>. A TdD a naplóból is látszik: a 2026-09-09-i mandátum óta született <strong>16 új spec-mappa mind az első napon <code>tests.md</code>-vel jött</strong> (24 a 47-ből; a többi a mandátum előtti, grandfatherelt).</p>
-</div></div></div></div><div class="after-block block-cards"><div class="body after"><blockquote>
+</div></div><div class="after-block block-cards"><div class="body after"><blockquote>
 <p><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg> Miért elég egy architekt/BA/QA? Ahogy a háznál sem a téglarakás a szűk keresztmetszet, hanem a <strong>döntés, az ellenőrzés és az átvétel</strong> — és azt ember végzi:
 <strong>megrendelő</strong> (szándék) → <strong>BA</strong> (BRD, EARS) → <strong>architekt</strong> (SDD) → <strong>AI</strong> (teszt + kód) → <strong>architekt</strong> (review · verifikáció) → <strong>megrendelő = QA</strong> (validáció, átvétel).
 A téglát az AI rakja — a három emberi kalap <em>egy emberen van</em>, de a lánc sorrendje és a kapuk <strong>nem tűnnek el</strong>.</p>

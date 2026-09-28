@@ -1179,42 +1179,7 @@ alatt is megjelenik, és a lényeg egy mondatban elmondható.)*
 
 ## SDD + BRD, és az ötrétegű dokumentumtérkép — valós fájlokkal {label="Dokumentumtípusok — blueprintek + a térkép" skip=talk id=s11}
 
-> Két dolog, egy rövidítés — ne keverd össze.
->
-> A módszertan az
->
-> SdD = Spec-driven Development
->
-> (
->
-> szándék
->
-> → spec → terv → kód → verifikáció → validáció — lásd a korábbi diát).
-> Ezen a dián viszont
->
-> SDD = Software Design Description
->
-> (
->
-> IEEE 1016-2009
->
-> —
->
-> inaktív-fenntartott
->
-> státuszú szabvány, nálunk
->
-> referencia-modellként
->
-> használva): egy konkrét
->
-> dokumentumtípus
->
-> , a technikai tervrajz. A módszertan írja elő, hogy ilyen blueprint
->
-> készüljön
->
-> — a kettő nem ugyanaz, csak a betűszó esik egybe.
+> Két dolog, egy rövidítés — ne keverd össze. A módszertan az **SdD = Spec-driven Development** (szándék → spec → terv → kód → verifikáció → validáció — lásd a korábbi diát). Ezen a dián viszont **SDD = Software Design Description** (IEEE 1016-2009 — inaktív-fenntartott státuszú szabvány, nálunk referencia-modellként használva): egy konkrét dokumentumtípus, a technikai tervrajz. A módszertan írja elő, hogy ilyen blueprint készüljön — a kettő nem ugyanaz, csak a betűszó esik egybe.
 >
 > **SdD ⊃ { SDD, BRD (+EARS), TdD }** — a módszertan a keret; alatta a két tervrajz (az EARS a BRD kikötés-nyelve, nem külön dokumentum) és a bizonyíték. Az alábbi három csempe ezt a hármat bontja ki.
 
@@ -1765,6 +1730,8 @@ az első mondattól az **üzemelő alkalmazásig**
 
 ### 1 {accent=peach}
 architekt/BA/QA + AI
+
+---
 
 **És csak azután a napló:** 19 aktív fejlesztési nap, 390 commit, ~20 300 sor Go mellett ~26 500 sor Markdown — *több terv, mint fal*: a tervrajz nem lassította az építkezést, **ez tette lehetővé**. De **ezek nem a mérce**: a sor és a commit a felrakott tégla, nem a lakható ház — a mérce az **átvett követelmény** (lásd a vezetői tanulságokat). A „hagyományos" ellenpont (nagyságrendileg 12–27 emberhónap) ráadásul *becslés*, dokumentált módszertan nélkül — *nagyságrend, nem bizonyíték*.
 
