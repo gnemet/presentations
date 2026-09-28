@@ -1042,13 +1042,13 @@ blockquote {
 <div class="progress-bar"><div class="progress-fill"></div></div>
 
 <main class="deck">
-<div class="slide layout-title title-slide" id="s1" aria-roledescription="slide">
+<div class="slide layout-title title-slide align-top" id="s1" aria-roledescription="slide">
 <h1 class="big-title">Spec-driven Development (SdD)</h1><div class="big-sub"><p>A specifikáció a szerződés, a dokumentum a kód — az ember dönt, az AI végrehajt.
 Egy módszertan — házépítés-hasonlattal, valódi példával, és azzal, hogy <em>hogyan épül így egy alkalmazás lépésről lépésre</em> — nem kódot írunk, a kód csak eszköz.</p>
 <p><strong>Document = Code</strong> · <strong>11 axióma</strong> — alaptörvény · <strong>4 szereplő · 2 kapu</strong> · <strong>TdD</strong> — teszt-vezérelt · <strong>EARS</strong>-követelmények · <strong>git</strong> · kis diff · <strong>pipeline-forge · entity-forge</strong> · <strong>~500 Linux VM</strong> — valós rendszer</p>
 </div><div class="meta-row"><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-users"/></svg>Java-fejlesztők · vezetők · üzleti elemzők</span><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg>30 min (talk) · ~45 min (teljes)</span><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-calendar"/></svg>2026</span></div>
 </div>
-<div class="slide layout-free" id="s2" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A hasonlat</span></div><h2> Spec-driven Development — ahogy a Vishy család házat épít Verőcén</h2></div><div class="body"><blockquote>
+<div class="slide layout-free align-top" id="s2" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A hasonlat</span></div><h2> Spec-driven Development — ahogy a Vishy család házat épít Verőcén</h2></div><div class="body"><blockquote>
 <p>Az SdD lánc nem absztrakció. Mindenki el tud képzelni egy házépítést — és azt is, mi történik tervrajz nélkül. Nézzük végig <strong>ugyanazzal a négy emberi szereplővel</strong>, mint a módszertan — a tervrajztól a beköltözésig.</p>
 </blockquote>
 <table>
@@ -1127,7 +1127,7 @@ Egy módszertan — házépítés-hasonlattal, valódi példával, és azzal, ho
 <p>A tervrajz a szerződés — de fölötte ott a szabvány: a platform 11 axiómája, az <strong>alaptörvény</strong>.</p>
 </div></details>
 </div>
-<div class="slide layout-free" id="s3" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A valós feladat</span><span class="badge">infra-forge · kihagyható</span></div><h2> A probléma — 20 év Linux-infrastruktúra</h2></div><div class="after-block block-stats"><div class="content-grid"><div class="card stat accent-blue"><div class="num">~500</div><div class="body"><p>Linux VM</p>
+<div class="slide layout-free align-top" id="s3" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A valós feladat</span><span class="badge">infra-forge · kihagyható</span></div><h2> A probléma — 20 év Linux-infrastruktúra</h2></div><div class="after-block block-stats"><div class="content-grid"><div class="card stat accent-blue"><div class="num">~500</div><div class="body"><p>Linux VM</p>
 </div></div><div class="card stat accent-teal"><div class="num">10</div><div class="body"><p>hypervisor host (6 VMware + 4 Hyper-V)</p>
 </div></div><div class="card stat accent-peach"><div class="num">9&#43;</div><div class="body"><p>disztribúció-család (CentOS 4–8, OEL 4–9, Debian, SUSE…)</p>
 </div></div><div class="card stat accent-red"><div class="num">sok</div><div class="body"><p>EOL rendszer · technikai adósság</p>
@@ -1156,7 +1156,7 @@ Egy módszertan — házépítés-hasonlattal, valódi példával, és azzal, ho
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free" id="s4" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A módszertan · valós spec</span></div><h2> Mi a Spec-driven Development? — a lánc TdD-vel és validációval zárva</h2></div><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3> Szándék</h3><div class="body"><p><code>01</code> — mit és miért <em>(ember)</em></p>
+<div class="slide layout-free align-top" id="s4" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A módszertan · valós spec</span></div><h2> Mi a Spec-driven Development? — a lánc TdD-vel és validációval zárva</h2></div><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3> Szándék</h3><div class="body"><p><code>01</code> — mit és miért <em>(ember)</em></p>
 </div></li><li class="flow-step"><h3> Specifikáció</h3><div class="body"><p><code>02</code> — requirements (EARS) <em>(ember + AI)</em></p>
 </div></li><li class="flow-step"><h3> Terv</h3><div class="body"><p><code>03</code> — design — a „hogyan&quot; <em>(ember + AI)</em></p>
 </div></li><li class="flow-step"><h3> Feladatok</h3><div class="body"><p><code>04</code> — tasks — függőségi lánc <em>(AI)</em></p>
@@ -1211,7 +1211,7 @@ O1 [~] Where SMTP is set, notify_fleet_collect shall email a summary; else soft-
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free" id="s5" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Alapfogalmak — LLM , agent, szabály-betöltés</span></div><h2> LLM &#43; agent — és hogyan olvassa az AI a repót?</h2></div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-brain"/></svg><h3>LLM</h3></div><div class="body"><p>Nagy nyelvi <strong>modell</strong> — egy <em>modelltípus</em> a sok közül (van beágyazó-, rerank-, látómodell is). Szövegből szöveget jósol. A <strong>súlyai nem változnak</strong> attól, hogy beszélgetsz vele — magától nem szerez új tudást; amit tud, az a tanítás + amit most a kontextusába tettek.</p>
+<div class="slide layout-free align-top" id="s5" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Alapfogalmak — LLM , agent, szabály-betöltés</span></div><h2> LLM &#43; agent — és hogyan olvassa az AI a repót?</h2></div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-brain"/></svg><h3>LLM</h3></div><div class="body"><p>Nagy nyelvi <strong>modell</strong> — egy <em>modelltípus</em> a sok közül (van beágyazó-, rerank-, látómodell is). Szövegből szöveget jósol. A <strong>súlyai nem változnak</strong> attól, hogy beszélgetsz vele — magától nem szerez új tudást; amit tud, az a tanítás + amit most a kontextusába tettek.</p>
 </div></article><article class="card accent-teal"><div class="card-head"><h3>Token</h3></div><div class="body"><p>A szöveg „atomja&quot; (~¾ szó). Minden bemenet és kimenet tokenekben mérődik — és tokenekben kerül pénzbe.</p>
 </div></article><article class="card accent-mauve"><div class="card-head"><h3>Context window — az aranyhal</h3></div><div class="body"><p>Amit a modell <em>egyszerre lát</em> — és semmi mást. <strong>Nem végtelen:</strong> néhány száz oldalnyi szöveg fér bele, a repónk ennek a sokszorosa. Ami nincs benne, az a modell számára <strong>nem létezik</strong> — hiába van a repóban. A session végén <strong>kiürül</strong> — de nem a tudás vész el, hanem a <em>munkamemória</em>: a következő session a repóból, a szabályfájlokból és a memóriából <strong>újraépíti</strong>.</p>
 </div></article><article class="card accent-peach"><div class="card-head"><h3>Prompt</h3></div><div class="body"><p>A teljes bemenet: feladat + szabályok + kontextus. A „prompt engineering&quot; valójában <em>kontextus-szerkesztés</em>.</p>
@@ -1262,7 +1262,7 @@ Mint a <a href="https://www.youtube.com/watch?v=ZbGGd4JUwdE"><em>Memento</em></a
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free" id="s5b" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A fejlesztői környezet</span><span class="badge">infra-forge · kihagyható</span></div><h2> Hol dolgozik az AI? — a development-platform munkaterület</h2></div><div class="body"><p>Nem IDE-plugin és nem varázsdoboz: egy <strong>terminál</strong>, egy <strong>munkaterület-gyökér</strong>, és mellette egymás mellett a repók. Aki Eclipse-ben workspace-t használt, annak ez ismerős — a különbség az, hogy itt <strong>a szabályok is a munkaterületen laknak</strong>, nem a wikiben.</p>
+<div class="slide layout-free align-top" id="s5b" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A fejlesztői környezet</span><span class="badge">infra-forge · kihagyható</span></div><h2> Hol dolgozik az AI? — a development-platform munkaterület</h2></div><div class="body"><p>Nem IDE-plugin és nem varázsdoboz: egy <strong>terminál</strong>, egy <strong>munkaterület-gyökér</strong>, és mellette egymás mellett a repók. Aki Eclipse-ben workspace-t használt, annak ez ismerős — a különbség az, hogy itt <strong>a szabályok is a munkaterületen laknak</strong>, nem a wikiben.</p>
 <pre><code>development-platform/ # a munkaterület gyökere
 ├── CLAUDE.md # a platform szerződése — minden session betölti
 ├── docs/
@@ -1335,7 +1335,7 @@ Mint a <a href="https://www.youtube.com/watch?v=ZbGGd4JUwdE"><em>Memento</em></a
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free" id="s5c" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A verziókövetés — SVN → git</span></div><h2> Miért git? — mert a kis diff az emberi kapu</h2></div><div class="body"><p>A git nálunk nem divat, hanem <strong>a módszertan hordozója</strong>. Ha az AI írja a kód nagy részét, akkor az egyetlen dolog, amit az ember végig kézben tart, <strong>a változás</strong> — és a git pontosan azt teszi olvashatóvá, felülvizsgálhatóvá és visszavonhatóvá.</p>
+<div class="slide layout-free align-top" id="s5c" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A verziókövetés — SVN → git</span></div><h2> Miért git? — mert a kis diff az emberi kapu</h2></div><div class="body"><p>A git nálunk nem divat, hanem <strong>a módszertan hordozója</strong>. Ha az AI írja a kód nagy részét, akkor az egyetlen dolog, amit az ember végig kézben tart, <strong>a változás</strong> — és a git pontosan azt teszi olvashatóvá, felülvizsgálhatóvá és visszavonhatóvá.</p>
 </div><div class="content-grid"><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-git-branch"/></svg><h3>A branch olcsó</h3></div><div class="body"><p>SVN-ben az ág szervezési döntés volt, és fájt. Gitben egy ág <strong>egy kísérlet</strong>: az AI-t ráengeded, megnézed, és vagy bejön, vagy eldobod. <em>Az eldobás nulla költségű</em> — ettől mersz kísérletezni.</p>
 </div></article><article class="card accent-teal"><div class="card-head"><h3>A kis diff a review egysége</h3></div><div class="body"><p>Nem a kész terméket nézed át, hanem <strong>egy kicsi, indokolt változást</strong>. Egy <strong>néhány tucat soros</strong> diffet még érdemben át lehet nézni; egy <strong>több száz soros</strong> változásnál a review könnyen csak jóváhagyássá válik. A kettő között nem a figyelem vész el, hanem <em>a kapu maga</em>.</p>
 </div></article><article class="card accent-green"><div class="card-head"><h3>A history a bizonyíték</h3></div><div class="body"><p>Ki, mit, mikor, <strong>és melyik spec alapján</strong>. Az AI-val végzett munka auditálhatósága nem külön rendszer — <em>a git log maga az</em>. (Mindjárt látunk egy idővonalat pontosan ebből.)</p>
@@ -1417,7 +1417,7 @@ git switch -c fix/masodik-hiba
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free" id="s6" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A szabályok — Szint 1</span></div><h2> A 11 axióma — a platform alaptörvénye</h2></div><div class="body"><blockquote>
+<div class="slide layout-free align-top" id="s6" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A szabályok — Szint 1</span></div><h2> A 11 axióma — a platform alaptörvénye</h2></div><div class="body"><blockquote>
 <p>Tizenegy, projekt- és technológia-független alapelv — nálunk kőbe vésve, nem javaslat: ugyanazok az axiómák Go-ban vagy Rustban, PostgreSQL-en vagy Oracle-ön.</p>
 <p>„Ha egy szabály ütközik egy axiómával, az axióma nyer, és a szabály a hibás.&quot;</p>
 <p>A tervrajz a szerződés — de fölötte az alaptörvény.</p>
@@ -1439,7 +1439,7 @@ git switch -c fix/masodik-hiba
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free" id="s7" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A szabályok — három szint</span></div><h2> Alaptörvény → fizika → projekt-szabály — és mindet ember írja</h2></div><div class="body"><table>
+<div class="slide layout-free align-top" id="s7" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A szabályok — három szint</span></div><h2> Alaptörvény → fizika → projekt-szabály — és mindet ember írja</h2></div><div class="body"><table>
 <thead>
 <tr>
 <th>Szint</th>
@@ -1482,7 +1482,7 @@ git switch -c fix/masodik-hiba
 </blockquote>
 </div>
 </div>
-<div class="slide layout-free" id="s8" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A tézis</span></div><h2> Miért kontextus-alapú a fejlesztés? — erősítő vs. rövidítés</h2></div><div class="content-grid"><article class="card accent-green"><div class="card-head"><h3>Szilárd híd — az erősítő</h3></div><div class="body"><ul>
+<div class="slide layout-free align-top" id="s8" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A tézis</span></div><h2> Miért kontextus-alapú a fejlesztés? — erősítő vs. rövidítés</h2></div><div class="content-grid"><article class="card accent-green"><div class="card-head"><h3>Szilárd híd — az erősítő</h3></div><div class="body"><ul>
 <li><strong>Kontextus + szabály + terv</strong> → megbízható architektúra.</li>
 <li>Az AI a meglévő mintázatokra épít, nem nulláról találgat.</li>
 <li>A gyorsaság a fegyelemből jön, nem a fegyelem ellenére.</li>
@@ -1507,7 +1507,7 @@ git switch -c fix/masodik-hiba
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free" id="s8b" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A fejlesztés lépései</span></div><h2> Négy lépés — a szándéktól a bizonyított kódig</h2></div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><h3>1 · Szándék → brief</h3></div><div class="body"><p>Egy prompt, akár „vibe&quot; szinten: <em>mit</em> akarunk és <em>miért</em>. Az AI ebből <strong>briefet és követelmény-vázlatot</strong> ír.</p>
+<div class="slide layout-free align-top" id="s8b" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A fejlesztés lépései</span></div><h2> Négy lépés — a szándéktól a bizonyított kódig</h2></div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><h3>1 · Szándék → brief</h3></div><div class="body"><p>Egy prompt, akár „vibe&quot; szinten: <em>mit</em> akarunk és <em>miért</em>. Az AI ebből <strong>briefet és követelmény-vázlatot</strong> ír.</p>
 <p>kimenet
 <strong>brief.md · requirements.md</strong> — az ember javítja és elfogadja</p>
 </div></article><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-file-text"/></svg><h3>2 · A teljes spec</h3></div><div class="body"><p>A vázlatból generált spec-mappa: SDD terv, EARS-kikötések, és minden kikötéshez a TdD-teszt leírása.</p>
@@ -1533,7 +1533,7 @@ git switch -c fix/masodik-hiba
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free" id="s8c" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A terület fejlődése</span></div><h2> Hogyan fejlődött a terület — és hol áll az infra-forge</h2></div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-chat-circle-dots"/></svg><h3>1 · Prompt engineering</h3></div><div class="body"><p>Egyetlen utasítás → egyetlen válasz; az AI megáll, és a következő promptra vár.</p>
+<div class="slide layout-free align-top" id="s8c" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A terület fejlődése</span></div><h2> Hogyan fejlődött a terület — és hol áll az infra-forge</h2></div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-chat-circle-dots"/></svg><h3>1 · Prompt engineering</h3></div><div class="body"><p>Egyetlen utasítás → egyetlen válasz; az AI megáll, és a következő promptra vár.</p>
 <p>infra-forge
 <strong>Excel-leltár → DB</strong> — vSphere discover · CSV/seed → <code>infra.machine</code></p>
 </div></article><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-file-text"/></svg><h3>2 · Context engineering</h3></div><div class="body"><p>A megfelelő kontextus a prompt köré: spec, séma, szabály, minta.</p>
@@ -1556,7 +1556,7 @@ git switch -c fix/masodik-hiba
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free" id="s9" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A stratégia</span></div><h2> Az AI a munka középpontja — az ember a kontroll középpontja</h2></div><div class="content-grid"><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-hand"/></svg><h3>Kezeket építünk az AI-nak — két rétegben</h3></div><div class="body"><ul>
+<div class="slide layout-free align-top" id="s9" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A stratégia</span></div><h2> Az AI a munka középpontja — az ember a kontroll középpontja</h2></div><div class="content-grid"><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-hand"/></svg><h3>Kezeket építünk az AI-nak — két rétegben</h3></div><div class="body"><ul>
 <li><strong>Motor</strong> (pipeline-forge, entity-forge, GoBI / datagrid): generikus, <strong>két hívója van</strong> — az <em>alkalmazás</em> is futtatja (ütemezés, UI), és az <em>AI</em> is. Közös alap, nem csak az AI‑é.</li>
 <li><strong>Kéz</strong>: amit az AI a motoron át kézbe kap — adapterek, MCP-eszközök, tárolt funkciók.</li>
 </ul>
@@ -1570,7 +1570,7 @@ git switch -c fix/masodik-hiba
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free" id="s10" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A formátum · egy valódi, futó artefaktum</span></div><h2> Miért dokumentum? Miért Markdown? — egy fájl, három arc</h2></div><div class="body"><p>Ez a <code>pipelines/ops_dep_extract.md</code> — <strong>minden éjjel 04:00-kor magától lefutó</strong>, élő pipeline: a flotta pillanatképeiből kiszámolja a szolgáltatás-függőségeket (DNS · NFS · LDAP · SMTP) → naplóz → átszinkronizálja a függőségi gráfot → lezár. <strong>Egyetlen Markdown-fájl</strong>, nincs mellette kód. Váltsd a nézetet — <em>ugyanaz a fájl</em> mind a három.</p>
+<div class="slide layout-free align-top" id="s10" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A formátum · egy valódi, futó artefaktum</span></div><h2> Miért dokumentum? Miért Markdown? — egy fájl, három arc</h2></div><div class="body"><p>Ez a <code>pipelines/ops_dep_extract.md</code> — <strong>minden éjjel 04:00-kor magától lefutó</strong>, élő pipeline: a flotta pillanatképeiből kiszámolja a szolgáltatás-függőségeket (DNS · NFS · LDAP · SMTP) → naplóz → átszinkronizálja a függőségi gráfot → lezár. <strong>Egyetlen Markdown-fájl</strong>, nincs mellette kód. Váltsd a nézetet — <em>ugyanaz a fájl</em> mind a három.</p>
 <p>Ugyanaz a fájl: az ember <strong>olvassa</strong> (DOC), a git <strong>diffeli</strong> (RAW), a <code>bin/pf</code> <strong>futtatja</strong> (PIPELINE) — ez az <strong>A2</strong> (Document = Code).</p>
 </div><div class="after-block face-pane block-cards" data-face="RAW — markdown forrás"><div class="body after"><pre><code># ops_dep_extract — nightly service-dependency edge extraction
 
@@ -1720,7 +1720,7 @@ tenant: _infra
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free" id="s10b" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Az alapelv — A1 &#43; A2</span></div><h2> Egy igazságforrás &#43; a dokumentum a kód — nem kettő, nem nulla</h2></div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><h3>Az adatbázis az igazságforrás (A1)</h3></div><div class="body"><ul>
+<div class="slide layout-free align-top" id="s10b" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Az alapelv — A1 &#43; A2</span></div><h2> Egy igazságforrás &#43; a dokumentum a kód — nem kettő, nem nulla</h2></div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><h3>Az adatbázis az igazságforrás (A1)</h3></div><div class="body"><ul>
 <li>Minden gépállapot az <code>infra.*</code>-ban él — egy helyen, egy verzió</li>
 <li>Entitásspec (<code>.md</code>) → DDL → tárolt függvény → RLS — a CRUD-lánc generált (<code>bin/ef-cli</code>); az üzleti függvények kézzel írt <code>.md</code>-k (70 db)</li>
 <li>Írás csak tárolt függvényen át — a handlerekben nincs inline DML</li>
@@ -1749,7 +1749,7 @@ tenant: _infra
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free" id="s10c" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Az alapelv — A5</span><span class="badge">infra-forge · kihagyható</span></div><h2> Felülről lefelé — adatbázis → backend → frontend → AI-felület</h2></div><div class="body"><blockquote>
+<div class="slide layout-free align-top" id="s10c" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Az alapelv — A5</span><span class="badge">infra-forge · kihagyható</span></div><h2> Felülről lefelé — adatbázis → backend → frontend → AI-felület</h2></div><div class="body"><blockquote>
 <p><svg class="i" aria-hidden="true"><use href="#i-info"/></svg> Adatmodell → vékony backend → ahol lehet, generált frontend → <strong>AI-felület</strong>. Soha ne írj kézzel olyat, amit feljebb egy spec már meghatároz. <em>A négy réteg együtt az alkalmazás.</em></p>
 </blockquote>
 </div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-database"/></svg><h3>1. DB — először az adatmodell</h3></div><div class="body"><ul>
@@ -1792,7 +1792,7 @@ tenant: _infra
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free" id="s11" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Dokumentumtípusok — blueprintek &#43; a térkép</span></div><h2> SDD &#43; BRD, és az ötrétegű dokumentumtérkép — valós fájlokkal</h2></div><div class="body"><blockquote>
+<div class="slide layout-free align-top" id="s11" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Dokumentumtípusok — blueprintek &#43; a térkép</span></div><h2> SDD &#43; BRD, és az ötrétegű dokumentumtérkép — valós fájlokkal</h2></div><div class="body"><blockquote>
 <p>Két dolog, egy rövidítés — ne keverd össze.</p>
 <p>A módszertan az</p>
 <p>SdD = Spec-driven Development</p>
@@ -1902,7 +1902,7 @@ Ezen a dián viszont</p>
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free" id="s11c" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A követelmény nyelve — EARS</span></div><h2> EARS — öt mondatminta, amiből teszt lesz</h2></div><div class="body"><p><strong>E</strong>asy <strong>A</strong>pproach to <strong>R</strong>equirements <strong>S</strong>yntax — <a href="https://alistairmavin.com/ears/">Alistair Mavin</a>, Rolls-Royce. Nem szabvány-bürokrácia: <strong>öt mondatsablon</strong>, ami a „legyen gyors és felhasználóbarát&quot; típusú kívánságot olyan kikötéssé alakítja, amit <em>egy gép is el tud dönteni</em>. Ez a BA legfontosabb új eszköze.
+<div class="slide layout-free align-top" id="s11c" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A követelmény nyelve — EARS</span></div><h2> EARS — öt mondatminta, amiből teszt lesz</h2></div><div class="body"><p><strong>E</strong>asy <strong>A</strong>pproach to <strong>R</strong>equirements <strong>S</strong>yntax — <a href="https://alistairmavin.com/ears/">Alistair Mavin</a>, Rolls-Royce. Nem szabvány-bürokrácia: <strong>öt mondatsablon</strong>, ami a „legyen gyors és felhasználóbarát&quot; típusú kívánságot olyan kikötéssé alakítja, amit <em>egy gép is el tud dönteni</em>. Ez a BA legfontosabb új eszköze.
 Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana</strong> — nálunk a <code>requirements.md</code>-ben él, és onnan hivatkozza a design, a task és a teszt.<a href="#s4">→ s4 ↗</a></p>
 <table>
 <thead>
@@ -1963,7 +1963,7 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free" id="s11d" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A napi munkamenet — lépésről lépésre</span></div><h2> Egy követelménytől az átvett funkcióig — nyolc lépés, egy valódi példán</h2></div><div class="body"><p>A példa végig ugyanaz, a Vishy-házon: <strong>„Télen ne fázzunk.&quot;</strong> — ebből lesz az <code>E1</code> kikötés (az EARS-diáról), a próba, majd a kivitelezés. Minden sor alatt kis betűvel: <strong>mi ennek a megfelelője a szoftverben</strong>. A lépések a lényeg, nem a példa.</p>
+<div class="slide layout-free align-top" id="s11d" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A napi munkamenet — lépésről lépésre</span></div><h2> Egy követelménytől az átvett funkcióig — nyolc lépés, egy valódi példán</h2></div><div class="body"><p>A példa végig ugyanaz, a Vishy-házon: <strong>„Télen ne fázzunk.&quot;</strong> — ebből lesz az <code>E1</code> kikötés (az EARS-diáról), a próba, majd a kivitelezés. Minden sor alatt kis betűvel: <strong>mi ennek a megfelelője a szoftverben</strong>. A lépések a lényeg, nem a példa.</p>
 <table>
 <thead>
 <tr>
@@ -2032,7 +2032,7 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 </blockquote>
 </div>
 </div>
-<div class="slide layout-free" id="s11e" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Új elem — TdD</span></div><h2> TdD — a teszt az EARS-kikötés gépi fele</h2></div><div class="body"><p>A teszt-vezérelt fejlesztés nem új (<a href="https://www.oreilly.com/library/view/test-driven-development/0321146530/">Kent Beck, 2002</a>) — de <strong>LLM mellett más a szerepe</strong>. Régen a fejlesztő fegyelmét pótolta. Most azt a kérdést válaszolja meg, amit egy magabiztos géptől másképp nem lehet: <em>„tényleg kész van, vagy csak annak hangzik?&quot;</em></p>
+<div class="slide layout-free align-top" id="s11e" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Új elem — TdD</span></div><h2> TdD — a teszt az EARS-kikötés gépi fele</h2></div><div class="body"><p>A teszt-vezérelt fejlesztés nem új (<a href="https://www.oreilly.com/library/view/test-driven-development/0321146530/">Kent Beck, 2002</a>) — de <strong>LLM mellett más a szerepe</strong>. Régen a fejlesztő fegyelmét pótolta. Most azt a kérdést válaszolja meg, amit egy magabiztos géptől másképp nem lehet: <em>„tényleg kész van, vagy csak annak hangzik?&quot;</em></p>
 </div><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3> EARS-kikötés</h3><div class="body"><p><code>01</code> — az eldönthető állítás <em>(ember + AI)</em></p>
 </div></li><li class="flow-step"><h3> Bukó teszt</h3><div class="body"><p><code>02 · RED</code> — a kikötés kódra fordítva — és commitolva <em>(ember + AI)</em></p>
 </div></li><li class="flow-step"><h3> A legkisebb kód</h3><div class="body"><p><code>03 · GREEN</code> — ami zöldre viszi <em>(AI)</em></p>
@@ -2056,7 +2056,7 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free" id="s15" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Az eszközök · a négy motor</span><span class="badge">infra-forge · kihagyható</span></div><h2> Négy motor, nem egy ötödik — katalógus-vezérelt eszközök</h2></div><div class="body"><blockquote>
+<div class="slide layout-free align-top" id="s15" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Az eszközök · a négy motor</span><span class="badge">infra-forge · kihagyható</span></div><h2> Négy motor, nem egy ötödik — katalógus-vezérelt eszközök</h2></div><div class="body"><blockquote>
 <p>Négy generikus motor visz mindent — <strong>ötödiket nem írunk</strong>: ha új képesség kell, a motort <strong>kívülről bővítjük</strong> (adapter · feature · katalógus-bejegyzés), sosem forkoljuk újra (A4).</p>
 </blockquote>
 </div><div class="content-grid"><article class="card accent-peach"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-git-branch"/></svg><h3>pipeline-forge</h3></div><div class="body"><p>A folyamat-motor: minden orchestráció <code>.md</code> pipeline. Bővítés ← <strong>új adapter</strong>, nem új Go-folyamat.</p>
@@ -2080,7 +2080,7 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free" id="s16" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">AI-infrastruktúra</span><span class="badge">infra-forge · kihagyható</span></div><h2> Mi a RAG — és miért kell a fejlesztéshez is?</h2></div><div class="body"><p><strong>A teljes tudás, amire a fejlesztés épül — mérve a GitLab-projekteken (2026-09-22)</strong></p>
+<div class="slide layout-free align-top" id="s16" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">AI-infrastruktúra</span><span class="badge">infra-forge · kihagyható</span></div><h2> Mi a RAG — és miért kell a fejlesztéshez is?</h2></div><div class="body"><p><strong>A teljes tudás, amire a fejlesztés épül — mérve a GitLab-projekteken (2026-09-22)</strong></p>
 <table>
 <thead>
 <tr>
@@ -2150,7 +2150,7 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 </blockquote>
 </div></article></div></div>
 </div>
-<div class="slide layout-free" id="s17" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">AI-infrastruktúra · a visszakeresés rétegei</span><span class="badge">infra-forge · kihagyható</span></div><h2> Vektor → él → property-graph — a visszakeresés rétegei</h2></div><div class="body"><blockquote>
+<div class="slide layout-free align-top" id="s17" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">AI-infrastruktúra · a visszakeresés rétegei</span><span class="badge">infra-forge · kihagyható</span></div><h2> Vektor → él → property-graph — a visszakeresés rétegei</h2></div><div class="body"><blockquote>
 <p>A lapos vektor-keresés a „<strong>miről szól?</strong>&quot; kérdésre jó: a szöveg → sűrű <strong>jelentés-vektor</strong>, a kérdéshez <strong>cosine</strong>-közeli chunkok jönnek vissza — nem kulcsszó, hanem <em>jelentés</em> („Dell laptop&quot; megtalálja a „hordozható számítógép&quot;-et is). De a „<strong>mi mire hivatkozik?</strong>&quot;, „<strong>ki ért hozzá?</strong>&quot; kérdés <strong>kapcsolat</strong> — azt gráffal kérdezzük.</p>
 </blockquote>
 </div><div class="content-grid"><article class="card accent-teal"><div class="card-head"><h3>pgvector — csomópontok</h3></div><div class="body"><p><em>Ma · él</em></p>
@@ -2282,7 +2282,7 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free" id="s12" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Esettanulmány · a Vishy-ház</span></div><h2> „Ne ázzon be a pince&#34; — egy igény végig a láncon</h2></div><div class="body"><blockquote>
+<div class="slide layout-free align-top" id="s12" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Esettanulmány · a Vishy-ház</span></div><h2> „Ne ázzon be a pince&#34; — egy igény végig a láncon</h2></div><div class="body"><blockquote>
 <p>A 2. dián azt láttuk, <strong>ki</strong> mit csinál. Most <strong>egyetlen igényt</strong> követünk végig a Vishy család házán: a család mondatától a műszaki ellenőrig — és megnézzük, hol dönt benne az ember.</p>
 </blockquote>
 <p><strong>Az igénynek két lába van — más kérdésre válaszolnak</strong></p>
@@ -2321,7 +2321,7 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 </div></article><article class="card accent-green"><div class="card-head"><h3>Validáció — „a jót építettük meg?&#34;</h3></div><div class="body"><p>Az <strong>első nagy eső</strong> után a <strong>család</strong> lemegy a pincébe: az lett-e, amire szükségük volt? Ha nem — új szándék.</p>
 </div></article></div></div>
 </div>
-<div class="slide layout-free" id="s13" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Esettanulmány · az emberi döntések</span></div><h2> Négy döntés, ami megformálta a házat</h2></div><div class="body"><blockquote>
+<div class="slide layout-free align-top" id="s13" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Esettanulmány · az emberi döntések</span></div><h2> Négy döntés, ami megformálta a házat</h2></div><div class="body"><blockquote>
 <p>A terv nem a semmiből jött: <strong>emberi döntésekből</strong> lett EARS-követelmény, majd fal. Négy kérdés, négy döntés — mindegyik egy-egy ellenőrizhető kikötés.</p>
 </blockquote>
 <p>Legyen-e pince, ha magas a talajvíz?</p>
@@ -2337,7 +2337,7 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 </blockquote>
 </div>
 </div>
-<div class="slide layout-free" id="s19" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A fegyelmező keret</span></div><h2> Claude Code mint fejlesztőtárs — a fegyelmező keret</h2></div><div class="body"><p>Az építkezésnek is van <strong>kerete</strong>, ami nem a brigád jóindulatán múlik. Claude Code-nál ugyanezek a darabok vannak — gépiesen.</p>
+<div class="slide layout-free align-top" id="s19" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A fegyelmező keret</span></div><h2> Claude Code mint fejlesztőtárs — a fegyelmező keret</h2></div><div class="body"><p>Az építkezésnek is van <strong>kerete</strong>, ami nem a brigád jóindulatán múlik. Claude Code-nál ugyanezek a darabok vannak — gépiesen.</p>
 <table>
 <thead>
 <tr>
@@ -2382,7 +2382,7 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 </blockquote>
 </div>
 </div>
-<div class="slide layout-free" id="s20" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A bizonyíték · a Vishy-ház</span></div><h2> Az építési napló — a bizonyíték nem emlékezet, hanem bejegyzés</h2></div><div class="body"><blockquote>
+<div class="slide layout-free align-top" id="s20" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A bizonyíték · a Vishy-ház</span></div><h2> Az építési napló — a bizonyíték nem emlékezet, hanem bejegyzés</h2></div><div class="body"><blockquote>
 <p>A Vishy-ház építésén <strong>építési napló</strong> fut: minden nap bejegyzés arról, ki mit csinált, milyen anyagból, ki ellenőrizte. Ha a beköltözés után vita van — <em>„ez nem így volt megbeszélve&quot;</em> —, nem az emlékezet és nem a becslés dönt, hanem a <strong>napló</strong>.</p>
 </blockquote>
 </div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><h3>Minden lépés egy bejegyzés</h3></div><div class="body"><p>Dátum, ki, mit, miért — a betonozás napja, a próbakocka száma, a műszaki ellenőr aláírása.</p>
@@ -2408,7 +2408,7 @@ A téglát az AI rakja — a három emberi kalap <em>egy emberen van</em>, de a 
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free" id="s20b" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A kész ház · az átadott alkalmazás</span><span class="badge">infra-forge · kihagyható</span></div><h2> És mi épült? — az alkalmazás, amit az IT-csoport használ</h2></div><div class="body"><blockquote>
+<div class="slide layout-free align-top" id="s20b" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A kész ház · az átadott alkalmazás</span><span class="badge">infra-forge · kihagyható</span></div><h2> És mi épült? — az alkalmazás, amit az IT-csoport használ</h2></div><div class="body"><blockquote>
 <p>A háznál sem a tégla a termék, és nem is a tervrajz: a <strong>ház, amiben laknak</strong>. Eddig a módszert néztük — itt az, ami belőle lett: egy <strong>üzemelő alkalmazás</strong>, amit reggel megnyit valaki, és megcsinálja vele a napi munkáját. A kód ennek csak az anyaga.</p>
 </blockquote>
 <p><strong>Az alapfunkciók</strong></p>
@@ -2430,7 +2430,7 @@ A téglát az AI rakja — a három emberi kalap <em>egy emberen van</em>, de a 
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free" id="s21" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Az emberi kontroll · a Vishy-ház</span></div><h2> Három kapu a házon — és a két módszertani kapu</h2></div><div class="body"><blockquote>
+<div class="slide layout-free align-top" id="s21" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Az emberi kontroll · a Vishy-ház</span></div><h2> Három kapu a házon — és a két módszertani kapu</h2></div><div class="body"><blockquote>
 <p>A ház építésénél is van három pont, ahol a brigád <strong>nem mehet tovább egyedül</strong> — nem bizalmatlanságból, hanem mert ott a döntés következménye visszafordíthatatlan. A szoftverben ugyanez a három pont van.</p>
 </blockquote>
 </div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><h3>Építési engedély</h3></div><div class="body"><p><em>Kapu ① · változtatás</em></p>
@@ -2455,7 +2455,7 @@ A téglát az AI rakja — a három emberi kalap <em>egy emberen van</em>, de a 
 <p>A házon: <strong>a műszaki ellenőr</strong> azt nézi, a terv szerint épült-e meg (verifikáció); <strong>a család</strong> azt, hogy azt a házat kapta-e, amire szüksége volt (validáció). A fenti három kapu az <em>építkezés közben</em> véd — az ① egyben a verifikációs kapu; a validáció a második módszertani kapu, és az dönti el, hogy <em>kész-e</em>. Mindegyiknél ember dönt.</p>
 </div></div>
 </div>
-<div class="slide layout-free" id="s22" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Tanulságok — vezetőknek</span></div><h2> Négy döntés, ami a vezetőé — és az első lépés holnap</h2></div><div class="body"><blockquote>
+<div class="slide layout-free align-top" id="s22" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Tanulságok — vezetőknek</span></div><h2> Négy döntés, ami a vezetőé — és az első lépés holnap</h2></div><div class="body"><blockquote>
 <p>A módszer nem az AI-ról szól, hanem arról, <strong>hová teszed az embereidet</strong>. A háznál sem a téglarakó a drága — hanem az építész, aki dönt, és a műszaki ellenőr, aki átveszi.</p>
 </blockquote>
 </div><div class="content-grid"><article class="card accent-green"><div class="card-head"><h3>1 · Hová teszed a kapacitást?</h3></div><div class="body"><p>A gépelés már nem szűk keresztmetszet — a <strong>review és az átvétel</strong> az. Oda kell a szakértő: architekt/BA és QA, nem több kódoló kéz.</p>
@@ -2471,7 +2471,7 @@ A téglát az AI rakja — a három emberi kalap <em>egy emberen van</em>, de a 
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free" id="s23" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Tanulságok — hallgatóknak</span></div><h2> Hogyan kezdj AI-fejlesztésbe? — útravaló</h2></div><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3> Szabályok</h3><div class="body"><p><code>1</code> — írd le, mit szabad és mit nem — mielőtt promptolnál</p>
+<div class="slide layout-free align-top" id="s23" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Tanulságok — hallgatóknak</span></div><h2> Hogyan kezdj AI-fejlesztésbe? — útravaló</h2></div><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3> Szabályok</h3><div class="body"><p><code>1</code> — írd le, mit szabad és mit nem — mielőtt promptolnál</p>
 </div></li><li class="flow-step"><h3> Spec, ne kód</h3><div class="body"><p><code>2</code> — előbb a MIT dokumentumban, aztán a HOGYAN</p>
 </div></li><li class="flow-step"><h3> Kis lépések</h3><div class="body"><p><code>3</code> — egy változás = egy diff = egy review</p>
 </div></li><li class="flow-step"><h3> Verify</h3><div class="body"><p><code>4</code> — sose hidd el „kész&quot; fordítás alapján</p>
@@ -2494,12 +2494,12 @@ A téglát az AI rakja — a három emberi kalap <em>egy emberen van</em>, de a 
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-title title-slide" id="s24" aria-roledescription="slide">
+<div class="slide layout-title title-slide align-top" id="s24" aria-roledescription="slide">
 <h1 class="big-title">Köszönjük a figyelmet!</h1><div class="big-sub"><p>A „köszönjük&quot; többes szám szándékos: ezt a bemutatót <strong>ember + AI</strong> készítette — a módszertan saját bizonyítéka.</p>
 <p><strong>szándék → spec → terv → feladatok → teszt → kód → verifikáció → validáció → használat</strong> · <strong>Document = Code</strong> · <strong>az ember dönt, az AI végrehajt</strong></p>
 </div><div class="meta-row"><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-users"/></svg>Java-fejlesztők · vezetők · üzleti elemzők</span><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg>30 min (talk) · ~45 min (teljes)</span><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-calendar"/></svg>2026</span></div>
 </div>
-<div class="slide layout-free" id="s25" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Források &amp; szabványok</span></div><h2> Források &amp; szabványok — minden technológia hivatkozva</h2></div><div class="body"><p>A bemutatóban említett minden szabvány és technológia a <strong>hiteles forrására</strong> mutat (kattintható, ellenőrzött linkek). <em>Mérünk és hivatkozunk — nem tippelünk.</em></p>
+<div class="slide layout-free align-top" id="s25" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Források &amp; szabványok</span></div><h2> Források &amp; szabványok — minden technológia hivatkozva</h2></div><div class="body"><p>A bemutatóban említett minden szabvány és technológia a <strong>hiteles forrására</strong> mutat (kattintható, ellenőrzött linkek). <em>Mérünk és hivatkozunk — nem tippelünk.</em></p>
 <p><strong>Betűszó-térkép — az öt fogalom, amit ne keverj össze</strong></p>
 <table>
 <thead>

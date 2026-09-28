@@ -6,6 +6,7 @@ lang: hu
 audience: Java-fejlesztők · vezetők · üzleti elemzők
 duration: 30 min (talk) · ~45 min (teljes)
 auto: 0
+align: top
 meta: [{icon: calendar, text: "2026"}]
 ---
 
