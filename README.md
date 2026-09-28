@@ -14,7 +14,7 @@ Open a deck straight from disk (`file://…`) or through GitHub Pages at <https:
 
 | Deck | Title | Source (repo · path · commit) |
 |---|---|---|
-| [`presentation-sdd.html`](docs/presentation/presentation-sdd.html) | Spec-driven Development (SdD) — módszertan, gyakorlati példával (v5) · HU · ~30 min talk / ~45 min full | infra-forge · `docs/presentation/presentation-sdd.deck.md` · `9b9a989c` |
+| [`presentation-sdd.html`](docs/presentation/presentation-sdd.html) | Spec-driven Development (SdD) — módszertan, gyakorlati példával (v5) · HU · ~30 min talk / ~45 min full | infra-forge · `docs/presentation/presentation-sdd.deck.md` · `de66d842` (branch `docs/deck-sdd-public`) |
 
 ## Adding a deck
 

@@ -1214,19 +1214,17 @@ Mint a <a href="https://www.youtube.com/watch?v=ZbGGd4JUwdE"><em>Memento</em></a
 ├── kovacs-muhely/ # a tudástárak betöltője (RAG)
 └── iiriki/ # IIER wiki
 </code></pre>
-<p><strong><svg class="i" aria-hidden="true"><use href="#i-stack"/></svg> Miért egy gyökér alatt?</strong></p>
-<ul>
+</div><div class="content-grid"><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-stack"/></svg><h3>Miért egy gyökér alatt?</h3></div><div class="body"><ul>
 <li>Egy library-javítás <strong>azonnal</strong> látszik a fogyasztó repóban — nincs „telepítsd a snapshotot&quot; kör.</li>
 <li>Az AI <strong>egy kontextusban</strong> látja a könyvtárat és a hívóját — így tudja megmondani, mit tör el.</li>
 <li>A szabályok <strong>öröklődnek</strong> lefelé: platform → projekt → mappa.</li>
 </ul>
-<p><strong><svg class="i" aria-hidden="true"><use href="#i-key"/></svg> Konfiguráció és titkok</strong></p>
-<ul>
+</div></article><article class="card accent-peach"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-key"/></svg><h3>Konfiguráció és titkok</h3></div><div class="body"><ul>
 <li>Nincs jelszó a kódban és nincs kézzel szerkesztett <code>.properties</code> a szerveren.</li>
 <li><strong>Env-profilok</strong> gépenként (<code>.env_&lt;HOST&gt;</code>), titkosított <strong>vault</strong>-ban.</li>
 <li>A feloldás <strong>emberi kapu</strong> — az agent maga nem tudja kinyitni (A6).</li>
 </ul>
-<blockquote>
+</div></article></div><div class="after-block"><div class="body after"><blockquote>
 <p><svg class="i" aria-hidden="true"><use href="#i-info"/></svg> A lényeg egy mondatban: <strong>a repo a fejlesztői környezet.</strong> Ami nincs a repóban — szabály, döntés, konfiguráció, tudás — az a felejtő agent számára <strong>nem létezik</strong>. Ezért kerül minden fájlba, és ezért lesz minden fájl <em>diffelhető</em>.</p>
 </blockquote>
 <p><strong>▸ Amit a Java-világból ismersz — és ami itt megfelel neki</strong></p>
@@ -1270,7 +1268,7 @@ Mint a <a href="https://www.youtube.com/watch?v=ZbGGd4JUwdE"><em>Memento</em></a
 <p><strong>A házon:</strong> Az építési terület: a tervtár, a szabványok és a szomszéd épületek egy telken. · SdD-ben: A szabályok és a specek ugyanott laknak, ahol a kód — munka közben olvashatók, nem egy távoli wikiben.</p>
 </blockquote>
 <!-- raw HTML omitted -->
-</div>
+</div></div>
 </div>
 <div class="slide layout-free" id="s7" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A verziókövetés — SVN → git</span></div><h2> Miért git? — mert a kis diff az emberi kapu</h2></div><div class="body"><p>A git nálunk nem divat, hanem <strong>a módszertan hordozója</strong>. Ha az AI írja a kód nagy részét, akkor az egyetlen dolog, amit az ember végig kézben tart, <strong>a változás</strong> — és a git pontosan azt teszi olvashatóvá, felülvizsgálhatóvá és visszavonhatóvá.</p>
 </div><div class="content-grid"><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-git-branch"/></svg><h3>A branch olcsó</h3></div><div class="body"><p>SVN-ben az ág szervezési döntés volt, és fájt. Gitben egy ág <strong>egy kísérlet</strong>: az AI-t ráengeded, megnézed, és vagy bejön, vagy eldobod. <em>Az eldobás nulla költségű</em> — ettől mersz kísérletezni.</p>
@@ -1359,28 +1357,22 @@ git switch -c fix/masodik-hiba
 </div></article></div></div>
 </div>
 <div class="slide layout-free" id="s8" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A szabályok — Szint 1</span></div><h2> A 11 axióma — a platform alaptörvénye</h2></div><div class="body"><blockquote>
-<p>Tizenegy, projekt-</p>
-<p>és technológia-független</p>
-<p>alapelv — nálunk kőbe vésve, nem javaslat: ugyanazok az axiómák
-Go-ban vagy Rustban, PostgreSQL-en vagy Oracle-ön.</p>
+<p>Tizenegy, projekt- és technológia-független alapelv — nálunk kőbe vésve, nem javaslat: ugyanazok az axiómák Go-ban vagy Rustban, PostgreSQL-en vagy Oracle-ön.</p>
 <p>„Ha egy szabály ütközik egy axiómával, az axióma nyer, és a szabály a hibás.&quot;</p>
 <p>A tervrajz a szerződés — de fölötte az alaptörvény.</p>
 <p><strong>Fontos:</strong> ez a <strong>mi saját megoldásunk</strong>, nem szabvány és nem iparági előírás — bevált gyakorlatokból összeállított házirend. Kötelező <em>ránk</em>, itt, ebben a platformban; aki átveszi, a sajátját írja meg. A módszer (spec-first, teszt-first, kis diff, emberi kapuk) az általános — ez a tizenegy mondat már a mi megfogalmazásunk.</p>
 </blockquote>
-</div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><h3>·</h3></div><div class="body"><p>Alap · A1–A4</p>
-<p>**A1Egy igazság! — SSOT.**Minden tény egy helyen — no hardcode, no duplication; entity spec, pipeline <code>.md</code>, LOV az authoritative source; a többi generálódik vagy hivatkozza. → s10b ↗</p>
-<p><strong>A2A dokumentum a kód! — Doc=Code.</strong><code>.md</code> spec = source of truth ÉS futtatható/generátor input. Két forma: (1) SDD spec → generated code (entity spec → DDL+CRUD); (2) pf-pipeline <code>.md</code> = maga a futtatható — nem generál kódot, hanem közvetlenül fut. Ha spec és kód eltér → spec nyer, a kód regenerálódik.</p>
-<p>**A3Ne égess be! — Never hardcode.**Identity + env from env vars or fail-loud — no magic defaults, no baked-in literals; capability-based, not name-based.</p>
-<p>**A4Általános motor, logika a specben! — Generic engine, logic in specs.**Két spec-típus, különböző szerep: <strong>SDD spec</strong> = tervrajz a fejlesztéshez (design, requirements, tasks); <strong>pf-pipeline spec</strong> = futtatható operatív logika (a motor értelmezi futásidőben). Négy motor (pipeline-forge, entity-forge, GoBI, datagrid) — ötödik nincs; extend via adapters / features / catalog entries, never fork.</p>
-</div></article><article class="card accent-mauve"><div class="card-head"><h3>·</h3></div><div class="body"><p>Irány / szerep · A5–A7</p>
-<p>**A5Felülről lefelé! — DB→BE→FE→AI.**DB first (entity spec → tárolt funkciók, no inline DML) → thin BE → generated FE → <strong>AI-felület legvégül</strong> (skill · MCP · persona, generálva); sosem kézzel, amit feljebb spec birtokol. → s10c ↗</p>
-<p>**A6AI orchestrál, ember kapuzik! — AI = orchestrator, human = control.**Adapters, MCP tools, tárolt funkciók = AI's hands, built by humans; AI wields them; reads autonomous within policy; writes gated by human (MR / hash-reveal / admin-grant) or rule (hooks, RLS, RBAC); agent can never self-escalate.</p>
-<p>**A7Markdownul és angolul! — Markdown + English.**Logic lives in readable docs, not hidden in compiled code; infra naming in English, business domain in Hungarian — AI-native format.</p>
-</div></article><article class="card accent-green"><div class="card-head"><h3>·</h3></div><div class="body"><p>Folyamat + együttműködés · A8–A11</p>
-<p>**A8Előbb a tervrajz, előbb a teszt! — Spec-first + test-first; SDD + BRD + TdD.**Intent → EARS requirements → design.md → tasks → tests → code; spec folder committed before first implementation file, and each requirement's test committed <strong>red</strong> before its code. Hard gate — no exceptions.</p>
-<p>**A9Kész = kétszer emberi kapu! — Done = human gate × 2.**Verification (built it right? — build/test/smoke + code review) + Validation (right thing? — QA acceptance + perf); compile ≠ done.</p>
-<p>**A10A legkisebb diff! — Smallest diff; scope discipline.**Blast radius is real (~16 sibling repos via replace); smallest diff = unit of safety, review, revert. Bug fix stays a bug fix.</p>
-<p>**A11Javasolj, aztán az ember dönt! — Propose, then human decides.**Human owns what/how/where + env; AI owns lexicon + construction — proposes, asks, never silently self-solves. Complementary co-work.</p>
+</div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><h3>Alap · A1–A4</h3></div><div class="body"><p><strong>A1 · Egy igazság! — SSOT.</strong> Minden tény egy helyen — no hardcode, no duplication; entity spec, pipeline <code>.md</code>, LOV az authoritative source; a többi generálódik vagy hivatkozza. → s10b ↗</p>
+<p><strong>A2 · A dokumentum a kód! — Doc=Code.</strong><code>.md</code> spec = source of truth ÉS futtatható/generátor input. Két forma: (1) SDD spec → generated code (entity spec → DDL+CRUD); (2) pf-pipeline <code>.md</code> = maga a futtatható — nem generál kódot, hanem közvetlenül fut. Ha spec és kód eltér → spec nyer, a kód regenerálódik.</p>
+<p><strong>A3 · Ne égess be! — Never hardcode.</strong> Identity + env from env vars or fail-loud — no magic defaults, no baked-in literals; capability-based, not name-based.</p>
+<p><strong>A4 · Általános motor, logika a specben! — Generic engine, logic in specs.</strong> Két spec-típus, különböző szerep: <strong>SDD spec</strong> = tervrajz a fejlesztéshez (design, requirements, tasks); <strong>pf-pipeline spec</strong> = futtatható operatív logika (a motor értelmezi futásidőben). Négy motor (pipeline-forge, entity-forge, GoBI, datagrid) — ötödik nincs; extend via adapters / features / catalog entries, never fork.</p>
+</div></article><article class="card accent-mauve"><div class="card-head"><h3>Irány / szerep · A5–A7</h3></div><div class="body"><p><strong>A5 · Felülről lefelé! — DB→BE→FE→AI.</strong> DB first (entity spec → tárolt funkciók, no inline DML) → thin BE → generated FE → <strong>AI-felület legvégül</strong> (skill · MCP · persona, generálva); sosem kézzel, amit feljebb spec birtokol. → s10c ↗</p>
+<p><strong>A6 · AI orchestrál, ember kapuzik! — AI = orchestrator, human = control.</strong> Adapters, MCP tools, tárolt funkciók = AI's hands, built by humans; AI wields them; reads autonomous within policy; writes gated by human (MR / hash-reveal / admin-grant) or rule (hooks, RLS, RBAC); agent can never self-escalate.</p>
+<p><strong>A7 · Markdownul és angolul! — Markdown + English.</strong> Logic lives in readable docs, not hidden in compiled code; infra naming in English, business domain in Hungarian — AI-native format.</p>
+</div></article><article class="card accent-green"><div class="card-head"><h3>Folyamat &#43; együttműködés · A8–A11</h3></div><div class="body"><p><strong>A8 · Előbb a tervrajz, előbb a teszt! — Spec-first + test-first; SDD + BRD + TdD.</strong> Intent → EARS requirements → design.md → tasks → tests → code; spec folder committed before first implementation file, and each requirement's test committed <strong>red</strong> before its code. Hard gate — no exceptions.</p>
+<p><strong>A9 · Kész = kétszer emberi kapu! — Done = human gate × 2.</strong> Verification (built it right? — build/test/smoke + code review) + Validation (right thing? — QA acceptance + perf); compile ≠ done.</p>
+<p><strong>A10 · A legkisebb diff! — Smallest diff; scope discipline.</strong> Blast radius is real (~16 sibling repos via replace); smallest diff = unit of safety, review, revert. Bug fix stays a bug fix.</p>
+<p><strong>A11 · Javasolj, aztán az ember dönt! — Propose, then human decides.</strong> Human owns what/how/where + env; AI owns lexicon + construction — proposes, asks, never silently self-solves. Complementary co-work.</p>
 </div></article></div><div class="after-block"><div class="body after"><blockquote>
 <p><strong>A házon:</strong> Az építési szabványok — minden házra érvényesek, és a terv fölött állnak. · SdD-ben: Az axiómák a spec fölötti alaptörvény: ha ütköznek, az axióma nyer.</p>
 </blockquote>
@@ -1628,7 +1620,7 @@ tenant: _infra
 </tr>
 </tbody>
 </table>
-<pre><code># élő napló — pfworker-infra, butalam, 2026-09-23
+<pre><code># élő napló — pfworker-infra, éles szerver, 2026-09-23
 04:00:38.541  pipeline start  name=ops_dep_extract steps=5
 04:00:38.710  step done  Extract Dependencies  success  168 ms
 04:00:38.710  step done  Log Result            success
@@ -1687,78 +1679,67 @@ tenant: _infra
 <!-- raw HTML omitted -->
 </div></article></div></div>
 </div>
-<div class="slide layout-free" id="s15" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Az alapelv — A1 &#43; A2</span></div><h2> Egy igazságforrás &#43; a dokumentum a kód — nem kettő, nem nulla</h2></div><div class="body"><p><strong>Az adatbázis az igazságforrás (A1)</strong></p>
-<ul>
+<div class="slide layout-free" id="s15" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Az alapelv — A1 &#43; A2</span></div><h2> Egy igazságforrás &#43; a dokumentum a kód — nem kettő, nem nulla</h2></div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><h3>Az adatbázis az igazságforrás (A1)</h3></div><div class="body"><ul>
 <li>Minden gépállapot az <code>infra.*</code>-ban él — egy helyen, egy verzió</li>
 <li>Entitásspec (<code>.md</code>) → DDL → tárolt függvény → RLS — a CRUD-lánc generált (<code>bin/ef-cli</code>); az üzleti függvények kézzel írt <code>.md</code>-k (70 db)</li>
 <li>Írás csak tárolt függvényen át — a handlerekben nincs inline DML</li>
 <li>LOV-táblák (<code>lov.*</code>) = SSOT minden legördülő értékhez</li>
 </ul>
-<p><strong>A pipeline <code>.md</code> = az orchestráció igazságforrása</strong></p>
-<ul>
+</div></article><article class="card accent-teal"><div class="card-head"><h3>A pipeline .md = az orchestráció igazságforrása</h3></div><div class="body"><ul>
 <li>A markdown pipeline-fájl <strong>maga a logika</strong> — nem dokumentálja azt</li>
 <li>Lépés hozzáadása = pipeline-fájl szerkesztése; nincs Go-fordítás</li>
 <li>Egy forrás uralja az ütemezést, a lépéseket, a hibakezelést, az audit trailt</li>
 <li>122 <code>pipelines/*.md</code> — a fájl törlése = a képesség törlése</li>
 </ul>
-<p><strong>Document = Code (A2) — mélyebben</strong></p>
-<ul>
+</div></article><article class="card accent-mauve"><div class="card-head"><h3>Document = Code (A2) — mélyebben</h3></div><div class="body"><ul>
 <li>A <code>.md</code> spec egyszerre az igazságforrás <em>és</em> a generátor/futtatható bemenet</li>
 <li>Entitásspec → entitygen → SQL DDL + CRUD tárolt függvények + RLS + LOV seed (mind generált; a Go handler és a sablon kézzel írt)</li>
 <li>Ha a kód eltér a spectől, a spec nyer — a kód újragenerálódik</li>
 <li>A szabály is dokumentum: diff-elhető, git-verziózott, az AI minden sessionben elolvassa</li>
 </ul>
-<p><strong>Miért fontos ez az infra-forge-ban</strong></p>
-<ul>
+</div></article><article class="card accent-green"><div class="card-head"><h3>Miért fontos ez az infra-forge-ban</h3></div><div class="body"><ul>
 <li>65 entitásspec (<code>entities/IF-*.md</code>) = a séma hiteles forrása — nem az adatbázis</li>
 <li>122 pipeline-fájl = a folyamat hiteles forrása — nem a Go-kód</li>
 <li>16 skill (<code>skills/*.md</code>) = az AI képességkatalógusának hiteles forrása</li>
 <li>Egy szerkesztés, egy fájl — sehol nincs mit szinkronban tartani</li>
 </ul>
-<blockquote>
+</div></article></div><div class="after-block"><div class="body after"><blockquote>
 <p><strong>A házon:</strong> Egy hiteles tervrajz a helyszínen — nem kettő, és nem a brigád fejében. · SdD-ben: A1 + A2: egy igazságforrás, és az maga a futtatható.</p>
 </blockquote>
 <!-- raw HTML omitted -->
-</div>
+</div></div>
 </div>
 <div class="slide layout-free" id="s16" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Az alapelv — A5</span><span class="badge">infra-forge · kihagyható</span></div><h2> Felülről lefelé — adatbázis → backend → frontend → AI-felület</h2></div><div class="body"><blockquote>
 <p><svg class="i" aria-hidden="true"><use href="#i-info"/></svg> Adatmodell → vékony backend → ahol lehet, generált frontend → <strong>AI-felület</strong>. Soha ne írj kézzel olyat, amit feljebb egy spec már meghatároz. <em>A négy réteg együtt az alkalmazás.</em></p>
 </blockquote>
-<p><svg class="i" aria-hidden="true"><use href="#i-database"/></svg></p>
-<p><strong>1. DB — először az adatmodell</strong></p>
-<ul>
+</div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-database"/></svg><h3>1. DB — először az adatmodell</h3></div><div class="body"><ul>
 <li>Entitásspec (<code>.md</code>) → DDL + tárolt függvények</li>
 <li>Minden CRUD tárolt függvényen át</li>
 <li>RLS az adatbázis rétegben, nem Go-ban</li>
 <li>DB-generált <code>now()</code>, UUID PK-k</li>
 <li><em>65 entitásspec + 70 kézi függvényfájl (<code>.md</code>)</em></li>
 </ul>
-<p><svg class="i" aria-hidden="true"><use href="#i-code"/></svg></p>
-<p><strong>2. BE — vékony backend</strong></p>
-<ul>
+</div></article><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-code"/></svg><h3>2. BE — vékony backend</h3></div><div class="body"><ul>
 <li>Handlerek tárolt függvényt hívnak — nincs üzleti logika Go-ban (5 közvetlen tábla-olvasás még kiváltásra vár)</li>
 <li>Routing, auth, session = a Go feladata</li>
 <li>Nincs ORM — <code>pgx/v5 + pgxpool</code> direktben</li>
 <li>Orchestráció → pipeline-fájl, nem Go-kód</li>
 <li><em><code>cmd/agent</code> route → <code>internal/</code> → tárolt fn</em></li>
 </ul>
-<p><strong>3. FE — ahol lehet, generált</strong></p>
-<ul>
+</div></article><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-eye"/></svg><h3>3. FE — ahol lehet, generált</h3></div><div class="body"><ul>
 <li>HTMX fragmentek — nincs SPA, nincs build step</li>
 <li>Lista-oldalak entitásspecből generálva (9 oldal) — a többi 45 kézzel írt</li>
 <li>GoBI riport: Markdown katalógus-bejegyzés → HTMX tábla (47-ből 38 generált)</li>
 <li>Datagrid és sidebar adat-vezérelt</li>
 <li><em><code>ui/pages/</code> + <code>ui/pages/gen/</code> + GoBI <code>bi/**/*.md</code></em></li>
 </ul>
-<p><svg class="i" aria-hidden="true"><use href="#i-sparkle"/></svg></p>
-<p><strong>4. AI — a felület, ami az AI keze</strong></p>
-<ul>
+</div></article><article class="card accent-peach"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-sparkle"/></svg><h3>4. AI — a felület, ami az AI keze</h3></div><div class="body"><ul>
 <li>Skill, MCP-eszköz, persona — az alsó rétegeket <strong>hívja</strong> (pipeline, tárolt fn), saját logikája nincs</li>
 <li>Cél: <strong>generálni</strong> az alsó rétegekből — ma a 16 skill még kézzel írt <code>.md</code></li>
 <li>Olvasás önállóan, <strong>írás kapun</strong> (A6)</li>
 <li><em><code>skills/*.md</code> + <code>pipelines/*.md</code></em></li>
 </ul>
-<p><strong>Oldd meg ott, ahol él — az adat a DB-ben él</strong></p>
+</div></article></div><div class="after-block"><div class="body after"><p><strong>Oldd meg ott, ahol él — az adat a DB-ben él</strong></p>
 <ol>
 <li><code>1 · ELŐSZÖR</code> <strong>DB-eszközzel</strong> — halmazművelet, tárolt függvény, index</li>
 <li><code>2 · MÉRÉS</code> <strong>Jó és elég gyors?</strong> — helyes eredmény <strong>és</strong> teljesítmény — mérve</li>
@@ -1772,7 +1753,7 @@ tenant: _infra
 <p><strong>A házon:</strong> Alap → falak → tető → berendezés; senki nem a tetővel kezdi. · SdD-ben: DB → BE → FE → AI — felülről lefelé, a spec szerint.</p>
 </blockquote>
 <!-- raw HTML omitted -->
-</div>
+</div></div>
 </div>
 <div class="slide layout-free" id="s17" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Dokumentumtípusok — blueprintek &#43; a térkép</span></div><h2> SDD &#43; BRD, és az ötrétegű dokumentumtérkép — valós fájlokkal</h2></div><div class="body"><blockquote>
 <p>Két dolog, egy rövidítés — ne keverd össze.</p>
@@ -2132,8 +2113,8 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 <li><code>4</code> <strong>Top találatok</strong> — releváns chunkok</li>
 <li><code>5</code> <strong>Olvasás</strong> — a megjelölt fájl</li>
 </ol>
-</div><div class="content-grid after-grid cols-2"><article class="card accent-mauve"><div class="card-head"><h3>Fejlesztői RAG — lokális `rag_db`</h3></div><div class="body"><p><strong>A repó a kollekció</strong>: minden platform-repo egy gyűjtemény. Claude Code ebből keresi vissza a releváns szabályt / doc-ot / spec-et — nem a teljes fát olvassa. <strong>Ez a dev-láb.</strong></p>
-</div></article><article class="card accent-sky"><div class="card-head"><h3>Termék-RAG — **a termék saját éles adatbázisában**</h3></div><div class="body"><p>Nincs központi RAG-adatbázis: minden termék a <strong>saját éles DB-jében</strong> tartja a beágyazásait, tenantonként (<code>iier01_db</code>, <code>it_akos01_db</code>…). A tudás ott van, ahol az adat — és a jogosultság is ott érvényesül. <strong>A dev-láb és a termék-láb sosem keveredik.</strong></p>
+</div><div class="content-grid after-grid cols-2"><article class="card accent-mauve"><div class="card-head"><h3>Fejlesztői RAG — lokális rag_db</h3></div><div class="body"><p><strong>A repó a kollekció</strong>: minden platform-repo egy gyűjtemény. Claude Code ebből keresi vissza a releváns szabályt / doc-ot / spec-et — nem a teljes fát olvassa. <strong>Ez a dev-láb.</strong></p>
+</div></article><article class="card accent-sky"><div class="card-head"><h3>Termék-RAG — a termék saját éles adatbázisában</h3></div><div class="body"><p>Nincs központi RAG-adatbázis: minden termék a <strong>saját éles DB-jében</strong> tartja a beágyazásait, tenantonként (<code>iier01_db</code>, <code>it_akos01_db</code>…). A tudás ott van, ahol az adat — és a jogosultság is ott érvényesül. <strong>A dev-láb és a termék-láb sosem keveredik.</strong></p>
 <blockquote>
 <p><svg class="i" aria-hidden="true"><use href="#i-info"/></svg> <strong>Így használja Claude — fejlesztés közben:</strong> <code>/rag-search &quot;hol oldjuk fel a vault-ot?&quot;</code> → top találatok (<code>collection + source_file</code>) → és csak <strong>azt az egy fájlt</strong> nyitja meg (<code>Read</code>). Tájékozódás RAG-gel, pontos olvasás utána — a véges kontextust a <em>releváns</em> tudás tölti, nem a teljes repó.</p>
 </blockquote>
@@ -2163,12 +2144,12 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 </thead>
 <tbody>
 <tr>
-<td>butalam · <code>19/infraforge</code> :5440, csak loopback</td>
+<td>éles szerver · <code>19/infraforge</code> :5440, csak loopback</td>
 <td>az infra-forge függőségi gráfja (<code>infra_graph_db</code>) <strong>natív property-graphban</strong></td>
 <td><strong>élesben</strong> 2026-09-15 óta — beta3, tudatosan vállalt kockázat</td>
 </tr>
 <tr>
-<td>butalam · <code>19/search</code> :5435, csak loopback</td>
+<td>éles szerver · <code>19/search</code> :5435, csak loopback</td>
 <td>az ügyfél-RAG keresőrétege side-carban, éjszakai szinkronnal (439 685 él)</td>
 <td>ugyanazon a vason: PG19 <strong>15–40%-kal gyorsabb</strong>; a hangolt gráf-lekérdezés <strong>döntetlen</strong> (34,8 vs 32,2 ms) → az éles keresés a hordozható formán marad</td>
 </tr>
@@ -2178,8 +2159,8 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 <td>1–2 ugrás <strong>azonos</strong> a mai CTE-vel; 2-ugrásos lánc gyorsabb (0,29 vs 0,42 ms); irányítatlan él lassú (18–115×), nincs változó hosszú út</td>
 </tr>
 <tr>
-<td>butalam · fő RAG-klaszter</td>
-<td><code>iier01_db</code> — <strong>461 752</strong> <code>cross_refs</code> él, PG 18.4 — <strong>az iiriki élesben használja</strong>: <a href="https://iiriki.alig.hu/iier2/value-graph?q=28523&amp;format=docx&amp;mode=exact"><code>/iier2/value-graph</code></a></td>
+<td>éles szerver · fő RAG-klaszter</td>
+<td><code>iier01_db</code> — <strong>461 752</strong> <code>cross_refs</code> él, PG 18.4 — <strong>az iiriki élesben használja</strong>: <code>/iier2/value-graph</code></td>
 <td><strong>élesben</strong>, hordozható SQL-lel: minden találatnál ott a gráf-útvonal (SharePoint-hely → mappa → dokumentum → tábla); egy kapcsolóval ugyanez a keresés a <code>19/search</code> side-caron SQL/PGQ-val fut, a két idő egymás mellett. <strong>Még hátra:</strong> a klaszter frissítése a 19 GA után; az alap PG ≥ 16 marad, a natív gráf-lekérdezés csak 19+ szerveren</td>
 </tr>
 </tbody>
@@ -2313,10 +2294,8 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 <li>A betonozáskor <strong>próbakocka</strong> — nem utólag választjuk ki, melyik falat mérjük meg (TdD).</li>
 <li><strong>Miért előre?</strong> A visszatöltött föld alatt a szigetelés <em>már nem látható</em> — utólag csak bontással ellenőrizhető.</li>
 </ul>
-</div></article><article class="card accent-blue"><div class="card-head"><h3>·</h3></div><div class="body"><p><em>Verifikáció — „jól építettük meg?&quot;</em></p>
-<p>A <strong>műszaki ellenőr</strong> a visszatöltés előtt összeveti a szigetelést a <strong>tervvel</strong> — és a nyomáspróba jegyzőkönyvével.</p>
-</div></article><article class="card accent-green"><div class="card-head"><h3>·</h3></div><div class="body"><p><em>Validáció — „a jót építettük meg?&quot;</em></p>
-<p>Az <strong>első nagy eső</strong> után a <strong>család</strong> lemegy a pincébe: az lett-e, amire szükségük volt? Ha nem — új szándék.</p>
+</div></article><article class="card accent-blue"><div class="card-head"><h3>Verifikáció — „jól építettük meg?&#34;</h3></div><div class="body"><p>A <strong>műszaki ellenőr</strong> a visszatöltés előtt összeveti a szigetelést a <strong>tervvel</strong> — és a nyomáspróba jegyzőkönyvével.</p>
+</div></article><article class="card accent-green"><div class="card-head"><h3>Validáció — „a jót építettük meg?&#34;</h3></div><div class="body"><p>Az <strong>első nagy eső</strong> után a <strong>család</strong> lemegy a pincébe: az lett-e, amire szükségük volt? Ha nem — új szándék.</p>
 <!-- raw HTML omitted -->
 </div></article></div></div>
 </div>
