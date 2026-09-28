@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spec-driven Development (SdD) — módszertan, gyakorlati példával (v5)</title>
 <link rel="icon" href="data:,">
-<!-- deck-engine sha256=e1d59bc179c0f65b3abe55a7edb47bb18a5009439a46985d1249f9a1879a2951 -->
+<!-- deck-engine sha256=2d338a50ea9608243ed17d1ce7b09d2e8e9ac757f523352bbe5b9cbfecc176ff -->
 <style></style>
 <style>/* deck-foundation engine — chrome + components (spec U1, U3).
  * Inlined verbatim into every generated deck, BEFORE the vibe and accent blocks, so a vibe
@@ -575,11 +575,18 @@ kbd {
   counter-increment: flow;
 }
 
-.flow-step::before {
-  content: counter(flow);
+/* FN-U1: the counter sits in the title line (1 · Title); an untitled step still shows its number */
+.flow-step > h3::before,
+.flow-step:not(:has(> h3))::before {
+  content: counter(flow) ' · ';
+  margin-right: 0.15em;
   color: var(--card-accent, var(--accent));
   font-size: 0.8rem;
   font-weight: 700;
+}
+
+.flow-step:not(:has(> h3))::before {
+  content: counter(flow);
 }
 
 .flow-step:not(:last-child)::after {
@@ -1796,14 +1803,16 @@ tenant: _infra
 <p>Két dolog, egy rövidítés — ne keverd össze. A módszertan az <strong>SdD = Spec-driven Development</strong> (szándék → spec → terv → kód → verifikáció → validáció — lásd a korábbi diát). Ezen a dián viszont <strong>SDD = Software Design Description</strong> (IEEE 1016-2009 — inaktív-fenntartott státuszú szabvány, nálunk referencia-modellként használva): egy konkrét dokumentumtípus, a technikai tervrajz. A módszertan írja elő, hogy ilyen blueprint készüljön — a kettő nem ugyanaz, csak a betűszó esik egybe.</p>
 <p><strong>SdD ⊃ { SDD, BRD (+EARS), TdD }</strong> — a módszertan a keret; alatta a két tervrajz (az EARS a BRD kikötés-nyelve, nem külön dokumentum) és a bizonyíték. Az alábbi három csempe ezt a hármat bontja ki.</p>
 </blockquote>
-</div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><h3>SDD — Software Design Description ([IEEE 1016-2009](https://standards.ieee.org/ieee/1016/4502/), referencia-modell)</h3></div><div class="body"><p>A <em>technikai</em> tervrajz: architektúra, adatmodellek, interfészek, komponens-viselkedés — a híd az üzleti igény és a kód között.</p>
+</div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><h3>SDD — Software Design Description (IEEE 1016-2009, referencia-modell)</h3></div><div class="body"><p>Szabvány: <a href="https://standards.ieee.org/ieee/1016/4502/">IEEE 1016-2009</a>.</p>
+<p>A <em>technikai</em> tervrajz: architektúra, adatmodellek, interfészek, komponens-viselkedés — a híd az üzleti igény és a kód között.</p>
 <ul>
 <li><strong>Régen:</strong> „halott dokumentum&quot; — egyszer megírták, a kód elszaladt mellőle</li>
 <li><strong>AI-korban:</strong> az agent <em>kontextus-motorként olvassa</em> — a kód az architektúra-határokon belül születik</li>
 <li><strong>És karban is tartja:</strong> változás után az AI frissíti a tervet — terv és kód szinkronban marad</li>
 </ul>
 <p>forrás: IEEE Std 1016</p>
-</div></article><article class="card accent-peach"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-buildings"/></svg><h3>BRD — Business Requirements Document ([ISO/IEC/IEEE 29148](https://www.iso.org/standard/72089.html))</h3></div><div class="body"><p>Az <em>üzleti</em> tervrajz: célok, scope, üzleti követelmények — <em>mit</em> érjen el a rendszer (a <em>hogyan</em> előtt). Workflow-k, adatáramlás, compliance; nagy szervezetnél több száz oldal, gyakran ellentmondásokkal.</p>
+</div></article><article class="card accent-peach"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-buildings"/></svg><h3>BRD — Business Requirements Document (ISO/IEC/IEEE 29148)</h3></div><div class="body"><p>Szabvány: <a href="https://www.iso.org/standard/72089.html">ISO/IEC/IEEE 29148</a>.</p>
+<p>Az <em>üzleti</em> tervrajz: célok, scope, üzleti követelmények — <em>mit</em> érjen el a rendszer (a <em>hogyan</em> előtt). Workflow-k, adatáramlás, compliance; nagy szervezetnél több száz oldal, gyakran ellentmondásokkal.</p>
 <ul>
 <li><strong>Gap-analízis:</strong> az LLM beolvassa és jelzi az ellentmondásokat (40. oldal vs. 200. oldal)</li>
 <li><strong>Automatikus adatleképezés:</strong> legacy → új séma, hónapok helyett napok alatt</li>
