@@ -360,7 +360,7 @@ Aki mindkét listán szerepel, mindkét útvonalat használhatja. Aki csak az eg
 - a választás az adatbázis **munkamenet-változójaként** érvényesül minden lekérdezésen
 - csak azok a tenantok kínálhatók, ahová a felhasználót beengedték; egy tenant esetén nincs is választó
 - Laura „kalapjai" (szerkesztő, forrás, üzleti elemző) ettől független tengely maradnak
-- a választó **él**: egy felhasználó, akit mindkét tenantba beengedtek, már ma vált; aki egybe, nem is látja
+- a választó **él, és a láblécben is**: a `tenant=` címke maga a kapcsoló — aki mindkét tudástárba be van engedve, egy kattintással vált; aki egybe, csak a címkét látja
 
 ```notes
 ⏱ 28:00 — A választó ötlete a kérőktől jött, egy másik termékünk mintájára. Két tengely: mit lát (tenant)
@@ -385,6 +385,33 @@ Minden manifest letöltése hash-elve, archiválva; minden futás sor a naplóba
 ⏱ 29:00 — (ha van idő) A négy kártya egy mondat: a rendszer inkább áll meg, mint hogy rosszat mondjon.
 ```
 
+## A második nap többlete {layout=cards label="Ami még épült" id=s17b}
+
+Az első nap a kapukig jutott, a második a kapukon át — és közben hat dolog épült, amit senki nem kért, de mind a kérésből derült ki.
+
+### :users: Tenant-váltó a láblécben {accent=mauve}
+Ahol a lábléc kimondja, melyik tudástárban vagy, ott lehet váltani is: egy kattintás, és minden oldal, keresés és Laura a másik tenant alatt fut. Aki egy tenantba jár, csak a címkét látja. A közös alapba került — minden termék megkapja.
+
+### :check-circle: A csomag megérkezett {accent=green}
+A KMTR jogosultság-exportja külön csomagban jött. A betöltő saját szabályaival, írás nélkül ellenőriztük — szerződés, tenant, csak KMTR-forrás —, és az IIER csomagjából ki is került a KMTR. Ma este fut először élesben.
+
+### :database: A háttérmunkás minden tenantot lát {accent=blue}
+A háttérfolyamat indítója névre szólóan sorolta a tenantokat, így az új tenant kulcsai nem jutottak el hozzá. Most minden tenant-mappát bejár: a következő tenant nem igényel módosítást.
+
+### :clock: Türelmesebb letöltés, túlélő archívum {accent=yellow}
+A riasztás első éjszakája két valódi dolgot mondott: a lépés kétperces kerete megölte a háromperces letöltést, és a telepítés minden alkalommal letörölte az archívumot. Mindkettő javítva, teszttel rögzítve.
+
+### :warning: A teszt, ami hibát talált {accent=red}
+A kétbérlős olvasók oldalai hibára futottak egy mezőnév miatt, amelyet egyetlen teszt sem járt be. A lábléc-váltó tesztjének írásakor derült ki, egy órán belül javítva. Tanulság: egy adatra kapcsolt ág, amelynek adatát a tesztek sosem adják, nem tesztelt.
+
+### :git-branch: Zöld az ellenőrző futás {accent=teal}
+Az ügyfélcsomag folyamatos ellenőrzése hetek óta piros volt három elavult feltevés miatt; a KMTR-másolat csak kiszélesítette. Most zöld, és tenantonként ellenőriz.
+
+```notes
+⏱ 29:00 — Egy mondat kártyánként. A közönségnek az első kártya szól (ezt látják); a kollégáknak a többi:
+minden kártya egy olyan hiba vagy hiány, amit a kérés tett láthatóvá — és mind tesztet kapott.
+```
+
 ## Hol tartunk, mi következik {layout=split ratio=50-50 label="Idővonal" id=s18}
 
 ### :check-circle: Két nap alatt kész {accent=green}
@@ -392,14 +419,15 @@ Minden manifest letöltése hash-elve, archiválva; minden futás sor a naplóba
 - 1. nap este: a mechanizmus — migrációk, betöltő-fa, tenant-választó — a tesztek zöldre
 - 2. nap: összefésülés, a migrációk az éles adatbázisokon (egy éles-alak tanulsággal), a betöltő és Laura telepítve
 - 2. nap: egy hetek óta piros ellenőrző futás is zöld lett — a kérés ürügyén, mint a webhook
+- 2. nap délután: a KMTR-csomag megérkezett és érvényes, a háttérmunkás minden tenant kulcsát látja, a lábléc tenant-váltó él, az első riasztások két javítást hoztak — minden telepítve
 
 ### :hand: Mi vár kire {accent=yellow}
-- **admin:** JIRA-jog, SharePoint-jog, külön KMTR export-csomag — ez nyitja a többit
-- **platform:** első betöltés, az élő ellenőrzések, a KMTR-wiki első generálása
-- **kérő:** hatókör megerősítése, próbakeresések, elfogadás
+- **admin:** JIRA-jog a technikai fióknak, SharePoint-jog megerősítése, a KMTR-gazda beengedése az olvasói csoportba
+- **platform:** az első éles éjszaka kiértékelése, az élő ellenőrzések, a KMTR-wiki első generálása
+- **kérő:** próbakeresések a KMTR-útvonalon, majd az elfogadás
 
 ```notes
-⏱ 29:30 — Rövid. A bal oszlop két napot mond, nem egyet: a mechanizmus egy este, a kapuk egy délelőtt.
+⏱ 29:45 — Rövid. A bal oszlop két napot mond: a mechanizmus egy este, a kapuk egy délelőtt, a többlet egy délután.
 A jobb oszlop a lényeg: az admin kapuja nyitja a többit, és az utolsó szó a kérőé.
 ```
 

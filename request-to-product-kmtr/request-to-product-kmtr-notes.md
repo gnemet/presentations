@@ -88,15 +88,20 @@ soha nem a platformé — ezért a kérőé az utolsó szó.
 
 ⏱ 29:00 — (ha van idő) A négy kártya egy mondat: a rendszer inkább áll meg, mint hogy rosszat mondjon.
 
-## 18. Hol tartunk, mi következik (#s18)
+## 18. A második nap többlete (#s17b)
 
-⏱ 29:30 — Rövid. A bal oszlop két napot mond, nem egyet: a mechanizmus egy este, a kapuk egy délelőtt.
+⏱ 29:00 — Egy mondat kártyánként. A közönségnek az első kártya szól (ezt látják); a kollégáknak a többi:
+minden kártya egy olyan hiba vagy hiány, amit a kérés tett láthatóvá — és mind tesztet kapott.
+
+## 19. Hol tartunk, mi következik (#s18)
+
+⏱ 29:45 — Rövid. A bal oszlop két napot mond: a mechanizmus egy este, a kapuk egy délelőtt, a többlet egy délután.
 A jobb oszlop a lényeg: az admin kapuja nyitja a többit, és az utolsó szó a kérőé.
 
-## 19. Mit fogadunk el? (#s19)
+## 20. Mit fogadunk el? (#s19)
 
 ⏱ 30:00 — Ez a négy mondat a kérő aláírásának tárgya. Kérdések.
 
-## 20. Köszönöm (#s20)
+## 21. Köszönöm (#s20)
 
 ⏱ 30:00 — Zárás. Ha kérdés jön a „mikor" felől: a jobb oszlop a 18. dián.

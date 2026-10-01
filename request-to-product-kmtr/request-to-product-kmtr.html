@@ -1044,7 +1044,7 @@ blockquote {
     <button type="button" class="nav-btn" id="btn-talk" data-action="talk" aria-pressed="false" title="Talk mode — skip optional slides" aria-label="Talk mode"><svg class="i" aria-hidden="true"><use href="#i-fast-forward"/></svg></button>
     <button type="button" class="nav-btn" data-action="help" title="Keyboard shortcuts (?)" aria-label="Keyboard shortcuts"><svg class="i" aria-hidden="true"><use href="#i-question"/></svg></button>
     <button type="button" class="nav-btn" id="theme-toggle" data-action="theme" title="Toggle theme (t)" aria-label="Toggle theme"><svg class="i" aria-hidden="true"><use href="#i-sun"/></svg></button>
-    <span class="slide-counter" aria-live="polite"><span data-cur>1</span> / <span data-tot>20</span></span>
+    <span class="slide-counter" aria-live="polite"><span data-cur>1</span> / <span data-tot>21</span></span>
   </nav>
 </header>
 <div class="progress-bar"><div class="progress-fill"></div></div>
@@ -1354,7 +1354,7 @@ blockquote {
 <li>a választás az adatbázis <strong>munkamenet-változójaként</strong> érvényesül minden lekérdezésen</li>
 <li>csak azok a tenantok kínálhatók, ahová a felhasználót beengedték; egy tenant esetén nincs is választó</li>
 <li>Laura „kalapjai&quot; (szerkesztő, forrás, üzleti elemző) ettől független tengely maradnak</li>
-<li>a választó <strong>él</strong>: egy felhasználó, akit mindkét tenantba beengedtek, már ma vált; aki egybe, nem is látja</li>
+<li>a választó <strong>él, és a láblécben is</strong>: a <code>tenant=</code> címke maga a kapcsoló — aki mindkét tudástárba be van engedve, egy kattintással vált; aki egybe, csak a címkét látja</li>
 </ul>
 </div>
 </section>
@@ -1365,6 +1365,17 @@ blockquote {
 </div></article><article class="card accent-yellow"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-chat-circle-dots"/></svg><h3>Azonnal</h3></div><div class="body"><p>Teams és e-mail a hibás lépés nevével és okával.</p>
 </div></article><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg><h3>Reggel</h3></div><div class="body"><p>Az őr jelzi, ha egy várt feladat 48 órája nem futott sikeresen.</p>
 </div></article><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-eye"/></svg><h3>Nyomon</h3></div><div class="body"><p>Minden manifest letöltése hash-elve, archiválva; minden futás sor a naplóban.</p>
+</div></article>
+</div>
+</div>
+<div class="slide layout-cards align-top" id="s17b" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Ami még épült</span></div><h2> A második nap többlete</h2></div><div class="body lead"><p>Az első nap a kapukig jutott, a második a kapukon át — és közben hat dolog épült, amit senki nem kért, de mind a kérésből derült ki.</p>
+</div>
+<div class="content-grid"><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-users"/></svg><h3>Tenant-váltó a láblécben</h3></div><div class="body"><p>Ahol a lábléc kimondja, melyik tudástárban vagy, ott lehet váltani is: egy kattintás, és minden oldal, keresés és Laura a másik tenant alatt fut. Aki egy tenantba jár, csak a címkét látja. A közös alapba került — minden termék megkapja.</p>
+</div></article><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-check-circle"/></svg><h3>A csomag megérkezett</h3></div><div class="body"><p>A KMTR jogosultság-exportja külön csomagban jött. A betöltő saját szabályaival, írás nélkül ellenőriztük — szerződés, tenant, csak KMTR-forrás —, és az IIER csomagjából ki is került a KMTR. Ma este fut először élesben.</p>
+</div></article><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-database"/></svg><h3>A háttérmunkás minden tenantot lát</h3></div><div class="body"><p>A háttérfolyamat indítója névre szólóan sorolta a tenantokat, így az új tenant kulcsai nem jutottak el hozzá. Most minden tenant-mappát bejár: a következő tenant nem igényel módosítást.</p>
+</div></article><article class="card accent-yellow"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg><h3>Türelmesebb letöltés, túlélő archívum</h3></div><div class="body"><p>A riasztás első éjszakája két valódi dolgot mondott: a lépés kétperces kerete megölte a háromperces letöltést, és a telepítés minden alkalommal letörölte az archívumot. Mindkettő javítva, teszttel rögzítve.</p>
+</div></article><article class="card accent-red"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-warning"/></svg><h3>A teszt, ami hibát talált</h3></div><div class="body"><p>A kétbérlős olvasók oldalai hibára futottak egy mezőnév miatt, amelyet egyetlen teszt sem járt be. A lábléc-váltó tesztjének írásakor derült ki, egy órán belül javítva. Tanulság: egy adatra kapcsolt ág, amelynek adatát a tesztek sosem adják, nem tesztelt.</p>
+</div></article><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-git-branch"/></svg><h3>Zöld az ellenőrző futás</h3></div><div class="body"><p>Az ügyfélcsomag folyamatos ellenőrzése hetek óta piros volt három elavult feltevés miatt; a KMTR-másolat csak kiszélesítette. Most zöld, és tenantonként ellenőriz.</p>
 </div></article>
 </div>
 </div>
@@ -1391,13 +1402,18 @@ blockquote {
 <li>nap: egy hetek óta piros ellenőrző futás is zöld lett — a kérés ürügyén, mint a webhook</li>
 </ol>
 </li>
+<li>
+<ol start="2">
+<li>nap délután: a KMTR-csomag megérkezett és érvényes, a háttérmunkás minden tenant kulcsát látja, a lábléc tenant-váltó él, az első riasztások két javítást hoztak — minden telepítve</li>
+</ol>
+</li>
 </ul>
 </div>
 </section>
 <section class="split-col accent-yellow"><h3><svg class="i" aria-hidden="true"><use href="#i-hand"/></svg> Mi vár kire</h3><div class="body"><ul>
-<li><strong>admin:</strong> JIRA-jog, SharePoint-jog, külön KMTR export-csomag — ez nyitja a többit</li>
-<li><strong>platform:</strong> első betöltés, az élő ellenőrzések, a KMTR-wiki első generálása</li>
-<li><strong>kérő:</strong> hatókör megerősítése, próbakeresések, elfogadás</li>
+<li><strong>admin:</strong> JIRA-jog a technikai fióknak, SharePoint-jog megerősítése, a KMTR-gazda beengedése az olvasói csoportba</li>
+<li><strong>platform:</strong> az első éles éjszaka kiértékelése, az élő ellenőrzések, a KMTR-wiki első generálása</li>
+<li><strong>kérő:</strong> próbakeresések a KMTR-útvonalon, majd az elfogadás</li>
 </ul>
 </div>
 </section>
