@@ -188,8 +188,8 @@ A teszteket a mechanizmus **előtt** írtuk meg és tettük be a verziókezelőb
 ### :check-circle: a feloldó {accent=green}
 „két tenant egy fiók alatt" — piros: a régi kód egy tenantot feltételezett, és a második sornál összeomlott volna. **Ezt a teszt találta meg**, nem a tervezés.
 
-### :x-circle: JIRA-jog {accent=red}
-„a technikai fiók látja a KMTR-projektet" — piros, amíg az admin nem ad jogot. A teszt méri a másik csapat kapuját is.
+### :check-circle: JIRA-jog {accent=green}
+„a technikai fiók látja a KMTR-projektet" — piros volt, amíg az admin nem adott jogot; a 2. nap délutánján zöld lett. A teszt a másik csapat kapuját is mérte.
 
 ### :warning: a zöld, ami hazudott {accent=yellow}
 A feloldó migrációja a próba-adatbázison zöld volt — az élesen elbukott. A próba egy olyan alakot játszott újra, amilyen az éles sosem volt. Új teszt: **az éles alak visszajátszása**, állandó kapuként.
@@ -312,8 +312,8 @@ A kérő aláír.
 Minden nyíl egy emberi döntés. A gép mindent előkészít — a kapukat nem nyithatja ki.
 
 ```notes
-⏱ 25:00 — Hat kapu, hat ember vagy csapat. Mondd ki: az első, a második és a negyedik kapu mögöttünk van
-(összefésülés, migráció, telepítés) — a harmadik (admin-jogok és a külön csomag) nyitja a maradék kettőt.
+⏱ 25:00 — Hat kapu, hat ember vagy csapat. Mondd ki: az első négy kapu mögöttünk van (összefésülés,
+migráció, admin-jogok és a külön csomag, telepítés) — az első éles futás ma éjjel, az utolsó szó a kérőé.
 ```
 
 ## Ki mit ad hozzá {layout=table label="A munkamegosztás" id=s14}
@@ -420,15 +420,16 @@ minden kártya egy olyan hiba vagy hiány, amit a kérés tett láthatóvá — 
 - 2. nap: összefésülés, a migrációk az éles adatbázisokon (egy éles-alak tanulsággal), a betöltő és Laura telepítve
 - 2. nap: egy hetek óta piros ellenőrző futás is zöld lett — a kérés ürügyén, mint a webhook
 - 2. nap délután: a KMTR-csomag megérkezett és érvényes, a háttérmunkás minden tenant kulcsát látja, a lábléc tenant-váltó él, az első riasztások két javítást hoztak — minden telepítve
+- 2. nap délután: az admin kapuja bezárult — a KMTR-gazda az olvasói csoportban, a technikai fiók látja a KMTR-projektet; mindkettőt a friss export és egy élő próba igazolta
 
 ### :hand: Mi vár kire {accent=yellow}
-- **admin:** JIRA-jog a technikai fióknak, SharePoint-jog megerősítése, a KMTR-gazda beengedése az olvasói csoportba
-- **platform:** az első éles éjszaka kiértékelése, az élő ellenőrzések, a KMTR-wiki első generálása
+- **admin:** nincs nyitott teendő — a SharePoint-olvasást az első éjszakai bejárás igazolja
+- **platform:** az első éles éjszaka kiértékelése, a KMTR keresési útvonal telepítése, az élő ellenőrzések, a KMTR-wiki első generálása
 - **kérő:** próbakeresések a KMTR-útvonalon, majd az elfogadás
 
 ```notes
 ⏱ 29:45 — Rövid. A bal oszlop két napot mond: a mechanizmus egy este, a kapuk egy délelőtt, a többlet egy délután.
-A jobb oszlop a lényeg: az admin kapuja nyitja a többit, és az utolsó szó a kérőé.
+A jobb oszlop a lényeg: az admin kapuja bezárult, a következő kapu az első éles éjszaka — és az utolsó szó a kérőé.
 ```
 
 ## Mit fogadunk el? {layout=cards label="Az elfogadás mércéje" id=s19}

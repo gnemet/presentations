@@ -1221,7 +1221,7 @@ blockquote {
 </div>
 <div class="content-grid cols-4"><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-check-circle"/></svg><h3>útválasztás</h3></div><div class="body"><p>„KMTR-forrás → kmtr tenant&quot; — piros volt, amíg az útválasztó sorok migrációja nem létezett. Ma zöld, az éles adatbázison is.</p>
 </div></article><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-check-circle"/></svg><h3>a feloldó</h3></div><div class="body"><p>„két tenant egy fiók alatt&quot; — piros: a régi kód egy tenantot feltételezett, és a második sornál összeomlott volna. <strong>Ezt a teszt találta meg</strong>, nem a tervezés.</p>
-</div></article><article class="card accent-red"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-x-circle"/></svg><h3>JIRA-jog</h3></div><div class="body"><p>„a technikai fiók látja a KMTR-projektet&quot; — piros, amíg az admin nem ad jogot. A teszt méri a másik csapat kapuját is.</p>
+</div></article><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-check-circle"/></svg><h3>JIRA-jog</h3></div><div class="body"><p>„a technikai fiók látja a KMTR-projektet&quot; — piros volt, amíg az admin nem adott jogot; a 2. nap délutánján zöld lett. A teszt a másik csapat kapuját is mérte.</p>
 </div></article><article class="card accent-yellow"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-warning"/></svg><h3>a zöld, ami hazudott</h3></div><div class="body"><p>A feloldó migrációja a próba-adatbázison zöld volt — az élesen elbukott. A próba egy olyan alakot játszott újra, amilyen az éles sosem volt. Új teszt: <strong>az éles alak visszajátszása</strong>, állandó kapuként.</p>
 </div></article>
 </div><div class="after-block"><div class="body after"><blockquote>
@@ -1407,12 +1407,17 @@ blockquote {
 <li>nap délután: a KMTR-csomag megérkezett és érvényes, a háttérmunkás minden tenant kulcsát látja, a lábléc tenant-váltó él, az első riasztások két javítást hoztak — minden telepítve</li>
 </ol>
 </li>
+<li>
+<ol start="2">
+<li>nap délután: az admin kapuja bezárult — a KMTR-gazda az olvasói csoportban, a technikai fiók látja a KMTR-projektet; mindkettőt a friss export és egy élő próba igazolta</li>
+</ol>
+</li>
 </ul>
 </div>
 </section>
 <section class="split-col accent-yellow"><h3><svg class="i" aria-hidden="true"><use href="#i-hand"/></svg> Mi vár kire</h3><div class="body"><ul>
-<li><strong>admin:</strong> JIRA-jog a technikai fióknak, SharePoint-jog megerősítése, a KMTR-gazda beengedése az olvasói csoportba</li>
-<li><strong>platform:</strong> az első éles éjszaka kiértékelése, az élő ellenőrzések, a KMTR-wiki első generálása</li>
+<li><strong>admin:</strong> nincs nyitott teendő — a SharePoint-olvasást az első éjszakai bejárás igazolja</li>
+<li><strong>platform:</strong> az első éles éjszaka kiértékelése, a KMTR keresési útvonal telepítése, az élő ellenőrzések, a KMTR-wiki első generálása</li>
 <li><strong>kérő:</strong> próbakeresések a KMTR-útvonalon, majd az elfogadás</li>
 </ul>
 </div>

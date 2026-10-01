@@ -68,8 +68,8 @@ soha nem a platformé — ezért a kérőé az utolsó szó.
 
 ## 13. A kapuk sorban (#s13)
 
-⏱ 25:00 — Hat kapu, hat ember vagy csapat. Mondd ki: az első, a második és a negyedik kapu mögöttünk van
-(összefésülés, migráció, telepítés) — a harmadik (admin-jogok és a külön csomag) nyitja a maradék kettőt.
+⏱ 25:00 — Hat kapu, hat ember vagy csapat. Mondd ki: az első négy kapu mögöttünk van (összefésülés,
+migráció, admin-jogok és a külön csomag, telepítés) — az első éles futás ma éjjel, az utolsó szó a kérőé.
 
 ## 14. Ki mit ad hozzá (#s14)
 
@@ -96,7 +96,7 @@ minden kártya egy olyan hiba vagy hiány, amit a kérés tett láthatóvá — 
 ## 19. Hol tartunk, mi következik (#s18)
 
 ⏱ 29:45 — Rövid. A bal oszlop két napot mond: a mechanizmus egy este, a kapuk egy délelőtt, a többlet egy délután.
-A jobb oszlop a lényeg: az admin kapuja nyitja a többit, és az utolsó szó a kérőé.
+A jobb oszlop a lényeg: az admin kapuja bezárult, a következő kapu az első éles éjszaka — és az utolsó szó a kérőé.
 
 ## 20. Mit fogadunk el? (#s19)
 
