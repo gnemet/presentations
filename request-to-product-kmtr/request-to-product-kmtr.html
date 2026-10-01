@@ -1051,9 +1051,9 @@ blockquote {
 
 <main class="deck">
 <div class="slide layout-title title-slide align-top" id="s1" aria-roledescription="slide">
-<h1 class="big-title">Kéréstől a termékig</h1><div class="big-sub"><p>Egy valódi kérés — <em>„a KMTR is legyen az IIER tudástár része&quot;</em> — és ami vele egyetlen nap alatt történt: mérés, döntés, specifikáció, tesztek, mechanizmus, kapuk.</p>
+<h1 class="big-title">Kéréstől a termékig</h1><div class="big-sub"><p>Egy valódi kérés — <em>„a KMTR is legyen az IIER tudástár része&quot;</em> — és ami vele egy nap alatt történt: mérés, döntés, specifikáció, tesztek, mechanizmus; majd másnap a kapuk, egyenként, emberi kézzel.</p>
 <p><strong>nem ígéret, hanem mérés</strong> · <strong>spec előbb, mint kód</strong> · <strong>piros teszt előbb, mint mechanizmus</strong> · <strong>az ember tart minden kaput</strong></p>
-</div><div class="meta-row"><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-users"/></svg>KMTR kérők · Ulyssys kollégák</span><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg>30 min</span><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-calendar"/></svg>2026. szeptember</span><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-users"/></svg>kérő · admin · platform</span><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-flow-arrow"/></svg>kérés → termék</span></div>
+</div><div class="meta-row"><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-users"/></svg>KMTR kérők · Ulyssys kollégák</span><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg>30 min</span><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-calendar"/></svg>2026. szeptember–október</span><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-users"/></svg>kérő · admin · platform</span><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-flow-arrow"/></svg>kérés → termék</span></div>
 </div>
 <div class="slide layout-cards align-top" id="s2" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">1. nap, reggel</span></div><h2> A kérés</h2></div><div class="body lead"><p>Egy rövid e-mail a KMTR projekt szervezőjétől, a két projektvezetővel egyeztetve.</p>
 </div>
@@ -1217,15 +1217,15 @@ blockquote {
 </ul>
 </div></div>
 </div>
-<div class="slide layout-cards align-top" id="s9" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A bizonyíték a kód előtt</span></div><h2> Tesztek előbb — és ma pirosak</h2></div><div class="body lead"><p>A teszteket a mechanizmus <strong>előtt</strong> írtuk meg és tettük be a verziókezelőbe. Ma pirosak — és pontosan ott, ahol kell.</p>
+<div class="slide layout-cards align-top" id="s9" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A bizonyíték a kód előtt</span></div><h2> Tesztek előbb — pirosan, aztán zölden</h2></div><div class="body lead"><p>A teszteket a mechanizmus <strong>előtt</strong> írtuk meg és tettük be a verziókezelőbe. Az első napon pirosak voltak — pontosan ott, ahol kellett; másnapra zöldek.</p>
 </div>
-<div class="content-grid cols-4"><article class="card accent-red"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-x-circle"/></svg><h3>útválasztás</h3></div><div class="body"><p>„KMTR-forrás → kmtr tenant&quot; — piros, mert az útválasztó sorok migrációja még nem létezik.</p>
-</div></article><article class="card accent-red"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-x-circle"/></svg><h3>a feloldó</h3></div><div class="body"><p>„két tenant egy fiók alatt&quot; — piros: a mai kód egy tenantot feltételez, és a második sor megjelenésekor összeomlana. <strong>Ezt a teszt találta meg.</strong></p>
+<div class="content-grid cols-4"><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-check-circle"/></svg><h3>útválasztás</h3></div><div class="body"><p>„KMTR-forrás → kmtr tenant&quot; — piros volt, amíg az útválasztó sorok migrációja nem létezett. Ma zöld, az éles adatbázison is.</p>
+</div></article><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-check-circle"/></svg><h3>a feloldó</h3></div><div class="body"><p>„két tenant egy fiók alatt&quot; — piros: a régi kód egy tenantot feltételezett, és a második sornál összeomlott volna. <strong>Ezt a teszt találta meg</strong>, nem a tervezés.</p>
 </div></article><article class="card accent-red"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-x-circle"/></svg><h3>JIRA-jog</h3></div><div class="body"><p>„a technikai fiók látja a KMTR-projektet&quot; — piros, amíg az admin nem ad jogot. A teszt méri a másik csapat kapuját is.</p>
-</div></article><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-check-circle"/></svg><h3>egy csomag = egy tenant</h3></div><div class="body"><p>Zöld pin: a betöltő már ma helyesen vetít két külön csomagot — ezt nem építeni, hanem rögzíteni kellett.</p>
+</div></article><article class="card accent-yellow"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-warning"/></svg><h3>a zöld, ami hazudott</h3></div><div class="body"><p>A feloldó migrációja a próba-adatbázison zöld volt — az élesen elbukott. A próba egy olyan alakot játszott újra, amilyen az éles sosem volt. Új teszt: <strong>az éles alak visszajátszása</strong>, állandó kapuként.</p>
 </div></article>
 </div><div class="after-block"><div class="body after"><blockquote>
-<p><svg class="i" aria-hidden="true"><use href="#i-warning"/></svg> Egy utólag írt teszt olyan teszt, amit a kód garantáltan átmegy. A gép — ha nyomás alatt van — az állítást gyengíti, nem a feltevést. Ezért piros előbb.</p>
+<p><svg class="i" aria-hidden="true"><use href="#i-warning"/></svg> Egy utólag írt teszt olyan teszt, amit a kód garantáltan átmegy. És egy zöld teszt is csak annyit bizonyít, amennyit a valóságból mér. Ezért piros előbb — és ezért kell a próbának az éles alakját mérnie.</p>
 </blockquote>
 </div></div>
 </div>
@@ -1273,7 +1273,8 @@ blockquote {
 <section class="split-col accent-blue"><h3><svg class="i" aria-hidden="true"><use href="#i-cpu"/></svg> Verifikáció — „jól építettük meg?&#34;</h3><div class="body"><ul>
 <li>a gép futtatja: fordítás, tesztek, füstpróba, séma-ellenőrzés</li>
 <li>egy ember <strong>átnézi a diffet</strong> — és a tesztet is, nem csak a kódot</li>
-<li>ma: a hermetikus adatbázis-tesztek, a betöltő-szabályok ellenőrzése, az adatbázis-szakértő átvizsgálása</li>
+<li>a hermetikus adatbázis-tesztek, a betöltő-szabályok ellenőrzése, az adatbázis-szakértő átvizsgálása</li>
+<li>és a tanulság: a próba csak akkor bizonyít, ha az <strong>éles alakot</strong> méri — ezért kapott a próba egy éles-alak módot</li>
 </ul>
 </div>
 </section>
@@ -1353,6 +1354,7 @@ blockquote {
 <li>a választás az adatbázis <strong>munkamenet-változójaként</strong> érvényesül minden lekérdezésen</li>
 <li>csak azok a tenantok kínálhatók, ahová a felhasználót beengedték; egy tenant esetén nincs is választó</li>
 <li>Laura „kalapjai&quot; (szerkesztő, forrás, üzleti elemző) ettől független tengely maradnak</li>
+<li>a választó <strong>él</strong>: egy felhasználó, akit mindkét tenantba beengedtek, már ma vált; aki egybe, nem is látja</li>
 </ul>
 </div>
 </section>
@@ -1368,20 +1370,34 @@ blockquote {
 </div>
 <div class="slide layout-split align-top" id="s18" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Idővonal</span></div><h2> Hol tartunk, mi következik</h2></div>
 <div class="split">
-<section class="split-col accent-green"><h3><svg class="i" aria-hidden="true"><use href="#i-check-circle"/></svg> Egy nap alatt kész</h3><div class="body"><ul>
-<li>mérés és a két jegy felelősökkel</li>
-<li>a döntés: külön tenant</li>
-<li>a specifikáció, kétszer (az átírás is a módszer része)</li>
-<li>a piros tesztek mindkét oldalon</li>
-<li>a webhook-riasztás mechanizmusa, átnézve, összefésülve</li>
+<section class="split-col accent-green"><h3><svg class="i" aria-hidden="true"><use href="#i-check-circle"/></svg> Két nap alatt kész</h3><div class="body"><ul>
+<li>
+<ol>
+<li>nap: mérés, két jegy felelősökkel, a döntés (külön tenant), a specifikáció kétszer, a piros tesztek</li>
+</ol>
+</li>
+<li>
+<ol>
+<li>nap este: a mechanizmus — migrációk, betöltő-fa, tenant-választó — a tesztek zöldre</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>nap: összefésülés, a migrációk az éles adatbázisokon (egy éles-alak tanulsággal), a betöltő és Laura telepítve</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>nap: egy hetek óta piros ellenőrző futás is zöld lett — a kérés ürügyén, mint a webhook</li>
+</ol>
+</li>
 </ul>
 </div>
 </section>
 <section class="split-col accent-yellow"><h3><svg class="i" aria-hidden="true"><use href="#i-hand"/></svg> Mi vár kire</h3><div class="body"><ul>
-<li><strong>admin:</strong> JIRA-jog, SharePoint-jog, külön KMTR export-csomag</li>
-<li><strong>adatbázis-gazda:</strong> két migráció alkalmazása a helyes sorrendben</li>
-<li><strong>platform:</strong> betöltő-fa, útvonal, tenant-választó — a piros tesztek zöldre</li>
-<li><strong>kérő:</strong> hatókör megerősítése, majd az elfogadás</li>
+<li><strong>admin:</strong> JIRA-jog, SharePoint-jog, külön KMTR export-csomag — ez nyitja a többit</li>
+<li><strong>platform:</strong> első betöltés, az élő ellenőrzések, a KMTR-wiki első generálása</li>
+<li><strong>kérő:</strong> hatókör megerősítése, próbakeresések, elfogadás</li>
 </ul>
 </div>
 </section>

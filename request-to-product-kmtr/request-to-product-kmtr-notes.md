@@ -44,10 +44,12 @@ kódsort. Ez a szabály, nem szokás — a gép sem írhat kódot spec nélkül.
 ⏱ 14:30 — (ha van idő) Olvass fel egyet, és mutasd meg, hogyan lesz belőle teszt: „hibát dob és
 megáll" → egy teszt, ami beír egy KMTR-oldalt a sor nélkül, és elvárja a hibát.
 
-## 9. Tesztek előbb — és ma pirosak (#s9)
+## 9. Tesztek előbb — pirosan, aztán zölden (#s9)
 
 ⏱ 16:30 — (ha van idő) A második kártya a nap legjobb példája: nem a tervezés, hanem egy piros teszt
-mutatta meg, hogy a „két tenant" döntés eltör egy meglévő függvényt. Ezért van a teszt a kód előtt.
+mutatta meg, hogy a „két tenant" döntés eltör egy meglévő függvényt. A negyedik a második nap tanulsága:
+a zöld próba sem bizonyíték, ha nem az éles alakot méri — a hibát az első éles alkalmazás találta meg,
+és a javítás először egy új piros teszt volt, aztán a migráció.
 
 ## 10. A mechanizmus: adat, nem kód (#s10)
 
@@ -66,7 +68,8 @@ soha nem a platformé — ezért a kérőé az utolsó szó.
 
 ## 13. A kapuk sorban (#s13)
 
-⏱ 25:00 — Hat kapu, hat ember vagy csapat. Mondd ki: ma a második és a harmadik kapunál tartunk.
+⏱ 25:00 — Hat kapu, hat ember vagy csapat. Mondd ki: az első, a második és a negyedik kapu mögöttünk van
+(összefésülés, migráció, telepítés) — a harmadik (admin-jogok és a külön csomag) nyitja a maradék kettőt.
 
 ## 14. Ki mit ad hozzá (#s14)
 
@@ -87,7 +90,8 @@ soha nem a platformé — ezért a kérőé az utolsó szó.
 
 ## 18. Hol tartunk, mi következik (#s18)
 
-⏱ 29:30 — Rövid. A lényeg a jobb oszlop: mindenki látja a saját következő lépését.
+⏱ 29:30 — Rövid. A bal oszlop két napot mond, nem egyet: a mechanizmus egy este, a kapuk egy délelőtt.
+A jobb oszlop a lényeg: az admin kapuja nyitja a többit, és az utolsó szó a kérőé.
 
 ## 19. Mit fogadunk el? (#s19)
 
