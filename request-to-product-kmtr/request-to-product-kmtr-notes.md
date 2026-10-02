@@ -68,8 +68,9 @@ soha nem a platformé — ezért a kérőé az utolsó szó.
 
 ## 13. A kapuk sorban (#s13)
 
-⏱ 25:00 — Hat kapu, hat ember vagy csapat. Mondd ki: az első négy kapu mögöttünk van (összefésülés,
-migráció, admin-jogok és a külön csomag, telepítés) — az első éles futás ma éjjel, az utolsó szó a kérőé.
+⏱ 25:00 — Hat kapu, hat ember vagy csapat. Mondd ki: öt kapu mögöttünk van — összefésülés, migráció,
+admin-jogok (a SharePoint-olvasással együtt), telepítés és az első éles futás a 3. nap reggelére lezajlott.
+Egy kapu maradt: a kérőé.
 
 ## 14. Ki mit ad hozzá (#s14)
 
@@ -93,15 +94,20 @@ migráció, admin-jogok és a külön csomag, telepítés) — az első éles fu
 ⏱ 29:00 — Egy mondat kártyánként. A közönségnek az első kártya szól (ezt látják); a kollégáknak a többi:
 minden kártya egy olyan hiba vagy hiány, amit a kérés tett láthatóvá — és mind tesztet kapott.
 
-## 19. Hol tartunk, mi következik (#s18)
+## 19. A harmadik nap: az első éjszaka és ami kiderült (#s17c)
 
-⏱ 29:45 — Rövid. A bal oszlop két napot mond: a mechanizmus egy este, a kapuk egy délelőtt, a többlet egy délután.
-A jobb oszlop a lényeg: az admin kapuja bezárult, a következő kapu az első éles éjszaka — és az utolsó szó a kérőé.
+⏱ 29:20 — A harmadik nap kártyái. A közönségnek az első kettő (a korpusz és a harminc szócikk); a kollégáknak
+a többi: minden kártya egy éjszaka által megmutatott hiba vagy hiány — és mind tesztet kapott, mielőtt javítottuk.
 
-## 20. Mit fogadunk el? (#s19)
+## 20. Hol tartunk, mi következik (#s18)
+
+⏱ 29:45 — Rövid. A bal oszlop három napot mond: a mechanizmus egy este, a kapuk egy délelőtt, a többlet egy délután,
+a termék egy éjszaka. A jobb oszlop a lényeg: minden kapu zárva, egy maradt — a kérő szava, és az első visszajelzések.
+
+## 21. Mit fogadunk el? (#s19)
 
 ⏱ 30:00 — Ez a négy mondat a kérő aláírásának tárgya. Kérdések.
 
-## 21. Köszönöm (#s20)
+## 22. Köszönöm (#s20)
 
 ⏱ 30:00 — Zárás. Ha kérdés jön a „mikor" felől: a jobb oszlop a 18. dián.

@@ -312,8 +312,9 @@ A kérő aláír.
 Minden nyíl egy emberi döntés. A gép mindent előkészít — a kapukat nem nyithatja ki.
 
 ```notes
-⏱ 25:00 — Hat kapu, hat ember vagy csapat. Mondd ki: az első négy kapu mögöttünk van (összefésülés,
-migráció, admin-jogok és a külön csomag, telepítés) — az első éles futás ma éjjel, az utolsó szó a kérőé.
+⏱ 25:00 — Hat kapu, hat ember vagy csapat. Mondd ki: öt kapu mögöttünk van — összefésülés, migráció,
+admin-jogok (a SharePoint-olvasással együtt), telepítés és az első éles futás a 3. nap reggelére lezajlott.
+Egy kapu maradt: a kérőé.
 ```
 
 ## Ki mit ad hozzá {layout=table label="A munkamegosztás" id=s14}
@@ -352,7 +353,8 @@ Aki mindkét listán szerepel, mindkét útvonalat használhatja. Aki csak az eg
 
 ### :books: A wiki {accent=green}
 - a szócikkek tenantonként generálódnak — egy KMTR-szócikk csak KMTR-forrásra hivatkozhat
-- ember hagyja jóvá, mielőtt olvasható lesz
+- **a 3. napon megszületett az első 30 KMTR-szócikk** (vázlatként, tizenkét perc alatt): kárbejelentés és kárenyhítés, szemle és mobilapplikáció, drónos szemle, döntéssablonok, környezetek, telepítés, folyamatmotor, módszertan — egyik sem hivatkozik KMTR-en kívüli forrásra
+- ember hagyja jóvá, mielőtt olvasható lesz — ehhez a hub-adminisztrátor is beengedést kapott a KMTR tenantba
 - Laura a jóváhagyott szócikkekből válaszol
 
 ### :sparkle: A választó {accent=mauve}
@@ -412,24 +414,53 @@ Az ügyfélcsomag folyamatos ellenőrzése hetek óta piros volt három elavult 
 minden kártya egy olyan hiba vagy hiány, amit a kérés tett láthatóvá — és mind tesztet kapott.
 ```
 
+## A harmadik nap: az első éjszaka és ami kiderült {layout=cards label="Az első éles futás" id=s17c skip=talk}
+
+Az első éjszaka a kérésből termék lett: a KMTR-korpusz bent van. És az éjszaka három olyan hibát is megmutatott, amit nappal senki nem látott volna.
+
+### :check-circle: A korpusz megérkezett {accent=green}
+A hajnali bejárás a KMTR JIRA-ját és Confluence-ét teljes egészében betöltötte és beágyazta — több ezer feladat, több száz oldal, tízezer szövegdarab. Egyetlen KMTR-tétel sem keveredett az IIER-oldalra; a kérő és a KMTR-gazda a KMTR-forrásokat látja, ugyanaz a felhasználó az IIER-oldalon csak a nyilvánosat.
+
+### :books: Harminc szócikk {accent=mauve}
+A wiki-generátor a KMTR Confluence-éből harminc témát talált, és mindhez írt egy vázlatot — tizenkét perc. Mind vázlat marad, amíg egy ember át nem nézi; a KMTR-oldali visszajelzés erre vár.
+
+### :warning: A sikeres éjszaka, ami nem csinált semmit {accent=red}
+A jogosultság-betöltő előző esti sikertelen futása egy mentett állapotot hagyott hátra; az ütemezett futás onnan folytatta, nem talált tennivalót, és „sikert" jelentett. A motor hibája volt, nem a KMTR-é — reggelre javítva, teszttel előbb, délelőtt telepítve.
+
+### :key: SharePoint: a jog megvan, a lista hiányzott {accent=yellow}
+Az admin megadta az olvasást — egy próba 150 dokumentumot olvasott hiba nélkül. Az export mégsem sorolta fel a dokumentumtárat, mert az a webhely jogait örökli. A betöltő most a megnevezett mappából a tárat is levezeti: adminisztrátori teendő nélkül bekerült a bejárandók közé.
+
+### :users: Az admin is beléphet {accent=blue}
+A hub-adminisztrátor csoportja csak az IIER-tenantba volt beengedve, így a lábléc váltója számára nem volt kapcsoló. Egy migráció — teszttel előbb — a KMTR tenantba is beengedte: a szócikkeket lektorálni csak beengedett ember tudja.
+
+### :chart-line: Ami a gépnek is sok volt {accent=teal}
+A beágyazó kapacitás háromnegyede éjjel kiesett; a maradék egy példányon az éjszaka mégis lefutott, lassabban. A helyreállítás emberi kézben van — a gép jelezte, nem leplezte.
+
+```notes
+⏱ 29:20 — A harmadik nap kártyái. A közönségnek az első kettő (a korpusz és a harminc szócikk); a kollégáknak
+a többi: minden kártya egy éjszaka által megmutatott hiba vagy hiány — és mind tesztet kapott, mielőtt javítottuk.
+```
+
 ## Hol tartunk, mi következik {layout=split ratio=50-50 label="Idővonal" id=s18}
 
-### :check-circle: Két nap alatt kész {accent=green}
+### :check-circle: Három nap {accent=green}
 - 1. nap: mérés, két jegy felelősökkel, a döntés (külön tenant), a specifikáció kétszer, a piros tesztek
 - 1. nap este: a mechanizmus — migrációk, betöltő-fa, tenant-választó — a tesztek zöldre
 - 2. nap: összefésülés, a migrációk az éles adatbázisokon (egy éles-alak tanulsággal), a betöltő és Laura telepítve
 - 2. nap: egy hetek óta piros ellenőrző futás is zöld lett — a kérés ürügyén, mint a webhook
 - 2. nap délután: a KMTR-csomag megérkezett és érvényes, a háttérmunkás minden tenant kulcsát látja, a lábléc tenant-váltó él, az első riasztások két javítást hoztak — minden telepítve
 - 2. nap délután: az admin kapuja bezárult — a KMTR-gazda az olvasói csoportban, a technikai fiók látja a KMTR-projektet; mindkettőt a friss export és egy élő próba igazolta
+- 3. nap reggel: az első éles éjszaka — a KMTR JIRA és Confluence a korpuszban, az elkülönítés élesben igazolva; a betöltő „üres sikerét" megtaláltuk, javítottuk és telepítettük
+- 3. nap délelőtt: harminc KMTR-szócikk vázlatként; a SharePoint-olvasás bizonyítva, a dokumentumtár a bejárandók között; a hub-adminisztrátor beengedve a KMTR tenantba
 
 ### :hand: Mi vár kire {accent=yellow}
-- **admin:** nincs nyitott teendő — a SharePoint-olvasást az első éjszakai bejárás igazolja
-- **platform:** az első éles éjszaka kiértékelése, a KMTR keresési útvonal telepítése, az élő ellenőrzések, a KMTR-wiki első generálása
-- **kérő:** próbakeresések a KMTR-útvonalon, majd az elfogadás
+- **admin:** nincs nyitott teendő — a jogok mindhárom forráson igazolva
+- **platform:** az első SharePoint-bejárás ma éjjel; a KMTR keresési útvonal telepítése; a szócikkek lektorálása
+- **kérő:** a harminc szócikk átnézése és visszajelzés — mi hasznos, mi hiányzik —, próbakeresések a KMTR-útvonalon, majd az elfogadás
 
 ```notes
-⏱ 29:45 — Rövid. A bal oszlop két napot mond: a mechanizmus egy este, a kapuk egy délelőtt, a többlet egy délután.
-A jobb oszlop a lényeg: az admin kapuja bezárult, a következő kapu az első éles éjszaka — és az utolsó szó a kérőé.
+⏱ 29:45 — Rövid. A bal oszlop három napot mond: a mechanizmus egy este, a kapuk egy délelőtt, a többlet egy délután,
+a termék egy éjszaka. A jobb oszlop a lényeg: minden kapu zárva, egy maradt — a kérő szava, és az első visszajelzések.
 ```
 
 ## Mit fogadunk el? {layout=cards label="Az elfogadás mércéje" id=s19}
