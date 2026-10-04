@@ -332,13 +332,13 @@ Egy kapu maradt: a kérőé.
 
 ## Aki jogosult, az látja — hogyan? {layout=cards label="Jogosultság" id=s15}
 
-### :lock: 1. Szerep {accent=blue}
+### :lock: Szerep {accent=blue}
 Az adatbázis sor-szintű szabálya: egy technikai fiók csak azokat a tenantokat látja, amelyekre hozzáférési sora van.
 
-### :flow-arrow: 2. Útvonal {accent=mauve}
+### :flow-arrow: Útvonal {accent=mauve}
 Minden olvasó függvény tenant-paramétert kap; a KMTR-útvonal csak a KMTR-tenantot kérdezheti — szerkezetileg.
 
-### :users: 3. Felhasználólista {accent=green}
+### :users: Felhasználólista {accent=green}
 Az útvonalon belül a kereső csak azt adja vissza, amire a kérdezőt az export **felhasználólistája** feljogosítja.
 
 ---
@@ -441,26 +441,75 @@ A beágyazó kapacitás háromnegyede éjjel kiesett; a maradék egy példányon
 a többi: minden kártya egy éjszaka által megmutatott hiba vagy hiány — és mind tesztet kapott, mielőtt javítottuk.
 ```
 
+## A negyedik nap: él a keresés, mindhárom forrás bent {layout=cards label="A termék használható" id=s17d}
+
+A második éjszaka után a KMTR-tudástár kereshető lett — és délelőttre a harmadik forrás is megérkezett. Közben a platform két saját adósságát is rendezte.
+
+### :magnifying-glass: A KMTR-keresés él {accent=blue}
+A külön KMTR keresési útvonal hat eszközzel működik. Élő próba: egy KMTR-felhasználó a KMTR-útvonalon KMTR-oldalakat és KMTR-szócikket kap, ugyanő az IIER-útvonalon nullát; jogosultság nélküli azonosítót mindkét útvonal elutasít.
+
+### :books: Mindhárom forrás a tudástárban {accent=green}
+Az első SharePoint-bejárás egy első futásra jellemző hibán akadt el — még nem volt tárolt dokumentum, és a lépés ezt leállásként kezelte. Javítva, teszttel előbb; délelőtt 150 dokumentum, 23 509 szövegdarab, mind a KMTR-jogosultsághoz kötve. Egyetlen fájl sem került az IIER-oldalra.
+
+### :warning: Nyolc perc csend {accent=red}
+A KMTR-útvonal telepítésekor a beállítás előbb ért célba, mint a mappája; a szolgáltatás ezt minden útvonalra hibaként kezelte, és nyolc percig egyik tudástár sem válaszolt. A tanulság a tervbe került: a sorrend megfordítva, minden későbbi lépésnél így.
+
+### :lock: A betöltő nem rendszergazda többé {accent=mauve}
+A jogosultság-betöltő eddig teljes jogú adatbázis-kapcsolattal futott. Most egy saját, szűk szerepkörrel: pontosan azt a három műveletet és a naplóírást kapja, amit a munkája igényel. Élesben igazolva, mindkét tenanton.
+
+### :flow-arrow: Egy IIER-útvonal maradt {accent=teal}
+A régi és az új IIER keresési útvonal hetek óta párhuzamosan élt. Az ügyfélcsomagok átirányítása után a régi útvonal este leállt; az IIER-nek és a KMTR-nek egy-egy útvonala van.
+
+### :list-checks: A napló valós számokat mond {accent=yellow}
+Az éjszakai összesítő sor a lépések lefutása előtt íródott, így kitöltetlen helyőrzőket mutatott. A sorrend javítva: a reggeli állapot már számokból olvasható.
+
+```notes
+⏱ 29:30 — A közönségnek az első kettő: a keresés él és elkülönít, és mindhárom forrás bent van — ez a kérés teljesítése.
+A kollégáknak a nyolc perc: egy sorrendi hiba, amely minden tudástárat érintett — és amit a terv azóta előír.
+```
+
+## Az ötödik nap reggele: a csendes éjszaka {layout=cards label="A harmadik éjszaka" id=s17e skip=talk}
+
+A harmadik éjszaka a KMTR-oldalon esemény nélkül telt — és éppen a csend mutatott meg két apró hibát. Az IIER-oldalon két dolog kívülről jött.
+
+### :check-circle: A KMTR-éjszaka tiszta {accent=green}
+A jogosultság-betöltés már a szűk szerepkörrel futott; mindhárom forrás frissült (4720 feladat, 313 oldal), a SharePoint-tár 150 dokumentuma változatlan volt.
+
+### :warning: A csend is hibának látszott {accent=red}
+Változás nélküli éjszakán a SharePoint-bejárás „csonka" futást jelentett, és a Confluence-napló kitöltetlen helyőrzőt írt, mert nem volt mit beágyazni. Egyik sem adatvesztés, de egy reggeli olvasónak hibának tűnik. Mindkettő javítva, teszttel előbb; a próba igazolta, hogy a csendes futás most sikerrel zárul.
+
+### :clock: A telepítés belefutott az ütemezésbe {accent=yellow}
+Egy esti platformtelepítés újraindította a háttérmunkást, egy perccel az IIER jogosultság-betöltés indulása után — a futás megszakadt. Reggel újraindítva, sikerrel. Tanulság: telepítés előtt az ütemtervet is nézni kell.
+
+### :key: Egy jog elveszett az IIER-oldalon {accent=mauve}
+Az IIER éjszakai frissítésének JIRA-része azzal állt le, hogy a technikai felhasználó nem látja az IIER-projektet; két nappal korábban még látta. A KMTR-t nem érinti. A kérés az adminnál van.
+
+### :chart-line: A beágyazó kapacitás még fél {accent=teal}
+A négy beágyazó példányból kettő továbbra sem válaszol; az IIER SharePoint-bejárása emiatt hibával zárult. A helyreállítás emberi kézben van — a riasztás jelezte.
+
+```notes
+⏱ 29:40 — Kollégáknak. A tanulság a második kártya: egy csendes éjszakának is tisztán kell kinéznie a naplóban,
+különben a reggeli olvasó vaklármát lát. És a harmadik: a telepítés is lehet hibaforrás, ha nem nézi az ütemtervet.
+```
+
 ## Hol tartunk, mi következik {layout=split ratio=50-50 label="Idővonal" id=s18}
 
-### :check-circle: Három nap {accent=green}
-- 1. nap: mérés, két jegy felelősökkel, a döntés (külön tenant), a specifikáció kétszer, a piros tesztek
-- 1. nap este: a mechanizmus — migrációk, betöltő-fa, tenant-választó — a tesztek zöldre
-- 2. nap: összefésülés, a migrációk az éles adatbázisokon (egy éles-alak tanulsággal), a betöltő és Laura telepítve
-- 2. nap: egy hetek óta piros ellenőrző futás is zöld lett — a kérés ürügyén, mint a webhook
-- 2. nap délután: a KMTR-csomag megérkezett és érvényes, a háttérmunkás minden tenant kulcsát látja, a lábléc tenant-váltó él, az első riasztások két javítást hoztak — minden telepítve
-- 2. nap délután: az admin kapuja bezárult — a KMTR-gazda az olvasói csoportban, a technikai fiók látja a KMTR-projektet; mindkettőt a friss export és egy élő próba igazolta
-- 3. nap reggel: az első éles éjszaka — a KMTR JIRA és Confluence a korpuszban, az elkülönítés élesben igazolva; a betöltő „üres sikerét" megtaláltuk, javítottuk és telepítettük
-- 3. nap délelőtt: harminc KMTR-szócikk vázlatként; a SharePoint-olvasás bizonyítva, a dokumentumtár a bejárandók között; a hub-adminisztrátor beengedve a KMTR tenantba
+### :check-circle: Öt nap {accent=green}
+- 1. nap: mérés, két jegy felelősökkel, a döntés (külön tenant), a specifikáció, a piros tesztek; este a mechanizmus, a tesztek zöldre
+- 2. nap: a migrációk élesben, a betöltő és Laura telepítve; a KMTR-csomag érvényes, a lábléc tenant-váltó él; az admin kapuja bezárult
+- 3. nap: az első éles éjszaka — JIRA és Confluence a korpuszban, az elkülönítés igazolva; harminc szócikk-vázlat; a KMTR keresési útvonal telepítve, egy nyolcperces kiesés árán
+- 4. nap: a SharePoint is bent — 150 dokumentum —, így mindhárom forrás kereshető; a betöltő szűk szerepkörre váltott; a régi IIER-útvonal leállt
+- 5. nap reggel: tiszta KMTR-éjszaka; két „csendes éjszaka" naplóhiba javítva, teszttel előbb; a megszakított IIER-betöltés pótolva
 
 ### :hand: Mi vár kire {accent=yellow}
-- **admin:** nincs nyitott teendő — a jogok mindhárom forráson igazolva
-- **platform:** az első SharePoint-bejárás ma éjjel; a KMTR keresési útvonal telepítése; a szócikkek lektorálása
+- **admin:** a KMTR-oldalon nincs nyitott teendő; az IIER-oldalon egy: a technikai felhasználó IIER-projektjogának visszaadása (a KMTR-t nem érinti)
+- **platform:** a beágyazó kapacitás helyreállítása; a naplójavítás telepítése; a szócikkek lektorálása
 - **kérő:** a harminc szócikk átnézése és visszajelzés — mi hasznos, mi hiányzik —, próbakeresések a KMTR-útvonalon, majd az elfogadás
 
 ```notes
-⏱ 29:45 — Rövid. A bal oszlop három napot mond: a mechanizmus egy este, a kapuk egy délelőtt, a többlet egy délután,
-a termék egy éjszaka. A jobb oszlop a lényeg: minden kapu zárva, egy maradt — a kérő szava, és az első visszajelzések.
+⏱ 29:50 — Rövid. A bal oszlop öt napot mond: a mechanizmus egy este, a kapuk egy délelőtt, a többlet egy délután,
+a termék egy éjszaka, a teljes korpusz és a keresés a negyedik napon. A jobb oszlop a lényeg: a KMTR-oldalon minden kapu zárva,
+egy maradt — a kérő szava, és az első visszajelzések.
 ```
 
 ## Mit fogadunk el? {layout=cards label="Az elfogadás mércéje" id=s19}
@@ -487,5 +536,5 @@ Az IIER-keresés válaszideje nem változott a második tenanttól.
 A gép a kezeket adja. A kapukat mi tartjuk.
 
 ```notes
-⏱ 30:00 — Zárás. Ha kérdés jön a „mikor" felől: a jobb oszlop a 18. dián.
+⏱ 30:00 — Zárás. Ha kérdés jön a „mikor" felől: az Idővonal dia jobb oszlopa.
 ```

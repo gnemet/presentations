@@ -99,15 +99,26 @@ minden kártya egy olyan hiba vagy hiány, amit a kérés tett láthatóvá — 
 ⏱ 29:20 — A harmadik nap kártyái. A közönségnek az első kettő (a korpusz és a harminc szócikk); a kollégáknak
 a többi: minden kártya egy éjszaka által megmutatott hiba vagy hiány — és mind tesztet kapott, mielőtt javítottuk.
 
-## 20. Hol tartunk, mi következik (#s18)
+## 20. A negyedik nap: él a keresés, mindhárom forrás bent (#s17d)
 
-⏱ 29:45 — Rövid. A bal oszlop három napot mond: a mechanizmus egy este, a kapuk egy délelőtt, a többlet egy délután,
-a termék egy éjszaka. A jobb oszlop a lényeg: minden kapu zárva, egy maradt — a kérő szava, és az első visszajelzések.
+⏱ 29:30 — A közönségnek az első kettő: a keresés él és elkülönít, és mindhárom forrás bent van — ez a kérés teljesítése.
+A kollégáknak a nyolc perc: egy sorrendi hiba, amely minden tudástárat érintett — és amit a terv azóta előír.
 
-## 21. Mit fogadunk el? (#s19)
+## 21. Az ötödik nap reggele: a csendes éjszaka (#s17e)
+
+⏱ 29:40 — Kollégáknak. A tanulság a második kártya: egy csendes éjszakának is tisztán kell kinéznie a naplóban,
+különben a reggeli olvasó vaklármát lát. És a harmadik: a telepítés is lehet hibaforrás, ha nem nézi az ütemtervet.
+
+## 22. Hol tartunk, mi következik (#s18)
+
+⏱ 29:50 — Rövid. A bal oszlop öt napot mond: a mechanizmus egy este, a kapuk egy délelőtt, a többlet egy délután,
+a termék egy éjszaka, a teljes korpusz és a keresés a negyedik napon. A jobb oszlop a lényeg: a KMTR-oldalon minden kapu zárva,
+egy maradt — a kérő szava, és az első visszajelzések.
+
+## 23. Mit fogadunk el? (#s19)
 
 ⏱ 30:00 — Ez a négy mondat a kérő aláírásának tárgya. Kérdések.
 
-## 22. Köszönöm (#s20)
+## 24. Köszönöm (#s20)
 
-⏱ 30:00 — Zárás. Ha kérdés jön a „mikor" felől: a jobb oszlop a 18. dián.
+⏱ 30:00 — Zárás. Ha kérdés jön a „mikor" felől: az Idővonal dia jobb oszlopa.

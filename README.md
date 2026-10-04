@@ -13,7 +13,7 @@ Open a deck straight from disk (`file://…`) or through GitHub Pages at
 | Folder | Deck | Title | Origin |
 |---|---|---|---|
 | `spec-driven/` | [`presentation-sdd.html`](spec-driven/presentation-sdd.html) · [notes](spec-driven/presentation-sdd-notes.md) | Spec-driven Development (SdD) — módszertan, gyakorlati példával (v5) · HU · ~30 min talk / ~45 min full | moved here from infra-forge `docs/presentation/` on 2026-09-28 (last copy there: `de66d842`); infra-forge's About page links here |
-| `request-to-product-kmtr/` | [`request-to-product-kmtr.html`](request-to-product-kmtr/request-to-product-kmtr.html) · [notes](request-to-product-kmtr/request-to-product-kmtr-notes.md) | Kéréstől a termékig — a KMTR tudástár esete (HU, 30 min, 21 slides, talk cut 17) | claude-base session 2026-09-30, frissítve 2026-10-01 (kapuk, éles-alak tanulság, 2. nap többlete) |
+| `request-to-product-kmtr/` | [`request-to-product-kmtr.html`](request-to-product-kmtr/request-to-product-kmtr.html) · [notes](request-to-product-kmtr/request-to-product-kmtr-notes.md) | Kéréstől a termékig — a KMTR tudástár esete (HU, 30 min, 24 slides, talk cut 18) | claude-base session 2026-09-30, frissítve 2026-10-01 (kapuk, éles-alak tanulság, 2. nap többlete) |
 
 Each folder holds `<topic>.deck.md` (the source of truth), `<topic>.html` and `<topic>-notes.md`
 (both generated — never hand-edited).
