@@ -1125,7 +1125,7 @@ blockquote {
 </style>
 <style></style>
 </head>
-<body data-auto="0" data-t-views="Views of the same thing" data-t-view-tip="Show this view (f cycles the views)" data-t-no-details="No details for this slide." data-t-diagram-error="Diagram error — " data-t-diagram="Diagram">
+<body data-roles="{&#34;decision&#34;:{&#34;accent&#34;:&#34;peach&#34;,&#34;icon&#34;:&#34;tree-structure&#34;},&#34;error&#34;:{&#34;accent&#34;:&#34;red&#34;,&#34;icon&#34;:&#34;warning&#34;},&#34;external&#34;:{&#34;accent&#34;:&#34;lavender&#34;,&#34;icon&#34;:&#34;cloud&#34;},&#34;gate&#34;:{&#34;accent&#34;:&#34;yellow&#34;,&#34;icon&#34;:&#34;user-circle&#34;},&#34;output&#34;:{&#34;accent&#34;:&#34;green&#34;,&#34;icon&#34;:&#34;check-circle&#34;},&#34;process&#34;:{&#34;accent&#34;:&#34;sapphire&#34;,&#34;icon&#34;:&#34;gear&#34;},&#34;source&#34;:{&#34;accent&#34;:&#34;blue&#34;,&#34;icon&#34;:&#34;arrow-right&#34;},&#34;storage&#34;:{&#34;accent&#34;:&#34;teal&#34;,&#34;icon&#34;:&#34;database&#34;}}" data-auto="0" data-t-views="Views of the same thing" data-t-view-tip="Show this view (f cycles the views)" data-t-no-details="No details for this slide." data-t-diagram-error="Diagram error — " data-t-diagram="Diagram">
 <div class="deck-sprite" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 <symbol id="i-caret-double-left" viewBox="0 -960 1024 1024"><path d="M823 -151Q827 -146 829.5 -140.5Q832 -135 832 -128Q832 -115 822.5 -105.5Q813 -96 800 -96Q793 -96 787.5 -98.5Q782 -101 777 -105L457 -425Q453 -430 450.5 -435.5Q448 -441 448 -448Q448 -455 450.5 -460.5Q453 -466 457 -471L777 -791Q782 -795 787.5 -797.5Q793 -800 800 -800Q813 -800 822.5 -790.5Q832 -781 832 -768Q832 -761 829.5 -755.5Q827 -750 823 -745L525 -448ZM205 -448 503 -745Q507 -750 509.5 -755.5Q512 -761 512 -768Q512 -781 502.5 -790.5Q493 -800 480 -800Q473 -800 467.5 -797.5Q462 -795 457 -791L137 -471Q133 -466 130.5 -460.5Q128 -455 128 -448Q128 -441 130.5 -435.5Q133 -430 137 -425L457 -105Q462 -101 467.5 -98.5Q473 -96 480 -96Q493 -96 502.5 -105.5Q512 -115 512 -128Q512 -135 509.5 -140.5Q507 -146 503 -151Z"/></symbol>
 <symbol id="i-caret-left" viewBox="0 -960 1024 1024"><path d="M663 -151Q667 -146 669.5 -140.5Q672 -135 672 -128Q672 -115 662.5 -105.5Q653 -96 640 -96Q633 -96 627.5 -98.5Q622 -101 617 -105L297 -425Q293 -430 290.5 -435.5Q288 -441 288 -448Q288 -455 290.5 -460.5Q293 -466 297 -471L617 -791Q622 -795 627.5 -797.5Q633 -800 640 -800Q653 -800 662.5 -790.5Q672 -781 672 -768Q672 -761 669.5 -755.5Q667 -750 663 -745L365 -448Z"/></symbol>
@@ -1203,527 +1203,315 @@ blockquote {
     <button type="button" class="nav-btn" id="btn-talk" data-action="talk" aria-pressed="false" title="Talk mode — skip optional slides" aria-label="Talk mode"><svg class="i" aria-hidden="true"><use href="#i-fast-forward"/></svg></button>
     <button type="button" class="nav-btn" data-action="help" title="Keyboard shortcuts (?)" aria-label="Keyboard shortcuts"><svg class="i" aria-hidden="true"><use href="#i-question"/></svg></button>
     <button type="button" class="nav-btn" id="theme-toggle" data-action="theme" title="Toggle theme (t)" aria-label="Toggle theme"><svg class="i" aria-hidden="true"><use href="#i-sun"/></svg></button>
-    <span class="slide-counter" aria-live="polite"><span data-cur>1</span> / <span data-tot>14</span></span>
+    <span class="slide-counter" aria-live="polite"><span data-cur>1</span> / <span data-tot>15</span></span>
   </nav>
 </header>
 <div class="progress-bar"><div class="progress-fill"></div></div>
 
 <div class="deck-stage">
 <main class="deck">
-<div class="slide layout-title title-slide" id="s1" aria-roledescription="slide">
-<h1 class="big-title">kovacs-muhely</h1><div class="big-sub"><p>A IIER tudástár builder-oldali eszköztára — pipeline-forge engine, embedding pipeline-ok, üzemeltetői szkriptek</p>
-<p>Builder · pipeline-forge · pgvector · Confluence · SharePoint · Pilot</p>
-</div><div class="meta-row"><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-calendar"/></svg>2026. május</span><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-hard-drives"/></svg>éles szerver · GPU-szerver</span><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-users"/></svg>Builder ↔ End user</span><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-file-text"/></svg>project=&#39;iier&#39;</span></div>
+<div class="slide layout-title title-slide" id="s1" aria-roledescription="slide"><svg class="i title-icon" aria-hidden="true"><use href="#i-package"/></svg>
+<h1 class="big-title">kovacs-muhely</h1><div class="big-sub"><p>A tudástárak builder-oldali eszköztára — pipeline-forge engine, tenantonkénti ingest-pipeline-ok, üzemeltetői szkriptek</p>
+</div><div class="meta-row"><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-calendar"/></svg>2026. október</span><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-hard-drives"/></svg>éles szerver · GPU-pool</span><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-users"/></svg>Builder ↔ végfelhasználó</span><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-buildings"/></svg>tenantok: iier2 · kmtr</span></div>
 </div>
-<div class="slide layout-free" id="s2" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Pozicionálás</span></div><h2> Két projekt, egy adatbázis — ki mit tesz?</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="flowchart LR
-    Builder([&#34;🧰 Builder&lt;br/&gt;üzemeltető&#34;])
-    EndUser([&#34;👤 Végfelhasználó&lt;br/&gt;(Claude Code)&#34;])
-
-    subgraph KM [&#34;kovacs-muhely — engine &#43; pipelines&#34;]
-        direction TB
-        PF[&#34;pf binary&lt;br/&gt;(Go 1.26)&#34;]
-        EP[&#34;9 pipeline&lt;br/&gt;embed &#43; KV &#43; Jira &#43; compact&#34;]
-        PF --&gt; EP
-    end
-
-    subgraph IT [&#34;iier-tudastar — vékony kliens&#34;]
-        direction TB
-        MCP[&#34;MCP szerver&lt;br/&gt;(Python, 5 tool)&#34;]
-    end
-
-    Builder --&gt;|&#34;manuális futtatás&lt;br/&gt;(pilot)&#34;| KM
-    EndUser --&gt;|&#34;természetes&lt;br/&gt;nyelvű kérdés&#34;| IT
-
-    KM --&gt;|&#34;WRITE — admin DSN&lt;br/&gt;upsert_embedding&#34;| RAG
-    IT --&gt;|&#34;READ — RLS scope&lt;br/&gt;project=&#39;iier&#39;&#34;| RAG
-
-    RAG[(&#34;RAG-adatbázis / GPU-szerver&lt;br/&gt;rag.embeddings&lt;br/&gt;rag.confluence_pages&lt;br/&gt;rag.jira_issues&lt;br/&gt;rag.compact_contexts&#34;)]"></div></div><div class="content-grid"><article class="card accent-lavender"><div class="card-head"><h3>A toolkit (ez a projekt)</h3></div><div class="body"><p><strong>kovacs-muhely</strong></p>
-<ul>
+<div class="slide layout-free" id="s2" data-diagram-style="storyboard" data-highlight-path="B,KM,DB" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Pozicionálás</span></div><h2> Két oldal, egy adatbázis — ki mit tesz?</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="flowchart LR
+  B[Builder&lt;br/&gt;üzemeltető] --&gt; KM[kovacs-muhely&lt;br/&gt;bin/pf &#43; pipeline-ok]
+  KM --&gt;|&#34;ír — admin&#34;| DB[(tenant-adatbázis&lt;br/&gt;RLS &#43; projects ACL)]
+  U[Végfelhasználó&lt;br/&gt;Claude Code · Desktop] --&gt; MCP[pf-mcpd&lt;br/&gt;/mcp/iier2 · /mcp/kmtr]
+  MCP --&gt;|&#34;olvas — RLS&#34;| DB
+  class B,U source
+  class KM,MCP process
+  class DB storage"></div></div><div class="content-grid"><article class="card accent-lavender"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-package"/></svg><h3>A toolkit — ez a repo</h3></div><div class="body"><ul>
 <li>Builder/üzemeltető használja</li>
-<li>Pipeline szerkesztés, embed futtatás</li>
-<li>Új tenant scaffold, build verifikáció</li>
+<li>Ingest, újraépítés, retrieval-QA a <code>bin/pf</code>-fel</li>
+<li><strong>Nincs saját MCP szervere</strong> — a QA közvetlenül a kereső pipeline-t futtatja</li>
 </ul>
-</div></article><article class="card accent-mauve"><div class="card-head"><h3>A vékony kliens (testvér repo)</h3></div><div class="body"><p><strong>iier-tudastar</strong></p>
-<ul>
-<li>Végfelhasználó telepíti Claude Code-ba</li>
-<li>5 MCP tool olvasáshoz</li>
-<li>RLS-izolált tenant role</li>
+</div></article><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-users"/></svg><h3>A végfelhasználói oldal — iier-tudastar</h3></div><div class="body"><ul>
+<li>Távoli pf-mcpd tenant-útvonalak, nincs helyi szerver</li>
+<li><code>/mcp/iier2</code> — 7 tool · <code>/mcp/kmtr</code> — 6 tool</li>
+<li>Csak olvas, AD-csoport kapuval</li>
 </ul>
-</div></article><article class="card accent-green"><div class="card-head"><h3>A közös backend</h3></div><div class="body"><p><strong>RAG-adatbázis (GPU-szerver)</strong></p>
-<ul>
-<li>pgvector — 1024d embeddings</li>
-<li><code>project='iier'</code> — RLS izoláció</li>
-<li>Builder ír, end user csak olvas</li>
+</div></article><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-database"/></svg><h3>A közös backend</h3></div><div class="body"><ul>
+<li>Tenantonként saját adatbázis az éles szerveren</li>
+<li>Minden chunk hordozza a <code>projects[]</code> ACL-t</li>
+<li>Builder ír, végfelhasználó csak olvas</li>
 </ul>
 </div></article></div>
 </div>
 <div class="slide layout-cards" id="s3" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A toolkit tartalma</span></div><h2> Mi van a dobozban?</h2></div>
 <div class="content-grid cols-3"><article class="card accent-sapphire"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-cpu"/></svg><h3>Engine</h3></div><div class="body"><ul>
-<li><code>bin/pf</code> — pipeline-forge CLI</li>
-<li>Go 1.26.0, statikus binary, ~17 MB</li>
-<li>Commitálva — deploy hosztnak nem kell Go</li>
-<li>24 adapter beépítve (confluence, embed_text, db_query, build_log, parallel, …)</li>
+<li><code>bin/pf</code> + <code>bin/pf.exe</code> — a pipeline-forge CLI</li>
+<li>Mindkettő ugyanabból a pipeline-forge commitból épül, commitolva</li>
+<li>A deploy-hosztnak nem kell Go</li>
 </ul>
-</div></article><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-list-checks"/></svg><h3>Pipeline-ok</h3></div><div class="body"><ul>
-<li><code>pipelines/iier/</code> — 9 pipeline (4 embed + KV + Jira + 2 compact + bge-only)</li>
-<li><code>pipelines/search_*.md</code> — 2 retrieval-validációs pipeline</li>
-<li>Mind .md fájl — szerkeszthető, verziózható</li>
-<li>Embed: írva itt (authoritative); search: <code>iier-tudastar/pipelines/</code></li>
+</div></article><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-flow-arrow"/></svg><h3>Pipeline-ok</h3></div><div class="body"><ul>
+<li>86 pipeline <code>.md</code> fájl, tenantonként mappában</li>
+<li>Ingest · kereső · wiki · eljárás-gráf · QA tool-ok</li>
+<li>Mind szerkeszthető, verziózott dokumentum</li>
 </ul>
-</div></article><article class="card accent-peach"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-code"/></svg><h3>Python helper</h3></div><div class="body"><ul>
-<li><code>sources/sharepoint.py</code> — NTLM + DOCX szakasz-kinyerés</li>
-<li><code>sources/base.py</code> — adapter ősosztály</li>
-<li><code>core/{logger,sanitizer}.py</code> — strukturált log + PII szűrés</li>
-<li>A shell adapter hívja a SharePoint pipeline-ból</li>
+</div></article><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-check-circle"/></svg><h3>Nincs Python</h3></div><div class="body"><ul>
+<li>A repóban egyetlen <code>.py</code> fájl sincs</li>
+<li>SharePoint, compact, LDAP: natív pf-adapterek</li>
+<li>Egy nyelv: a pipeline <code>.md</code></li>
 </ul>
 </div></article>
-</div><div class="after-block"><div class="content-grid after-grid cols-3"><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-hard-drives"/></svg><h3>Builder szkriptek</h3></div><div class="body"><ul>
-<li><code>run_embed.sh</code> — pipeline futtató wrapper</li>
-<li><code>scripts/rag_status.sh</code> — utolsó pipeline futások</li>
-<li><code>scripts/rag_counts.sh</code> — chunk-számok</li>
-<li><code>scripts/new_tenant.sh</code> — új tenant scaffold</li>
+</div><div class="after-block block-cards"><div class="content-grid after-grid cols-3"><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-hard-drives"/></svg><h3>Üzemeltetői szkriptek</h3></div><div class="body"><ul>
+<li><code>run_embed.sh</code> — egy pipeline futtatása a tenant env-jével</li>
+<li><code>rag_status.sh</code> · <code>rag_counts.sh</code> — futások és chunk-számok</li>
+<li><code>pre_deploy_check.sh</code> · <code>post_deploy_smoke.sh</code></li>
 </ul>
-</div></article><article class="card accent-yellow"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-gear"/></svg><h3>Config &amp; ütemezés</h3></div><div class="body"><ul>
-<li><code>config.yaml</code> — search default-ok</li>
-<li><code>.env.example</code> — minden env var dokumentálva</li>
-<li><code>metadata.schedule:</code> — a pipeline-ok fejléce szabályozza</li>
+</div></article><article class="card accent-yellow"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-calendar"/></svg><h3>Ütemezés</h3></div><div class="body"><ul>
+<li>A pipeline fejlécének <code>schedule:</code> kulcsa a forrás</li>
+<li>A pf-worker az éles szerveren ütemez</li>
+<li>Éjszakai ablak, tenantonként eltolt idősávban</li>
 </ul>
-</div></article><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-magnifying-glass"/></svg><h3>Visszakeresési QA</h3></div><div class="body"><ul>
-<li><code>/km-search</code> · <code>/km-search-iier2</code> — <code>bin/pf</code> futtatja a kereső pipeline-t</li>
-<li>Builder-oldali QA, nem prod</li>
-<li>Embed után „hozzáférhető-e visszakeresve?” ellenőrzéshez</li>
-<li>A helyi QA MCP szerver 2026-07-31-én megszűnt; a végfelhasználói MCP felület a <code>/mcp/iier2</code></li>
+</div></article><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-magnifying-glass"/></svg><h3>Retrieval-QA</h3></div><div class="body"><ul>
+<li><code>/km-search-iier2</code> — a kereső pipeline-t futtatja</li>
+<li>Embed után: „visszakereshető-e?”</li>
+<li>Builder-oldali ellenőrzés, nem éles felület</li>
 </ul>
 </div></article></div></div>
 </div>
-<div class="slide layout-split align-top" id="s4" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Pipeline állomány</span></div><h2> 9 pipeline — embed, KV, Jira, compact</h2></div>
-<div class="split">
-<section class="split-col accent-green"><h3> Aktív — kurált oldalak</h3><div class="body"><p><strong>forge_confluence_iier_pages_rag3</strong></p>
-<ul>
-<li>86 célzott Confluence oldal, explicit <code>page_ids:</code></li>
-<li>4 al-fa: I.1 SAPS · I.2 Vis maior · I.3 IIER2 segédlet · I.4 Térinformatika</li>
-<li>Delta mód: <code>embedded_hash IS DISTINCT FROM content_hash</code></li>
-<li>Dual-model: snowflake-arctic-embed2 + bge-m3 párhuzamosan</li>
-</ul>
-<p><code>trigger: manual</code> · <code>86 ID</code></p>
-</div>
-</section>
-<section class="split-col accent-peach"><h3> Aktív — DOCX library</h3><div class="body"><p><strong>forge_sharepoint_docx_rag3</strong></p>
-<ul>
-<li>SharePoint NTLM, IIER intranet — <code>/iier/ITdocs/Docs</code></li>
-<li>Szakaszérzékeny: <code>[CÍM:][FEJEZET:]</code> magyar prefix</li>
-<li>Python helper: <code>sources/sharepoint.py</code> a shell adapteren át</li>
-<li>Dual-model: snowflake + bge-m3; <code>doc_modified_at</code> traceability</li>
-</ul>
-<p><code>schedule: 0 3 * * *</code> · <code>pilot — manual ma</code></p>
-</div>
-</section>
-</div><div class="after-block"><div class="content-grid after-grid cols-3"><article class="card accent-teal"><div class="card-head"><h3>Aktív — tábla-kinyerő (pages után)</h3></div><div class="body"><p><strong>forge_doc_kv_iier_confluence_rag3</strong></p>
-<ul>
-<li>86 kurált oldal pipe-delimited tábláinak kinyerése</li>
-<li>Output: <code>rag.document_eav</code> (sorok) + <code>rag.embeddings</code> (tábla-összefoglaló)</li>
-<li>Dual-model embed: snowflake + bge-m3 párhuzamosan</li>
-<li>Előfeltétel: pages pipeline lefutott</li>
-</ul>
-<p><code>trigger: manual</code> · <code>631 tábla · 3 906 sor</code></p>
-</div></article><article class="card accent-sky"><div class="card-head"><h3>Aktív — kompakt kontextusok (embed után)</h3></div><div class="body"><p><strong>forge_compact_iier_rag3 + bge</strong></p>
-<ul>
-<li>Hasonló topicok klaszterezése <code>rag.compact_contexts</code>-be</li>
-<li>Két változat: snowflake + bge-m3</li>
-<li><code>search_compact</code> MCP tool ezt kérdezi le</li>
-<li>Tenant-izolált: <code>(project, collection, topic)</code> UNIQUE</li>
-</ul>
-<p><code>trigger: manual</code></p>
-</div></article><article class="card accent-yellow"><div class="card-head"><h3>Aktív — Jira issue-ok (IIER2ELES &#43; IIERDB)</h3></div><div class="body"><p><strong>forge_jira_iier_rag3</strong></p>
-<ul>
-<li>JQL: <code>project in (IIER2ELES, IIERDB)</code>, 2025+ aktív issue-ok</li>
-<li>~25 K issue, <code>jira_issues</code> adapter, delta hash gate</li>
-<li>Dual-model: snowflake + bge-m3 párhuzamosan</li>
-<li>Előfeltétel: migration 020 alkalmazva RAG-adatbázis-re</li>
-</ul>
-<p><code>trigger: manual</code> · <code>jira_issues adapter · migration 020</code></p>
-</div></article></div></div>
-</div>
-<div class="slide layout-split align-top" id="s5" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Pipeline állomány</span></div><h2> Orchestrator, letiltott template, számok</h2></div>
-<div class="split">
-<section class="split-col accent-sapphire"><h3> Orchestrator</h3><div class="body"><p><strong>forge_confluence_iier_rag3</strong></p>
-<ul>
-<li>Pages + Spaces al-pipeline párhuzamosan (<code>type: parallel</code>)</li>
-<li>Két-szintű parallelizmus: branch + <code>parallel_workers: 4</code> az embedben</li>
-<li>DB-szintű no-overlap: <code>ON CONFLICT … DO UPDATE</code></li>
-<li>Pages branch ma fut, spaces fail-safe (üres template)</li>
-</ul>
-</div>
-</section>
-<section class="split-col accent-red"><h3> Letiltott — template</h3><div class="body"><p><strong>forge_confluence_iier_spaces_rag3</strong></p>
-<ul>
-<li>Üres <code>spaces:</code> — szándékos fail-safe</li>
-<li>Termékfelelősi jóváhagyás kell egy egész tér crawl-jához</li>
-<li>2026-05-21 állapot: 0 IIER tér engedélyezve</li>
-<li>Aktiváláshoz: <code>spaces: &quot;K1,K2&quot;</code> + <code>schedule:</code> hozzáadás</li>
-</ul>
-</div>
-</section>
-</div><div class="after-block"><div class="content-grid after-grid cols-4"><article class="card accent-lavender"><div class="card-head"><h3>1 454</h3></div><div class="body"><p>Confluence chunk (snowflake)</p>
-</div></article><article class="card accent-peach"><div class="card-head"><h3>18 368</h3></div><div class="body"><p>SharePoint chunk / model</p>
-</div></article><article class="card accent-teal"><div class="card-head"><h3>3 906</h3></div><div class="body"><p>Confluence KV sor</p>
-</div></article><article class="card accent-green"><div class="card-head"><h3>86</h3></div><div class="body"><p>kurált Confluence oldal (4 al-fa)</p>
-</div></article></div></div>
-</div>
-<div class="slide layout-split align-top" id="s6" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Üzemeltetői munkamenet</span></div><h2> Mindennapi munka — manuális futtatás (pilot)</h2></div>
-<div class="split">
-<section class="split-col accent-lavender"><h3> A wrapper: run_embed.sh</h3><div class="body"><p>Betölti a <code>.env</code>-et, beállítja a <code>PROJECT_ROOT</code>-ot, cd-el a repo gyökérbe, majd hívja a <code>./bin/pf</code>-et.</p>
-<pre><code class="language-bash"># Elsődleges embed (egymástól független)
-./run_embed.sh forge_confluence_iier_pages_rag3
-./run_embed.sh forge_sharepoint_docx_rag3
-./run_embed.sh forge_jira_iier_rag3
-
-# Follow-up (pages embed után)
-./run_embed.sh forge_doc_kv_iier_confluence_rag3
-
-# JIRA people-graph (jira embed után — rag.cross_refs élek)
-./run_embed.sh forge_ldap_persons_iier_rag3
-./run_embed.sh forge_jira_persons_iier_rag3
-./run_embed.sh forge_jira_comment_edges_iier_rag3
-./run_embed.sh forge_jira_worklog_edges_iier_rag3
-./run_embed.sh forge_compact_iier_rag3
-./run_embed.sh forge_compact_iier_bge_rag3
-
-# Orchestrator (pages + spaces parallel)
-./run_embed.sh forge_confluence_iier_rag3
-</code></pre>
-</div>
-</section>
-<section class="split-col accent-sapphire"><h3> Hibakeresési flag-ek</h3><div class="body"><p>Bármilyen extra pf argumentum a pipeline név után átkerül. Hasznos mintázatok:</p>
-<pre><code class="language-bash"># Csak parsoljon, ne hajtson végre
-./run_embed.sh forge_confluence_iier_pages_rag3 --dry-run
-
-# Folytatás egy lépéstől (bukás után)
-./run_embed.sh forge_confluence_iier_pages_rag3 --from delta
-
-# Step hibák gyűjtése (ne álljon le elsőre)
-./run_embed.sh forge_sharepoint_docx_rag3 --continue-on-error
-</code></pre>
-</div>
-</section>
-</div><div class="after-block"><div class="body after"><blockquote>
-<p><strong>Pilot ≠ ütemezett.</strong> Pilot fázisban a pipeline-okat manuálisan futtatjuk. Az ütemezés élesítése a <code>metadata.schedule</code> megadásával történik a pipeline-okban, amit a pipeline-forge kezel.</p>
-</blockquote>
-</div></div>
-</div>
-<div class="slide layout-table" id="s7" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Üzemeltetői munkamenet</span></div><h2> Mikor melyiket?</h2></div><div class="body body-table"><table>
+<div class="slide layout-table" id="s4" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Multi-tenancy</span></div><h2> Tenantok — kik élnek ma?</h2></div><div class="body body-table"><table>
 <thead>
 <tr>
-<th>Mire van szükség?</th>
-<th>Pipeline</th>
-<th>Tipikus időtartam</th>
+<th>Tenant</th>
+<th>Mit tárol</th>
+<th>Állapot</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Új Confluence oldal indexelése (delta)</td>
-<td><code>forge_confluence_iier_pages_rag3</code></td>
-<td>~5–30 s</td>
+<td><strong>iier2</strong></td>
+<td>Confluence, JIRA, SharePoint, wiki, eljárás-gráf</td>
+<td>éles</td>
 </tr>
 <tr>
-<td>SharePoint library teljes újra-pásztázása</td>
-<td><code>forge_sharepoint_docx_rag3</code></td>
-<td>több perc</td>
+<td><strong>kmtr</strong></td>
+<td>ugyanaz a felállás, a iier2 mintájára</td>
+<td>éles — bevezetés lezárva 2026-10-04</td>
 </tr>
 <tr>
-<td>Confluence táblák újra-kinyerése (pages után)</td>
-<td><code>forge_doc_kv_iier_confluence_rag3</code></td>
-<td>~6 perc</td>
+<td>belső IT-tudásbázis</td>
+<td>Confluence, JIRA, web, GitLab, munkanapló</td>
+<td>éles, saját adatbázissal</td>
 </tr>
 <tr>
-<td>Kompakt kontextusok újraépítése</td>
-<td><code>forge_compact_iier_rag3</code> + bge</td>
-<td>néhány perc</td>
+<td>DWH-dosszié</td>
+<td>felhasználói és leltár-dossziék</td>
+<td>heti embed</td>
 </tr>
 <tr>
-<td>Jira issue-ok indexelése (IIER2ELES + IIERDB)</td>
-<td><code>forge_jira_iier_rag3</code></td>
-<td>első futás: ~30–60 perc; delta: gyors</td>
-</tr>
-<tr>
-<td>Egyszerre minden Confluence (orchestrator)</td>
-<td><code>forge_confluence_iier_rag3</code></td>
-<td>pages branch fut, spaces fail-safe</td>
-</tr>
-<tr>
-<td>Új tér engedélyezése után első crawl</td>
-<td><code>forge_confluence_iier_spaces_rag3</code></td>
-<td>jelentősen hosszabb (több 1000 oldal)</td>
+<td><strong>iier</strong> (régi)</td>
+<td>—</td>
+<td>kivezetve, az útvonal lekapcsolva 2026-10-03</td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="slide layout-cards" id="s8" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Builder eszköztár</span></div><h2> 4 szkript a napi üzemeltetéshez</h2></div>
-<div class="content-grid cols-4"><article class="card accent-green"><div class="card-head"><h3>Diagnosztika</h3></div><div class="body"><p><strong>scripts/rag_status.sh</strong></p>
-<p>Az utolsó N pipeline futási esemény a <code>rag.pipeline_run</code>-ból. Tenant a <code>details</code> JSONB-ben — a <code>build_log</code> adapter írja.</p>
-<pre><code class="language-bash">./scripts/rag_status.sh           # utolsó 10
-./scripts/rag_status.sh 25 iier   # 25 sor, csak iier
-</code></pre>
-</div></article><article class="card accent-mauve"><div class="card-head"><h3>Audit</h3></div><div class="body"><p><strong>scripts/rag_counts.sh</strong></p>
-<p>Chunk-számok (project, collection, embedding_model) szerint csoportosítva. Megmutatja: mennyi van bent és mikor volt utolsó embed.</p>
-<pre><code class="language-bash">./scripts/rag_counts.sh           # minden tenant
-./scripts/rag_counts.sh iier      # csak iier
-</code></pre>
-</div></article><article class="card accent-peach"><div class="card-head"><h3>Scaffolding</h3></div><div class="body"><p><strong>scripts/new_tenant.sh</strong></p>
-<p>Másolja az iier embed pipeline-okat egy új tenant slug-jával, átírja a <code>tenant:</code> tag-eket és a <code>&quot;iier&quot;</code> literált a <code>params:</code>-ban.</p>
-<pre><code class="language-bash">./scripts/new_tenant.sh demo
-# 4 fájl jön létre, +manuális todo lista nyomtatva
-</code></pre>
-</div></article><article class="card accent-sapphire"><div class="card-head"><h3>Build</h3></div><div class="body"><p><strong>build_pf.sh</strong></p>
-<p>Újrabuildeli a <code>bin/pf</code>-et egy szomszéd pipeline-forge checkout-ból. Akkor kell, ha új adapter érkezik.</p>
-<pre><code class="language-bash">./build_pf.sh                     # default: ../pipeline-forge
-./build_pf.sh /opt/pipeline-forge
-# Go 1.26+ kell; binary commitálandó
-</code></pre>
-<p>A <code>build_pf.sh</code> gitignore-d — fejlesztői tool, nem disztribúciós artefakt.</p>
-</div></article>
-</div>
-</div>
-<div class="slide layout-flow" id="s9" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Esettanulmány</span></div><h2> End-user kérés workflow — egy URL-től a chunkokig</h2></div><div class="body lead"><p>„Erre a Confluence oldalra rákeresnék” — ritkán egy oldal. A legtöbb szülő üres index-csomópont. Az 5 lépéses recept (eredeti példa: <code>pageId=56592739</code> „Térinformatika”):</p>
-</div><ol class="flow"><li class="flow-step"><h3> Resolve</h3><div class="body"><p>Confluence REST — title, space, body length</p>
-</div></li><li class="flow-step"><h3> Üres-e?</h3><div class="body"><p><code>storage_len &lt; 50</code> + vannak gyermekek → index-csomópont</p>
-</div></li><li class="flow-step"><h3> Recurse</h3><div class="body"><p><code>cql=ancestor=&lt;id&gt;</code> — tartalmas leszármazottak</p>
-</div></li><li class="flow-step"><h3> Edit &#43; Run</h3><div class="body"><p><code>page_ids:</code> bővítés — <code>run_embed.sh</code></p>
-</div></li><li class="flow-step accent-green"><h3> Verify</h3><div class="body"><p><code>rag_status.sh</code> · <code>rag_counts.sh</code></p>
-</div></li></ol><div class="after-block"><div class="body after"><blockquote>
-<p><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg> <strong>Idempotens.</strong> A meglévő 46 oldal embeddingjei nem változnak (<code>content_hash</code> egyezik). Csak a 40 új oldalon történik chunking és Ollama-hívás. Ha az oldalfa nő, a recept ismételhető.</p>
+<blockquote>
+<p><svg class="i" aria-hidden="true"><use href="#i-info"/></svg> Egy tenant = egy saját adatbázis + egy <code>pipelines/&lt;tenant&gt;/</code> mappa + egy pf-mcpd útvonal. Új tenant adat és másolat, nem kód (lásd később).</p>
 </blockquote>
-</div><div class="content-grid after-grid cols-2"><article class="card accent-yellow"><div class="card-head"><h3>A felfedezés (példa)</h3></div><div class="body"><ul>
-<li><code>56592739</code> „Térinformatika” — body length: <strong>0 ✗</strong></li>
-<li>Ancestors: IIER2 fejlesztési dokumentáció / Specifikációk</li>
-<li>Children: <strong>8</strong> (MePAR, ulymap, Raszterkatalógus, …)</li>
-<li>Recursive descendants: <strong>50</strong></li>
-<li>Tartalmas oldalak: <strong>40</strong></li>
-<li>Üres index-pages: <strong>10</strong> (kiszűrve curation-időben)</li>
-</ul>
-</div></article><article class="card accent-green"><div class="card-head"><h3>A futtatás eredménye</h3></div><div class="body"><ul>
-<li><code>fetched</code>: 86 oldal (új 40 + meglévő 46) — 2.0 s</li>
-<li><code>store_pages</code>: 86 stored, 0 failed — 0.2 s</li>
-<li><code>delta</code>: 41 row needs embed</li>
-<li><code>build_topics</code>: 40 topics from 41 pages</li>
-<li><code>embed_topics</code>: 130 chunks (Ollama hívás) — 16.9 s</li>
-<li><code>mark_embedded + log</code>: 41 row updated</li>
-<li><strong>Total: 19.3 s · errors: 0</strong></li>
-</ul>
+</div>
+</div>
+<div class="slide layout-cards" id="s5" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Pipeline-állomány</span></div><h2> Egy tenant pipeline-jai — iier2 / kmtr</h2></div>
+<div class="content-grid cols-4"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-users"/></svg><h3>forge_ldap</h3></div><div class="body"><p>AD-tükör: a jogosultság-feloldó bemenete — ki melyik csoport tagja</p>
+</div></article><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-list-checks"/></svg><h3>forge_jira</h3></div><div class="body"><p>Issue-ok delta-embed, projektenként <code>projects[]</code> scope</p>
+</div></article><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-file-text"/></svg><h3>forge_confluence</h3></div><div class="body"><p>Registry-vezérelt oldalak, tér-szintű scope</p>
+</div></article><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-stack"/></svg><h3>SP-crawl_site</h3></div><div class="body"><p>SharePoint v2: docx + xlsx, táblák EAV-ba, hierarchia-élek</p>
+</div></article>
+</div><div class="after-block block-cards"><div class="content-grid after-grid cols-4"><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-package"/></svg><h3>forge_compact</h3></div><div class="body"><p>Hasonló témák klaszterei — a <code>projects[]</code> a tagok uniója</p>
+</div></article><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-graph"/></svg><h3>forge_cross_source_links</h3></div><div class="body"><p>SharePoint ↔ Confluence <code>same_as</code> élek — kalibrálásig kikapcsolva</p>
+</div></article><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-magnifying-glass"/></svg><h3>search_rag · search_compact</h3></div><div class="body"><p>ACL-szűrt keresés a hívó felhasználó nevével</p>
+</div></article><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-books"/></svg><h3>WIKI · ELJ · TOOL</h3></div><div class="body"><p>Generált enciklopédia, eljárás-gráf, builder-QA tool-ok</p>
 </div></article></div></div>
 </div>
-<div class="slide layout-split align-top" id="s10" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Multi-tenancy</span></div><h2> Új tenant scaffolding — gépies átírás &#43; manuális kapcsolás</h2></div>
-<div class="split">
-<section class="split-col accent-peach"><h3> Mit csinál a new_tenant.sh?</h3><div class="body"><ul>
-<li>Másolja a 4 iier embed pipeline-t új névre: <code>forge_*_iier_*</code> → <code>forge_*_&lt;slug&gt;_*</code></li>
-<li>Frontmatter: <code>tenant: iier</code> → <code>tenant: &lt;slug&gt;</code></li>
-<li>SQL params: literál <code>&quot;iier&quot;</code> → <code>&quot;&lt;slug&gt;&quot;</code> (a <code>$3</code> p_project position)</li>
-<li>Kurált <code>page_ids:</code> törlése (új tenant kitölti)</li>
-<li>Orchestrator sub-pipeline hivatkozások átírása</li>
-<li>Manuális teendők listájának nyomtatása</li>
+<div class="slide layout-free" id="s6" data-diagram-style="storyboard" data-highlight-path="M,A,S,C,R,OK" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">ACL</span></div><h2> Hozzáférés — a jog a sorban él, nem az alkalmazásban</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="flowchart LR
+  M[admin jogosultság-&lt;br/&gt;manifest] --&gt; A[ACL-load&lt;br/&gt;éjszakánként]
+  A --&gt; S[(scope_map ·&lt;br/&gt;tenant_grants)]
+  S --&gt; C[(&#34;chunk&lt;br/&gt;projects ACL&#34;)]
+  Q[kérdés &#43;&lt;br/&gt;felhasználónév] --&gt; R[search&lt;br/&gt;AD-csoport szűrés]
+  C --&gt; R
+  R --&gt; OK[csak a jogosult&lt;br/&gt;találatok]
+  class M,Q source
+  class A,R process
+  class S,C storage
+  class OK output"></div></div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-file-text"/></svg><h3>A forrás a manifest</h3></div><div class="body"><ul>
+<li>A jogokat az admin rendszere exportálja — mi csak alkalmazzuk</li>
+<li>Az <code>ACL-load</code> éjszakánként betölti, saját, szűk loader-szerepkörrel</li>
 </ul>
-<pre><code class="language-bash">./scripts/new_tenant.sh kovacs
-# 4 fájl + todo lista
-</code></pre>
-</div>
-</section>
-<section class="split-col accent-red"><h3> Amit a szkript NEM csinál (manuális)</h3><div class="body"><table>
-<thead>
-<tr>
-<th>Lépés</th>
-<th>Hol</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Curated <code>page_ids:</code> kitöltése</td>
-<td>új tenant pipeline</td>
-</tr>
-<tr>
-<td>SQL allowlist a delta + mark_embedded step-ben</td>
-<td>ugyanott</td>
-</tr>
-<tr>
-<td>SharePoint <code>SP_&lt;SLUG&gt;_*</code> env varok</td>
-<td><code>.env</code></td>
-</tr>
-<tr>
-<td>PG role <code>&lt;slug&gt;-tudastar</code> + RLS policy</td>
-<td>adatbázis migráció</td>
-</tr>
-<tr>
-<td><code>rag.collection_model</code> regisztráció</td>
-<td>adatbázis migráció</td>
-</tr>
-<tr>
-<td><code>metadata.schedule:</code> ütemezés beállítása</td>
-<td>új tenant pipeline</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-</div><div class="after-block"><div class="body after"><blockquote>
-<p><strong>Mechanikus + szervezeti.</strong> A toolkit a fájl-szintű átírást automatizálja; a tenant-cutover (DB role, RLS, model registry) szándékosan kézi marad — ezek üzemeltetői döntések, nem fájl-átírás. A szkript végén egy ellenőrzési lista nyomtatódik a maradék lépésekkel.</p>
-</blockquote>
-</div></div>
-</div>
-<div class="slide layout-free" id="s11" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Pipeline anatómia</span></div><h2> Egy Confluence pages futás belülről — 7 step</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="flowchart LR
-    Start([pf indítás])
-    Start --&gt; Crawl
-
-    subgraph PF [&#34;pf — pipelines/iier/forge_confluence_iier_pages_rag3.md&#34;]
-        direction LR
-        Crawl[&#34;1 · crawl_pages&lt;br/&gt;confluence_pages adapter&lt;br/&gt;86 ID lekérdezve&#34;]
-        Store[&#34;2 · store_pages&lt;br/&gt;confluence_store_pages&lt;br/&gt;rag.confluence_pages&#34;]
-        Delta[&#34;3 · delta&lt;br/&gt;db_query&lt;br/&gt;WHERE embedded_hash&lt;br/&gt;≠ content_hash&#34;]
-        Build[&#34;4 · build_topics&lt;br/&gt;confluence_build_topics&lt;br/&gt;[OLDAL:][TÉR:] prefix&#34;]
-        Embed[&#34;5 · embed_topics&lt;br/&gt;embed_text → Ollama&lt;br/&gt;parallel_workers: 4&#34;]
-        Mark[&#34;6 · mark_embedded&lt;br/&gt;db_execute&lt;br/&gt;UPDATE embedded_hash&#34;]
-        Log[&#34;7 · log&lt;br/&gt;build_log&lt;br/&gt;rag.pipeline_run&#34;]
-        Crawl --&gt; Store --&gt; Delta --&gt; Build --&gt; Embed --&gt; Mark --&gt; Log
-    end
-
-    Crawl -.-&gt;|&#34;REST API&#34;| CF[(&#34;Confluence&#34;)]
-    Embed -.-&gt;|&#34;/api/embed&#34;| Oll[/&#34;Ollama&lt;br/&gt;snowflake-arctic-embed2&#34;/]
-    Store --&gt; RAG[(&#34;RAG-adatbázis&lt;br/&gt;rag.embeddings&#34;)]
-    Embed --&gt; RAG
-    Mark --&gt; RAG"></div></div><div class="content-grid"><article class="card"><div class="card-head"><h3>Idempotens dedup</h3></div><div class="body"><p><code>ON CONFLICT (collection, embedding_model, source_file) DO UPDATE</code> a <code>rag.upsert_embedding</code>-ben → változatlan oldal nem termel új sort.</p>
-</div></article><article class="card"><div class="card-head"><h3>Két szintű parallelizmus</h3></div><div class="body"><p>Branch szint (<code>type: parallel</code>) + step szint (<code>parallel_workers: 4</code>) → 8 párhuzamos Ollama-batch a fő úton.</p>
-</div></article><article class="card"><div class="card-head"><h3>Cross-tenant védelem</h3></div><div class="body"><p>A delta és mark_embedded SQL <code>page_id = ANY(…)</code> szűrőt használ — más tenant azonos térben tárolt oldalait nem érinti.</p>
+</div></article><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-lock"/></svg><h3>A szűrés az adatbázisban</h3></div><div class="body"><ul>
+<li>Minden chunk viszi a <code>projects[]</code> listát</li>
+<li>A keresés a hívó AD-csoportjaiból számolja a láthatót</li>
+<li>Ismeretlen hívó: csak a <code>_public</code> — zárt alapállás</li>
+</ul>
+</div></article><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg><h3>Nincs alapértelmezett scope</h3></div><div class="body"><ul>
+<li>Ismeretlen tér vagy projekt: a futás hibát ad, nem talál ki scope-ot</li>
+<li>A grant tulajdonosi döntés, adatként rögzítve</li>
+</ul>
 </div></article></div>
 </div>
-<div class="slide layout-cards align-top" id="s12" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Setup</span></div><h2> Telepítés és újraépítés</h2></div>
-<div class="content-grid cols-3"><article class="card accent-lavender"><div class="card-head"><h3>Egyszeri telepítés</h3></div><div class="body"><pre><code class="language-bash">git clone [github url] /opt/kovacs-muhely
-cd /opt/kovacs-muhely
-# Nincs Python lépés — a repo 2026-07-31 óta Python-mentes
-cp .env.example .env
-$EDITOR .env        # tölts ki minden _SET_ME_-t
-chmod 600 .env
-./bin/pf --help     # smoke check
-</code></pre>
-</div></article><article class="card accent-sapphire"><div class="card-head"><h3>.env felépítése</h3></div><div class="body"><table>
+<div class="slide layout-free" id="s7" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Forrás-mélyfúrás</span></div><h2> SharePoint v2 — registry-vezérelt crawl, táblák mint adat</h2></div><div class="content-grid"><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-stack"/></svg><h3>Mit csinál</h3></div><div class="body"><ul>
+<li>A könyvtárakat a registry adja (a manifestből vetítve), nincs beégetett lista</li>
+<li>docx és xlsx; a táblázat-sorok <code>rag.document_eav</code>-ba kerülnek, a szövegben horgony jelöli a helyüket</li>
+<li>xlsx-lapok vékony összefoglalóként embedelődnek</li>
+<li>Hierarchia-élek a mappaszerkezetből — LLM-hívás nélkül</li>
+</ul>
+</div></article><article class="card accent-yellow"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg><h3>Hol fut</h3></div><div class="body"><ul>
+<li><strong>Saját idősávban</strong>, nem az éjszakai fő folyamatban</li>
+<li>Ok: a hosszú crawl kiéheztette a compact lépést — ezért külön vált</li>
+<li>Delta-alapú: változatlan dokumentum nem embedelődik újra</li>
+</ul>
+</div></article></div><div class="after-block block-cards"><div class="body after"><p><strong>Az első teljes crawl mérlege</strong> (iier2, 2026-08-05):</p>
+</div></div><div class="after-block block-stats"><div class="content-grid"><div class="card stat accent-blue"><div class="num">21 432</div><div class="body"><p>dokumentum</p>
+</div></div><div class="card stat accent-teal"><div class="num">437 110</div><div class="body"><p>hierarchia-él</p>
+</div></div></div></div>
+</div>
+<div class="slide layout-table" id="s8" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Éjszakai menetrend</span></div><h2> Ütemezés — a pf-worker kezeli</h2></div><div class="body body-table"><table>
 <thead>
 <tr>
-<th>Csoport</th>
-<th>Honnan</th>
-<th>Mit használ</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>RAG_PG_*</code></td>
-<td>tenant role</td>
-<td>Search MCP (RLS-scope)</td>
-</tr>
-<tr>
-<td><code>RAG3_PG_DSN</code></td>
-<td>admin DSN</td>
-<td>Embed pipelines (write)</td>
-</tr>
-<tr>
-<td><code>OLLAMA_ENDPOINT</code></td>
-<td>GPU-szerver</td>
-<td>embed_text + embed_query</td>
-</tr>
-<tr>
-<td><code>CONFLUENCE_*</code></td>
-<td>API + PAT</td>
-<td>Confluence embed pipelines</td>
-</tr>
-<tr>
-<td><code>SP_IIER_*</code></td>
-<td>NTLM</td>
-<td>SharePoint embed pipeline</td>
-</tr>
-<tr>
-<td><code>PROJECT_ROOT</code></td>
-<td>abszolút útvonal</td>
-<td>SharePoint shell adapter</td>
-</tr>
-</tbody>
-</table>
-</div></article><article class="card accent-yellow"><div class="card-head"><h3>Mikor kell újrabuildelni a bin/pf-et?</h3></div><div class="body"><ul>
-<li>Új adapter kerül a pipeline-forge-be (pl. új sources type, új DB-handler)</li>
-<li>Bug fix egy meglévő adapterben, amit pipeline használ</li>
-<li>Pipeline-forge új major release</li>
-</ul>
-<pre><code class="language-bash">./build_pf.sh       # default: ../pipeline-forge sibling
-git add bin/pf      # commitold, deploy hosztnak nem kell Go
-</code></pre>
-<p>Az új binary minden olyan deploy-t érint, ami innen telepít. Ha másik tenant projekt is bundle-li a pf-et, ott külön kell rebuildelni.</p>
-</div></article>
-</div>
-</div>
-<div class="slide layout-cards" id="s13" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Production schedule</span></div><h2> Ütemezés — pipeline-forge kezeli</h2></div>
-<div class="content-grid cols-2"><article class="card accent-green"><div class="card-head"><h3>Hogyan működik</h3></div><div class="body"><p><strong>metadata.schedule</strong></p>
-<ul>
-<li>A pipeline-ok fejlécében definiált schedule kifejezés szabályozza</li>
-<li>A pipeline-forge natívan kezeli és futtatja az ütemezést</li>
-<li>A korábbi rendszerszintű cron konfiguráció elavult</li>
-</ul>
-</div></article><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-calendar"/></svg><h3>Production schedule (példa)</h3></div><div class="body"><table>
-<thead>
-<tr>
-<th>Schedule (cron formátum)</th>
+<th>Idő</th>
 <th>Pipeline</th>
+<th>Tenant</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>0 3 * * *</code></td>
-<td><code>forge_sharepoint_docx_rag3</code></td>
+<td>22:45 · 23:00</td>
+<td><code>acl_load</code></td>
+<td>kmtr · iier2</td>
 </tr>
 <tr>
-<td><code>30 3 * * *</code></td>
-<td><code>forge_confluence_iier_pages_rag3</code></td>
+<td>23:15 · 23:30</td>
+<td><code>SP-crawl_site</code></td>
+<td>kmtr · iier2</td>
 </tr>
 <tr>
-<td><em>(disabled)</em></td>
-<td><code>forge_confluence_iier_rag3</code> (orchestrator)</td>
+<td>01:30</td>
+<td>éjszakai embed — belső IT-tudásbázis</td>
+<td>belső</td>
+</tr>
+<tr>
+<td>02:30</td>
+<td><code>ops_iier2_nightly_embed</code></td>
+<td>iier2</td>
+</tr>
+<tr>
+<td>03:30</td>
+<td><code>ops_kmtr_nightly_embed</code></td>
+<td>kmtr</td>
+</tr>
+<tr>
+<td>06:00</td>
+<td><code>ops_nightly_status_all</code> — reggeli összesítő</td>
+<td>mind</td>
+</tr>
+<tr>
+<td>07:20</td>
+<td><code>ops_nightly_watchdog_iier2</code></td>
+<td>iier2 + kmtr</td>
 </tr>
 </tbody>
 </table>
-<p>A 30 perces eltolás megakadályozza a párhuzamos Ollama-batch ütközést. Az orchestrator akkor lép aktívba, ha a spaces sub-pipeline engedélyezett (jelenleg fail-safe).</p>
-</div></article>
-</div><div class="after-block"><div class="body after"><blockquote>
-<p><svg class="i" aria-hidden="true"><use href="#i-warning"/></svg> <strong>Pilot ≠ ütemezett.</strong> Amíg pilot, kerüljük a meglepetéseket: minden embed kézzel indul, ellenőrzés <code>rag_status.sh</code> + <code>rag_counts.sh</code> párral. Cron csak akkor lesz, ha az adatkör és a pipeline beállás megnyugodott.</p>
+<blockquote>
+<p><svg class="i" aria-hidden="true"><use href="#i-info"/></svg> Az éjszakai folyamat forrásai delta-alapúak és egymást nem blokkolják: egy forrás hibája nem állítja meg a többit, sem a compact lépést. A worker életjelét egy 15 perces időzítő figyeli, a workeren kívül.</p>
 </blockquote>
-</div><div class="content-grid after-grid cols-3"><article class="card"><div class="card-head"><h3>Pilot státusz</h3></div><div class="body"><p><code>trigger: manual</code> minden Confluence pipeline-on. Kézzel futtatunk, builder végzi a verifikációt.</p>
-</div></article><article class="card"><div class="card-head"><h3>Aktiválás feltétele</h3></div><div class="body"><p>Termékfelelősi jóváhagyás + sikeres manuális futások sorozata. Akkor kerül ütemezésre, ha a kurált tartalom stabilizálódott.</p>
-</div></article><article class="card"><div class="card-head"><h3>Konfiguráció</h3></div><div class="body"><p>Az ütemezést a pipeline .md fájlok frontmatterében kell megadni a <code>schedule:</code> mezővel.</p>
-</div></article></div></div>
 </div>
-<div class="slide layout-cards" id="s14" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Összefoglalás</span></div><h2> Mit kapunk a builder-oldali toolkit-tel?</h2></div>
-<div class="content-grid cols-3"><article class="card accent-lavender"><div class="card-head"><h3>A builder szempontjából</h3></div><div class="body"><ul>
-<li>Egy önálló repo, ami magában hordoz mindent (engine + pipeline-ok + helper-ek)</li>
-<li>Pipeline szerkesztés .md-ben — nem kell Go vagy Python kód módosítás</li>
-<li>Manuális futtatás magyar wrapperrel; minden verifikáció CLI-ben</li>
-<li>Új tenant scaffolding egy parancsból</li>
-<li>End-user kérés workflow dokumentált receptként</li>
+</div>
+<div class="slide layout-cards" id="s9" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A modell</span></div><h2> Embedding és keresés</h2></div>
+<div class="content-grid cols-4"><article class="card accent-sapphire"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-cpu"/></svg><h3>Egy modell</h3></div><div class="body"><ul>
+<li><code>snowflake-arctic-embed2</code> — az egyetlen embedding-modell</li>
+<li>A modellt a gyűjtemény adja (<code>rag.collection_model()</code>), nem a pipeline</li>
 </ul>
-</div></article><article class="card accent-sapphire"><div class="card-head"><h3>Technológiai stack</h3></div><div class="body"><ul>
-<li>pipeline-forge (Go 1.26)</li>
-<li>.md pipeline DSL</li>
-<li>pgvector</li>
-<li>Ollama snowflake-arctic-embed2 + bge-m3</li>
-<li>SharePoint NTLM (Python)</li>
-<li>Confluence REST</li>
-<li>pipeline-forge ütemező</li>
-<li>bash builder szkriptek</li>
+</div></article><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-hard-drives"/></svg><h3>GPU-pool</h3></div><div class="body"><ul>
+<li>Több GPU-példány közös pool-ban, átállással</li>
+<li>Ugyanaz a pool szolgálja az embedet és az LLM-hívásokat</li>
 </ul>
-</div></article><article class="card accent-mauve"><div class="card-head"><h3>A két projekt közös munkája</h3></div><div class="body"><ul>
-<li><strong>kovacs-muhely</strong> — builder ír · embed pipeline · admin DSN</li>
-<li><strong>pf engine</strong> — közös bináris mindkét oldalon</li>
-<li><strong>RAG-adatbázis</strong> — közös backend · RLS izoláció</li>
-<li><strong>iier-tudastar</strong> — végfelhasználó olvas · MCP search · tenant role</li>
-<li><strong>Claude Code</strong> — végfelhasználó interfésze (HU, természetes nyelv)</li>
+</div></article><article class="card accent-yellow"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-quotes"/></svg><h3>Magyar előtagok</h3></div><div class="body"><ul>
+<li><code>[CÍM:][FEJEZET:]</code> · <code>[OLDAL:][TÉR:]</code> a chunk elején</li>
+<li>A cím és a hely a vektor része lesz</li>
 </ul>
-<p>Minden új végfelhasználói tartalom-igény ezen a kis kanyaron át valósul meg: builder beleteszi a tudástárba, végfelhasználó kérdez rá Claude-on át.</p>
+</div></article><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-sparkle"/></svg><h3>Reranker — opcionális</h3></div><div class="body"><ul>
+<li>Cross-encoder, <code>rerank_provider</code> argumentummal kapcsolható</li>
+<li>Ha nem érhető el, a vektorsorrend marad — a keresés nem áll le</li>
+</ul>
 </div></article>
-</div><div class="after-block"><div class="body after"><p>Részletek: <code>README.md</code> · <code>CLAUDE.md</code> · <code>../iier-tudastar/docs/iier-tudastar-01.html</code> (a végfelhasználói oldal)</p>
+</div>
+</div>
+<div class="slide layout-split align-top" id="s10" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Üzemeltetői munkamenet</span></div><h2> Mindennapi munka</h2></div>
+<div class="split">
+<section class="split-col accent-blue"><h3><svg class="i" aria-hidden="true"><use href="#i-play-circle"/></svg> Futtatás</h3><div class="body"><pre><code class="language-bash"># egy forrás újraépítése a tenant env-jével
+./run_embed.sh forge_confluence_iier2
+./run_embed.sh forge_jira_iier2
+./run_embed.sh SP-crawl_site
+
+# állapot és számok
+./scripts/rag_status.sh
+./scripts/rag_counts.sh
+</code></pre>
+</div>
+</section>
+<section class="split-col accent-mauve"><h3><svg class="i" aria-hidden="true"><use href="#i-gear"/></svg> Skill-ek a Claude Code-ban</h3><div class="body"><ul>
+<li><code>/km-embed</code> · <code>/km-status</code> — futtatás és állapot</li>
+<li><code>/km-nightly-status</code> · <code>/km-nightly-check</code> — az éjszaka eredménye</li>
+<li><code>/km-search-iier2</code> — retrieval-QA</li>
+<li><code>/km-deploy</code> — telepítés a manifest alapján</li>
+<li><code>/km-ops-watch</code> · <code>/km-ops-bugs</code> · <code>/km-ops-test</code> — tenantonkénti monitorozás</li>
+</ul>
+</div>
+</section>
+</div>
+</div>
+<div class="slide layout-flow" id="s11" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Esettanulmány</span></div><h2> Végfelhasználói kérés — egy forrástól a találatig</h2></div><div class="body lead"><p>„Ezt a teret is kereshetővé tennétek?” — a válasz adat, nem kódváltozás.</p>
+</div><ol class="flow"><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-chat-circle-dots"/></svg> Kérés</h3><div class="body"><p>A felhasználó jelzi, mit keresne</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-file-text"/></svg> Manifest</h3><div class="body"><p>Az admin felveszi a jogosultság-manifestbe</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-list-checks"/></svg> Registry</h3><div class="body"><p>Az <code>acl_load</code> kivetíti a <code>rag.crawl_sources</code>-ba</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg> Éjszaka</h3><div class="body"><p>A következő futás felveszi, delta-alapon</p>
+</div></li><li class="flow-step accent-green"><h3><svg class="i" aria-hidden="true"><use href="#i-check-circle"/></svg> Ellenőrzés</h3><div class="body"><p><code>rag_counts.sh</code> · <code>/km-search-iier2</code></p>
+</div></li></ol><div class="after-block block-cards"><div class="body after"><blockquote>
+<p><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg> <strong>Idempotens.</strong> A változatlan oldal tartalom-hash-e egyezik, újra nem embedelődik — csak az új tartalom kerül chunkolásra és GPU-hívásra.</p>
+</blockquote>
 </div></div>
+</div>
+<div class="slide layout-flow" id="s12" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Multi-tenancy</span></div><h2> Új tenant — adat és másolat, nem kód</h2></div><div class="body lead"><p>A kmtr így készült 2026 októberében — a iier2 felállásának másolataként.</p>
+</div><ol class="flow"><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-database"/></svg> Grant &#43; routing</h3><div class="body"><p>Egy migráció: <code>tenant_grants</code>, <code>scope_map</code> sorok</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-copy"/></svg> Pipeline-mappa</h3><div class="body"><p><code>pipelines/&lt;tenant&gt;/</code> — a iier2 másolata</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-key"/></svg> Env-kulcsok</h3><div class="body"><p>Tenant-névtérrel, a vaultban</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-calendar"/></svg> Menetrend</h3><div class="body"><p>Éjszakai embed + watchdog listába</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-plug"/></svg> MCP-útvonal</h3><div class="body"><p>Új pf-mcpd tenant-route</p>
+</div></li><li class="flow-step accent-green"><h3><svg class="i" aria-hidden="true"><use href="#i-package"/></svg> Manifest-csomag</h3><div class="body"><p>A jogosultság-export új csomagja</p>
+</div></li></ol>
+</div>
+<div class="slide layout-stats" id="s13" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Mérés</span></div><h2> Számok — a kmtr az első héten</h2></div><div class="content-grid"><div class="card stat"><div class="num">4 717</div><div class="body"><p>JIRA issue · 9 060 chunk (2026-10-02)</p>
+</div></div><div class="card stat"><div class="num">313</div><div class="body"><p>Confluence-oldal · 658 chunk (2026-10-02)</p>
+</div></div><div class="card stat"><div class="num">23 509</div><div class="body"><p>SharePoint-chunk 150 dokumentumból (2026-10-03)</p>
+</div></div><div class="card stat"><div class="num">30</div><div class="body"><p>AI-vázlat wiki-cikk (2026-10-02)</p>
+</div></div></div>
+</div>
+<div class="slide layout-cards align-top" id="s14" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Setup</span></div><h2> Telepítés és migráció</h2></div>
+<div class="content-grid cols-3"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-rocket-launch"/></svg><h3>Deploy</h3></div><div class="body"><ul>
+<li><code>./deploy.sh &lt;profil&gt;</code> — a <code>deploy.manifest.yaml</code> alapján</li>
+<li>A telepítés is pipeline: <code>ops_deploy_km.md</code></li>
+<li>Előtte <code>pre_deploy_check.sh</code>, utána <code>post_deploy_smoke.sh</code></li>
+</ul>
+</div></article><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-database"/></svg><h3>Migráció</h3></div><div class="body"><ul>
+<li>Számozott SQL-fájlok, élő adatbázisra egyszerre egy</li>
+<li>A migrációs szkript <code>--dry-run</code> módja előbb</li>
+<li>Az <code>apply.sh</code> csak friss telepítésre — élő DB-t elutasít</li>
+</ul>
+</div></article><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-cpu"/></svg><h3>A pf-bináris</h3></div><div class="body"><ul>
+<li>pipeline-forge-változás után <strong>mindkét</strong> binárist újra kell építeni</li>
+<li>Ugyanabból a commitból, a commit-üzenetben rögzítve</li>
+</ul>
+</div></article>
+</div>
+</div>
+<div class="slide layout-cards" id="s15" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Összefoglalás</span></div><h2> Mit ad a builder-oldali toolkit?</h2></div>
+<div class="content-grid cols-4"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-flow-arrow"/></svg><h3>Minden lépés dokumentum</h3></div><div class="body"><p>Pipeline <code>.md</code>-ben — nem kell Go- vagy Python-kódot módosítani</p>
+</div></article><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-lock"/></svg><h3>A jog az adatban</h3></div><div class="body"><p>Soronkénti <code>projects[]</code> ACL, az admin manifestjéből</p>
+</div></article><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-copy"/></svg><h3>Új tenant másolattal</h3></div><div class="body"><p>Hat adat-lépés, nulla új kód — a kmtr a bizonyíték</p>
+</div></article><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-eye"/></svg><h3>Reggel minden látszik</h3></div><div class="body"><p>Összesítő + watchdog: ami éjjel nem futott, az reggel már jelez</p>
+</div></article>
+</div>
 </div>
 </main>
 </div>

@@ -6,494 +6,381 @@ lang: hu
 auto: 0
 meta:
   - icon: calendar
-    text: "2026. május"
+    text: "2026. október"
   - icon: hard-drives
-    text: "éles szerver · GPU-szerver"
+    text: "éles szerver · GPU-pool"
   - icon: users
-    text: "Builder ↔ End user"
-  - icon: file-text
-    text: "project='iier'"
+    text: "Builder ↔ végfelhasználó"
+  - icon: buildings
+    text: "tenantok: iier2 · kmtr"
 ---
 
-## kovacs-muhely {layout=title}
-A IIER tudástár builder-oldali eszköztára — pipeline-forge engine, embedding pipeline-ok, üzemeltetői szkriptek
+## :package: kovacs-muhely {layout=title}
+A tudástárak builder-oldali eszköztára — pipeline-forge engine, tenantonkénti ingest-pipeline-ok, üzemeltetői szkriptek
 
-Builder · pipeline-forge · pgvector · Confluence · SharePoint · Pilot
-
-## Két projekt, egy adatbázis — ki mit tesz? {layout=free diagrams=first label="Pozicionálás"}
-
-### A toolkit (ez a projekt) {accent=lavender}
-**kovacs-muhely**
-
-- Builder/üzemeltető használja
-- Pipeline szerkesztés, embed futtatás
-- Új tenant scaffold, build verifikáció
-
-### A vékony kliens (testvér repo) {accent=mauve}
-**iier-tudastar**
-
-- Végfelhasználó telepíti Claude Code-ba
-- 5 MCP tool olvasáshoz
-- RLS-izolált tenant role
-
-### A közös backend {accent=green}
-**RAG-adatbázis (GPU-szerver)**
-
-- pgvector — 1024d embeddings
-- `project='iier'` — RLS izoláció
-- Builder ír, end user csak olvas
+## Két oldal, egy adatbázis — ki mit tesz? {layout=free diagrams=first diagram_style=storyboard highlight_path=B,KM,DB label="Pozicionálás" id=s2}
 
 ```mermaid
 flowchart LR
-    Builder(["🧰 Builder<br/>üzemeltető"])
-    EndUser(["👤 Végfelhasználó<br/>(Claude Code)"])
-
-    subgraph KM ["kovacs-muhely — engine + pipelines"]
-        direction TB
-        PF["pf binary<br/>(Go 1.26)"]
-        EP["9 pipeline<br/>embed + KV + Jira + compact"]
-        PF --> EP
-    end
-
-    subgraph IT ["iier-tudastar — vékony kliens"]
-        direction TB
-        MCP["MCP szerver<br/>(Python, 5 tool)"]
-    end
-
-    Builder -->|"manuális futtatás<br/>(pilot)"| KM
-    EndUser -->|"természetes<br/>nyelvű kérdés"| IT
-
-    KM -->|"WRITE — admin DSN<br/>upsert_embedding"| RAG
-    IT -->|"READ — RLS scope<br/>project='iier'"| RAG
-
-    RAG[("RAG-adatbázis / GPU-szerver<br/>rag.embeddings<br/>rag.confluence_pages<br/>rag.jira_issues<br/>rag.compact_contexts")]
+  B[Builder<br/>üzemeltető] --> KM[kovacs-muhely<br/>bin/pf + pipeline-ok]
+  KM -->|"ír — admin"| DB[(tenant-adatbázis<br/>RLS + projects ACL)]
+  U[Végfelhasználó<br/>Claude Code · Desktop] --> MCP[pf-mcpd<br/>/mcp/iier2 · /mcp/kmtr]
+  MCP -->|"olvas — RLS"| DB
+  class B,U source
+  class KM,MCP process
+  class DB storage
 ```
 
-## Mi van a dobozban? {layout=cards label="A toolkit tartalma"}
+### :package: A toolkit — ez a repo {accent=lavender}
+- Builder/üzemeltető használja
+- Ingest, újraépítés, retrieval-QA a `bin/pf`-fel
+- **Nincs saját MCP szervere** — a QA közvetlenül a kereső pipeline-t futtatja
+
+### :users: A végfelhasználói oldal — iier-tudastar {accent=mauve}
+- Távoli pf-mcpd tenant-útvonalak, nincs helyi szerver
+- `/mcp/iier2` — 7 tool · `/mcp/kmtr` — 6 tool
+- Csak olvas, AD-csoport kapuval
+
+### :database: A közös backend {accent=green}
+- Tenantonként saját adatbázis az éles szerveren
+- Minden chunk hordozza a `projects[]` ACL-t
+- Builder ír, végfelhasználó csak olvas
+
+```notes
+⏱ 1:30 — A legfontosabb mondat: a kovacs-muhely tölt, az iier-tudastar olvas, és a kettő között
+egyetlen adatbázis van tenantonként. A végfelhasználó semmit nem telepít a saját gépére a
+Claude-on kívül: a tool-ok a távoli pf-mcpd tenant-útvonalain élnek.
+```
+
+## Mi van a dobozban? {layout=cards label="A toolkit tartalma" id=s3}
 
 ### :cpu: Engine {accent=sapphire}
-- `bin/pf` — pipeline-forge CLI
-- Go 1.26.0, statikus binary, ~17 MB
-- Commitálva — deploy hosztnak nem kell Go
-- 24 adapter beépítve (confluence, embed_text, db_query, build_log, parallel, …)
+- `bin/pf` + `bin/pf.exe` — a pipeline-forge CLI
+- Mindkettő ugyanabból a pipeline-forge commitból épül, commitolva
+- A deploy-hosztnak nem kell Go
 
-### :list-checks: Pipeline-ok {accent=mauve}
-- `pipelines/iier/` — 9 pipeline (4 embed + KV + Jira + 2 compact + bge-only)
-- `pipelines/search_*.md` — 2 retrieval-validációs pipeline
-- Mind .md fájl — szerkeszthető, verziózható
-- Embed: írva itt (authoritative); search: `iier-tudastar/pipelines/`
+### :flow-arrow: Pipeline-ok {accent=mauve}
+- 86 pipeline `.md` fájl, tenantonként mappában
+- Ingest · kereső · wiki · eljárás-gráf · QA tool-ok
+- Mind szerkeszthető, verziózott dokumentum
 
-### :code: Python helper {accent=peach}
-- `sources/sharepoint.py` — NTLM + DOCX szakasz-kinyerés
-- `sources/base.py` — adapter ősosztály
-- `core/{logger,sanitizer}.py` — strukturált log + PII szűrés
-- A shell adapter hívja a SharePoint pipeline-ból
+### :check-circle: Nincs Python {accent=green}
+- A repóban egyetlen `.py` fájl sincs
+- SharePoint, compact, LDAP: natív pf-adapterek
+- Egy nyelv: a pipeline `.md`
 
 ---
 
-### :hard-drives: Builder szkriptek {accent=green}
-- `run_embed.sh` — pipeline futtató wrapper
-- `scripts/rag_status.sh` — utolsó pipeline futások
-- `scripts/rag_counts.sh` — chunk-számok
-- `scripts/new_tenant.sh` — új tenant scaffold
+### :hard-drives: Üzemeltetői szkriptek {accent=teal}
+- `run_embed.sh` — egy pipeline futtatása a tenant env-jével
+- `rag_status.sh` · `rag_counts.sh` — futások és chunk-számok
+- `pre_deploy_check.sh` · `post_deploy_smoke.sh`
 
-### :gear: Config & ütemezés {accent=yellow}
-- `config.yaml` — search default-ok
-- `.env.example` — minden env var dokumentálva
-- `metadata.schedule:` — a pipeline-ok fejléce szabályozza
+### :calendar: Ütemezés {accent=yellow}
+- A pipeline fejlécének `schedule:` kulcsa a forrás
+- A pf-worker az éles szerveren ütemez
+- Éjszakai ablak, tenantonként eltolt idősávban
 
-### :magnifying-glass: Visszakeresési QA {accent=blue}
-- `/km-search` · `/km-search-iier2` — `bin/pf` futtatja a kereső pipeline-t
-- Builder-oldali QA, nem prod
-- Embed után „hozzáférhető-e visszakeresve?” ellenőrzéshez
-- A helyi QA MCP szerver 2026-07-31-én megszűnt; a végfelhasználói MCP felület a `/mcp/iier2`
+### :magnifying-glass: Retrieval-QA {accent=blue}
+- `/km-search-iier2` — a kereső pipeline-t futtatja
+- Embed után: „visszakereshető-e?”
+- Builder-oldali ellenőrzés, nem éles felület
 
-## 9 pipeline — embed, KV, Jira, compact {layout=split label="Pipeline állomány" align=top}
-
-### Aktív — kurált oldalak {accent=green}
-**forge_confluence_iier_pages_rag3**
-
-- 86 célzott Confluence oldal, explicit `page_ids:`
-- 4 al-fa: I.1 SAPS · I.2 Vis maior · I.3 IIER2 segédlet · I.4 Térinformatika
-- Delta mód: `embedded_hash IS DISTINCT FROM content_hash`
-- Dual-model: snowflake-arctic-embed2 + bge-m3 párhuzamosan
-
-`trigger: manual` · `86 ID`
-
-### Aktív — DOCX library {accent=peach}
-**forge_sharepoint_docx_rag3**
-
-- SharePoint NTLM, IIER intranet — `/iier/ITdocs/Docs`
-- Szakaszérzékeny: `[CÍM:][FEJEZET:]` magyar prefix
-- Python helper: `sources/sharepoint.py` a shell adapteren át
-- Dual-model: snowflake + bge-m3; `doc_modified_at` traceability
-
-`schedule: 0 3 * * *` · `pilot — manual ma`
-
----
-
-### Aktív — tábla-kinyerő (pages után) {accent=teal}
-**forge_doc_kv_iier_confluence_rag3**
-
-- 86 kurált oldal pipe-delimited tábláinak kinyerése
-- Output: `rag.document_eav` (sorok) + `rag.embeddings` (tábla-összefoglaló)
-- Dual-model embed: snowflake + bge-m3 párhuzamosan
-- Előfeltétel: pages pipeline lefutott
-
-`trigger: manual` · `631 tábla · 3 906 sor`
-
-### Aktív — kompakt kontextusok (embed után) {accent=sky}
-**forge_compact_iier_rag3 + bge**
-
-- Hasonló topicok klaszterezése `rag.compact_contexts`-be
-- Két változat: snowflake + bge-m3
-- `search_compact` MCP tool ezt kérdezi le
-- Tenant-izolált: `(project, collection, topic)` UNIQUE
-
-`trigger: manual`
-
-### Aktív — Jira issue-ok (IIER2ELES + IIERDB) {accent=yellow}
-**forge_jira_iier_rag3**
-
-- JQL: `project in (IIER2ELES, IIERDB)`, 2025+ aktív issue-ok
-- ~25 K issue, `jira_issues` adapter, delta hash gate
-- Dual-model: snowflake + bge-m3 párhuzamosan
-- Előfeltétel: migration 020 alkalmazva RAG-adatbázis-re
-
-`trigger: manual` · `jira_issues adapter · migration 020`
-
-## Orchestrator, letiltott template, számok {layout=split label="Pipeline állomány" align=top}
-
-### Orchestrator {accent=sapphire}
-**forge_confluence_iier_rag3**
-
-- Pages + Spaces al-pipeline párhuzamosan (`type: parallel`)
-- Két-szintű parallelizmus: branch + `parallel_workers: 4` az embedben
-- DB-szintű no-overlap: `ON CONFLICT … DO UPDATE`
-- Pages branch ma fut, spaces fail-safe (üres template)
-
-### Letiltott — template {accent=red}
-**forge_confluence_iier_spaces_rag3**
-
-- Üres `spaces:` — szándékos fail-safe
-- Termékfelelősi jóváhagyás kell egy egész tér crawl-jához
-- 2026-05-21 állapot: 0 IIER tér engedélyezve
-- Aktiváláshoz: `spaces: "K1,K2"` + `schedule:` hozzáadás
-
----
-
-### 1 454 {accent=lavender}
-Confluence chunk (snowflake)
-
-### 18 368 {accent=peach}
-SharePoint chunk / model
-
-### 3 906 {accent=teal}
-Confluence KV sor
-
-### 86 {accent=green}
-kurált Confluence oldal (4 al-fa)
-
-## Mindennapi munka — manuális futtatás (pilot) {layout=split label="Üzemeltetői munkamenet" align=top}
-
-### A wrapper: run_embed.sh {accent=lavender}
-Betölti a `.env`-et, beállítja a `PROJECT_ROOT`-ot, cd-el a repo gyökérbe, majd hívja a `./bin/pf`-et.
-
-```bash
-# Elsődleges embed (egymástól független)
-./run_embed.sh forge_confluence_iier_pages_rag3
-./run_embed.sh forge_sharepoint_docx_rag3
-./run_embed.sh forge_jira_iier_rag3
-
-# Follow-up (pages embed után)
-./run_embed.sh forge_doc_kv_iier_confluence_rag3
-
-# JIRA people-graph (jira embed után — rag.cross_refs élek)
-./run_embed.sh forge_ldap_persons_iier_rag3
-./run_embed.sh forge_jira_persons_iier_rag3
-./run_embed.sh forge_jira_comment_edges_iier_rag3
-./run_embed.sh forge_jira_worklog_edges_iier_rag3
-./run_embed.sh forge_compact_iier_rag3
-./run_embed.sh forge_compact_iier_bge_rag3
-
-# Orchestrator (pages + spaces parallel)
-./run_embed.sh forge_confluence_iier_rag3
+```notes
+⏱ 3:00 — Három dolog számít: a bundle-olt pf (a host nem fordít), a pipeline-ok mint dokumentumok,
+és hogy a repo teljesen Python-mentes — minden lépés pf-adapter.
 ```
 
-### Hibakeresési flag-ek {accent=sapphire}
-Bármilyen extra pf argumentum a pipeline név után átkerül. Hasznos mintázatok:
+## Tenantok — kik élnek ma? {layout=table label="Multi-tenancy" id=s4}
 
-```bash
-# Csak parsoljon, ne hajtson végre
-./run_embed.sh forge_confluence_iier_pages_rag3 --dry-run
-
-# Folytatás egy lépéstől (bukás után)
-./run_embed.sh forge_confluence_iier_pages_rag3 --from delta
-
-# Step hibák gyűjtése (ne álljon le elsőre)
-./run_embed.sh forge_sharepoint_docx_rag3 --continue-on-error
-```
-
----
-
-> **Pilot ≠ ütemezett.** Pilot fázisban a pipeline-okat manuálisan futtatjuk. Az ütemezés élesítése a `metadata.schedule` megadásával történik a pipeline-okban, amit a pipeline-forge kezel.
-
-## Mikor melyiket? {layout=table label="Üzemeltetői munkamenet"}
-
-| Mire van szükség? | Pipeline | Tipikus időtartam |
+| Tenant | Mit tárol | Állapot |
 |---|---|---|
-| Új Confluence oldal indexelése (delta) | `forge_confluence_iier_pages_rag3` | ~5–30 s |
-| SharePoint library teljes újra-pásztázása | `forge_sharepoint_docx_rag3` | több perc |
-| Confluence táblák újra-kinyerése (pages után) | `forge_doc_kv_iier_confluence_rag3` | ~6 perc |
-| Kompakt kontextusok újraépítése | `forge_compact_iier_rag3` + bge | néhány perc |
-| Jira issue-ok indexelése (IIER2ELES + IIERDB) | `forge_jira_iier_rag3` | első futás: ~30–60 perc; delta: gyors |
-| Egyszerre minden Confluence (orchestrator) | `forge_confluence_iier_rag3` | pages branch fut, spaces fail-safe |
-| Új tér engedélyezése után első crawl | `forge_confluence_iier_spaces_rag3` | jelentősen hosszabb (több 1000 oldal) |
+| **iier2** | Confluence, JIRA, SharePoint, wiki, eljárás-gráf | éles |
+| **kmtr** | ugyanaz a felállás, a iier2 mintájára | éles — bevezetés lezárva 2026-10-04 |
+| belső IT-tudásbázis | Confluence, JIRA, web, GitLab, munkanapló | éles, saját adatbázissal |
+| DWH-dosszié | felhasználói és leltár-dossziék | heti embed |
+| **iier** (régi) | — | kivezetve, az útvonal lekapcsolva 2026-10-03 |
 
-## 4 szkript a napi üzemeltetéshez {layout=cards label="Builder eszköztár"}
+> :info: Egy tenant = egy saját adatbázis + egy `pipelines/<tenant>/` mappa + egy pf-mcpd útvonal. Új tenant adat és másolat, nem kód (lásd később).
 
-### Diagnosztika {accent=green}
-**scripts/rag_status.sh**
-
-Az utolsó N pipeline futási esemény a `rag.pipeline_run`-ból. Tenant a `details` JSONB-ben — a `build_log` adapter írja.
-
-```bash
-./scripts/rag_status.sh           # utolsó 10
-./scripts/rag_status.sh 25 iier   # 25 sor, csak iier
+```notes
+⏱ 4:30 — A kmtr a iier2 másolata: ugyanaz a séma, ugyanazok a pipeline-ok, más scope. Ez a
+multi-tenancy bizonyítéka — a második tenant nem kért egyetlen sor új kódot sem.
 ```
 
-### Audit {accent=mauve}
-**scripts/rag_counts.sh**
+## Egy tenant pipeline-jai — iier2 / kmtr {layout=cards label="Pipeline-állomány" id=s5}
 
-Chunk-számok (project, collection, embedding_model) szerint csoportosítva. Megmutatja: mennyi van bent és mikor volt utolsó embed.
+### :users: forge_ldap {accent=blue}
+AD-tükör: a jogosultság-feloldó bemenete — ki melyik csoport tagja
 
-```bash
-./scripts/rag_counts.sh           # minden tenant
-./scripts/rag_counts.sh iier      # csak iier
-```
+### :list-checks: forge_jira {accent=blue}
+Issue-ok delta-embed, projektenként `projects[]` scope
 
-### Scaffolding {accent=peach}
-**scripts/new_tenant.sh**
+### :file-text: forge_confluence {accent=blue}
+Registry-vezérelt oldalak, tér-szintű scope
 
-Másolja az iier embed pipeline-okat egy új tenant slug-jával, átírja a `tenant:` tag-eket és a `"iier"` literált a `params:`-ban.
-
-```bash
-./scripts/new_tenant.sh demo
-# 4 fájl jön létre, +manuális todo lista nyomtatva
-```
-
-### Build {accent=sapphire}
-**build_pf.sh**
-
-Újrabuildeli a `bin/pf`-et egy szomszéd pipeline-forge checkout-ból. Akkor kell, ha új adapter érkezik.
-
-```bash
-./build_pf.sh                     # default: ../pipeline-forge
-./build_pf.sh /opt/pipeline-forge
-# Go 1.26+ kell; binary commitálandó
-```
-
-A `build_pf.sh` gitignore-d — fejlesztői tool, nem disztribúciós artefakt.
-
-## End-user kérés workflow — egy URL-től a chunkokig {layout=flow label="Esettanulmány"}
-„Erre a Confluence oldalra rákeresnék” — ritkán egy oldal. A legtöbb szülő üres index-csomópont. Az 5 lépéses recept (eredeti példa: `pageId=56592739` „Térinformatika”):
-
-### Resolve
-Confluence REST — title, space, body length
-
-### Üres-e?
-`storage_len < 50` + vannak gyermekek → index-csomópont
-
-### Recurse
-`cql=ancestor=<id>` — tartalmas leszármazottak
-
-### Edit + Run
-`page_ids:` bővítés — `run_embed.sh`
-
-### Verify {accent=green}
-`rag_status.sh` · `rag_counts.sh`
+### :stack: SP-crawl_site {accent=teal}
+SharePoint v2: docx + xlsx, táblák EAV-ba, hierarchia-élek
 
 ---
 
-> :shield: **Idempotens.** A meglévő 46 oldal embeddingjei nem változnak (`content_hash` egyezik). Csak a 40 új oldalon történik chunking és Ollama-hívás. Ha az oldalfa nő, a recept ismételhető.
+### :package: forge_compact {accent=mauve}
+Hasonló témák klaszterei — a `projects[]` a tagok uniója
 
-### A felfedezés (példa) {accent=yellow}
-- `56592739` „Térinformatika” — body length: **0 ✗**
-- Ancestors: IIER2 fejlesztési dokumentáció / Specifikációk
-- Children: **8** (MePAR, ulymap, Raszterkatalógus, …)
-- Recursive descendants: **50**
-- Tartalmas oldalak: **40**
-- Üres index-pages: **10** (kiszűrve curation-időben)
+### :graph: forge_cross_source_links {accent=mauve}
+SharePoint ↔ Confluence `same_as` élek — kalibrálásig kikapcsolva
 
-### A futtatás eredménye {accent=green}
-- `fetched`: 86 oldal (új 40 + meglévő 46) — 2.0 s
-- `store_pages`: 86 stored, 0 failed — 0.2 s
-- `delta`: 41 row needs embed
-- `build_topics`: 40 topics from 41 pages
-- `embed_topics`: 130 chunks (Ollama hívás) — 16.9 s
-- `mark_embedded + log`: 41 row updated
-- **Total: 19.3 s · errors: 0**
+### :magnifying-glass: search_rag · search_compact {accent=green}
+ACL-szűrt keresés a hívó felhasználó nevével
 
-## Új tenant scaffolding — gépies átírás + manuális kapcsolás {layout=split label="Multi-tenancy" align=top}
+### :books: WIKI · ELJ · TOOL {accent=green}
+Generált enciklopédia, eljárás-gráf, builder-QA tool-ok
 
-### Mit csinál a new_tenant.sh? {accent=peach}
-- Másolja a 4 iier embed pipeline-t új névre: `forge_*_iier_*` → `forge_*_<slug>_*`
-- Frontmatter: `tenant: iier` → `tenant: <slug>`
-- SQL params: literál `"iier"` → `"<slug>"` (a `$3` p_project position)
-- Kurált `page_ids:` törlése (új tenant kitölti)
-- Orchestrator sub-pipeline hivatkozások átírása
-- Manuális teendők listájának nyomtatása
-
-```bash
-./scripts/new_tenant.sh kovacs
-# 4 fájl + todo lista
+```notes
+⏱ 6:30 — Balról jobbra a forrásoktól a származtatott rétegig: előbb a jogosultság (LDAP), aztán a
+három forrás, aztán ami ezekből épül (klaszter, élek), végül a kereső és a wiki.
 ```
 
-### Amit a szkript NEM csinál (manuális) {accent=red}
-
-| Lépés | Hol |
-|---|---|
-| Curated `page_ids:` kitöltése | új tenant pipeline |
-| SQL allowlist a delta + mark_embedded step-ben | ugyanott |
-| SharePoint `SP_<SLUG>_*` env varok | `.env` |
-| PG role `<slug>-tudastar` + RLS policy | adatbázis migráció |
-| `rag.collection_model` regisztráció | adatbázis migráció |
-| `metadata.schedule:` ütemezés beállítása | új tenant pipeline |
-
----
-
-> **Mechanikus + szervezeti.** A toolkit a fájl-szintű átírást automatizálja; a tenant-cutover (DB role, RLS, model registry) szándékosan kézi marad — ezek üzemeltetői döntések, nem fájl-átírás. A szkript végén egy ellenőrzési lista nyomtatódik a maradék lépésekkel.
-
-## Egy Confluence pages futás belülről — 7 step {layout=free diagrams=first label="Pipeline anatómia"}
-
-### Idempotens dedup
-`ON CONFLICT (collection, embedding_model, source_file) DO UPDATE` a `rag.upsert_embedding`-ben → változatlan oldal nem termel új sort.
-
-### Két szintű parallelizmus
-Branch szint (`type: parallel`) + step szint (`parallel_workers: 4`) → 8 párhuzamos Ollama-batch a fő úton.
-
-### Cross-tenant védelem
-A delta és mark_embedded SQL `page_id = ANY(…)` szűrőt használ — más tenant azonos térben tárolt oldalait nem érinti.
+## Hozzáférés — a jog a sorban él, nem az alkalmazásban {layout=free diagrams=first diagram_style=storyboard highlight_path=M,A,S,C,R,OK label="ACL" id=s6}
 
 ```mermaid
 flowchart LR
-    Start([pf indítás])
-    Start --> Crawl
-
-    subgraph PF ["pf — pipelines/iier/forge_confluence_iier_pages_rag3.md"]
-        direction LR
-        Crawl["1 · crawl_pages<br/>confluence_pages adapter<br/>86 ID lekérdezve"]
-        Store["2 · store_pages<br/>confluence_store_pages<br/>rag.confluence_pages"]
-        Delta["3 · delta<br/>db_query<br/>WHERE embedded_hash<br/>≠ content_hash"]
-        Build["4 · build_topics<br/>confluence_build_topics<br/>[OLDAL:][TÉR:] prefix"]
-        Embed["5 · embed_topics<br/>embed_text → Ollama<br/>parallel_workers: 4"]
-        Mark["6 · mark_embedded<br/>db_execute<br/>UPDATE embedded_hash"]
-        Log["7 · log<br/>build_log<br/>rag.pipeline_run"]
-        Crawl --> Store --> Delta --> Build --> Embed --> Mark --> Log
-    end
-
-    Crawl -.->|"REST API"| CF[("Confluence")]
-    Embed -.->|"/api/embed"| Oll[/"Ollama<br/>snowflake-arctic-embed2"/]
-    Store --> RAG[("RAG-adatbázis<br/>rag.embeddings")]
-    Embed --> RAG
-    Mark --> RAG
+  M[admin jogosultság-<br/>manifest] --> A[ACL-load<br/>éjszakánként]
+  A --> S[(scope_map ·<br/>tenant_grants)]
+  S --> C[("chunk<br/>projects ACL")]
+  Q[kérdés +<br/>felhasználónév] --> R[search<br/>AD-csoport szűrés]
+  C --> R
+  R --> OK[csak a jogosult<br/>találatok]
+  class M,Q source
+  class A,R process
+  class S,C storage
+  class OK output
 ```
 
-## Telepítés és újraépítés {layout=cards label="Setup" align=top}
+### :file-text: A forrás a manifest {accent=blue}
+- A jogokat az admin rendszere exportálja — mi csak alkalmazzuk
+- Az `ACL-load` éjszakánként betölti, saját, szűk loader-szerepkörrel
 
-### Egyszeri telepítés {accent=lavender}
-```bash
-git clone [github url] /opt/kovacs-muhely
-cd /opt/kovacs-muhely
-# Nincs Python lépés — a repo 2026-07-31 óta Python-mentes
-cp .env.example .env
-$EDITOR .env        # tölts ki minden _SET_ME_-t
-chmod 600 .env
-./bin/pf --help     # smoke check
+### :lock: A szűrés az adatbázisban {accent=teal}
+- Minden chunk viszi a `projects[]` listát
+- A keresés a hívó AD-csoportjaiból számolja a láthatót
+- Ismeretlen hívó: csak a `_public` — zárt alapállás
+
+### :shield: Nincs alapértelmezett scope {accent=green}
+- Ismeretlen tér vagy projekt: a futás hibát ad, nem talál ki scope-ot
+- A grant tulajdonosi döntés, adatként rögzítve
+
+```notes
+⏱ 8:30 — A jog nem az alkalmazás kódjában van, hanem minden sorban. Ugyanaz a lekérdezés két
+felhasználónak két eredményt ad — és ezt az adatbázis dönti el, nem a kliens.
 ```
 
-### .env felépítése {accent=sapphire}
+## SharePoint v2 — registry-vezérelt crawl, táblák mint adat {label="Forrás-mélyfúrás" id=s7}
 
-| Csoport | Honnan | Mit használ |
+### :stack: Mit csinál {accent=teal}
+- A könyvtárakat a registry adja (a manifestből vetítve), nincs beégetett lista
+- docx és xlsx; a táblázat-sorok `rag.document_eav`-ba kerülnek, a szövegben horgony jelöli a helyüket
+- xlsx-lapok vékony összefoglalóként embedelődnek
+- Hierarchia-élek a mappaszerkezetből — LLM-hívás nélkül
+
+### :clock: Hol fut {accent=yellow}
+- **Saját idősávban**, nem az éjszakai fő folyamatban
+- Ok: a hosszú crawl kiéheztette a compact lépést — ezért külön vált
+- Delta-alapú: változatlan dokumentum nem embedelődik újra
+
+---
+
+**Az első teljes crawl mérlege** (iier2, 2026-08-05):
+
+--- {layout=stats}
+
+### 21 432 {accent=blue}
+dokumentum
+
+### 437 110 {accent=teal}
+hierarchia-él
+
+```notes
+⏱ 10:30 — A táblázat nem szövegként vész el: sorai adatként tárolódnak, és a keresőből pontos
+értékre is rá lehet kérdezni. A crawl külön idősávja mérési tanulság, nem preferencia.
+```
+
+## Ütemezés — a pf-worker kezeli {layout=table label="Éjszakai menetrend" id=s8}
+
+| Idő | Pipeline | Tenant |
 |---|---|---|
-| `RAG_PG_*` | tenant role | Search MCP (RLS-scope) |
-| `RAG3_PG_DSN` | admin DSN | Embed pipelines (write) |
-| `OLLAMA_ENDPOINT` | GPU-szerver | embed_text + embed_query |
-| `CONFLUENCE_*` | API + PAT | Confluence embed pipelines |
-| `SP_IIER_*` | NTLM | SharePoint embed pipeline |
-| `PROJECT_ROOT` | abszolút útvonal | SharePoint shell adapter |
+| 22:45 · 23:00 | `acl_load` | kmtr · iier2 |
+| 23:15 · 23:30 | `SP-crawl_site` | kmtr · iier2 |
+| 01:30 | éjszakai embed — belső IT-tudásbázis | belső |
+| 02:30 | `ops_iier2_nightly_embed` | iier2 |
+| 03:30 | `ops_kmtr_nightly_embed` | kmtr |
+| 06:00 | `ops_nightly_status_all` — reggeli összesítő | mind |
+| 07:20 | `ops_nightly_watchdog_iier2` | iier2 + kmtr |
 
-### Mikor kell újrabuildelni a bin/pf-et? {accent=yellow}
-- Új adapter kerül a pipeline-forge-be (pl. új sources type, új DB-handler)
-- Bug fix egy meglévő adapterben, amit pipeline használ
-- Pipeline-forge új major release
+> :info: Az éjszakai folyamat forrásai delta-alapúak és egymást nem blokkolják: egy forrás hibája nem állítja meg a többit, sem a compact lépést. A worker életjelét egy 15 perces időzítő figyeli, a workeren kívül.
 
-```bash
-./build_pf.sh       # default: ../pipeline-forge sibling
-git add bin/pf      # commitold, deploy hosztnak nem kell Go
+```notes
+⏱ 12:00 — A sorrend logikus: előbb a jog (ACL), aztán a SharePoint külön, aztán a fő embed, végül a
+reggeli összesítő és a watchdog — ami nem futott, az reggel már látszik.
 ```
 
-Az új binary minden olyan deploy-t érint, ami innen telepít. Ha másik tenant projekt is bundle-li a pf-et, ott külön kell rebuildelni.
+## Embedding és keresés {layout=cards label="A modell" id=s9}
 
-## Ütemezés — pipeline-forge kezeli {layout=cards label="Production schedule"}
+### :cpu: Egy modell {accent=sapphire}
+- `snowflake-arctic-embed2` — az egyetlen embedding-modell
+- A modellt a gyűjtemény adja (`rag.collection_model()`), nem a pipeline
 
-### Hogyan működik {accent=green}
-**metadata.schedule**
+### :hard-drives: GPU-pool {accent=teal}
+- Több GPU-példány közös pool-ban, átállással
+- Ugyanaz a pool szolgálja az embedet és az LLM-hívásokat
 
-- A pipeline-ok fejlécében definiált schedule kifejezés szabályozza
-- A pipeline-forge natívan kezeli és futtatja az ütemezést
-- A korábbi rendszerszintű cron konfiguráció elavult
+### :quotes: Magyar előtagok {accent=yellow}
+- `[CÍM:][FEJEZET:]` · `[OLDAL:][TÉR:]` a chunk elején
+- A cím és a hely a vektor része lesz
 
-### :calendar: Production schedule (példa) {accent=blue}
+### :sparkle: Reranker — opcionális {accent=green}
+- Cross-encoder, `rerank_provider` argumentummal kapcsolható
+- Ha nem érhető el, a vektorsorrend marad — a keresés nem áll le
 
-| Schedule (cron formátum) | Pipeline |
-|---|---|
-| `0 3 * * *` | `forge_sharepoint_docx_rag3` |
-| `30 3 * * *` | `forge_confluence_iier_pages_rag3` |
-| *(disabled)* | `forge_confluence_iier_rag3` (orchestrator) |
+```notes
+⏱ 13:30 — Egy modell, egy forrás a modell nevéhez: így nem fordulhat elő, hogy két pipeline más
+modellel embedel ugyanabba a gyűjteménybe.
+```
 
-A 30 perces eltolás megakadályozza a párhuzamos Ollama-batch ütközést. Az orchestrator akkor lép aktívba, ha a spaces sub-pipeline engedélyezett (jelenleg fail-safe).
+## Mindennapi munka {layout=split label="Üzemeltetői munkamenet" align=top id=s10}
+
+### :play-circle: Futtatás {accent=blue}
+```bash
+# egy forrás újraépítése a tenant env-jével
+./run_embed.sh forge_confluence_iier2
+./run_embed.sh forge_jira_iier2
+./run_embed.sh SP-crawl_site
+
+# állapot és számok
+./scripts/rag_status.sh
+./scripts/rag_counts.sh
+```
+
+### :gear: Skill-ek a Claude Code-ban {accent=mauve}
+- `/km-embed` · `/km-status` — futtatás és állapot
+- `/km-nightly-status` · `/km-nightly-check` — az éjszaka eredménye
+- `/km-search-iier2` — retrieval-QA
+- `/km-deploy` — telepítés a manifest alapján
+- `/km-ops-watch` · `/km-ops-bugs` · `/km-ops-test` — tenantonkénti monitorozás
+
+```notes
+⏱ 15:00 — A napi munka nagy része nem futtatás, hanem ellenőrzés: a reggeli összesítő és a
+watchdog megmondja, mit kell kézzel újrafuttatni.
+```
+
+## Végfelhasználói kérés — egy forrástól a találatig {layout=flow label="Esettanulmány" id=s11}
+„Ezt a teret is kereshetővé tennétek?” — a válasz adat, nem kódváltozás.
+
+### :chat-circle-dots: Kérés
+A felhasználó jelzi, mit keresne
+
+### :file-text: Manifest
+Az admin felveszi a jogosultság-manifestbe
+
+### :list-checks: Registry
+Az `acl_load` kivetíti a `rag.crawl_sources`-ba
+
+### :clock: Éjszaka
+A következő futás felveszi, delta-alapon
+
+### :check-circle: Ellenőrzés {accent=green}
+`rag_counts.sh` · `/km-search-iier2`
 
 ---
 
-> :warning: **Pilot ≠ ütemezett.** Amíg pilot, kerüljük a meglepetéseket: minden embed kézzel indul, ellenőrzés `rag_status.sh` + `rag_counts.sh` párral. Cron csak akkor lesz, ha az adatkör és a pipeline beállás megnyugodott.
+> :shield: **Idempotens.** A változatlan oldal tartalom-hash-e egyezik, újra nem embedelődik — csak az új tartalom kerül chunkolásra és GPU-hívásra.
 
-### Pilot státusz
-`trigger: manual` minden Confluence pipeline-on. Kézzel futtatunk, builder végzi a verifikációt.
+```notes
+⏱ 16:30 — Senki nem szerkeszt pipeline-t egy új forrásért. A forráslista adat, a jog az admin
+exportjából jön, a következő éjszaka végzi a munkát.
+```
 
-### Aktiválás feltétele
-Termékfelelősi jóváhagyás + sikeres manuális futások sorozata. Akkor kerül ütemezésre, ha a kurált tartalom stabilizálódott.
+## Új tenant — adat és másolat, nem kód {layout=flow label="Multi-tenancy" id=s12}
+A kmtr így készült 2026 októberében — a iier2 felállásának másolataként.
 
-### Konfiguráció
-Az ütemezést a pipeline .md fájlok frontmatterében kell megadni a `schedule:` mezővel.
+### :database: Grant + routing
+Egy migráció: `tenant_grants`, `scope_map` sorok
 
-## Mit kapunk a builder-oldali toolkit-tel? {layout=cards label="Összefoglalás"}
-### A builder szempontjából {accent=lavender}
-- Egy önálló repo, ami magában hordoz mindent (engine + pipeline-ok + helper-ek)
-- Pipeline szerkesztés .md-ben — nem kell Go vagy Python kód módosítás
-- Manuális futtatás magyar wrapperrel; minden verifikáció CLI-ben
-- Új tenant scaffolding egy parancsból
-- End-user kérés workflow dokumentált receptként
+### :copy: Pipeline-mappa
+`pipelines/<tenant>/` — a iier2 másolata
 
-### Technológiai stack {accent=sapphire}
-- pipeline-forge (Go 1.26)
-- .md pipeline DSL
-- pgvector
-- Ollama snowflake-arctic-embed2 + bge-m3
-- SharePoint NTLM (Python)
-- Confluence REST
-- pipeline-forge ütemező
-- bash builder szkriptek
+### :key: Env-kulcsok
+Tenant-névtérrel, a vaultban
 
-### A két projekt közös munkája {accent=mauve}
-- **kovacs-muhely** — builder ír · embed pipeline · admin DSN
-- **pf engine** — közös bináris mindkét oldalon
-- **RAG-adatbázis** — közös backend · RLS izoláció
-- **iier-tudastar** — végfelhasználó olvas · MCP search · tenant role
-- **Claude Code** — végfelhasználó interfésze (HU, természetes nyelv)
+### :calendar: Menetrend
+Éjszakai embed + watchdog listába
 
-Minden új végfelhasználói tartalom-igény ezen a kis kanyaron át valósul meg: builder beleteszi a tudástárba, végfelhasználó kérdez rá Claude-on át.
+### :plug: MCP-útvonal
+Új pf-mcpd tenant-route
 
----
+### :package: Manifest-csomag {accent=green}
+A jogosultság-export új csomagja
 
-Részletek: `README.md` · `CLAUDE.md` · `../iier-tudastar/docs/iier-tudastar-01.html` (a végfelhasználói oldal)
+```notes
+⏱ 18:00 — Hat lépés, egyik sem kód: egy migráció, egy mappamásolat, kulcsok, menetrend, útvonal,
+manifest. Ez a „generikus motor, logika a specben” elv egy tenant szintjén.
+```
+
+## Számok — a kmtr az első héten {layout=stats label="Mérés" id=s13}
+
+### 4 717
+JIRA issue · 9 060 chunk (2026-10-02)
+
+### 313
+Confluence-oldal · 658 chunk (2026-10-02)
+
+### 23 509
+SharePoint-chunk 150 dokumentumból (2026-10-03)
+
+### 30
+AI-vázlat wiki-cikk (2026-10-02)
+
+```notes
+⏱ 19:00 — Valódi, dátummal rögzített számok a bevezetés naplójából. A 30 wiki-cikk AI-vázlat:
+ember hagyja jóvá, mielőtt véglegesnek számít.
+```
+
+## Telepítés és migráció {layout=cards label="Setup" align=top id=s14}
+
+### :rocket-launch: Deploy {accent=blue}
+- `./deploy.sh <profil>` — a `deploy.manifest.yaml` alapján
+- A telepítés is pipeline: `ops_deploy_km.md`
+- Előtte `pre_deploy_check.sh`, utána `post_deploy_smoke.sh`
+
+### :database: Migráció {accent=teal}
+- Számozott SQL-fájlok, élő adatbázisra egyszerre egy
+- A migrációs szkript `--dry-run` módja előbb
+- Az `apply.sh` csak friss telepítésre — élő DB-t elutasít
+
+### :cpu: A pf-bináris {accent=mauve}
+- pipeline-forge-változás után **mindkét** binárist újra kell építeni
+- Ugyanabból a commitból, a commit-üzenetben rögzítve
+
+```notes
+⏱ 20:30 — A telepítés sem kézi lépéssor: a manifest mondja meg, mi megy ki, a pipeline végzi, és
+előtte-utána egy-egy ellenőrzés fut.
+```
+
+## Mit ad a builder-oldali toolkit? {layout=cards label="Összefoglalás" id=s15}
+
+### :flow-arrow: Minden lépés dokumentum {accent=blue}
+Pipeline `.md`-ben — nem kell Go- vagy Python-kódot módosítani
+
+### :lock: A jog az adatban {accent=teal}
+Soronkénti `projects[]` ACL, az admin manifestjéből
+
+### :copy: Új tenant másolattal {accent=mauve}
+Hat adat-lépés, nulla új kód — a kmtr a bizonyíték
+
+### :eye: Reggel minden látszik {accent=green}
+Összesítő + watchdog: ami éjjel nem futott, az reggel már jelez
+
+```notes
+⏱ 22:00 — Négy mondat, amit érdemes hazavinni: dokumentum a lépés, adat a jog, másolat a tenant,
+és a csend nem siker — a watchdog reggel szól.
+```

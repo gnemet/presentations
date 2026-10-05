@@ -1246,7 +1246,7 @@ blockquote {
 </ul>
 <p>Identitás értékek: env var / config — soha default</p>
 </div></article>
-</div><div class="after-block"><div class="body after"><blockquote>
+</div><div class="after-block block-cards"><div class="body after"><blockquote>
 <p><svg class="i" aria-hidden="true"><use href="#i-info"/></svg> Mielőtt <code>cmd/&lt;folyamat&gt;/main.go</code>-t írsz: “Lehetne ez pipeline fájl?”</p>
 </blockquote>
 <blockquote>
@@ -1873,7 +1873,7 @@ res, err = pipelines.ResumeWorkflow(
 </code></pre>
 </div></article></div>
 </div>
-</div><div class="after-block"><div class="content-grid after-grid cols-3"><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-flow-arrow"/></svg><h3>Pipeline családok</h3></div><div class="body"><ul>
+</div><div class="after-block block-cards"><div class="content-grid after-grid cols-3"><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-flow-arrow"/></svg><h3>Pipeline családok</h3></div><div class="body"><ul>
 <li>FY — üzleti folyamat</li>
 <li>INT — integráció</li>
 <li>WF — workflow scaffold (entitygen)</li>
@@ -2001,7 +2001,7 @@ cur.execute(
     &quot;SELECT dwh.user_get_key(%s)&quot;, (name,))
 </code></pre>
 </div></article>
-</div><div class="after-block"><div class="content-grid after-grid cols-2"><article class="card accent-sapphire scroll-panel"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-code"/></svg><h3>JSONB function minta (SQL)</h3></div><div class="body"><pre><code class="language-sql">CREATE OR REPLACE FUNCTION app.entity_list(p_data jsonb)
+</div><div class="after-block block-cards"><div class="content-grid after-grid cols-2"><article class="card accent-sapphire scroll-panel"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-code"/></svg><h3>JSONB function minta (SQL)</h3></div><div class="body"><pre><code class="language-sql">CREATE OR REPLACE FUNCTION app.entity_list(p_data jsonb)
 RETURNS jsonb
 LANGUAGE sql STABLE SECURITY DEFINER
 SET search_path = pg_catalog, app, meta AS $fn$
@@ -2086,7 +2086,7 @@ CREATE POLICY p_write
 </code></pre>
 </div>
 </section>
-</div><div class="after-block"><div class="body after"><table>
+</div><div class="after-block block-cards"><div class="body after"><table>
 <thead>
 <tr>
 <th>SCD2 partíció</th>
@@ -2174,7 +2174,7 @@ CREATE POLICY p_write
 </ol>
 </div></article></div>
 </div>
-</div><div class="after-block"><div class="content-grid after-grid cols-3"><article class="card accent-peach"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-cpu"/></svg><h3>Embedding</h3></div><div class="body"><ul>
+</div><div class="after-block block-cards"><div class="content-grid after-grid cols-3"><article class="card accent-peach"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-cpu"/></svg><h3>Embedding</h3></div><div class="body"><ul>
 <li>Ollama <code>snowflake-arctic-embed2</code></li>
 <li>GPU szerver (Ollama)</li>
 <li>pgvector HNSW index</li>
@@ -2232,7 +2232,7 @@ graph LR
 </ul>
 </div></article></div>
 </div>
-</div><div class="after-block"><div class="content-grid after-grid cols-3"><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-lock"/></svg><h3>SECURITY DEFINER</h3></div><div class="body"><ul>
+</div><div class="after-block block-cards"><div class="content-grid after-grid cols-3"><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-lock"/></svg><h3>SECURITY DEFINER</h3></div><div class="body"><ul>
 <li>App role: <code>EXECUTE</code> jogosultság</li>
 <li>Nincs <code>SELECT</code> a <code>dim_*</code> táblákon</li>
 <li>Function: <code>search_path = pg_catalog, schema</code></li>
