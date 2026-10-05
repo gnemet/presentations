@@ -2018,22 +2018,22 @@ figyelmes fejlesztő pont ezt fogja megkérdezni, és jogosan.
 
 > A módszer nem az AI-ról szól, hanem arról, **hová teszed az embereidet**. A háznál sem a téglarakó a drága — hanem az építész, aki dönt, és a műszaki ellenőr, aki átveszi.
 
-### 1 · Hová teszed a kapacitást? {accent=green}
+### :users: Hová teszed a kapacitást? {accent=green}
 A gépelés már nem szűk keresztmetszet — a **review és az átvétel** az. Oda kell a szakértő: architekt/BA és QA, nem több kódoló kéz.
 
 **A házon:** építészből és műszaki ellenőrből nem spórolunk.
 
-### :file-text: 2 · Hol van a tudás? {accent=mauve}
+### :file-text: Hol van a tudás? {accent=mauve}
 A szabály, a spec és a döntés **dokumentum** — review-zható, verziózott, visszafordítható. Ha valaki elmegy, a tudás marad.
 
 **A házon:** a tervrajz és a napló túléli a brigádot.
 
-### 3 · Mit mérsz? {accent=blue}
+### :chart-bar: Mit mérsz? {accent=blue}
 Nem sorokat és nem commitokat, hanem **átvett követelményt** — és hogy mennyi idő a szándéktól az átvételig. A gyors, de vissza nem vett munka nem sebesség.
 
 **A házon:** a lakható, átadott ház számít, nem a felrakott tégla.
 
-### 4 · Hol a kockázat határa? {accent=peach}
+### :lock: Hol a kockázat határa? {accent=peach}
 A kapuknál: minden változtatás, érzékeny adat és jogosultság ember kezében marad; az AI magának semmit nem nyit ki. A **termék** adata házon belül marad, a **fejlesztés** AI-költsége külön keret — két láb, két döntés.
 
 **A házon:** engedély, kulcs, két aláírás — a kapuk diáján.
