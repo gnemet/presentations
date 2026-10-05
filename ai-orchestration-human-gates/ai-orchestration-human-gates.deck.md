@@ -16,16 +16,16 @@ AI-orchestrated delivery with human gates — where the machine does the work, a
 
 ## Where delivery leaks {layout=cards label="The case"}
 
-### Translation loss {accent=red}
+### :quotes: Translation loss {accent=red}
 What the business meant becomes a ticket, becomes a guess, becomes code. Nobody can point at where the meaning changed.
 
-### Documents that rot {accent=red}
+### :file-text: Documents that rot {accent=red}
 The specification described the system on the day it was signed. The system moved. Now the document misleads more than it helps.
 
-### Logic only readable as code {accent=red}
+### :code: Logic only readable as code {accent=red}
 Answering “what does it do when X?” takes a developer and an afternoon — every time you ask.
 
-### AI that outruns review {accent=red}
+### :lightning: AI that outruns review {accent=red}
 Assistants generate more code than anyone can read. Volume grew; review capacity did not.
 
 ---
@@ -34,10 +34,10 @@ These are not four problems. They are one: **the thing that executes and the thi
 
 ## AI is the centre of work. The human is the centre of control. {layout=cards label="The idea"}
 
-### The machine {accent=blue}
+### :robot: The machine {accent=blue}
 Reads everything, tirelessly. Drafts, builds, proposes. Never sleeps, never bored.
 
-### The human {accent=green}
+### :user-circle: The human {accent=green}
 Decides what matters. Reviews and accepts. Owns the consequence.
 
 ---
@@ -46,80 +46,80 @@ Not supervision — **gates**. Supervision means watching everything and catchin
 
 ## Four claims — everything after this is evidence {layout=cards label="The thesis"}
 
-### 1 · The chain is controlled end to end {accent=blue}
+### :flow-arrow: The chain is controlled end to end {accent=blue}
 Every step from intent to accepted produces an artefact and passes a named human. “Done” is verification, then validation.
 
-### 2 · Business logic lives only in documents {accent=mauve}
+### :file-text: Business logic lives only in documents {accent=mauve}
 Never in code — at runtime too. A refactor cannot silently change a business rule, because the rule is not in the code.
 
-### 3 · Transparent code, no hidden logic {accent=teal}
+### :eye: Transparent code, no hidden logic {accent=teal}
 No clever code, no black box, no implicit fallback. Declared, or it fails loudly.
 
-### 4 · The workflow is the document {accent=peach}
+### :tree-structure: The workflow is the document {accent=peach}
 The artefact you review, the artefact you present, and the artefact that executes are the same artefact.
 
 ## There is a written contract — and it outranks everything {layout=cards label="The rules · level 1"}
 
-### 1 · One source of truth {accent=blue}
+### :target: One source of truth (A1) {accent=blue}
 Every fact lives in exactly one place.
 
-### 2 · Doc = Code {accent=blue}
+### :file-text: Doc = Code (A2) {accent=blue}
 The document is the build input, not a description of it.
 
-### 3 · No hardcoding {accent=blue}
+### :database: No hardcoding (A3) {accent=blue}
 Identity and configuration are declared — or it fails loudly.
 
-### 4 · Generic engine {accent=blue}
+### :gear: Generic engine (A4) {accent=blue}
 Logic lives in specifications; engines just interpret them.
 
-### 5 · Data → back → front {accent=blue}
+### :stack: Data → back → front (A5) {accent=blue}
 Never hand-write below what a document owns above.
 
-### 6 · AI works, human controls {accent=blue}
+### :handshake: AI works, human controls (A6) {accent=blue}
 Reads are free; every write is gated.
 
-### 7 · Markdown + English {accent=blue}
+### :quotes: Markdown + English (A7) {accent=blue}
 Logic in readable documents, not compiled artefacts.
 
-### 8 · Spec before code {accent=blue}
+### :list-checks: Spec before code (A8) {accent=blue}
 No implementation begins without a committed specification.
 
-### 9 · Verified, human-owned done {accent=blue}
+### :check-circle: Verified, human-owned done (A9) {accent=blue}
 Compilation is not done. Two gates, two people.
 
-### 10 · Smallest diff {accent=blue}
+### :git-branch: Smallest diff (A10) {accent=blue}
 The small change is the unit of safety, review and revert.
 
-### 11 · Propose, then the human directs {accent=blue}
+### :chat-circle-dots: Propose, then the human directs (A11) {accent=blue}
 The machine never silently self-solves.
 
-### Why it matters {accent=lavender}
+### :lightbulb: Why it matters {accent=lavender}
 Not the list — the fact that a contract **exists**, outranks every other rule, and you can read it.
 
 ## The same contract, as promises to you {layout=cards label="The rules · what they buy you"}
 
-### You can read what you bought {accent=green}
+### :eye: You can read what you bought {accent=green}
 The logic is documents in your language, not a codebase you must hire to interpret.
 
-### One place per fact {accent=green}
+### :target: One place per fact {accent=green}
 A change lands once and propagates. There is no second copy to forget.
 
-### Nothing hidden in the build {accent=green}
+### :magnifying-glass: Nothing hidden in the build {accent=green}
 Identities, endpoints and thresholds are yours to see and to set.
 
-### Change is cheap by construction {accent=green}
+### :lightning: Change is cheap by construction {accent=green}
 New behaviour is a catalog entry, not a new system.
 
-### Nothing ships without your acceptance {accent=green}
+### :check-circle: Nothing ships without your acceptance {accent=green}
 Two gates — and the business one is yours.
 
-### The machine never widens its own rights {accent=green}
+### :lock: The machine never widens its own rights {accent=green}
 Approvals and secrets are human-only by design.
 
-### The process you are shown is the process that runs {accent=green}
+### :flow-arrow: The process you are shown is the process that runs {accent=green}
 No second copy of the truth to maintain, and none to go stale.
 
-### Knowledge stops walking out the door {accent=green}
+### :books: Knowledge stops walking out the door {accent=green}
 It becomes a versioned, attributable asset your experts own.
 
 ## Doc = Code — the specification is the build input {layout=mermaid diagrams=first label="The mechanic"}
@@ -152,7 +152,7 @@ One direction. If the code disagrees with the specification, **the specification
 
 Committed **before** the first line of code — that is a hard gate, not a preference. And requirements are written to be checkable: *“When a source is unreachable, the panel shall show the last known state and when it was captured”* — not “the system should be robust”.
 
-## The workflow is the document {layout=mermaid diagrams=first label="Claim 4"}
+## The workflow is the document {layout=mermaid diagrams=first label="Workflow = document"}
 
 ```mermaid
 flowchart LR
@@ -184,19 +184,19 @@ Nothing was redrawn for this meeting. **Both pictures are generated from the fil
 
 ## How a project starts — two intakes, one artefact {layout=cards label="Before the specification"}
 
-### A requirement exists {accent=sky}
+### :file-text: A requirement exists {accent=sky}
 You state a need. Open research supplies the context nobody wrote in the brief: the regulation that constrains it, the published formats and standards, the counterparts to integrate with, the deadlines imposed from outside.
 
-### A solution exists {accent=sky}
+### :lightbulb: A solution exists {accent=sky}
 The question is which organisation it fits. Research runs over the target’s public surface — published rules, registries it operates, stated obligations — and yields a fit assessment: what is answered, what must grow, what is out of scope.
 
-### Every claim sourced {accent=teal}
+### :quotes: Every claim sourced {accent=teal}
 The brief is evidence, not opinion. Any line can be checked.
 
-### Public material only {accent=teal}
+### :eye: Public material only {accent=teal}
 Nothing behind a login, nothing from a protected system.
 
-### Machine collects, human scopes {accent=teal}
+### :hand: Machine collects, human scopes {accent=teal}
 The gate is at the *start* of the chain, not only at the end.
 
 ---
@@ -205,7 +205,7 @@ Your first requirements workshop does not start with a blank page. It starts wit
 
 *This is how we work today — expert practice, not an automated product feature.*
 
-## The chain, from intent to accepted {layout=mermaid diagrams=first label="Claim 1"}
+## The chain, from intent to accepted {layout=mermaid diagrams=first label="Controlled chain"}
 
 ```mermaid
 flowchart LR
@@ -236,7 +236,7 @@ Every arrow is an artefact. Every diamond is a **named human**. Nothing advances
 
 **Compilation is not done. A demo is not done.** The most expensive failure in this industry is a system that passed every technical check and solved the wrong problem.
 
-## Who may do what {layout=table label="Claim 3 · the boundary"}
+## Who may do what {layout=table label="Transparent code · the boundary"}
 
 | Action | Machine | Human |
 |---|---|---|
@@ -282,17 +282,17 @@ The counterpart differences live in a document a business person can read and am
 
 ## The same shape — in production {layout=cards label="The runtime leg"}
 
-### Not a box that contains AI {accent=mauve}
+### :package: Not a box that contains AI {accent=mauve}
 The delivered product runs **declared workflows**. Steps are documents; the engine is generic; the run is observable.
 
-### One workflow, two altitudes {accent=mauve}
+### :stack: One workflow, two altitudes {accent=mauve}
 What the business signed off, and what actually executed — timings, counts and failures attached to the same boxes you approved.
 
 ---
 
 This is why the method is a **product property, not a team habit**. The discipline does not stop at handover; it is how the thing you bought behaves every night.
 
-## Business logic at runtime — a rule change is an edit, not a release {layout=table label="Claim 2"}
+## Business logic at runtime — a rule change is an edit, not a release {layout=table label="Logic in documents"}
 
 | Conventional | **This** |
 |---|---|
@@ -305,7 +305,7 @@ This is why the method is a **product property, not a team habit**. The discipli
 
 Detection rules, term lists, categories, prompts, personas, thresholds — curated data, human-editable, versioned. **A rule baked into the code as a literal is treated as a defect here, not a shortcut.** That is a written rule, not an aspiration.
 
-## The runtime gate — the machine proposes, a person approves {layout=mermaid diagrams=first label="Claim 1 · in production"}
+## The runtime gate — the machine proposes, a person approves {layout=mermaid diagrams=first label="Controlled chain · in production"}
 
 ```mermaid
 sequenceDiagram
@@ -324,31 +324,31 @@ Reads are autonomous. **Writes are never self-approved.** The proposal arrives a
 
 ## Grounded answers — and an honest “I don’t know” {layout=cards label="Trust in the runtime"}
 
-### Answers cite sources {accent=teal}
+### :quotes: Answers cite sources {accent=teal}
 You can open what the answer was built from, and judge it yourself.
 
-### Refusal over invention {accent=teal}
+### :x-circle: Refusal over invention {accent=teal}
 When the corpus does not support an answer, the correct output is “I don’t know”.
 
-### Connections are visible {accent=teal}
+### :graph: Connections are visible {accent=teal}
 Relationships between documents are a navigable graph, not a hidden index — you can see *why* two things were linked.
 
 ---
 
 A missing answer is information: **it names a gap someone should fill.** A system that always answers is a system that cannot tell you where its knowledge ends.
 
-## Evidence and audit {layout=cards label="Claim 3 · attributability"}
+## Evidence and audit {layout=cards label="Transparent code · attributability"}
 
-### Who {accent=lavender}
+### :user-circle: Who {accent=lavender}
 The named person who approved it.
 
-### When {accent=lavender}
+### :clock: When {accent=lavender}
 The moment, recorded by the system, not typed by hand.
 
-### On whose approval {accent=lavender}
+### :check-circle: On whose approval {accent=lavender}
 The gate that let it through.
 
-### Against which version {accent=lavender}
+### :git-branch: Against which version {accent=lavender}
 Of which document — the rule as it stood at that moment.
 
 ---
@@ -371,10 +371,10 @@ The machine did the work no human has time for. **The human made every decision 
 
 ## Knowledge that leaves with people {layout=cards label="The flywheel"}
 
-### Today {accent=red}
+### :calendar: Today {accent=red}
 The answer lives in someone’s head, a chat thread, or a ticket comment. It is not searchable, not attributable — and it walks out on their last day.
 
-### The encyclopaedia insight {accent=green}
+### :books: The encyclopaedia insight {accent=green}
 Knowledge becomes an **asset** only when it is written, versioned, attributable and open to correction.
 
 ---
@@ -411,16 +411,16 @@ flowchart LR
 
 ## Regulated energy-sector data exchange {layout=cards label="Examples · delivery"}
 
-### Problem {accent=peach}
+### :warning: Problem {accent=peach}
 Mandated data exchange with many counterparts, each interpreting the same rules differently, against externally imposed deadlines.
 
-### Specification {accent=peach}
+### :file-text: Specification {accent=peach}
 Counterpart variance captured as declared data — not as branches in code.
 
-### Built {accent=peach}
+### :package: Built {accent=peach}
 Data model, exchange services and operator screens, generated from the specification.
 
-### Gate {accent=green}
+### :hand: Gate {accent=green}
 Client accepted against real exchanges with real counterparts.
 
 ---
@@ -429,16 +429,16 @@ Client accepted against real exchanges with real counterparts.
 
 ## Enterprise knowledge assistant {layout=cards label="Examples · runtime"}
 
-### Problem {accent=sky}
+### :warning: Problem {accent=sky}
 A large, sensitive corpus. Answers needed with provenance — not plausibility.
 
-### Specification {accent=sky}
+### :file-text: Specification {accent=sky}
 Classification and handling rules declared as curated data the business owns.
 
-### Built {accent=sky}
+### :package: Built {accent=sky}
 Ingestion pipelines, retrieval with citations, an assistant running inside the customer's boundary.
 
-### Gate {accent=green}
+### :hand: Gate {accent=green}
 Subject-matter experts accept what becomes canonical.
 
 ---
@@ -447,16 +447,16 @@ Subject-matter experts accept what becomes canonical.
 
 ## Infrastructure fleet operations {layout=cards label="Examples · the runtime gate"}
 
-### Problem {accent=mauve}
+### :warning: Problem {accent=mauve}
 A large estate under continuous compliance and vulnerability pressure, with no capacity to inspect everything.
 
-### Specification {accent=mauve}
+### :file-text: Specification {accent=mauve}
 Policy and comparison logic declared; the engine stays generic.
 
-### Built {accent=mauve}
+### :package: Built {accent=mauve}
 Read-only inventory, compliance comparison, per-machine change proposals.
 
-### Gate {accent=green}
+### :hand: Gate {accent=green}
 Every change applied only on a named engineer's approval.
 
 ---
@@ -465,16 +465,16 @@ Every change applied only on a named engineer's approval.
 
 ## Public-sector knowledge base {layout=cards label="Examples · the flywheel"}
 
-### Problem {accent=teal}
+### :warning: Problem {accent=teal}
 Expertise concentrated in a few people. Questions repeat; answers are inconsistent.
 
-### Specification {accent=teal}
+### :file-text: Specification {accent=teal}
 Article lifecycle, statuses and the promotion gate declared as the data model itself.
 
-### Built {accent=teal}
+### :package: Built {accent=teal}
 Ingestion from existing systems, drafted articles, a librarian assistant, an editor surface.
 
-### Gate {accent=green}
+### :hand: Gate {accent=green}
 An expert promotes; the machine is locked out of anything a human touched.
 
 ---
@@ -497,32 +497,32 @@ An expert promotes; the machine is locked out of anything a human touched.
 
 ## The three questions you were going to ask {layout=cards label="Answered before you ask"}
 
-### Where does my data go? {accent=green}
+### :shield: Where does my data go? {accent=green}
 **It stays inside your boundary.** Database, pipelines, retrieval and interfaces run on your infrastructure. The language model is the only component that can sit outside — and it does not have to: with a local model, nothing leaves at all.
 
-### What if the machine is wrong? {accent=yellow}
+### :warning: What if the machine is wrong? {accent=yellow}
 It is sometimes; the design assumes it. Being wrong is **cheap and visible** — a wrong draft fails review, a wrong proposal is declined, a wrong answer is caught by its citation. What cannot happen is a wrong **silent** change. The failure mode is wasted review effort, not a corrupted system.
 
-### What if the model or vendor changes? {accent=blue}
+### :cloud: What if the model or vendor changes? {accent=blue}
 The specifications are the asset, and they are plain documents. The model is an interchangeable component: when a better one arrives, the specifications are unchanged and the output is regenerated.
 
 ## What it costs, and who does the work {layout=cards label="The honest shape"}
 
-### Heavy at the start {accent=peach}
+### :rocket-launch: Heavy at the start {accent=peach}
 Intake research and specification. This is where your people are needed most — and where the value is decided.
 
-### Light in construction {accent=green}
+### :gear: Light in construction {accent=green}
 The part that used to dominate the budget.
 
-### Constant at review {accent=blue}
+### :eye: Constant at review {accent=blue}
 And this never goes away. It is the price of control.
 
 ---
 
-### What you supply {accent=lavender}
+### :hand: What you supply {accent=lavender}
 Someone who owns the intent · someone who accepts against the business goal · a subject-matter expert where a knowledge corpus is involved.
 
-### What you do not supply {accent=lavender}
+### :x-circle: What you do not supply {accent=lavender}
 People to write the parts a document already describes.
 
 ## What changes — and what never does {layout=cards label="A live technology, a stable contract"}
@@ -534,10 +534,10 @@ People to write the parts a document already describes.
 | The tooling, engines, models | **Continuously** — improves month over month | Us, invisibly to you |
 | **Your product** | ✅ Only when **you** decide | **You** |
 
-### Coming {accent=blue}
+### :rocket: Coming {accent=blue}
 Repeatable intake research · richer workflow views · the knowledge flywheel as a standard component · demonstrated model independence.
 
-### Never {accent=red}
+### :x-circle: Never {accent=red}
 Business logic back in code · a hidden default · a machine that approves its own write · a format you cannot read and take with you.
 
 ---
@@ -546,10 +546,10 @@ The layer that moves fastest is the one **furthest from your product**. The laye
 
 ## What you get — and what you must supply {layout=cards label="Close"}
 
-### You get {accent=green}
+### :package: You get {accent=green}
 Logic you can read, in your language. An audit trail that is a record, not a reconstruction. Change priced as an edit, not a project. An exit that exists from day one.
 
-### You supply {accent=peach}
+### :hand: You supply {accent=peach}
 Someone who owns the intent. Someone who accepts against the business goal. Expert review where knowledge is involved. The willingness to decide rather than delegate.
 
 ---
