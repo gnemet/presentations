@@ -1343,43 +1343,34 @@ graph LR
 </ul>
 </div></article></div>
 </div>
-<div class="slide layout-free" id="s5" data-diagram-style="storyboard" data-highlight-path="CF,PF,OL,RD,AK" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Tudásbázis</span></div><h2> RAG pipeline — dokumentumokból AI tudás</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="%%{init: {&#39;flowchart&#39;: {&#39;fontSize&#39;: 18}}}%%
-graph LR
-    subgraph SRC[&#34;Forrás dokumentumok&#34;]
-        CF[&#34;Confluence&lt;br/&gt;oldalak&#34;]
-        JI[&#34;JIRA&lt;br/&gt;ticketek&#34;]
-        UR[&#34;URL / egyéb&lt;br/&gt;források&#34;]
-    end
-    subgraph ENG[&#34;Motorok&#34;]
-        PF[&#34;pipeline-forge&lt;br/&gt;fetch → chunk → embed&#34;]
-        OL[&#34;Ollama&lt;br/&gt;embedding — GPU szerver&#34;]
-    end
-    RD[(&#34;RAG DB&lt;br/&gt;pgvector&#34;)]
-    subgraph MCPS[&#34;MCP szerverek&#34;]
-        AK[&#34;pf-mcpd&lt;br/&gt;multi-tenant MCP&#34;]
-        IT[&#34;tenant tudásbázisok&lt;br/&gt;RLS-izolált&#34;]
-    end
-    CF &amp; JI &amp; UR --&gt; PF
-    PF --&gt; OL
-    OL --&gt; RD
-    RD --&gt; AK &amp; IT
-    class CF,JI,UR source
-    class PF,OL process
-    class RD storage
-    class AK,IT output"></div></div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-books"/></svg><h3>Forrás: vállalati tudás</h3></div><div class="body"><ul>
-<li>Confluence: specifikációk, döntések, leírások</li>
-<li>JIRA: ticketek, kommentek, státuszok</li>
-<li>URL: külső dokumentumok, API leírások</li>
+<div class="slide layout-free" id="s5" data-diagram-style="storyboard" data-highlight-path="Q,V,G,R,P,M,A" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Tudásbázis</span></div><h2> RAG — tartalom és kontextus együtt</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="flowchart LR
+  SRC[Confluence · JIRA&lt;br/&gt;URL-források] --&gt; ING[pipeline-forge&lt;br/&gt;fetch → chunk → embed]
+  ING --&gt; V[(vektor DB&lt;br/&gt;tartalom)]
+  ING --&gt; G[(él-gráf&lt;br/&gt;kontextus)]
+  Q[kérdés] --&gt; V
+  V --&gt; G
+  G --&gt; R[reranker&lt;br/&gt;cross-encoder]
+  R --&gt; P[teljes prompt&lt;br/&gt;kérdés &#43; tartalom &#43; kontextus]
+  P --&gt; M[LLM]
+  M --&gt; A[válasz&lt;br/&gt;forrásokkal]
+  class SRC,Q source
+  class ING,R,P process
+  class V,G storage
+  class M external
+  class A output"></div></div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-books"/></svg><h3>Tartalom — vektor DB</h3></div><div class="body"><ul>
+<li>A chunkok beágyazása (pgvector, HNSW)</li>
+<li>Szemantikus keresés: <em>mi</em> szól a kérdésről</li>
+<li>Az alkatrészek</li>
 </ul>
-</div></article><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-cpu"/></svg><h3>Motor: pipeline-forge</h3></div><div class="body"><ul>
-<li>Forrás konfig + RAG pipeline: <code>pipelines/*.md</code></li>
-<li>pipeline-forge: fetch → chunk → embed lépések</li>
-<li>Ollama: szöveg → vektor (snowflake-arctic-embed2)</li>
+</div></article><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-graph"/></svg><h3>Kontextus — él-gráf</h3></div><div class="body"><ul>
+<li>Kapcsolatok a dokumentumok között: hivatkozás, szerző, kulcsszó</li>
+<li>A találatok szomszédai: <em>hogyan</em> függ össze</li>
+<li>Az összeszerelés — tartalom nélkül üres, kontextus nélkül szétszórt</li>
 </ul>
-</div></article><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-brain"/></svg><h3>Kimenet: AI tudásbázis</h3></div><div class="body"><ul>
-<li>RAG DB: pgvector — szemantikus keresés</li>
-<li>pf-mcpd: távoli, multi-tenant MCP szerver</li>
-<li>Tenantonként RLS-izolált tudásbázis</li>
+</div></article><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-sparkle"/></svg><h3>Rangsor → prompt → LLM</h3></div><div class="body"><ul>
+<li>Reranker: a jelöltekből a legjobb N (cross-encoder)</li>
+<li>Teljes prompt: kérdés + tartalom + kontextus</li>
+<li>LLM-válasz, a forrásokra hivatkozva</li>
 </ul>
 </div></article></div>
 </div>
