@@ -43,7 +43,7 @@ Ma három helyen, három keresővel élnek ezek a dokumentumok; a tudástárban 
 amit egy platformgazda ilyenkor NEM tesz: ígér. Az első dolog, amit tesz: mér.
 ```
 
-## Mi az a tudástár? {layout=mermaid diagrams=first label="Egy perc háttér" id=s3}
+## Mi az a tudástár? {layout=mermaid diagrams=first diagram_style=storyboard highlight_path=S1,L,K,Q,LA label="Egy perc háttér" id=s3}
 
 ```mermaid
 flowchart LR
@@ -56,12 +56,10 @@ flowchart LR
   K --> W[Wikipédia<br/>generált szócikkek]
   W --> LA[Laura<br/>asszisztens]
   Q --> LA
-  classDef src fill:var(--crust),stroke:var(--blue),stroke-width:3px,color:var(--text)
-  classDef core fill:var(--crust),stroke:var(--mauve),stroke-width:3px,color:var(--text)
-  classDef out fill:var(--crust),stroke:var(--green),stroke-width:3px,color:var(--text)
-  class S1,S2,S3,A src
-  class L,K core
-  class Q,W,LA out
+  class S1,S2,S3,A source
+  class L,Q,W process
+  class K storage
+  class LA output
 ```
 
 A források éjszakánként betöltődnek egy tenant-kulcsú korpuszba; a kereső csak azt adja vissza, amire a kérdező jogosult; a Wikipédia a korpuszból generált, ember által jóváhagyott szócikkek; Laura ezekből válaszol.
@@ -205,10 +203,10 @@ a zöld próba sem bizonyíték, ha nem az éles alakot méri — a hibát az el
 és a javítás először egy új piros teszt volt, aztán a migráció.
 ```
 
-## A mechanizmus: adat, nem kód {layout=mermaid diagrams=first label="Mi épül valójában" id=s10}
+## A mechanizmus: adat, nem kód {layout=mermaid diagrams=first diagram_style=storyboard highlight_path=M,V,R,C,K label="Mi épül valójában" id=s10}
 
 ```mermaid
-flowchart TD
+flowchart LR
   M[jogosultság-export csomag<br/>tenant = kmtr] --> V[betöltő: ellenőrzés<br/>szerződés · szabályok · zsugorodás-őr]
   V --> R[(forrás-nyilvántartás<br/>mi kerül be)]
   V --> U[(jogosultságok<br/>ki mit láthat)]
@@ -216,23 +214,22 @@ flowchart TD
   C --> K[(korpusz<br/>tenant = kmtr)]
   S[(útválasztó sorok<br/>KMTR → kmtr)] --> C
   G[(hozzáférési sor<br/>fiók → kmtr)] --> K
-  classDef data fill:var(--crust),stroke:var(--green),stroke-width:3px,color:var(--text)
-  classDef eng fill:var(--crust),stroke:var(--mauve),stroke-width:3px,color:var(--text)
-  class M,R,U,S,G,K data
-  class V,C eng
+  class M source
+  class V,C process
+  class R,U,S,G,K storage
 ```
 
 Ami a KMTR-hez épül, az **adat**: két migráció (egy hozzáférési sor, három útválasztó sor, és egy feloldó függvény, ami a tenantot paraméterként kapja), egy lemásolt betöltő-fa, egy csomag az admin oldalán. A motor változatlan — a következő projekt egy ellenőrző lista.
 
 ```notes
-⏱ 19:00 — Zöld = adat, lila = motor. A közönség számára a tanulság: a második projekt nem fejlesztés,
+⏱ 19:00 — A hengerek az adat, a fogaskerekek a motor. A közönség számára a tanulság: a második projekt nem fejlesztés,
 hanem sorok és másolatok. Ezért mertük megígérni, hogy a harmadik projekt már csak egy ellenőrző lista.
 ```
 
-## A webhook és a riasztás {layout=free diagrams=left ratio=60-40 label="A néma hiba vége" id=s11}
+## A webhook és a riasztás {layout=free diagrams=first diagram_style=storyboard highlight_path=F,C,VA,AP,OK label="A néma hiba vége" id=s11}
 
 ```mermaid
-flowchart TD
+flowchart LR
   F[letöltés] --> C{szerződés?}
   C -- igen --> VA{szabályok?}
   VA -- igen --> AP[alkalmazás az adatbázisra]
@@ -243,12 +240,11 @@ flowchart TD
   AL --> ER[HIBA-sor a naplóban]
   ER --> X[a futás hibával zárul]
   WD[reggeli őr] -. 48 órája nincs siker-sor .-> AL
-  classDef good fill:var(--crust),stroke:var(--green),stroke-width:3px,color:var(--text)
-  classDef bad fill:var(--crust),stroke:var(--red),stroke-width:3px,color:var(--text)
-  classDef step fill:var(--crust),stroke:var(--blue),stroke-width:3px,color:var(--text)
-  class F,C,VA,AP step
-  class OK good
-  class AL,ER,X,WD bad
+  class F source
+  class C,VA decision
+  class AP process
+  class OK output
+  class AL,ER,X,WD error
 ```
 
 ### :lightning: Azonnal {accent=red}

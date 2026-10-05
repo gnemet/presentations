@@ -53,7 +53,7 @@ a zöld próba sem bizonyíték, ha nem az éles alakot méri — a hibát az el
 
 ## 10. A mechanizmus: adat, nem kód (#s10)
 
-⏱ 19:00 — Zöld = adat, lila = motor. A közönség számára a tanulság: a második projekt nem fejlesztés,
+⏱ 19:00 — A hengerek az adat, a fogaskerekek a motor. A közönség számára a tanulság: a második projekt nem fejlesztés,
 hanem sorok és másolatok. Ezért mertük megígérni, hogy a harmadik projekt már csak egy ellenőrző lista.
 
 ## 11. A webhook és a riasztás (#s11)

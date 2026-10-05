@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kéréstől a termékig — a KMTR tudástár esete</title>
 <link rel="icon" href="data:,">
-<!-- deck-engine sha256=f65bf4be0928799aae162b9df6f637edc862582236bacef6cb644c1b242baed8 -->
+<!-- deck-engine sha256=4da1cb18dea930fc9118e84eedabbf6b1e35cbda924c583259bfe8601e00e8fa -->
 <style></style>
 <style>/* deck-foundation engine — chrome + components (spec U1, U3).
  * Inlined verbatim into every generated deck, BEFORE the vibe and accent blocks, so a vibe
@@ -1038,6 +1038,20 @@ blockquote {
     break-after: page;
   }
 }
+
+/* ── storyboard DAG (increment-storyboard-dag) — tokens only; the vibe's own Mermaid look is bypassed ── */
+.mermaid-diagram svg.sb path.flowchart-link { stroke: var(--overlay1) !important; stroke-width: 1.5px !important; }
+.mermaid-diagram svg.sb path.flowchart-link.sb-primary { stroke: var(--accent) !important; stroke-width: 4px !important; }
+.mermaid-diagram svg.sb .sb-marker-primary path { fill: var(--accent); stroke: var(--accent); }
+.mermaid-diagram svg.sb .node .nodeLabel,
+.mermaid-diagram svg.sb .node .nodeLabel p,
+.mermaid-diagram svg.sb .edgeLabel { color: var(--text); fill: var(--text); font-family: var(--font-sans); }
+.mermaid-diagram svg.sb .node.sb-role rect,
+.mermaid-diagram svg.sb .node.sb-role path,
+.mermaid-diagram svg.sb .node.sb-role polygon { fill: var(--mantle) !important; stroke: var(--sb-accent) !important; stroke-width: 2.5px !important; }
+.mermaid-diagram svg.sb .sb-badge circle { fill: var(--sb-accent) !important; }
+.mermaid-diagram svg.sb .sb-badge use { color: var(--base); fill: currentColor; }
+.mermaid-diagram svg.sb { overflow: visible; }
 </style>
 <style>/* vibe: chalkboard — playful, hand-drawn, workshop feel (spec deck-foundation, U7).
  * Dark = chalk on slate (lookin configs/chalkboard.json palette); light = ink on paper.
@@ -1116,7 +1130,7 @@ blockquote {
 </style>
 <style></style>
 </head>
-<body data-auto="0" data-t-views="Views of the same thing" data-t-view-tip="Show this view (f cycles the views)" data-t-no-details="No details for this slide." data-t-diagram-error="Diagram error — " data-t-diagram="Diagram">
+<body data-roles="{&#34;decision&#34;:{&#34;accent&#34;:&#34;peach&#34;,&#34;icon&#34;:&#34;tree-structure&#34;},&#34;error&#34;:{&#34;accent&#34;:&#34;red&#34;,&#34;icon&#34;:&#34;warning&#34;},&#34;external&#34;:{&#34;accent&#34;:&#34;lavender&#34;,&#34;icon&#34;:&#34;cloud&#34;},&#34;gate&#34;:{&#34;accent&#34;:&#34;yellow&#34;,&#34;icon&#34;:&#34;user-circle&#34;},&#34;output&#34;:{&#34;accent&#34;:&#34;green&#34;,&#34;icon&#34;:&#34;check-circle&#34;},&#34;process&#34;:{&#34;accent&#34;:&#34;sapphire&#34;,&#34;icon&#34;:&#34;gear&#34;},&#34;source&#34;:{&#34;accent&#34;:&#34;blue&#34;,&#34;icon&#34;:&#34;arrow-right&#34;},&#34;storage&#34;:{&#34;accent&#34;:&#34;teal&#34;,&#34;icon&#34;:&#34;database&#34;}}" data-auto="0" data-t-views="Views of the same thing" data-t-view-tip="Show this view (f cycles the views)" data-t-no-details="No details for this slide." data-t-diagram-error="Diagram error — " data-t-diagram="Diagram">
 <div class="deck-sprite" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 <symbol id="i-caret-double-left" viewBox="0 -960 1024 1024"><path d="M823 -151Q827 -146 829.5 -140.5Q832 -135 832 -128Q832 -115 822.5 -105.5Q813 -96 800 -96Q793 -96 787.5 -98.5Q782 -101 777 -105L457 -425Q453 -430 450.5 -435.5Q448 -441 448 -448Q448 -455 450.5 -460.5Q453 -466 457 -471L777 -791Q782 -795 787.5 -797.5Q793 -800 800 -800Q813 -800 822.5 -790.5Q832 -781 832 -768Q832 -761 829.5 -755.5Q827 -750 823 -745L525 -448ZM205 -448 503 -745Q507 -750 509.5 -755.5Q512 -761 512 -768Q512 -781 502.5 -790.5Q493 -800 480 -800Q473 -800 467.5 -797.5Q462 -795 457 -791L137 -471Q133 -466 130.5 -460.5Q128 -455 128 -448Q128 -441 130.5 -435.5Q133 -430 137 -425L457 -105Q462 -101 467.5 -98.5Q473 -96 480 -96Q493 -96 502.5 -105.5Q512 -115 512 -128Q512 -135 509.5 -140.5Q507 -146 503 -151Z"/></symbol>
 <symbol id="i-caret-left" viewBox="0 -960 1024 1024"><path d="M663 -151Q667 -146 669.5 -140.5Q672 -135 672 -128Q672 -115 662.5 -105.5Q653 -96 640 -96Q633 -96 627.5 -98.5Q622 -101 617 -105L297 -425Q293 -430 290.5 -435.5Q288 -441 288 -448Q288 -455 290.5 -460.5Q293 -466 297 -471L617 -791Q622 -795 627.5 -797.5Q633 -800 640 -800Q653 -800 662.5 -790.5Q672 -781 672 -768Q672 -761 669.5 -755.5Q667 -750 663 -745L365 -448Z"/></symbol>
@@ -1214,7 +1228,7 @@ blockquote {
 </div></article>
 </div>
 </div>
-<div class="slide layout-mermaid align-top" id="s3" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Egy perc háttér</span></div><h2> Mi az a tudástár?</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="flowchart LR
+<div class="slide layout-mermaid align-top" id="s3" data-diagram-style="storyboard" data-highlight-path="S1,L,K,Q,LA" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Egy perc háttér</span></div><h2> Mi az a tudástár?</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="flowchart LR
   S1[JIRA] --&gt; L[betöltés&lt;br/&gt;éjszakánként]
   S2[Confluence] --&gt; L
   S3[SharePoint] --&gt; L
@@ -1224,12 +1238,10 @@ blockquote {
   K --&gt; W[Wikipédia&lt;br/&gt;generált szócikkek]
   W --&gt; LA[Laura&lt;br/&gt;asszisztens]
   Q --&gt; LA
-  classDef src fill:var(--crust),stroke:var(--blue),stroke-width:3px,color:var(--text)
-  classDef core fill:var(--crust),stroke:var(--mauve),stroke-width:3px,color:var(--text)
-  classDef out fill:var(--crust),stroke:var(--green),stroke-width:3px,color:var(--text)
-  class S1,S2,S3,A src
-  class L,K core
-  class Q,W,LA out"></div></div><div class="body lead"><p>A források éjszakánként betöltődnek egy tenant-kulcsú korpuszba; a kereső csak azt adja vissza, amire a kérdező jogosult; a Wikipédia a korpuszból generált, ember által jóváhagyott szócikkek; Laura ezekből válaszol.</p>
+  class S1,S2,S3,A source
+  class L,Q,W process
+  class K storage
+  class LA output"></div></div><div class="body lead"><p>A források éjszakánként betöltődnek egy tenant-kulcsú korpuszba; a kereső csak azt adja vissza, amire a kérdező jogosult; a Wikipédia a korpuszból generált, ember által jóváhagyott szócikkek; Laura ezekből válaszol.</p>
 </div>
 </div>
 <div class="slide layout-table align-top" id="s4" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">1. nap, délelőtt</span></div><h2> Első lépés: mérés, nem ígéret</h2></div><div class="body body-table"><p>A platform technikai fiókjával, a kiszolgálóról, írás nélkül megnéztük, mi érhető el valójában.</p>
@@ -1380,7 +1392,7 @@ blockquote {
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-mermaid align-top" id="s10" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Mi épül valójában</span></div><h2> A mechanizmus: adat, nem kód</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="flowchart TD
+<div class="slide layout-mermaid align-top" id="s10" data-diagram-style="storyboard" data-highlight-path="M,V,R,C,K" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Mi épül valójában</span></div><h2> A mechanizmus: adat, nem kód</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="flowchart LR
   M[jogosultság-export csomag&lt;br/&gt;tenant = kmtr] --&gt; V[betöltő: ellenőrzés&lt;br/&gt;szerződés · szabályok · zsugorodás-őr]
   V --&gt; R[(forrás-nyilvántartás&lt;br/&gt;mi kerül be)]
   V --&gt; U[(jogosultságok&lt;br/&gt;ki mit láthat)]
@@ -1388,14 +1400,12 @@ blockquote {
   C --&gt; K[(korpusz&lt;br/&gt;tenant = kmtr)]
   S[(útválasztó sorok&lt;br/&gt;KMTR → kmtr)] --&gt; C
   G[(hozzáférési sor&lt;br/&gt;fiók → kmtr)] --&gt; K
-  classDef data fill:var(--crust),stroke:var(--green),stroke-width:3px,color:var(--text)
-  classDef eng fill:var(--crust),stroke:var(--mauve),stroke-width:3px,color:var(--text)
-  class M,R,U,S,G,K data
-  class V,C eng"></div></div><div class="body lead"><p>Ami a KMTR-hez épül, az <strong>adat</strong>: két migráció (egy hozzáférési sor, három útválasztó sor, és egy feloldó függvény, ami a tenantot paraméterként kapja), egy lemásolt betöltő-fa, egy csomag az admin oldalán. A motor változatlan — a következő projekt egy ellenőrző lista.</p>
+  class M source
+  class V,C process
+  class R,U,S,G,K storage"></div></div><div class="body lead"><p>Ami a KMTR-hez épül, az <strong>adat</strong>: két migráció (egy hozzáférési sor, három útválasztó sor, és egy feloldó függvény, ami a tenantot paraméterként kapja), egy lemásolt betöltő-fa, egy csomag az admin oldalán. A motor változatlan — a következő projekt egy ellenőrző lista.</p>
 </div>
 </div>
-<div class="slide layout-free align-top" id="s11" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A néma hiba vége</span></div><h2> A webhook és a riasztás</h2></div>
-<div class="side-diagram ratio-60-40"><div class="diagram-col"><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="flowchart TD
+<div class="slide layout-free align-top" id="s11" data-diagram-style="storyboard" data-highlight-path="F,C,VA,AP,OK" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A néma hiba vége</span></div><h2> A webhook és a riasztás</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="flowchart LR
   F[letöltés] --&gt; C{szerződés?}
   C -- igen --&gt; VA{szabályok?}
   VA -- igen --&gt; AP[alkalmazás az adatbázisra]
@@ -1406,18 +1416,14 @@ blockquote {
   AL --&gt; ER[HIBA-sor a naplóban]
   ER --&gt; X[a futás hibával zárul]
   WD[reggeli őr] -. 48 órája nincs siker-sor .-&gt; AL
-  classDef good fill:var(--crust),stroke:var(--green),stroke-width:3px,color:var(--text)
-  classDef bad fill:var(--crust),stroke:var(--red),stroke-width:3px,color:var(--text)
-  classDef step fill:var(--crust),stroke:var(--blue),stroke-width:3px,color:var(--text)
-  class F,C,VA,AP step
-  class OK good
-  class AL,ER,X,WD bad"></div></div></div>
-<div class="content-col"><div class="content-grid"><article class="card accent-red"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-lightning"/></svg><h3>Azonnal</h3></div><div class="body"><p>Ha a webhook elérhetetlen, a válasz nem szerződés-szerű vagy szabályt sért: Teams-üzenet és e-mail <strong>abban a percben</strong>, és a futás hibával áll meg — az adatbázis érintetlen.</p>
+  class F source
+  class C,VA decision
+  class AP process
+  class OK output
+  class AL,ER,X,WD error"></div></div><div class="content-grid"><article class="card accent-red"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-lightning"/></svg><h3>Azonnal</h3></div><div class="body"><p>Ha a webhook elérhetetlen, a válasz nem szerződés-szerű vagy szabályt sért: Teams-üzenet és e-mail <strong>abban a percben</strong>, és a futás hibával áll meg — az adatbázis érintetlen.</p>
 </div></article><article class="card accent-yellow"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg><h3>Másnap reggel</h3></div><div class="body"><p>Ha 48 órán át nincs sikeres futás — például mert a feladat el sem indult —, a reggeli őr jelez. Ez az a csend, ami két hónapig tartott.</p>
 </div></article><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-leaf"/></svg><h3>Egészséges napon</h3></div><div class="body"><p>Semmi. Egy kézbesített üzenet mindig azt jelenti: „nézz oda most&quot;.</p>
 </div></article></div>
-</div>
-</div>
 </div>
 <div class="slide layout-split align-top" id="s12" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Két kérdés, két ember</span></div><h2> Gépi ellenőrzés és emberi kapu</h2></div>
 <div class="split">
@@ -4876,13 +4882,94 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
   // the diagram's accessible name is chrome (deck/chrome.yaml): set once on every diagram, rendered or not
   document.querySelectorAll('.mermaid-diagram').forEach(box => box.setAttribute('aria-label', document.body.dataset.tDiagram));
 
+  // ── storyboard DAG (increment-storyboard-dag): classic look + a thin story layer over Mermaid's SVG ──
+  // The topology stays Mermaid's; this adds role icons, a highlighted path and token colours — nothing here
+  // moves a node. Roles (icon + accent) are data: deck/diagram-roles.yaml → body[data-roles].
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  const storyboardSlide = box => {
+    const slide = box.closest('.slide');
+    return slide && slide.dataset.diagramStyle === 'storyboard' ? slide : null;
+  };
+  function storyboardConfig() {
+    const cfg = mermaidConfig();
+    return Object.assign(cfg, { look: 'classic', flowchart: { curve: 'linear', htmlLabels: true } });
+  }
+  function storyboardRoles() {
+    try { return JSON.parse(document.body.dataset.roles || '{}'); } catch (err) { return {}; }
+  }
+  function applyStoryboard(box, slide) {
+    const original = box.firstElementChild && box.firstElementChild.cloneNode(true);
+    try {
+      const svg = box.querySelector('svg');
+      const path = (slide.dataset.highlightPath || '').split(',').filter(Boolean);
+      const roles = storyboardRoles();
+      const nodes = new Map();
+      svg.querySelectorAll('g.node').forEach(g => {
+        const m = /^flowchart-(.+)-\d+$/.exec(g.id);
+        if (m) nodes.set(m[1], g);
+      });
+      if (path.some(id => !nodes.has(id))) throw new Error('highlight path names an unknown node');
+      const edges = Array.from(svg.querySelectorAll('path.flowchart-link'));
+      const edgeOf = (a, b) => edges.find(e => new RegExp('^L_' + a + '_' + b + '_\\d+$').test(e.id));
+      const primary = [];
+      for (let i = 0; i + 1 < path.length; i++) {
+        const e = edgeOf(path[i], path[i + 1]);
+        if (!e) throw new Error('highlight path has no edge ' + path[i] + ' → ' + path[i + 1]);
+        primary.push(e);
+      }
+      // all lookups succeeded — only now mutate
+      svg.classList.add('sb');
+      const defs = svg.querySelector('defs') || svg.insertBefore(document.createElementNS(SVG_NS, 'defs'), svg.firstChild);
+      primary.forEach(e => {
+        e.classList.add('sb-primary');
+        const ref = /url\(["']?#([^"')]+)["']?\)/.exec(e.getAttribute('marker-end') || '');
+        const marker = ref && svg.querySelector('[id="' + ref[1] + '"]');
+        if (marker) {
+          const copy = marker.cloneNode(true);
+          copy.id = marker.id + '-sb';
+          copy.classList.add('sb-marker-primary');
+          defs.appendChild(copy);
+          e.setAttribute('marker-end', 'url(#' + copy.id + ')');
+        }
+      });
+      nodes.forEach((g, id) => {
+        const role = Object.keys(roles).find(r => g.classList.contains(r));
+        if (!role) return;
+        g.classList.add('sb-role');
+        g.style.setProperty('--sb-accent', 'var(--' + roles[role].accent + ')');
+        // the whole node's box (not one child's: a cylinder / diamond path has its own local origin);
+        // a diamond has no corner, so its badge sits on the top vertex
+        const bb = g.getBBox();
+        const diamond = Boolean(g.querySelector('polygon'));
+        const bx = diamond ? bb.x + bb.width / 2 : bb.x, by = bb.y;
+        const badge = document.createElementNS(SVG_NS, 'svg');
+        badge.setAttribute('class', 'sb-badge');
+        badge.setAttribute('x', String(bx - 10));
+        badge.setAttribute('y', String(by - 10));
+        badge.setAttribute('width', '22');
+        badge.setAttribute('height', '22');
+        badge.setAttribute('viewBox', '0 0 22 22');
+        const disc = document.createElementNS(SVG_NS, 'circle');
+        disc.setAttribute('cx', '11'); disc.setAttribute('cy', '11'); disc.setAttribute('r', '11');
+        const use = document.createElementNS(SVG_NS, 'use');
+        use.setAttribute('href', '#i-' + roles[role].icon);
+        use.setAttribute('x', '4'); use.setAttribute('y', '4'); use.setAttribute('width', '14'); use.setAttribute('height', '14');
+        badge.append(disc, use);
+        g.appendChild(badge);
+      });
+    } catch (err) {
+      if (original) box.replaceChildren(original);
+    }
+  }
+
   async function renderDiagrams(slide) {
     if (!slide || !window.mermaid) return;
     const boxes = Array.from(slide.querySelectorAll('.mermaid-diagram[data-mermaid]'))
       .filter(box => box.dataset.rendered !== themeKey());
     if (!boxes.length) return;
-    window.mermaid.initialize(mermaidConfig());
     for (const box of boxes) {
+      const sb = storyboardSlide(box);
+      window.mermaid.initialize(sb ? storyboardConfig() : mermaidConfig());
       box.dataset.rendered = themeKey();
       const id = 'deck-mmd-' + ++diagramSeq;
       try {
@@ -4891,6 +4978,7 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
         const source = box.dataset.mermaid.replace(/var\(\s*(--[a-z0-9-]+)\s*\)/g, (m, name) => token(name) || m);
         const { svg } = await window.mermaid.render(id, source);
         box.innerHTML = svg; // SVG produced by Mermaid (securityLevel strict), not string-assembled markup
+        if (sb) applyStoryboard(box, sb); // SB-X3: on any failure the ordinary SVG above stays
       } catch (err) {
         document.getElementById('d' + id)?.remove();
         const note = document.createElement('div');
