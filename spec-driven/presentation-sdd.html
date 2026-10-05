@@ -1324,15 +1324,15 @@ Egy módszertan — házépítés-hasonlattal, valódi példával, és azzal, ho
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free align-top" id="s4" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A módszertan · valós spec</span></div><h2> Mi a Spec-driven Development? — a lánc TdD-vel és validációval zárva</h2></div><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3> Szándék</h3><div class="body"><p><code>01</code> — mit és miért <em>(ember)</em></p>
-</div></li><li class="flow-step"><h3> Specifikáció</h3><div class="body"><p><code>02</code> — requirements (EARS) <em>(ember + AI)</em></p>
-</div></li><li class="flow-step"><h3> Terv</h3><div class="body"><p><code>03</code> — design — a „hogyan&quot; <em>(ember + AI)</em></p>
-</div></li><li class="flow-step"><h3> Feladatok</h3><div class="body"><p><code>04</code> — tasks — függőségi lánc <em>(AI)</em></p>
-</div></li><li class="flow-step"><h3> Bukó teszt</h3><div class="body"><p><code>05 · TdD · RED</code> — a kikötés kódra fordítva — <strong>a kód előtt</strong> <em>(ember + AI)</em></p>
-</div></li><li class="flow-step"><h3> Megvalósítás</h3><div class="body"><p><code>06 · TdD · GREEN</code> — a kivitelezés — kód, amíg a teszt zöld nem lesz <em>(AI)</em></p>
-</div></li><li class="flow-step"><h3> Verifikáció</h3><div class="body"><p><code>07</code> — build · teljes tesztfutás · review <em>(AI + ember)</em></p>
-</div></li><li class="flow-step"><h3> Validáció</h3><div class="body"><p><code>08</code> — átvétel — „a jót építettük?&quot; <em>(ember (QA))</em></p>
-</div></li><li class="flow-step"><h3> Használat</h3><div class="body"><p><code>09</code> — az alkalmazás üzemel — és az első hiányból <strong>új szándék</strong> lesz <em>(ember (végfelhasználó))</em></p>
+<div class="slide layout-free align-top" id="s4" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A módszertan · valós spec</span></div><h2> Mi a Spec-driven Development? — a lánc TdD-vel és validációval zárva</h2></div><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-lightbulb"/></svg> Szándék</h3><div class="body"><p><code>01</code> — mit és miért <em>(ember)</em></p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-file-text"/></svg> Specifikáció</h3><div class="body"><p><code>02</code> — requirements (EARS) <em>(ember + AI)</em></p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-tree-structure"/></svg> Terv</h3><div class="body"><p><code>03</code> — design — a „hogyan&quot; <em>(ember + AI)</em></p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-list-checks"/></svg> Feladatok</h3><div class="body"><p><code>04</code> — tasks — függőségi lánc <em>(AI)</em></p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-x-circle"/></svg> Bukó teszt</h3><div class="body"><p><code>05 · TdD · RED</code> — a kikötés kódra fordítva — <strong>a kód előtt</strong> <em>(ember + AI)</em></p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-code"/></svg> Megvalósítás</h3><div class="body"><p><code>06 · TdD · GREEN</code> — a kivitelezés — kód, amíg a teszt zöld nem lesz <em>(AI)</em></p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-check"/></svg> Verifikáció</h3><div class="body"><p><code>07</code> — build · teljes tesztfutás · review <em>(AI + ember)</em></p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-user-circle"/></svg> Validáció</h3><div class="body"><p><code>08</code> — átvétel — „a jót építettük?&quot; <em>(ember (QA))</em></p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-rocket"/></svg> Használat</h3><div class="body"><p><code>09</code> — az alkalmazás üzemel — és az első hiányból <strong>új szándék</strong> lesz <em>(ember (végfelhasználó))</em></p>
 </div></li></ol></div><div class="after-block block-cards"><div class="content-grid after-grid cols-2"><article class="card accent-red"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-x-circle"/></svg><h3>Vibe coding</h3></div><div class="body"><ul>
 <li>Prompt → kód → „jónak tűnik&quot; → merge</li>
 <li>A kód az egyetlen igazságforrás</li>
@@ -1355,7 +1355,7 @@ Egy módszertan — házépítés-hasonlattal, valódi példával, és azzal, ho
 ├── tests.md # TdD — a kikötés, ami bukni tud, a kód ELŐTT
 └── audit.md # adverz review · findings + kockázat
 </code></pre>
-</div><div class="content-grid after-grid"><article class="card accent-teal"><div class="card-head"><h3>Hogyan él a lemezen</h3></div><div class="body"><ul>
+</div><div class="content-grid after-grid"><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-hard-drives"/></svg><h3>Hogyan él a lemezen</h3></div><div class="body"><ul>
 <li>A rétegek <strong>egymásra épülnek</strong>: minden kikötés a fölötte lévő azonosítóra hivatkozik — <code>G1 → E5 → T6</code>.</li>
 <li><strong>Vasszabály:</strong> a spec-mappa commitolva van, <em>mielőtt</em> az első implementációs fájl megszületne — és minden kikötés tesztje <strong>pirosan</strong>, a kód <em>előtt</em> (A8-kapu, TdD).</li>
 <li>Ez a flotta-gyűjtés <strong>valódi spec-mappája</strong>: <code> docs/specs/fleet-collection/</code> (belső GitLab) — <code>requirements · design · tasks · audit</code>. Ez egy <strong>grandfatherelt</strong>, a mandátumoknál korábbi spec, ezért nincs benne <code>brief.md</code> és <code>tests.md</code>; a fenti hatfájlos alak az <em>új</em> specek szerződése.</li>
@@ -1383,18 +1383,18 @@ O1 [~] Where SMTP is set, notify_fleet_collect shall email a summary; else soft-
 </div></article><article class="card accent-teal"><div class="card-head"><h3>Token</h3></div><div class="body"><p>A szöveg „atomja&quot; (~¾ szó). Minden bemenet és kimenet tokenekben mérődik — és tokenekben kerül pénzbe.</p>
 </div></article><article class="card accent-mauve"><div class="card-head"><h3>Context window — az aranyhal</h3></div><div class="body"><p>Amit a modell <em>egyszerre lát</em> — és semmi mást. <strong>Nem végtelen:</strong> néhány száz oldalnyi szöveg fér bele, a repónk ennek a sokszorosa. Ami nincs benne, az a modell számára <strong>nem létezik</strong> — hiába van a repóban. A session végén <strong>kiürül</strong> — de nem a tudás vész el, hanem a <em>munkamemória</em>: a következő session a repóból, a szabályfájlokból és a memóriából <strong>újraépíti</strong>.</p>
 </div></article><article class="card accent-peach"><div class="card-head"><h3>Prompt</h3></div><div class="body"><p>A teljes bemenet: feladat + szabályok + kontextus. A „prompt engineering&quot; valójában <em>kontextus-szerkesztés</em>.</p>
-</div></article></div><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3> Kérés</h3><div class="body"><p><code>1</code> — feladat + betöltött szabályok</p>
-</div></li><li class="flow-step"><h3> Terv</h3><div class="body"><p><code>2</code> — lépésekre bontás</p>
-</div></li><li class="flow-step"><h3> Eszközhívás</h3><div class="body"><p><code>3</code> — fájl · shell · DB</p>
-</div></li><li class="flow-step"><h3> Megfigyelés</h3><div class="body"><p><code>4</code> — eredmény vissza a kontextusba</p>
-</div></li><li class="flow-step"><h3> Ismétlés</h3><div class="body"><p><code>5</code> — amíg a cél nem teljesül</p>
-</div></li><li class="flow-step"><h3> Verifikáció</h3><div class="body"><p><code>6</code> — build · teszt · jelentés</p>
+</div></article></div><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-chat-circle-dots"/></svg> Kérés</h3><div class="body"><p><code>1</code> — feladat + betöltött szabályok</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-tree-structure"/></svg> Terv</h3><div class="body"><p><code>2</code> — lépésekre bontás</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-gear"/></svg> Eszközhívás</h3><div class="body"><p><code>3</code> — fájl · shell · DB</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-eye"/></svg> Megfigyelés</h3><div class="body"><p><code>4</code> — eredmény vissza a kontextusba</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-flow-arrow"/></svg> Ismétlés</h3><div class="body"><p><code>5</code> — amíg a cél nem teljesül</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-check"/></svg> Verifikáció</h3><div class="body"><p><code>6</code> — build · teszt · jelentés</p>
 </div></li></ol></div><div class="after-block block-cards"><div class="body after"><p><strong>Az agent négy arca — ki irányítja a lépéseket?</strong></p>
-</div><div class="content-grid after-grid cols-4"><article class="card accent-green"><div class="card-head"><h3>Agent</h3></div><div class="body"><p>LLM + eszközök + ciklus (a fenti hat lépés). Nem csak válaszol: fájlt ír, parancsot futtat, tesztet indít.</p>
+</div><div class="content-grid after-grid cols-4"><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-robot"/></svg><h3>Agent</h3></div><div class="body"><p>LLM + eszközök + ciklus (a fenti hat lépés). Nem csak válaszol: fájlt ír, parancsot futtat, tesztet indít.</p>
 <p><strong>Nálunk:</strong> egy Claude Code session.</p>
 </div></article><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-flow-arrow"/></svg><h3>Agentic workflow</h3></div><div class="body"><p>A lépések sorrendjét <strong>az ember rögzíti</strong> előre; az AI a lépéseken <em>belül</em> dolgozik. Kiszámítható, ismételhető.</p>
 <p><strong>Nálunk:</strong> az SdD lánc és a Markdown-pipeline-ok.</p>
-</div></article><article class="card accent-mauve"><div class="card-head"><h3>Multi-agent</h3></div><div class="body"><p>Több agent, <strong>szétosztott szerepekkel</strong>, párhuzamosan — mindegyik a saját, kisebb kontextusával. Egy koordinátor fogja össze.</p>
+</div></article><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-users"/></svg><h3>Multi-agent</h3></div><div class="body"><p>Több agent, <strong>szétosztott szerepekkel</strong>, párhuzamosan — mindegyik a saját, kisebb kontextusával. Egy koordinátor fogja össze.</p>
 <p><strong>Nálunk:</strong> <strong>fork-ok</strong> — a <code>tasks.md</code> független feladatait párhuzamosan implementálják, mindegyik a saját ágán, a saját bukó tesztjével (TdD); a végén kód-, DB-, UI- és biztonsági reviewer egyszerre.</p>
 </div></article><article class="card accent-peach"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-robot"/></svg><h3>Autonóm agent</h3></div><div class="body"><p>Egy célt kap, és <strong>maga dönti el</strong> a lépéseket — lépésenkénti emberi jóváhagyás nélkül, amíg a cél nem teljesül.</p>
 <p><strong>De honnan tudja, hogy teljesült?</strong> A TdD-tesztből: a <strong>piros → zöld</strong> a megállási feltétel. Teszt nélkül az autonómia csak magabiztos találgatás.</p>
@@ -1404,18 +1404,18 @@ O1 [~] Where SMTP is set, notify_fleet_collect shall email a summary; else soft-
 Mint a <a href="https://www.youtube.com/watch?v=ZbGGd4JUwdE"><em>Memento</em></a> hőse: nincs hosszú távú memóriája, <strong>minden nap emlékek nélkül kezdődik</strong> — ezért <strong>mindent leír</strong> (cetli, polaroid, tetoválás), és abból rakja össze, hol tart. Minden session egy ilyen új nap.</p>
 </blockquote>
 </div></div><div class="after-block block-flow"><div class="body after"><p><strong>Hogyan olvassa az AI a repót? — a szabály-hierarchia</strong></p>
-</div><ol class="flow"><li class="flow-step"><h3> Platform axiómák</h3><div class="body"><p><code>betöltés: session start</code> — all_rules_for_claude.md + 00_axioms.md — csak a L1 kerül be kényszeredetten</p>
-</div></li><li class="flow-step"><h3> Projekt CLAUDE.md</h3><div class="body"><p><code>betöltés: session start</code> — infra-forge-specifikus delták, státusz, tiltások</p>
-</div></li><li class="flow-step"><h3> .claude/</h3><div class="body"><p><code>betöltés: session start</code> — hooks · skills · memory · MCP konfiguráció</p>
-</div></li><li class="flow-step"><h3> L2–L3 szabályok, spec-ek, kód</h3><div class="body"><p><code>igény szerint · RAG</code> — amit a feladat megkíván — az agent olvassa be, vagy vektortárból keres vissza</p>
+</div><ol class="flow"><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-books"/></svg> Platform axiómák</h3><div class="body"><p><code>betöltés: session start</code> — all_rules_for_claude.md + 00_axioms.md — csak a L1 kerül be kényszeredetten</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-file-text"/></svg> Projekt CLAUDE.md</h3><div class="body"><p><code>betöltés: session start</code> — infra-forge-specifikus delták, státusz, tiltások</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-stack"/></svg> .claude/</h3><div class="body"><p><code>betöltés: session start</code> — hooks · skills · memory · MCP konfiguráció</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-list-checks"/></svg> L2–L3 szabályok, spec-ek, kód</h3><div class="body"><p><code>igény szerint · RAG</code> — amit a feladat megkíván — az agent olvassa be, vagy vektortárból keres vissza</p>
 </div></li></ol></div><details class="after-block drill block-cards"><summary>▸ Mélyebben: mi az LLM valójában · és mi az agent</summary><div class="body after"><p>Mi az LLM valójában? — és miért következik belőle az SdD</p>
-</div><div class="content-grid after-grid cols-3"><article class="card accent-blue"><div class="card-head"><h3>Statisztikai jóslás</h3></div><div class="body"><p>Következő-token-jóslás: tanult mintázat-folytatás, nem megértés. A magabiztos hang nem igazság-garancia.</p>
+</div><div class="content-grid after-grid cols-3"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-chart-line"/></svg><h3>Statisztikai jóslás</h3></div><div class="body"><p>Következő-token-jóslás: tanult mintázat-folytatás, nem megértés. A magabiztos hang nem igazság-garancia.</p>
 <p><strong>→ ezért SdD:</strong> a kimenetet verifikálni kell — a leforduló kód még nem működő funkció.</p>
-</div></article><article class="card accent-teal"><div class="card-head"><h3>Nincs új tudás — új kombináció igen</h3></div><div class="body"><p>A tréningadatán és a kontextuson túl nem hoz új tudást; a meglévőből viszont új kombinációt állít elő. Nem <em>felfedez</em> — <em>újrarendez</em>.</p>
+</div></article><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-brain"/></svg><h3>Nincs új tudás — új kombináció igen</h3></div><div class="body"><p>A tréningadatán és a kontextuson túl nem hoz új tudást; a meglévőből viszont új kombinációt állít elő. Nem <em>felfedez</em> — <em>újrarendez</em>.</p>
 <p><strong>→ ezért SdD:</strong> az üzleti igazságot (szabály, döntés, scope) neked kell megadnod — dokumentumként.</p>
-</div></article><article class="card accent-mauve"><div class="card-head"><h3>Kreativitás = szabályozott véletlen</h3></div><div class="body"><p>A temperature azt állítja, milyen messze merészkedik a legvalószínűbb úttól. A tiszta véletlen <em>zaj</em>; a hasznos újdonság meglepő ÉS koherens.</p>
+</div></article><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-sparkle"/></svg><h3>Kreativitás = szabályozott véletlen</h3></div><div class="body"><p>A temperature azt állítja, milyen messze merészkedik a legvalószínűbb úttól. A tiszta véletlen <em>zaj</em>; a hasznos újdonság meglepő ÉS koherens.</p>
 <p><strong>→ ezért SdD:</strong> a spec és a szabályok a koherencia-korlát — bennük szabad, kívül kontrollált.</p>
-</div></article></div></details><div class="after-block block-cards"><div class="content-grid after-grid cols-2"><article class="card accent-sky"><div class="card-head"><h3>Nálunk: Claude Code</h3></div><div class="body"><p>Terminálban futó agent. Olvassa a repót, szerkeszt, buildel, commitol — a projekt szabályfájljai szerint.</p>
+</div></article></div></details><div class="after-block block-cards"><div class="content-grid after-grid cols-2"><article class="card accent-sky"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-cpu"/></svg><h3>Nálunk: Claude Code</h3></div><div class="body"><p>Terminálban futó agent. Olvassa a repót, szerkeszt, buildel, commitol — a projekt szabályfájljai szerint.</p>
 </div></article><article class="card accent-red"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-warning"/></svg><h3>A korlátok</h3></div><div class="body"><ul>
 <li><strong>Csak azt látja, amit beolvasott</strong> — a többi repo, wiki, jegy nem létezik neki</li>
 <li>A context window <strong>véges</strong> — nem fér be minden, tehát <em>választani kell</em></li>
@@ -1513,20 +1513,20 @@ Mint a <a href="https://www.youtube.com/watch?v=ZbGGd4JUwdE"><em>Memento</em></a
 <blockquote>
 <p><svg class="i" aria-hidden="true"><use href="#i-warning"/></svg> <strong>És itt a fogás:</strong> az AI-nak <em>nincs fáradtságjelzése</em>. Nem érzi, hogy nagy a diff — boldogan ír 2000 sort egy kérésre. Az ember viszont fárad, és a fáradt review <strong>pecsételéssé</strong> válik. Ezért a diff méretét <strong>előre</strong>, a specben és a taskokban kell korlátozni, nem utólag a review-n. <em>A kis diff nem stílus — ez tartja életben az emberi kaput (A10).</em></p>
 </blockquote>
-</div></div><details class="after-block drill block-cards"><summary>▸ A kis diff technikája — hogyan marad átnézhető az, amit egy gép ír</summary><div class="content-grid after-grid cols-2"><article class="card accent-green"><div class="card-head"><h3>Az öt szabály</h3></div><div class="body"><ul>
+</div></div><details class="after-block drill block-cards"><summary>▸ A kis diff technikája — hogyan marad átnézhető az, amit egy gép ír</summary><div class="content-grid after-grid cols-2"><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-list-checks"/></svg><h3>Az öt szabály</h3></div><div class="body"><ul>
 <li><strong>Egy MR = egy önállóan átnézhető viselkedés.</strong> Rendszerint egy EARS-kikötés; ha kettő elválaszthatatlan, mehet együtt — de <strong>mindkettő azonosítója szerepeljen</strong>. A mérce az átnézhetőség, nem a darabszám.</li>
 <li><strong>A scope-ot a spec zárja le,</strong> mielőtt az első sor megszületne — így nincs mit „menet közben észrevenni&quot;.</li>
 <li><strong>Semmi alkalmi rendrakás.</strong> A hibajavítás hibajavítás; a mellette talált második hiba <em>külön diff</em>.</li>
 <li><strong>Commit taskonként,</strong> és az üzenet nevezze meg a kikötést — a történet így olvasható marad.</li>
 <li><strong>Ha a diff nő, a spec a hibás:</strong> nem a review-t kell erősíteni, hanem a feladatot kettévágni.</li>
 </ul>
-</div></article><article class="card accent-mauve"><div class="card-head"><h3>Amit cserébe kapsz</h3></div><div class="body"><ul>
+</div></article><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-handshake"/></svg><h3>Amit cserébe kapsz</h3></div><div class="body"><ul>
 <li><strong>A visszavonás egysége is kicsi lesz.</strong> Ha éles hiba jön, <em>egy döntést</em> vonsz vissza, nem egy hetet.</li>
 <li><strong>A hiba helye kereshető.</strong> Kis commitok között a git meg tudja mondani, melyik törte el.</li>
 <li><strong>A review érdemi marad.</strong> Az átnézhető diff az egyetlen, ami mellett a „megnéztem&quot; nem üres szó.</li>
 <li><strong>A könyvtár-változás nem robban.</strong> Nálunk egy közös könyvtár 16 repóra hat — ott a kis diff nem kényelem, hanem <em>a biztonság mértékegysége</em>.</li>
 </ul>
-</div></article></div></details><div class="after-block block-cards"><div class="content-grid after-grid"><article class="card accent-blue"><div class="card-head"><h3>Hogyan? — a második hiba útja</h3></div><div class="body"><ol>
+</div></article></div></details><div class="after-block block-cards"><div class="content-grid after-grid"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-question"/></svg><h3>Hogyan? — a második hiba útja</h3></div><div class="body"><ol>
 <li><strong>Észreveszed — és leírod, nem javítod.</strong> Jegy, urgent-lista vagy egy sor az MR leírásában: <em>„talált: X — külön MR&quot;</em>. Az AI ugyanígy tesz: az A10 minden session elején betöltődik, ezért <strong>jelez és kérdez</strong>, nem javít csendben.</li>
 <li><strong>Az első javítást egyedül zárod le</strong> — commit, MR; a diff csak a javításhoz szükséges sorokat érinti.</li>
 <li><strong>A második hiba saját ágat kap</strong> a <code>main</code>-ről, saját commitot, saját MR-t.</li>
@@ -1664,7 +1664,7 @@ git switch -c fix/masodik-hiba
 <p><strong>A tézis:</strong> az AI nem rövidítés a gondolkodás megspórolására, hanem <strong>erősítő</strong> a jó kontextusra. Rossz alapra rakva gyorsan termel — rosszat is.</p>
 </blockquote>
 <p><strong>A kontextus nyelve — miért angolul írjuk a specet és a szabályt?</strong></p>
-</div><div class="content-grid after-grid cols-3"><article class="card accent-peach"><div class="card-head"><h3>Token — a magyar drágább</h3></div><div class="body"><p>Egy <strong>angol szó átlagosan ~5 karakter</strong>, egy token nagyjából <strong>4</strong> — így egy angol szó jellemzően egy-másfél token, sokszor egészben benne van a szótárban. A magyar <strong>toldalékol</strong>: egy szó több ragot hordoz, ritkábban szerepel egészben, ezért <strong>több darabra esik szét</strong>. Ugyanaz a tartalom magyarul <strong>érezhetően több token</strong> — ez kétszeresen fáj: <strong>drágább</strong>, és <strong>kevesebb fér</strong> a véges context windowba. (A pontos szorzó modellenként más; érdemes a saját specjeinken megmérni, mielőtt számot mondunk.)</p>
+</div><div class="content-grid after-grid cols-3"><article class="card accent-peach"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-chart-bar"/></svg><h3>Token — a magyar drágább</h3></div><div class="body"><p>Egy <strong>angol szó átlagosan ~5 karakter</strong>, egy token nagyjából <strong>4</strong> — így egy angol szó jellemzően egy-másfél token, sokszor egészben benne van a szótárban. A magyar <strong>toldalékol</strong>: egy szó több ragot hordoz, ritkábban szerepel egészben, ezért <strong>több darabra esik szét</strong>. Ugyanaz a tartalom magyarul <strong>érezhetően több token</strong> — ez kétszeresen fáj: <strong>drágább</strong>, és <strong>kevesebb fér</strong> a véges context windowba. (A pontos szorzó modellenként más; érdemes a saját specjeinken megmérni, mielőtt számot mondunk.)</p>
 </div></article><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-books"/></svg><h3>Egy nyelv — egy szótár</h3></div><div class="body"><p>A szabály, a spec, a kód és a hibaüzenet <strong>ugyanazokat a szavakat</strong> használja — nincs mit összepárosítani. Két nyelven ugyanaz a fogalom kétféleképp íródik le, és a visszakeresés is, a review is ezen a résen szivárog el. <em>A cél nem az angol, hanem hogy egy fogalomnak egy neve legyen (A1).</em></p>
 </div></article><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-code"/></svg><h3>A kód úgyis angol</h3></div><div class="body"><p>Kulcsszó, azonosító, könyvtár-dokumentáció, hibaüzenet, git-szótár — mind angol. Ha a spec magyar, minden mondat mögé <strong>fordítási réteg</strong> kerül, és a jelentés ott szivárog el. Egy nyelven tartva nincs mit félrefordítani.</p>
 </div></article></div></div><div class="after-block block-cards"><div class="body after"><blockquote>
@@ -1687,12 +1687,12 @@ git switch -c fix/masodik-hiba
 </div></li><li class="flow-step accent-peach"><h3><svg class="i" aria-hidden="true"><use href="#i-check-circle"/></svg> TdD — piros → zöld</h3><div class="body"><p>A 2. lépésben a teszt <strong>leírása</strong> (<code>tests.md</code>) születik; a 3. lépés <strong>első commitja maga a teszt-kód</strong> (ember + AI írja) — lefut, és <strong>piros</strong>. A kód akkor kész, ha <strong>ugyanaz</strong> a teszt <strong>zöldre</strong> vált — nem akkor, ha lefordul.</p>
 <p>kimenet
 <strong>bizonyított „kész&quot;</strong> — gépi ellenőrzés, aztán a két emberi kapu (A9)</p>
-</div></li></ol><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3> Szándék</h3><div class="body"><p><code>1 · EMBER</code> — prompt / vibe → brief</p>
-</div></li><li class="flow-step"><h3> Spec</h3><div class="body"><p><code>2 · AI</code> — EARS + terv + teszt-leírás</p>
-</div></li><li class="flow-step"><h3> Spec elfogadva</h3><div class="body"><p><code>🔒 GATE</code> — ember jóváhagy, commit</p>
-</div></li><li class="flow-step"><h3> Teszt piros → kód</h3><div class="body"><p><code>3 · EMBER + AI</code> — teszt: ember + AI · kód: AI — axióma · szabály · spec szerint</p>
-</div></li><li class="flow-step"><h3> Zöld</h3><div class="body"><p><code>4 · AI</code> — build · teszt · smoke</p>
-</div></li><li class="flow-step"><h3> Review &#43; átvétel</h3><div class="body"><p><code>🔒 GATE</code> — verifikáció · validáció</p>
+</div></li></ol><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-lightbulb"/></svg> Szándék</h3><div class="body"><p><code>1 · EMBER</code> — prompt / vibe → brief</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-file-text"/></svg> Spec</h3><div class="body"><p><code>2 · AI</code> — EARS + terv + teszt-leírás</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-check-circle"/></svg> Spec elfogadva</h3><div class="body"><p><code>🔒 GATE</code> — ember jóváhagy, commit</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-x-circle"/></svg> Teszt piros → kód</h3><div class="body"><p><code>3 · EMBER + AI</code> — teszt: ember + AI · kód: AI — axióma · szabály · spec szerint</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-check"/></svg> Zöld</h3><div class="body"><p><code>4 · AI</code> — build · teszt · smoke</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-eye"/></svg> Review &#43; átvétel</h3><div class="body"><p><code>🔒 GATE</code> — verifikáció · validáció</p>
 </div></li></ol></div><div class="after-block block-cards"><div class="body after"><blockquote>
 <p><strong>A csavar:</strong> a prompt csak a <strong>kiindulópont</strong>, nem a módszer. A „vibe&quot; az első lépésben helyénvaló — utána a spec veszi át, és a <strong>teszt dönti el</strong>, mikor van kész. Az ember a két kapunál irányít (<strong>A6</strong>).</p>
 </blockquote>
@@ -1713,12 +1713,12 @@ git switch -c fix/masodik-hiba
 </div></li><li class="flow-step accent-peach"><h3><svg class="i" aria-hidden="true"><use href="#i-target"/></svg> Loop engineering</h3><div class="body"><p>Felfedez · cselekszik · ellenőriz · ismétel — egy stabil cél felé, önállóan.</p>
 <p>infra-forge
 <strong>AI-önkontroll</strong> — a <em>megcélzott</em> hurok: manifest → CI futtatja → <code>ops_validate_deployment</code> 0–100 → drift esetén újraépít. A remediációs ág ma <strong>áll</strong> (2026-09-09).</p>
-</div></li></ol><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3> Observe</h3><div class="body"><p><code>DISCOVER</code> — collect → SCD2 artefakt</p>
-</div></li><li class="flow-step"><h3> Understand</h3><div class="body"><p><code>DISCOVER</code> — AI elemzés → findings</p>
-</div></li><li class="flow-step"><h3> Plan</h3><div class="body"><p><code>ACT</code> — OpenTofu <code>tfvars</code> / base-config manifest tervezet</p>
-</div></li><li class="flow-step"><h3> Emberi kapu</h3><div class="body"><p><code>🔒 GATE</code> — GitLab MR — ember jóváhagy</p>
-</div></li><li class="flow-step"><h3> Deploy &#43; Verify</h3><div class="body"><p><code>ACT → VERIFY</code> — CI alkalmazza · validációs pont 0–100</p>
-</div></li><li class="flow-step"><h3> Confirm / Recreate</h3><div class="body"><p><code>REPEAT</code> — pont ≥ küszöb → lezár · drift → újraépít</p>
+</div></li></ol><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-eye"/></svg> Observe</h3><div class="body"><p><code>DISCOVER</code> — collect → SCD2 artefakt</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-brain"/></svg> Understand</h3><div class="body"><p><code>DISCOVER</code> — AI elemzés → findings</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-tree-structure"/></svg> Plan</h3><div class="body"><p><code>ACT</code> — OpenTofu <code>tfvars</code> / base-config manifest tervezet</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-hand"/></svg> Emberi kapu</h3><div class="body"><p><code>🔒 GATE</code> — GitLab MR — ember jóváhagy</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-rocket-launch"/></svg> Deploy &#43; Verify</h3><div class="body"><p><code>ACT → VERIFY</code> — CI alkalmazza · validációs pont 0–100</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-flow-arrow"/></svg> Confirm / Recreate</h3><div class="body"><p><code>REPEAT</code> — pont ≥ küszöb → lezár · drift → újraépít</p>
 </div></li></ol></div><div class="after-block block-cards"><div class="body after"><blockquote>
 <p><strong>A csavar:</strong> a hurok teljes — de az <strong>emberi kapu benne van</strong>. Az AI tervez, a GitLab CI alkalmaz, az ember jóváhagy (<strong>A6</strong>). Ez nem „az ember kilép a hurokból&quot;, hanem <strong>kapuvezérelt autonómia</strong>.</p>
 </blockquote>
@@ -1731,8 +1731,8 @@ git switch -c fix/masodik-hiba
 <p>Ugyanaz a pipeline fut az alkalmazásban és az AI kezében: <em>egy logika, két hívó</em>.</p>
 </div></article><article class="card accent-mauve"><div class="card-head"><h3>A kontroll nálunk marad</h3></div><div class="body"><p>Az ember tartja a <strong>kapukat</strong> (MR / hash-reveal / admin-grant). Az <code>agent</code> principal sosem ad magának jogot, sosem old fel titkot.</p>
 </div></article><article class="card accent-sky"><div class="card-head"><h3>Az AI anyanyelve: Markdown &#43; angol</h3></div><div class="body"><p>Ezért él a logika olvasható dokumentumban (pipeline, spec, szabály) — ez a <em>miért</em> a Document=Code mögött.</p>
-</div></article></div><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3> AI mint LÉPÉS</h3><div class="body"><p><code>RÉGI</code> — az ember orchestrál, az AI egy-egy részfeladatot old meg</p>
-</div></li><li class="flow-step"><h3> AI mint ORCHESTRÁTOR</h3><div class="body"><p><code>ÚJ</code> — az AI vezényli a folyamatot, az ember a kapuknál dönt</p>
+</div></article></div><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-gear"/></svg> AI mint LÉPÉS</h3><div class="body"><p><code>RÉGI</code> — az ember orchestrál, az AI egy-egy részfeladatot old meg</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-tree-structure"/></svg> AI mint ORCHESTRÁTOR</h3><div class="body"><p><code>ÚJ</code> — az AI vezényli a folyamatot, az ember a kapuknál dönt</p>
 </div></li></ol></div><div class="after-block block-cards"><div class="body after"><blockquote>
 <p><strong>A házon:</strong> A brigád dolgozik, a tulajdonos és az ellenőr a kapuknál áll; a darut a brigád és a gépész is használja. · SdD-ben: Az AI végzi a lépéseket, az ember tartja a kapukat — a motornak két hívója van: az alkalmazás és az AI.</p>
 </blockquote>
@@ -1809,11 +1809,11 @@ tenant: _infra
 <p><strong>## Step: Done — log</strong></p>
 <p>A közös végpont, ahová mindkét ág érkezik.</p>
 </div></div><div class="after-block face-pane block-flow" data-face="PIPELINE — futtatható lépések" hidden><div class="body after"><p>Amit <strong>csak a motor</strong> lát: öt lépés, mindegyik a saját <em>típusával</em> — és <strong>két ág</strong>. A RAW ezt szövegként mutatta, a DOC prózaként — itt <strong>végrehajtási terv</strong>.</p>
-</div><ol class="flow"><li class="flow-step"><h3> Extract Dependencies</h3><div class="body"><p><code>1 · db_query</code> — infra.dep_extract_from_snapshots() · hibánál → 4</p>
-</div></li><li class="flow-step"><h3> Log Result</h3><div class="body"><p><code>2 · log</code> — siker → 3</p>
-</div></li><li class="flow-step"><h3> Sync Graph Store</h3><div class="body"><p><code>3 · pipeline</code> — → OPS-graph_sync (9 lépés) · critical: false · → 5</p>
-</div></li><li class="flow-step"><h3> Log Run Failure — csak hibaágon</h3><div class="body"><p><code>4 · log</code> — on_error célpont — sikeres futásnál kimarad</p>
-</div></li><li class="flow-step"><h3> Done</h3><div class="body"><p><code>5 · log</code> — mindkét ág itt ér véget</p>
+</div><ol class="flow"><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-database"/></svg> Extract Dependencies</h3><div class="body"><p><code>1 · db_query</code> — infra.dep_extract_from_snapshots() · hibánál → 4</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-file-text"/></svg> Log Result</h3><div class="body"><p><code>2 · log</code> — siker → 3</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-graph"/></svg> Sync Graph Store</h3><div class="body"><p><code>3 · pipeline</code> — → OPS-graph_sync (9 lépés) · critical: false · → 5</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-warning"/></svg> Log Run Failure — csak hibaágon</h3><div class="body"><p><code>4 · log</code> — on_error célpont — sikeres futásnál kimarad</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-check-circle"/></svg> Done</h3><div class="body"><p><code>5 · log</code> — mindkét ág itt ér véget</p>
 </div></li></ol></div><div class="after-block block-cards"><div class="body after"><table>
 <thead>
 <tr>
@@ -1875,11 +1875,11 @@ tenant: _infra
 <blockquote>
 <p><svg class="i" aria-hidden="true"><use href="#i-info"/></svg> Ha a tudás csak a kódban él, három olvasója van: a fordító, a szerző — és senki más.</p>
 </blockquote>
-</div></div><details class="after-block drill block-cards"><summary>▸ Document = Code · No bare SQL — a két következmény</summary><div class="content-grid after-grid cols-2"><article class="card accent-green"><div class="card-head"><h3>Document = Code</h3></div><div class="body"><p>A <code>.md</code> egyszerre a specifikáció ÉS a futtatható / generátor-bemenet. Nincs külön dokumentáció, ami elavulhatna.</p>
-</div></article><article class="card accent-blue"><div class="card-head"><h3>No bare SQL</h3></div><div class="body"><p>A forrásfában nincs csupasz <code>.sql</code>. Minden kézi SQL markdown: frontmatter + a <em>miért</em> próza + egyetlen ````sql` blokk. A generált DDL specekből születik.</p>
-</div></article></div></details><details class="after-block drill block-cards"><summary>▸ Mi az a Markdown — és hogyan néz ki egy platform-fájl belülről</summary><div class="content-grid after-grid cols-3"><article class="card accent-teal"><div class="card-head"><h3>Mi az a Markdown?</h3></div><div class="body"><p>Pehelysúlyú, sima-szöveges jelölőnyelv (<a href="https://commonmark.org/">CommonMark</a> szabvány). Néhány jel az egész: <code># fejléc</code>, <code>- lista</code>, <code>| tábla |</code>, <code>**félkövér**</code>, <code>kódblokk</code>. Olvasható nyersen és renderelve is.</p>
-</div></article><article class="card accent-blue"><div class="card-head"><h3>A fejléc a modell térképe</h3></div><div class="body"><p>A <code>#</code>…<code>######</code> hierarchia adja a szerkezetet — a RAG <em>fejezetenként</em> darabol (chunk-by-chapter), így a modell célzottan a releváns szakaszt kapja vissza, nem az egész fájlt.</p>
-</div></article><article class="card accent-mauve"><div class="card-head"><h3>Három rész, egy fájl</h3></div><div class="body"><p><strong>1)</strong> YAML <em>frontmatter</em> — metaadat (név, sorrend, függőség, schedule).</p>
+</div></div><details class="after-block drill block-cards"><summary>▸ Document = Code · No bare SQL — a két következmény</summary><div class="content-grid after-grid cols-2"><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-code"/></svg><h3>Document = Code</h3></div><div class="body"><p>A <code>.md</code> egyszerre a specifikáció ÉS a futtatható / generátor-bemenet. Nincs külön dokumentáció, ami elavulhatna.</p>
+</div></article><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-lock"/></svg><h3>No bare SQL</h3></div><div class="body"><p>A forrásfában nincs csupasz <code>.sql</code>. Minden kézi SQL markdown: frontmatter + a <em>miért</em> próza + egyetlen ````sql` blokk. A generált DDL specekből születik.</p>
+</div></article></div></details><details class="after-block drill block-cards"><summary>▸ Mi az a Markdown — és hogyan néz ki egy platform-fájl belülről</summary><div class="content-grid after-grid cols-3"><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-question"/></svg><h3>Mi az a Markdown?</h3></div><div class="body"><p>Pehelysúlyú, sima-szöveges jelölőnyelv (<a href="https://commonmark.org/">CommonMark</a> szabvány). Néhány jel az egész: <code># fejléc</code>, <code>- lista</code>, <code>| tábla |</code>, <code>**félkövér**</code>, <code>kódblokk</code>. Olvasható nyersen és renderelve is.</p>
+</div></article><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-tree-structure"/></svg><h3>A fejléc a modell térképe</h3></div><div class="body"><p>A <code>#</code>…<code>######</code> hierarchia adja a szerkezetet — a RAG <em>fejezetenként</em> darabol (chunk-by-chapter), így a modell célzottan a releváns szakaszt kapja vissza, nem az egész fájlt.</p>
+</div></article><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-stack"/></svg><h3>Három rész, egy fájl</h3></div><div class="body"><p><strong>1)</strong> YAML <em>frontmatter</em> — metaadat (név, sorrend, függőség, schedule).</p>
 <p><strong>2)</strong> Próza — a <em>miért</em>.</p>
 <p><strong>3)</strong> Egy vagy több <em>fenced</em> blokk — a futtatható tartalom (<code>sql</code> / <code>yaml</code> / lépések).</p>
 <p>A fenti <code>ops_dep_extract.md</code> pontosan így épül fel: <strong>frontmatter</strong> (név, ütemezés, tenant) + <strong>próza</strong> (a miért) + <strong><code>## Step:</code> szakaszok</strong> (a futtatható lépések). Az ember a prózát olvassa, a git a diffet, az LLM az egészet — a motor pedig a lépéseket futtatja, sorban.</p>
@@ -1948,9 +1948,9 @@ tenant: _infra
 <li><em><code>skills/*.md</code> + <code>pipelines/*.md</code></em></li>
 </ul>
 </div></article></div><div class="after-block block-flow"><div class="body after"><p><strong>Oldd meg ott, ahol él — az adat a DB-ben él</strong></p>
-</div><ol class="flow"><li class="flow-step"><h3> DB-eszközzel</h3><div class="body"><p><code>1 · ELŐSZÖR</code> — halmazművelet, tárolt függvény, index</p>
-</div></li><li class="flow-step"><h3> Jó és elég gyors?</h3><div class="body"><p><code>2 · MÉRÉS</code> — helyes eredmény <strong>és</strong> teljesítmény — mérve</p>
-</div></li><li class="flow-step"><h3> Másik megoldás</h3><div class="body"><p><code>3 · HA NEM</code> — lassú vagy drága → a szomszéd rétegben (BE)</p>
+</div><ol class="flow"><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-database"/></svg> DB-eszközzel</h3><div class="body"><p><code>1 · ELŐSZÖR</code> — halmazművelet, tárolt függvény, index</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-chart-line"/></svg> Jó és elég gyors?</h3><div class="body"><p><code>2 · MÉRÉS</code> — helyes eredmény <strong>és</strong> teljesítmény — mérve</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-git-branch"/></svg> Másik megoldás</h3><div class="body"><p><code>3 · HA NEM</code> — lassú vagy drága → a szomszéd rétegben (BE)</p>
 </div></li><li class="flow-step"><h3> A „miért&#34; a specbe</h3><div class="body"><p><code>4 · RÖGZÍTÉS</code> — design.md: mi bukott el, miért itt lett</p>
 </div></li></ol></div><div class="after-block block-cards"><div class="body after"><blockquote>
 <p><strong>Mi hová tartozik:</strong> <strong>DB</strong> — szűrés, rendezés, összesítés · <strong>BE</strong> — transzport, auth, session · <strong>FE</strong> — megjelenítés · <strong>AI</strong> — a tierek <em>elérése</em>, nem a logikájuk. Ha a munka a BE-be kerül, az adatot akkor is csak tárolt függvényen át érjük el: a <em>hely</em> mozdulhat, a <em>hozzáférés módja</em> nem. <strong>Az invariáns:</strong> az igény változik → az entitásspec vagy a pipeline-fájl változik → a generált kód frissül. Nem fordítva.</p>
@@ -2185,15 +2185,15 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 </div>
 </div>
 <div class="slide layout-free align-top" id="s11e" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Új elem — TdD</span></div><h2> TdD — a teszt az EARS-kikötés gépi fele</h2></div><div class="body"><p>A teszt-vezérelt fejlesztés nem új (<a href="https://www.oreilly.com/library/view/test-driven-development/0321146530/">Kent Beck, 2002</a>) — de <strong>LLM mellett más a szerepe</strong>. Régen a fejlesztő fegyelmét pótolta. Most azt a kérdést válaszolja meg, amit egy magabiztos géptől másképp nem lehet: <em>„tényleg kész van, vagy csak annak hangzik?&quot;</em></p>
-</div><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3> EARS-kikötés</h3><div class="body"><p><code>01</code> — az eldönthető állítás <em>(ember + AI)</em></p>
-</div></li><li class="flow-step"><h3> Bukó teszt</h3><div class="body"><p><code>02 · RED</code> — a kikötés kódra fordítva — és commitolva <em>(ember + AI)</em></p>
-</div></li><li class="flow-step"><h3> A legkisebb kód</h3><div class="body"><p><code>03 · GREEN</code> — ami zöldre viszi <em>(AI)</em></p>
-</div></li><li class="flow-step"><h3> Refaktor</h3><div class="body"><p><code>04</code> — a zöld végig zöld marad <em>(AI)</em></p>
-</div></li><li class="flow-step"><h3> Review</h3><div class="body"><p><code>05</code> — az ember <strong>a tesztet is</strong> olvassa <em>(ember)</em></p>
-</div></li></ol></div><div class="after-block block-cards"><div class="content-grid after-grid cols-3"><article class="card accent-green"><div class="card-head"><h3>Az AI nem tud blöffölni</h3></div><div class="body"><p>A „kész vagyok&quot; egy nyelvi modelltől <strong>nem bizonyíték</strong> — a magabiztos hang ingyen van. A zöld tesztfutás viszont tény. A teszt az egyetlen visszajelzés, amit az AI <em>nem tud meggyőzően előadni</em>. Ha a tesztet is az AI vázolja, a review <strong>a tesztet olvassa először</strong> — ez a tartóelem.</p>
-</div></article><article class="card accent-teal"><div class="card-head"><h3>A gép önmagát javítja</h3></div><div class="body"><p>A piros teszt <strong>gépi hibaüzenet</strong>, amit az agent visszaolvas és amiből tovább dolgozik. Teszt nélkül minden kör emberi visszajelzést igényel — a tesztsor az, ami a <em>felügyelet nélküli</em> ciklust egyáltalán lehetővé teszi.</p>
-</div></article><article class="card accent-mauve"><div class="card-head"><h3>A regresszió ellen</h3></div><div class="body"><p>Ha az AI naponta több száz sort ír, a <strong>korábban megoldott</strong> problémák visszatérése a fő kockázat. Minden teljesített EARS-kikötés teszt formájában <em>bekerít</em> egy döntést: onnantól a gép őrzi, nem az emlékezet.</p>
-</div></article></div></div><div class="after-block block-cards"><div class="content-grid after-grid"><article class="card accent-red"><div class="card-head"><h3>Saját esetünk — 27 zöld, de üres futás</h3></div><div class="body"><p>Az <code>ops_dep_extract</code> (a #s10 élő pipeline-ja) egy elírt tenant-hivatkozás miatt <strong>27 futáson át zöld volt</strong> — és <strong>egyetlen függőségi élt sem írt</strong>. A „sikeres&quot; futás csak annyit jelentett, hogy <em>nem volt hibaüzenet</em>. Két hétig (2026-08-28-ig) senki nem vette észre.</p>
+</div><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-file-text"/></svg> EARS-kikötés</h3><div class="body"><p><code>01</code> — az eldönthető állítás <em>(ember + AI)</em></p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-x-circle"/></svg> Bukó teszt</h3><div class="body"><p><code>02 · RED</code> — a kikötés kódra fordítva — és commitolva <em>(ember + AI)</em></p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-code"/></svg> A legkisebb kód</h3><div class="body"><p><code>03 · GREEN</code> — ami zöldre viszi <em>(AI)</em></p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-gear"/></svg> Refaktor</h3><div class="body"><p><code>04</code> — a zöld végig zöld marad <em>(AI)</em></p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-eye"/></svg> Review</h3><div class="body"><p><code>05</code> — az ember <strong>a tesztet is</strong> olvassa <em>(ember)</em></p>
+</div></li></ol></div><div class="after-block block-cards"><div class="content-grid after-grid cols-3"><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg><h3>Az AI nem tud blöffölni</h3></div><div class="body"><p>A „kész vagyok&quot; egy nyelvi modelltől <strong>nem bizonyíték</strong> — a magabiztos hang ingyen van. A zöld tesztfutás viszont tény. A teszt az egyetlen visszajelzés, amit az AI <em>nem tud meggyőzően előadni</em>. Ha a tesztet is az AI vázolja, a review <strong>a tesztet olvassa először</strong> — ez a tartóelem.</p>
+</div></article><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-robot"/></svg><h3>A gép önmagát javítja</h3></div><div class="body"><p>A piros teszt <strong>gépi hibaüzenet</strong>, amit az agent visszaolvas és amiből tovább dolgozik. Teszt nélkül minden kör emberi visszajelzést igényel — a tesztsor az, ami a <em>felügyelet nélküli</em> ciklust egyáltalán lehetővé teszi.</p>
+</div></article><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-list-checks"/></svg><h3>A regresszió ellen</h3></div><div class="body"><p>Ha az AI naponta több száz sort ír, a <strong>korábban megoldott</strong> problémák visszatérése a fő kockázat. Minden teljesített EARS-kikötés teszt formájában <em>bekerít</em> egy döntést: onnantól a gép őrzi, nem az emlékezet.</p>
+</div></article></div></div><div class="after-block block-cards"><div class="content-grid after-grid"><article class="card accent-red"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-warning"/></svg><h3>Saját esetünk — 27 zöld, de üres futás</h3></div><div class="body"><p>Az <code>ops_dep_extract</code> (a #s10 élő pipeline-ja) egy elírt tenant-hivatkozás miatt <strong>27 futáson át zöld volt</strong> — és <strong>egyetlen függőségi élt sem írt</strong>. A „sikeres&quot; futás csak annyit jelentett, hogy <em>nem volt hibaüzenet</em>. Két hétig (2026-08-28-ig) senki nem vette észre.</p>
 <p><strong>EARS:</strong> <em>„Amikor az éjszakai futás lefut, a rendszernek a friss pillanatképekből legalább egy függőségi élt kell írnia.&quot;</em></p>
 <p><strong>RED-teszt:</strong> futtasd a lépést egy tesztadatbázison → <code>élek száma ≥ 1</code>?</p>
 <p><strong>→ az első éjszakán piros lett volna.</strong></p>
@@ -2217,10 +2217,10 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 </div></article><article class="card accent-teal"><div class="card-head"><h3>datagrid</h3></div><div class="body"><p>Oszlopok, szűrők, pivotok katalógusból; téma <code>--dg-*</code> tokennel. Bővítés ← <strong>katalógus-bejegyzés</strong>.</p>
 </div></article></div><div class="after-block block-cards"><div class="body after"><p><strong>A motorok alatt — a foundation réteg: keret · könyvtár · minta · példa</strong></p>
 <p>A <code>foundation-*</code> repók <strong>nem csak könyvtárak</strong> — négyféle dolgot adnak: <strong>①</strong> <strong>keret</strong>, amibe beépülsz (pl. az app-shell) · <strong>②</strong> <strong>könyvtár</strong>, amit behivatkozol · <strong>③</strong> <strong>minta</strong>, amit követsz · <strong>④</strong> <strong>példa</strong>, amiből kiindulsz. <strong>Hogy egy feladatnál melyiket és hogyan használja, azt az AI választja</strong> (A11: a konstrukció az AI-é).</p>
-</div><div class="content-grid after-grid cols-4"><article class="card accent-green"><div class="card-head"><h3>foundation-go</h3></div><div class="body"><p>Logger, dbpool, http-middleware, auth-trió, sidebar. <em>A minta:</em> egy új szolgáltatás nem talál ki saját naplózást — <strong>ezt követi</strong>.</p>
-</div></article><article class="card accent-sky"><div class="card-head"><h3>foundation-pg</h3></div><div class="body"><p>Dinamikus SQL annotált kommentekkel, nem string-fűzéssel. <em>A minta:</em> a feltételes blokk a SQL-ben <strong>látszik</strong>, nem Go-ban rejtőzik.</p>
-</div></article><article class="card accent-mauve"><div class="card-head"><h3>foundation-ui</h3></div><div class="body"><p>Az app-shell: fejléc, sidebar, téma, login. <em>A minta:</em> minden felület ugyanúgy néz ki, mert ugyanonnan származik.</p>
-</div></article><article class="card accent-peach"><div class="card-head"><h3>foundation-wiki</h3></div><div class="body"><p>Nem könyvtár, hanem <strong>hordozható módszer</strong>: a spec maga a definíció. Ugyanarra a módszerre több termék is épülhet — a spec viszi át, nem a kód.</p>
+</div><div class="content-grid after-grid cols-4"><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-code"/></svg><h3>foundation-go</h3></div><div class="body"><p>Logger, dbpool, http-middleware, auth-trió, sidebar. <em>A minta:</em> egy új szolgáltatás nem talál ki saját naplózást — <strong>ezt követi</strong>.</p>
+</div></article><article class="card accent-sky"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-database"/></svg><h3>foundation-pg</h3></div><div class="body"><p>Dinamikus SQL annotált kommentekkel, nem string-fűzéssel. <em>A minta:</em> a feltételes blokk a SQL-ben <strong>látszik</strong>, nem Go-ban rejtőzik.</p>
+</div></article><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-eye"/></svg><h3>foundation-ui</h3></div><div class="body"><p>Az app-shell: fejléc, sidebar, téma, login. <em>A minta:</em> minden felület ugyanúgy néz ki, mert ugyanonnan származik.</p>
+</div></article><article class="card accent-peach"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-books"/></svg><h3>foundation-wiki</h3></div><div class="body"><p>Nem könyvtár, hanem <strong>hordozható módszer</strong>: a spec maga a definíció. Ugyanarra a módszerre több termék is épülhet — a spec viszi át, nem a kód.</p>
 </div></article></div></div><div class="after-block block-cards"><div class="body after"><blockquote>
 <p><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg> <strong>A választás szabad, a forrás nem.</strong> A keretbe <em>beépülsz</em>, a könyvtárat <em>behivatkozod</em>, a mintát <em>követed</em>, a példából <em>kiindulsz</em> — hogy melyik illik a feladathoz, azt az AI dönti el. De a foundationből választ: ha ott van rá kanonikus megoldás, <strong>nem talál ki újat</strong>. Enélkül 16 repóban 16-féle naplózás születne, mind „helyes&quot;, mind más. A <code>foundation-*</code> így <strong>az AI tudástára</strong>: nem kész kódot ad, hanem <em>választékot — és a döntést, amit nem kell újra meghozni</em>.</p>
 </blockquote>
@@ -2287,13 +2287,13 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 <li>A kérdésre <strong>előbb a releváns chunkokat</strong> keresi vissza — nem az egész repót.</li>
 <li>Csak azt tölti be, ami a feladathoz kell — <strong>forrásmegjelöléssel</strong>.</li>
 </ul>
-</div></article></div><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3> Kérdés</h3><div class="body"><p><code>1</code> — magyarul</p>
-</div></li><li class="flow-step"><h3> Beágyazás</h3><div class="body"><p><code>2</code> — embedding (vektor)</p>
-</div></li><li class="flow-step"><h3> Vektoros keresés</h3><div class="body"><p><code>3</code> — pgvector · lokális <code>rag_db</code></p>
-</div></li><li class="flow-step"><h3> Top találatok</h3><div class="body"><p><code>4</code> — releváns chunkok</p>
-</div></li><li class="flow-step"><h3> Olvasás</h3><div class="body"><p><code>5</code> — a megjelölt fájl</p>
-</div></li></ol></div><div class="after-block block-cards"><div class="content-grid after-grid cols-2"><article class="card accent-mauve"><div class="card-head"><h3>Fejlesztői RAG — lokális rag_db</h3></div><div class="body"><p><strong>A repó a kollekció</strong>: minden platform-repo egy gyűjtemény. Claude Code ebből keresi vissza a releváns szabályt / doc-ot / spec-et — nem a teljes fát olvassa. <strong>Ez a dev-láb.</strong></p>
-</div></article><article class="card accent-sky"><div class="card-head"><h3>Termék-RAG — a termék saját éles adatbázisában</h3></div><div class="body"><p>Nincs központi RAG-adatbázis: minden termék a <strong>saját éles DB-jében</strong> tartja a beágyazásait, tenantonként (<code>iier01_db</code>, <code>it_akos01_db</code>…). A tudás ott van, ahol az adat — és a jogosultság is ott érvényesül. <strong>A dev-láb és a termék-láb sosem keveredik.</strong></p>
+</div></article></div><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-question"/></svg> Kérdés</h3><div class="body"><p><code>1</code> — magyarul</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-cpu"/></svg> Beágyazás</h3><div class="body"><p><code>2</code> — embedding (vektor)</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-magnifying-glass"/></svg> Vektoros keresés</h3><div class="body"><p><code>3</code> — pgvector · lokális <code>rag_db</code></p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-list-checks"/></svg> Top találatok</h3><div class="body"><p><code>4</code> — releváns chunkok</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-eye"/></svg> Olvasás</h3><div class="body"><p><code>5</code> — a megjelölt fájl</p>
+</div></li></ol></div><div class="after-block block-cards"><div class="content-grid after-grid cols-2"><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-hard-drives"/></svg><h3>Fejlesztői RAG — lokális rag_db</h3></div><div class="body"><p><strong>A repó a kollekció</strong>: minden platform-repo egy gyűjtemény. Claude Code ebből keresi vissza a releváns szabályt / doc-ot / spec-et — nem a teljes fát olvassa. <strong>Ez a dev-láb.</strong></p>
+</div></article><article class="card accent-sky"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-database"/></svg><h3>Termék-RAG — a termék saját éles adatbázisában</h3></div><div class="body"><p>Nincs központi RAG-adatbázis: minden termék a <strong>saját éles DB-jében</strong> tartja a beágyazásait, tenantonként külön adatbázisban. A tudás ott van, ahol az adat — és a jogosultság is ott érvényesül. <strong>A dev-láb és a termék-láb sosem keveredik.</strong></p>
 </div></article></div></div><div class="after-block block-cards"><div class="body after"><blockquote>
 <p><svg class="i" aria-hidden="true"><use href="#i-info"/></svg> <strong>Így használja Claude — fejlesztés közben:</strong> <code>/rag-search &quot;hol oldjuk fel a vault-ot?&quot;</code> → top találatok (<code>collection + source_file</code>) → és csak <strong>azt az egy fájlt</strong> nyitja meg (<code>Read</code>). Tájékozódás RAG-gel, pontos olvasás utána — a véges kontextust a <em>releváns</em> tudás tölti, nem a teljes repó.</p>
 </blockquote>
@@ -2322,12 +2322,12 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 </thead>
 <tbody>
 <tr>
-<td>éles szerver · <code>19/infraforge</code> :5440, csak loopback</td>
+<td>éles szerver · <code>19/infraforge</code>, csak loopback</td>
 <td>az infra-forge függőségi gráfja (<code>infra_graph_db</code>) <strong>natív property-graphban</strong></td>
 <td><strong>élesben</strong> 2026-09-15 óta — beta3, tudatosan vállalt kockázat</td>
 </tr>
 <tr>
-<td>éles szerver · <code>19/search</code> :5435, csak loopback</td>
+<td>éles szerver · <code>19/search</code>, csak loopback</td>
 <td>az ügyfél-RAG keresőrétege side-carban, éjszakai szinkronnal (439 685 él)</td>
 <td>ugyanazon a vason: PG19 <strong>15–40%-kal gyorsabb</strong>; a hangolt gráf-lekérdezés <strong>döntetlen</strong> (34,8 vs 32,2 ms) → az éles keresés a hordozható formán marad</td>
 </tr>
@@ -2338,16 +2338,16 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 </tr>
 <tr>
 <td>éles szerver · fő RAG-klaszter</td>
-<td><code>iier01_db</code> — <strong>461 752</strong> <code>cross_refs</code> él, PG 18.4 — <strong>az iiriki élesben használja</strong>: <code>/iier2/value-graph</code></td>
+<td>egy tenant éles DB-je — <strong>461 752</strong> <code>cross_refs</code> él, PG 18.4 — <strong>az iiriki élesben használja</strong>: <code>/iier2/value-graph</code></td>
 <td><strong>élesben</strong>, hordozható SQL-lel: minden találatnál ott a gráf-útvonal (SharePoint-hely → mappa → dokumentum → tábla); egy kapcsolóval ugyanez a keresés a <code>19/search</code> side-caron SQL/PGQ-val fut, a két idő egymás mellett. <strong>Még hátra:</strong> a klaszter frissítése a 19 GA után; az alap PG ≥ 16 marad, a natív gráf-lekérdezés csak 19+ szerveren</td>
 </tr>
 </tbody>
 </table>
 </div></div><div class="after-block block-flow"><div class="body after"><p><strong>Hogyan használjuk fejlesztés közben — egy kérdés útja</strong></p>
-</div><ol class="flow"><li class="flow-step"><h3> Tájékozódás</h3><div class="body"><p><code>1 · VEKTOR</code> — <code>/rag-search type:rules …</code> — a releváns chunkok, forrásfájllal</p>
-</div></li><li class="flow-step"><h3> Kapcsolatok</h3><div class="body"><p><code>2 · ÉL</code> — <code>/rag-connections</code> — mi hivatkozik rá, mi épül rá (1–2 ugrás)</p>
-</div></li><li class="flow-step"><h3> Olvasás</h3><div class="body"><p><code>3 · PONTOSAN</code> — csak a megjelölt fájl(ok) — <code>Read</code></p>
-</div></li><li class="flow-step"><h3> Újra-beágyazás</h3><div class="body"><p><code>4 · FRISSÍTÉS</code> — <code>/rag-embed</code> — csak ami változott (<code>content_hash</code>)</p>
+</div><ol class="flow"><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-magnifying-glass"/></svg> Tájékozódás</h3><div class="body"><p><code>1 · VEKTOR</code> — <code>/rag-search type:rules …</code> — a releváns chunkok, forrásfájllal</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-graph"/></svg> Kapcsolatok</h3><div class="body"><p><code>2 · ÉL</code> — <code>/rag-connections</code> — mi hivatkozik rá, mi épül rá (1–2 ugrás)</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-eye"/></svg> Olvasás</h3><div class="body"><p><code>3 · PONTOSAN</code> — csak a megjelölt fájl(ok) — <code>Read</code></p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-cpu"/></svg> Újra-beágyazás</h3><div class="body"><p><code>4 · FRISSÍTÉS</code> — <code>/rag-embed</code> — csak ami változott (<code>content_hash</code>)</p>
 </div></li></ol></div><div class="after-block block-cards"><div class="body after"><table>
 <thead>
 <tr>
@@ -2397,7 +2397,7 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 <tr>
 <td><strong>Hol él?</strong></td>
 <td>lokális fejlesztői DB, a fejlesztő gépén</td>
-<td>a termék <strong>saját éles DB-je</strong> tenantonként (<code>iier01_db</code>, <code>it_akos01_db</code>) — házon belüli szerveren</td>
+<td>a termék <strong>saját éles DB-je</strong> tenantonként — házon belüli szerveren</td>
 </tr>
 <tr>
 <td><strong>Embedding</strong></td>
@@ -2511,12 +2511,12 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 </div></div><div class="card stat accent-green"><div class="num">3</div><div class="body"><p>hálószoba + pince</p>
 </div></div><div class="card stat accent-mauve"><div class="num">C25/30</div><div class="body"><p>betonosztály — a mérce előre rögzítve</p>
 </div></div><div class="card stat accent-peach"><div class="num">28 nap</div><div class="body"><p>kötés, aztán törik a próbakocka</p>
-</div></div></div></div><div class="after-block block-cards"><div class="content-grid after-grid cols-2"><article class="card accent-teal"><div class="card-head"><h3>A kikötés — EARS-mondat (a BRD-ben)</h3></div><div class="body"><ul>
+</div></div></div></div><div class="after-block block-cards"><div class="content-grid after-grid cols-2"><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-file-text"/></svg><h3>A kikötés — EARS-mondat (a BRD-ben)</h3></div><div class="body"><ul>
 <li><strong>Szándék</strong> (a család): <em>„Ne ázzon be a pince.&quot;</em> — homályos, nem számon kérhető.</li>
 <li><strong>Kikötés</strong> (az építész): <em><strong>Ha</strong> a talajvíz a pinceszint fölé emelkedik, <strong>akkor</strong> a pince falai és padlója szárazak maradnak.</em></li>
 <li>Ebből a mondatból már <strong>mérés</strong> lesz — nem vita arról, mit értett a család.</li>
 </ul>
-</div></article><article class="card accent-peach"><div class="card-head"><h3>A teszt — a fal ELŐTT</h3></div><div class="body"><ul>
+</div></article><article class="card accent-peach"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-x-circle"/></svg><h3>A teszt — a fal ELŐTT</h3></div><div class="body"><ul>
 <li>A terv <strong>előre</strong> rögzíti: <strong>nyomáspróba</strong> a szigetelésen, <strong>mielőtt</strong> visszatöltik a földet.</li>
 <li>A betonozáskor <strong>próbakocka</strong> — nem utólag választjuk ki, melyik falat mérjük meg (TdD).</li>
 <li><strong>Miért előre?</strong> A visszatöltött föld alatt a szigetelés <em>már nem látható</em> — utólag csak bontással ellenőrizhető.</li>
@@ -2696,10 +2696,10 @@ A téglát az AI rakja — a három emberi kalap <em>egy emberen van</em>, de a 
 </div></article><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-hard-drives"/></svg><h3>Új gépet igényelni</h3></div><div class="body"><p>A VM-igény űrlapon indul, a nyilvántartásba kerül, onnan a GitLab CI hozza létre — az alkalmazás <strong>a rekordot vezeti, nem ő provisionál</strong>.</p>
 </div></article></div><div class="after-block block-cards"><div class="body after"><p><strong>Ez az alap.</strong> Azóta ugyanabból a láncból épült tovább: CVE- és NIS2-riportok · titok-keresés a flottán · függőségi gráf · IPAM és IT-szolgáltatás-katalógus · VM-igénylés OpenTofu-val · és a <strong>Timi IT-portál</strong>: csapat (távollét, ügyelet, standup), Jira-munkanapló, tudástár — egy felületen, AI-val a bejáratnál.</p>
 </div></div><div class="after-block block-flow"><div class="body after"><p><strong>Egy hétfő reggel — ugyanaz a lánc, csak a ház felől nézve</strong></p>
-</div><ol class="flow"><li class="flow-step"><h3> Belép</h3><div class="body"><p><code>1</code> — céges AD-fiókkal — a jogosultsága dönti el, mit lát</p>
-</div></li><li class="flow-step"><h3> Rákeres</h3><div class="body"><p><code>2</code> — „CentOS 6, éles&quot; — a válasz a hajnali gyűjtésből van</p>
-</div></li><li class="flow-step"><h3> Megkérdezi</h3><div class="body"><p><code>3</code> — az AI-tól, mi függ attól a géptől — leállítás-tervezéshez</p>
-</div></li><li class="flow-step"><h3> Ha beavatkozna</h3><div class="body"><p><code>4 · KAPU</code> — az érzékeny érték feltárása és minden változtatás <strong>emberi kapun</strong> megy (A6)</p>
+</div><ol class="flow"><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-key"/></svg> Belép</h3><div class="body"><p><code>1</code> — céges AD-fiókkal — a jogosultsága dönti el, mit lát</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-magnifying-glass"/></svg> Rákeres</h3><div class="body"><p><code>2</code> — „CentOS 6, éles&quot; — a válasz a hajnali gyűjtésből van</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-question"/></svg> Megkérdezi</h3><div class="body"><p><code>3</code> — az AI-tól, mi függ attól a géptől — leállítás-tervezéshez</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-hand"/></svg> Ha beavatkozna</h3><div class="body"><p><code>4 · KAPU</code> — az érzékeny érték feltárása és minden változtatás <strong>emberi kapun</strong> megy (A6)</p>
 </div></li></ol></div><div class="after-block block-cards"><div class="body after"><blockquote>
 <p><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg> Ami a felhasználó felé <strong>nem</strong> látszik, mégis ez tartja: minden érzékeny érték már <strong>tárolás előtt</strong> álnevesítve van (<code>{{type:hash}}</code>), az eredeti külön, titkosítva; az AI az álnevesített oldalt olvassa. A validáció kérdése ezen a dián dől el: <em>„ezt akartuk?&quot;</em> — és a válasz nem a commitok száma, hanem hogy a hétfő reggel <strong>tényleg gyorsabb lett-e</strong>.</p>
 </blockquote>
@@ -2721,11 +2721,11 @@ A téglát az AI rakja — a három emberi kalap <em>egy emberen van</em>, de a 
 <p>A lakáshitel következő részletét a bank csak <strong>mindkét házastárs aláírásával</strong> folyósítja. Meghatalmazást senki nem írhat alá <strong>saját magának</strong>.</p>
 <p><strong>Nálunk:</strong> admin-jogot csak egy második admin megerősítésével lehet adni; az AI magának soha.</p>
 </div></article></div><div class="after-block block-flow"><div class="body after"><p><strong>Hol ülnek a kapuk az SdD láncban?</strong></p>
-</div><ol class="flow"><li class="flow-step"><h3> Szándék → spec</h3><div class="body"><p><code>1</code> — BRD + EARS, SDD — a tervrajz</p>
-</div></li><li class="flow-step"><h3> Bukó teszt</h3><div class="body"><p><code>2 · TdD · RED</code> — a próbakocka — a mérce a fal <strong>előtt</strong></p>
-</div></li><li class="flow-step"><h3> Kód</h3><div class="body"><p><code>3 · GREEN</code> — a brigád a terv szerint; ugyanaz a teszt zöldre vált</p>
-</div></li><li class="flow-step"><h3> MR — review, aztán merge</h3><div class="body"><p><code>KAPU ① · VERIFIKÁCIÓ</code> — építési engedély + műszaki ellenőr: ember olvassa a diffet <strong>és a tesztet</strong> — a terv szerint épült?</p>
-</div></li><li class="flow-step"><h3> Megrendelő = QA</h3><div class="body"><p><code>KAPU · VALIDÁCIÓ</code> — a család: ezt a házat akartuk?</p>
+</div><ol class="flow"><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-lightbulb"/></svg> Szándék → spec</h3><div class="body"><p><code>1</code> — BRD + EARS, SDD — a tervrajz</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-x-circle"/></svg> Bukó teszt</h3><div class="body"><p><code>2 · TdD · RED</code> — a próbakocka — a mérce a fal <strong>előtt</strong></p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-code"/></svg> Kód</h3><div class="body"><p><code>3 · GREEN</code> — a brigád a terv szerint; ugyanaz a teszt zöldre vált</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-git-branch"/></svg> MR — review, aztán merge</h3><div class="body"><p><code>KAPU ① · VERIFIKÁCIÓ</code> — építési engedély + műszaki ellenőr: ember olvassa a diffet <strong>és a tesztet</strong> — a terv szerint épült?</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-user-circle"/></svg> Megrendelő = QA</h3><div class="body"><p><code>KAPU · VALIDÁCIÓ</code> — a család: ezt a házat akartuk?</p>
 </div></li></ol></div><div class="after-block block-cards"><div class="body after"><p>A <strong>② kulcs</strong> és a <strong>③ két aláírás</strong> nem a lánc egy pontján ül, hanem <em>végig</em> érvényes: üzem közben is, minden lépésnél — ezt a jogosultság és a napló kényszeríti ki, nem a jóindulat.</p>
 <blockquote>
 <p><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg> <strong>Verifikáció ≠ validáció.</strong> A <strong>verifikáció</strong> arra felel: <em>jól építettük-e meg?</em> (mechanizmus létezik, a gépi ellenőrzések zöldek, az ember review-zta a diffet). A <strong>validáció</strong>: <em>a jót építettük-e meg?</em> (a <strong>megrendelő</strong> fogadja el az eredeti üzleti célra, valós folyamaton — ez a QA kapu). Egyik sem önmagában a „kész&quot;.</p>
@@ -2749,17 +2749,17 @@ A téglát az AI rakja — a három emberi kalap <em>egy emberen van</em>, de a 
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free align-top" id="s23" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Tanulságok — hallgatóknak</span></div><h2> Hogyan kezdj AI-fejlesztésbe? — útravaló</h2></div><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3> Szabályok</h3><div class="body"><p><code>1</code> — írd le, mit szabad és mit nem — mielőtt promptolnál</p>
-</div></li><li class="flow-step"><h3> Spec, ne kód</h3><div class="body"><p><code>2</code> — előbb a MIT dokumentumban, aztán a HOGYAN</p>
-</div></li><li class="flow-step"><h3> Kis lépések</h3><div class="body"><p><code>3</code> — egy változás = egy diff = egy review</p>
-</div></li><li class="flow-step"><h3> Verify</h3><div class="body"><p><code>4</code> — sose hidd el „kész&quot; fordítás alapján</p>
-</div></li><li class="flow-step"><h3> Kontextus</h3><div class="body"><p><code>5</code> — amit nem adsz oda, az nem létezik</p>
-</div></li></ol></div><div class="after-block block-cards"><div class="content-grid after-grid cols-2"><article class="card accent-sky"><div class="card-head"><h3>Amit az iskolában még nem tanítanak</h3></div><div class="body"><ul>
+<div class="slide layout-free align-top" id="s23" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Tanulságok — hallgatóknak</span></div><h2> Hogyan kezdj AI-fejlesztésbe? — útravaló</h2></div><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-list-checks"/></svg> Szabályok</h3><div class="body"><p><code>1</code> — írd le, mit szabad és mit nem — mielőtt promptolnál</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-file-text"/></svg> Spec, ne kód</h3><div class="body"><p><code>2</code> — előbb a MIT dokumentumban, aztán a HOGYAN</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-flow-arrow"/></svg> Kis lépések</h3><div class="body"><p><code>3</code> — egy változás = egy diff = egy review</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-check-circle"/></svg> Verify</h3><div class="body"><p><code>4</code> — sose hidd el „kész&quot; fordítás alapján</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-books"/></svg> Kontextus</h3><div class="body"><p><code>5</code> — amit nem adsz oda, az nem létezik</p>
+</div></li></ol></div><div class="after-block block-cards"><div class="content-grid after-grid cols-2"><article class="card accent-sky"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-lightbulb"/></svg><h3>Amit az iskolában még nem tanítanak</h3></div><div class="body"><ul>
 <li>A prompt nem varázsige — a <em>kontextus-szerkesztés</em> a szakma</li>
 <li>Az AI kimenetét olvasni nehezebb, mint kérni — a review-készség felértékelődik</li>
 <li>A determinizmus tervezhető: spec + codegen = reprodukálható eredmény</li>
 </ul>
-</div></article><article class="card accent-red"><div class="card-head"><h3>A leggyakoribb hibák</h3></div><div class="body"><ul>
+</div></article><article class="card accent-red"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-warning"/></svg><h3>A leggyakoribb hibák</h3></div><div class="body"><ul>
 <li>„Csináld meg&quot; specifikáció nélkül — majd csodálkozás</li>
 <li>Az AI magabiztos tévedésének elfogadása verifikáció nélkül</li>
 <li>A szabályok chat-üzenetben tartása dokumentum helyett — a következő session már nem tudja</li>

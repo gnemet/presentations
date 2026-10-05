@@ -135,31 +135,31 @@ Ne menj bele a technikai részletbe — a lényeg, hogy ez **nem laborpélda**: 
 
 --- {layout=flow}
 
-### Szándék
+### :lightbulb: Szándék
 `01` — mit és miért *(ember)*
 
-### Specifikáció
+### :file-text: Specifikáció
 `02` — requirements (EARS) *(ember + AI)*
 
-### Terv
+### :tree-structure: Terv
 `03` — design — a „hogyan" *(ember + AI)*
 
-### Feladatok
+### :list-checks: Feladatok
 `04` — tasks — függőségi lánc *(AI)*
 
-### Bukó teszt
+### :x-circle: Bukó teszt
 `05 · TdD · RED` — a kikötés kódra fordítva — **a kód előtt** *(ember + AI)*
 
-### Megvalósítás
+### :code: Megvalósítás
 `06 · TdD · GREEN` — a kivitelezés — kód, amíg a teszt zöld nem lesz *(AI)*
 
-### Verifikáció
+### :check: Verifikáció
 `07` — build · teljes tesztfutás · review *(AI + ember)*
 
-### Validáció
+### :user-circle: Validáció
 `08` — átvétel — „a jót építettük?" *(ember (QA))*
 
-### Használat
+### :rocket: Használat
 `09` — az alkalmazás üzemel — és az első hiányból **új szándék** lesz *(ember (végfelhasználó))*
 
 ---
@@ -192,7 +192,7 @@ docs/specs/<feature>/
 └── audit.md # adverz review · findings + kockázat
 ```
 
-### Hogyan él a lemezen {accent=teal}
+### :hard-drives: Hogyan él a lemezen {accent=teal}
 - A rétegek **egymásra épülnek**: minden kikötés a fölötte lévő azonosítóra hivatkozik — `G1 → E5 → T6`.
 - **Vasszabály:** a spec-mappa commitolva van, *mielőtt* az első implementációs fájl megszületne — és minden kikötés tesztje **pirosan**, a kód *előtt* (A8-kapu, TdD).
 - Ez a flotta-gyűjtés **valódi spec-mappája**: ` docs/specs/fleet-collection/` (belső GitLab) — `requirements · design · tasks · audit`. Ez egy **grandfatherelt**, a mandátumoknál korábbi spec, ezért nincs benne `brief.md` és `tests.md`; a fenti hatfájlos alak az *új* specek szerződése.
@@ -263,29 +263,29 @@ A teljes bemenet: feladat + szabályok + kontextus. A „prompt engineering" val
 
 --- {layout=flow}
 
-### Kérés
+### :chat-circle-dots: Kérés
 `1` — feladat + betöltött szabályok
 
-### Terv
+### :tree-structure: Terv
 `2` — lépésekre bontás
 
-### Eszközhívás
+### :gear: Eszközhívás
 `3` — fájl · shell · DB
 
-### Megfigyelés
+### :eye: Megfigyelés
 `4` — eredmény vissza a kontextusba
 
-### Ismétlés
+### :flow-arrow: Ismétlés
 `5` — amíg a cél nem teljesül
 
-### Verifikáció
+### :check: Verifikáció
 `6` — build · teszt · jelentés
 
 ---
 
 **Az agent négy arca — ki irányítja a lépéseket?**
 
-### Agent {accent=green}
+### :robot: Agent {accent=green}
 LLM + eszközök + ciklus (a fenti hat lépés). Nem csak válaszol: fájlt ír, parancsot futtat, tesztet indít.
 
 **Nálunk:** egy Claude Code session.
@@ -295,7 +295,7 @@ A lépések sorrendjét **az ember rögzíti** előre; az AI a lépéseken *bel�
 
 **Nálunk:** az SdD lánc és a Markdown-pipeline-ok.
 
-### Multi-agent {accent=mauve}
+### :users: Multi-agent {accent=mauve}
 Több agent, **szétosztott szerepekkel**, párhuzamosan — mindegyik a saját, kisebb kontextusával. Egy koordinátor fogja össze.
 
 **Nálunk:** **fork-ok** — a `tasks.md` független feladatait párhuzamosan implementálják, mindegyik a saját ágán, a saját bukó tesztjével (TdD); a végén kód-, DB-, UI- és biztonsági reviewer egyszerre.
@@ -316,40 +316,40 @@ Egy célt kap, és **maga dönti el** a lépéseket — lépésenkénti emberi j
 
 **Hogyan olvassa az AI a repót? — a szabály-hierarchia**
 
-### Platform axiómák
+### :books: Platform axiómák
 `betöltés: session start` — all_rules_for_claude.md + 00_axioms.md — csak a L1 kerül be kényszeredetten
 
-### Projekt CLAUDE.md
+### :file-text: Projekt CLAUDE.md
 `betöltés: session start` — infra-forge-specifikus delták, státusz, tiltások
 
-### .claude/
+### :stack: .claude/
 `betöltés: session start` — hooks · skills · memory · MCP konfiguráció
 
-### L2–L3 szabályok, spec-ek, kód
+### :list-checks: L2–L3 szabályok, spec-ek, kód
 `igény szerint · RAG` — amit a feladat megkíván — az agent olvassa be, vagy vektortárból keres vissza
 
 --- {drill="▸ Mélyebben: mi az LLM valójában · és mi az agent"}
 
 Mi az LLM valójában? — és miért következik belőle az SdD
 
-### Statisztikai jóslás {accent=blue}
+### :chart-line: Statisztikai jóslás {accent=blue}
 Következő-token-jóslás: tanult mintázat-folytatás, nem megértés. A magabiztos hang nem igazság-garancia.
 
 **→ ezért SdD:** a kimenetet verifikálni kell — a leforduló kód még nem működő funkció.
 
-### Nincs új tudás — új kombináció igen {accent=teal}
+### :brain: Nincs új tudás — új kombináció igen {accent=teal}
 A tréningadatán és a kontextuson túl nem hoz új tudást; a meglévőből viszont új kombinációt állít elő. Nem *felfedez* — *újrarendez*.
 
 **→ ezért SdD:** az üzleti igazságot (szabály, döntés, scope) neked kell megadnod — dokumentumként.
 
-### Kreativitás = szabályozott véletlen {accent=mauve}
+### :sparkle: Kreativitás = szabályozott véletlen {accent=mauve}
 A temperature azt állítja, milyen messze merészkedik a legvalószínűbb úttól. A tiszta véletlen *zaj*; a hasznos újdonság meglepő ÉS koherens.
 
 **→ ezért SdD:** a spec és a szabályok a koherencia-korlát — bennük szabad, kívül kontrollált.
 
 ---
 
-### Nálunk: Claude Code {accent=sky}
+### :cpu: Nálunk: Claude Code {accent=sky}
 Terminálban futó agent. Olvassa a repót, szerkeszt, buildel, commitol — a projekt szabályfájljai szerint.
 
 ### :warning: A korlátok {accent=red}
@@ -521,14 +521,14 @@ Ki, mit, mikor, **és melyik spec alapján**. Az AI-val végzett munka auditálh
 
 --- {drill="▸ A kis diff technikája — hogyan marad átnézhető az, amit egy gép ír"}
 
-### Az öt szabály {accent=green}
+### :list-checks: Az öt szabály {accent=green}
 - **Egy MR = egy önállóan átnézhető viselkedés.** Rendszerint egy EARS-kikötés; ha kettő elválaszthatatlan, mehet együtt — de **mindkettő azonosítója szerepeljen**. A mérce az átnézhetőség, nem a darabszám.
 - **A scope-ot a spec zárja le,** mielőtt az első sor megszületne — így nincs mit „menet közben észrevenni".
 - **Semmi alkalmi rendrakás.** A hibajavítás hibajavítás; a mellette talált második hiba *külön diff*.
 - **Commit taskonként,** és az üzenet nevezze meg a kikötést — a történet így olvasható marad.
 - **Ha a diff nő, a spec a hibás:** nem a review-t kell erősíteni, hanem a feladatot kettévágni.
 
-### Amit cserébe kapsz {accent=mauve}
+### :handshake: Amit cserébe kapsz {accent=mauve}
 - **A visszavonás egysége is kicsi lesz.** Ha éles hiba jön, *egy döntést* vonsz vissza, nem egy hetet.
 - **A hiba helye kereshető.** Kis commitok között a git meg tudja mondani, melyik törte el.
 - **A review érdemi marad.** Az átnézhető diff az egyetlen, ami mellett a „megnéztem" nem üres szó.
@@ -536,7 +536,7 @@ Ki, mit, mikor, **és melyik spec alapján**. Az AI-val végzett munka auditálh
 
 ---
 
-### Hogyan? — a második hiba útja {accent=blue}
+### :question: Hogyan? — a második hiba útja {accent=blue}
 
 1. **Észreveszed — és leírod, nem javítod.** Jegy, urgent-lista vagy egy sor az MR leírásában: *„talált: X — külön MR"*. Az AI ugyanígy tesz: az A10 minden session elején betöltődik, ezért **jelez és kérdez**, nem javít csendben.
 2. **Az első javítást egyedül zárod le** — commit, MR; a diff csak a javításhoz szükséges sorokat érinti.
@@ -689,7 +689,7 @@ A fizikát nem lehet kicselezni — ha megsérted, nem áll össze a rendszer, a
 
 **A kontextus nyelve — miért angolul írjuk a specet és a szabályt?**
 
-### Token — a magyar drágább {accent=peach}
+### :chart-bar: Token — a magyar drágább {accent=peach}
 Egy **angol szó átlagosan ~5 karakter**, egy token nagyjából **4** — így egy angol szó jellemzően egy-másfél token, sokszor egészben benne van a szótárban. A magyar **toldalékol**: egy szó több ragot hordoz, ritkábban szerepel egészben, ezért **több darabra esik szét**. Ugyanaz a tartalom magyarul **érezhetően több token** — ez kétszeresen fáj: **drágább**, és **kevesebb fér** a véges context windowba. (A pontos szorzó modellenként más; érdemes a saját specjeinken megmérni, mielőtt számot mondunk.)
 
 ### :books: Egy nyelv — egy szótár {accent=teal}
@@ -773,22 +773,22 @@ kimenet
 
 --- {layout=flow}
 
-### Szándék
+### :lightbulb: Szándék
 `1 · EMBER` — prompt / vibe → brief
 
-### Spec
+### :file-text: Spec
 `2 · AI` — EARS + terv + teszt-leírás
 
-### Spec elfogadva
+### :check-circle: Spec elfogadva
 `🔒 GATE` — ember jóváhagy, commit
 
-### Teszt piros → kód
+### :x-circle: Teszt piros → kód
 `3 · EMBER + AI` — teszt: ember + AI · kód: AI — axióma · szabály · spec szerint
 
-### Zöld
+### :check: Zöld
 `4 · AI` — build · teszt · smoke
 
-### Review + átvétel
+### :eye: Review + átvétel
 `🔒 GATE` — verifikáció · validáció
 
 ---
@@ -825,22 +825,22 @@ infra-forge
 
 --- {layout=flow}
 
-### Observe
+### :eye: Observe
 `DISCOVER` — collect → SCD2 artefakt
 
-### Understand
+### :brain: Understand
 `DISCOVER` — AI elemzés → findings
 
-### Plan
+### :tree-structure: Plan
 `ACT` — OpenTofu `tfvars` / base-config manifest tervezet
 
-### Emberi kapu
+### :hand: Emberi kapu
 `🔒 GATE` — GitLab MR — ember jóváhagy
 
-### Deploy + Verify
+### :rocket-launch: Deploy + Verify
 `ACT → VERIFY` — CI alkalmazza · validációs pont 0–100
 
-### Confirm / Recreate
+### :flow-arrow: Confirm / Recreate
 `REPEAT` — pont ≥ küszöb → lezár · drift → újraépít
 
 ---
@@ -863,10 +863,10 @@ Ezért él a logika olvasható dokumentumban (pipeline, spec, szabály) — ez a
 
 --- {layout=flow}
 
-### AI mint LÉPÉS
+### :gear: AI mint LÉPÉS
 `RÉGI` — az ember orchestrál, az AI egy-egy részfeladatot old meg
 
-### AI mint ORCHESTRÁTOR
+### :tree-structure: AI mint ORCHESTRÁTOR
 `ÚJ` — az AI vezényli a folyamatot, az ember a kapuknál dönt
 
 ---
@@ -976,19 +976,19 @@ A közös végpont, ahová mindkét ág érkezik.
 
 Amit **csak a motor** lát: öt lépés, mindegyik a saját *típusával* — és **két ág**. A RAW ezt szövegként mutatta, a DOC prózaként — itt **végrehajtási terv**.
 
-### Extract Dependencies
+### :database: Extract Dependencies
 `1 · db_query` — infra.dep_extract_from_snapshots() · hibánál → 4
 
-### Log Result
+### :file-text: Log Result
 `2 · log` — siker → 3
 
-### Sync Graph Store
+### :graph: Sync Graph Store
 `3 · pipeline` — → OPS-graph_sync (9 lépés) · critical: false · → 5
 
-### Log Run Failure — csak hibaágon
+### :warning: Log Run Failure — csak hibaágon
 `4 · log` — on_error célpont — sikeres futásnál kimarad
 
-### Done
+### :check-circle: Done
 `5 · log` — mindkét ág itt ér véget
 
 ---
@@ -1024,21 +1024,21 @@ Amit **csak a motor** lát: öt lépés, mindegyik a saját *típusával* — é
 
 --- {drill="▸ Document = Code · No bare SQL — a két következmény"}
 
-### Document = Code {accent=green}
+### :code: Document = Code {accent=green}
 A `.md` egyszerre a specifikáció ÉS a futtatható / generátor-bemenet. Nincs külön dokumentáció, ami elavulhatna.
 
-### No bare SQL {accent=blue}
+### :lock: No bare SQL {accent=blue}
 A forrásfában nincs csupasz `.sql`. Minden kézi SQL markdown: frontmatter + a *miért* próza + egyetlen ````sql` blokk. A generált DDL specekből születik.
 
 --- {drill="▸ Mi az a Markdown — és hogyan néz ki egy platform-fájl belülről"}
 
-### Mi az a Markdown? {accent=teal}
+### :question: Mi az a Markdown? {accent=teal}
 Pehelysúlyú, sima-szöveges jelölőnyelv ([CommonMark](https://commonmark.org/) szabvány). Néhány jel az egész: `# fejléc`, `- lista`, `| tábla |`, `**félkövér**`, ````kódblokk````. Olvasható nyersen és renderelve is.
 
-### A fejléc a modell térképe {accent=blue}
+### :tree-structure: A fejléc a modell térképe {accent=blue}
 A `#`…`######` hierarchia adja a szerkezetet — a RAG *fejezetenként* darabol (chunk-by-chapter), így a modell célzottan a releváns szakaszt kapja vissza, nem az egész fájlt.
 
-### Három rész, egy fájl {accent=mauve}
+### :stack: Három rész, egy fájl {accent=mauve}
 **1)** YAML *frontmatter* — metaadat (név, sorrend, függőség, schedule).
 
 **2)** Próza — a *miért*.
@@ -1159,13 +1159,13 @@ alatt is megjelenik, és a lényeg egy mondatban elmondható.)*
 
 **Oldd meg ott, ahol él — az adat a DB-ben él**
 
-### DB-eszközzel
+### :database: DB-eszközzel
 `1 · ELŐSZÖR` — halmazművelet, tárolt függvény, index
 
-### Jó és elég gyors?
+### :chart-line: Jó és elég gyors?
 `2 · MÉRÉS` — helyes eredmény **és** teljesítmény — mérve
 
-### Másik megoldás
+### :git-branch: Másik megoldás
 `3 · HA NEM` — lassú vagy drága → a szomszéd rétegben (BE)
 
 ### A „miért" a specbe
@@ -1322,35 +1322,35 @@ A teszt-vezérelt fejlesztés nem új ([Kent Beck, 2002](https://www.oreilly.com
 
 --- {layout=flow}
 
-### EARS-kikötés
+### :file-text: EARS-kikötés
 `01` — az eldönthető állítás *(ember + AI)*
 
-### Bukó teszt
+### :x-circle: Bukó teszt
 `02 · RED` — a kikötés kódra fordítva — és commitolva *(ember + AI)*
 
-### A legkisebb kód
+### :code: A legkisebb kód
 `03 · GREEN` — ami zöldre viszi *(AI)*
 
-### Refaktor
+### :gear: Refaktor
 `04` — a zöld végig zöld marad *(AI)*
 
-### Review
+### :eye: Review
 `05` — az ember **a tesztet is** olvassa *(ember)*
 
 ---
 
-### Az AI nem tud blöffölni {accent=green}
+### :shield: Az AI nem tud blöffölni {accent=green}
 A „kész vagyok" egy nyelvi modelltől **nem bizonyíték** — a magabiztos hang ingyen van. A zöld tesztfutás viszont tény. A teszt az egyetlen visszajelzés, amit az AI *nem tud meggyőzően előadni*. Ha a tesztet is az AI vázolja, a review **a tesztet olvassa először** — ez a tartóelem.
 
-### A gép önmagát javítja {accent=teal}
+### :robot: A gép önmagát javítja {accent=teal}
 A piros teszt **gépi hibaüzenet**, amit az agent visszaolvas és amiből tovább dolgozik. Teszt nélkül minden kör emberi visszajelzést igényel — a tesztsor az, ami a *felügyelet nélküli* ciklust egyáltalán lehetővé teszi.
 
-### A regresszió ellen {accent=mauve}
+### :list-checks: A regresszió ellen {accent=mauve}
 Ha az AI naponta több száz sort ír, a **korábban megoldott** problémák visszatérése a fő kockázat. Minden teljesített EARS-kikötés teszt formájában *bekerít* egy döntést: onnantól a gép őrzi, nem az emlékezet.
 
 ---
 
-### Saját esetünk — 27 zöld, de üres futás {accent=red}
+### :warning: Saját esetünk — 27 zöld, de üres futás {accent=red}
 
 Az `ops_dep_extract` (a #s10 élő pipeline-ja) egy elírt tenant-hivatkozás miatt **27 futáson át zöld volt** — és **egyetlen függőségi élt sem írt**. A „sikeres" futás csak annyit jelentett, hogy *nem volt hibaüzenet*. Két hétig (2026-08-28-ig) senki nem vette észre.
 
@@ -1406,16 +1406,16 @@ Oszlopok, szűrők, pivotok katalógusból; téma `--dg-*` tokennel. Bővítés 
 
 A `foundation-*` repók **nem csak könyvtárak** — négyféle dolgot adnak: **①** **keret**, amibe beépülsz (pl. az app-shell) · **②** **könyvtár**, amit behivatkozol · **③** **minta**, amit követsz · **④** **példa**, amiből kiindulsz. **Hogy egy feladatnál melyiket és hogyan használja, azt az AI választja** (A11: a konstrukció az AI-é).
 
-### foundation-go {accent=green}
+### :code: foundation-go {accent=green}
 Logger, dbpool, http-middleware, auth-trió, sidebar. *A minta:* egy új szolgáltatás nem talál ki saját naplózást — **ezt követi**.
 
-### foundation-pg {accent=sky}
+### :database: foundation-pg {accent=sky}
 Dinamikus SQL annotált kommentekkel, nem string-fűzéssel. *A minta:* a feltételes blokk a SQL-ben **látszik**, nem Go-ban rejtőzik.
 
-### foundation-ui {accent=mauve}
+### :eye: foundation-ui {accent=mauve}
 Az app-shell: fejléc, sidebar, téma, login. *A minta:* minden felület ugyanúgy néz ki, mert ugyanonnan származik.
 
-### foundation-wiki {accent=peach}
+### :books: foundation-wiki {accent=peach}
 Nem könyvtár, hanem **hordozható módszer**: a spec maga a definíció. Ugyanarra a módszerre több termék is épülhet — a spec viszi át, nem a kód.
 
 ---
@@ -1457,27 +1457,27 @@ Nem könyvtár, hanem **hordozható módszer**: a spec maga a definíció. Ugyan
 
 --- {layout=flow}
 
-### Kérdés
+### :question: Kérdés
 `1` — magyarul
 
-### Beágyazás
+### :cpu: Beágyazás
 `2` — embedding (vektor)
 
-### Vektoros keresés
+### :magnifying-glass: Vektoros keresés
 `3` — pgvector · lokális `rag_db`
 
-### Top találatok
+### :list-checks: Top találatok
 `4` — releváns chunkok
 
-### Olvasás
+### :eye: Olvasás
 `5` — a megjelölt fájl
 
 ---
 
-### Fejlesztői RAG — lokális rag_db {accent=mauve}
+### :hard-drives: Fejlesztői RAG — lokális rag_db {accent=mauve}
 **A repó a kollekció**: minden platform-repo egy gyűjtemény. Claude Code ebből keresi vissza a releváns szabályt / doc-ot / spec-et — nem a teljes fát olvassa. **Ez a dev-láb.**
 
-### Termék-RAG — a termék saját éles adatbázisában {accent=sky}
+### :database: Termék-RAG — a termék saját éles adatbázisában {accent=sky}
 Nincs központi RAG-adatbázis: minden termék a **saját éles DB-jében** tartja a beágyazásait, tenantonként külön adatbázisban. A tudás ott van, ahol az adat — és a jogosultság is ott érvényesül. **A dev-láb és a termék-láb sosem keveredik.**
 
 ---
@@ -1520,16 +1520,16 @@ Az **éleket** (X hivatkozik Y-ra; ugyanaz a személy két forrásban) külön g
 
 **Hogyan használjuk fejlesztés közben — egy kérdés útja**
 
-### Tájékozódás
+### :magnifying-glass: Tájékozódás
 `1 · VEKTOR` — `/rag-search type:rules …` — a releváns chunkok, forrásfájllal
 
-### Kapcsolatok
+### :graph: Kapcsolatok
 `2 · ÉL` — `/rag-connections` — mi hivatkozik rá, mi épül rá (1–2 ugrás)
 
-### Olvasás
+### :eye: Olvasás
 `3 · PONTOSAN` — csak a megjelölt fájl(ok) — `Read`
 
-### Újra-beágyazás
+### :cpu: Újra-beágyazás
 `4 · FRISSÍTÉS` — `/rag-embed` — csak ami változott (`content_hash`)
 
 ---
@@ -1668,12 +1668,12 @@ kötés, aztán törik a próbakocka
 
 ---
 
-### A kikötés — EARS-mondat (a BRD-ben) {accent=teal}
+### :file-text: A kikötés — EARS-mondat (a BRD-ben) {accent=teal}
 - **Szándék** (a család): *„Ne ázzon be a pince."* — homályos, nem számon kérhető.
 - **Kikötés** (az építész): ***Ha** a talajvíz a pinceszint fölé emelkedik, **akkor** a pince falai és padlója szárazak maradnak.*
 - Ebből a mondatból már **mérés** lesz — nem vita arról, mit értett a család.
 
-### A teszt — a fal ELŐTT {accent=peach}
+### :x-circle: A teszt — a fal ELŐTT {accent=peach}
 - A terv **előre** rögzíti: **nyomáspróba** a szigetelésen, **mielőtt** visszatöltik a földet.
 - A betonozáskor **próbakocka** — nem utólag választjuk ki, melyik falat mérjük meg (TdD).
 - **Miért előre?** A visszatöltött föld alatt a szigetelés *már nem látható* — utólag csak bontással ellenőrizhető.
@@ -1909,16 +1909,16 @@ A VM-igény űrlapon indul, a nyilvántartásba kerül, onnan a GitLab CI hozza 
 
 **Egy hétfő reggel — ugyanaz a lánc, csak a ház felől nézve**
 
-### Belép
+### :key: Belép
 `1` — céges AD-fiókkal — a jogosultsága dönti el, mit lát
 
-### Rákeres
+### :magnifying-glass: Rákeres
 `2` — „CentOS 6, éles" — a válasz a hajnali gyűjtésből van
 
-### Megkérdezi
+### :question: Megkérdezi
 `3` — az AI-tól, mi függ attól a géptől — leállítás-tervezéshez
 
-### Ha beavatkozna
+### :hand: Ha beavatkozna
 `4 · KAPU` — az érzékeny érték feltárása és minden változtatás **emberi kapun** megy (A6)
 
 ---
@@ -1974,19 +1974,19 @@ A lakáshitel következő részletét a bank csak **mindkét házastárs aláír
 
 **Hol ülnek a kapuk az SdD láncban?**
 
-### Szándék → spec
+### :lightbulb: Szándék → spec
 `1` — BRD + EARS, SDD — a tervrajz
 
-### Bukó teszt
+### :x-circle: Bukó teszt
 `2 · TdD · RED` — a próbakocka — a mérce a fal **előtt**
 
-### Kód
+### :code: Kód
 `3 · GREEN` — a brigád a terv szerint; ugyanaz a teszt zöldre vált
 
-### MR — review, aztán merge
+### :git-branch: MR — review, aztán merge
 `KAPU ① · VERIFIKÁCIÓ` — építési engedély + műszaki ellenőr: ember olvassa a diffet **és a tesztet** — a terv szerint épült?
 
-### Megrendelő = QA
+### :user-circle: Megrendelő = QA
 `KAPU · VALIDÁCIÓ` — a család: ezt a házat akartuk?
 
 ---
@@ -2056,29 +2056,29 @@ A zöld sávot mondd ki szó szerint, ez a hívás cselekvésre: *„egy kicsi, 
 
 --- {layout=flow}
 
-### Szabályok
+### :list-checks: Szabályok
 `1` — írd le, mit szabad és mit nem — mielőtt promptolnál
 
-### Spec, ne kód
+### :file-text: Spec, ne kód
 `2` — előbb a MIT dokumentumban, aztán a HOGYAN
 
-### Kis lépések
+### :flow-arrow: Kis lépések
 `3` — egy változás = egy diff = egy review
 
-### Verify
+### :check-circle: Verify
 `4` — sose hidd el „kész" fordítás alapján
 
-### Kontextus
+### :books: Kontextus
 `5` — amit nem adsz oda, az nem létezik
 
 ---
 
-### Amit az iskolában még nem tanítanak {accent=sky}
+### :lightbulb: Amit az iskolában még nem tanítanak {accent=sky}
 - A prompt nem varázsige — a *kontextus-szerkesztés* a szakma
 - Az AI kimenetét olvasni nehezebb, mint kérni — a review-készség felértékelődik
 - A determinizmus tervezhető: spec + codegen = reprodukálható eredmény
 
-### A leggyakoribb hibák {accent=red}
+### :warning: A leggyakoribb hibák {accent=red}
 - „Csináld meg" specifikáció nélkül — majd csodálkozás
 - Az AI magabiztos tévedésének elfogadása verifikáció nélkül
 - A szabályok chat-üzenetben tartása dokumentum helyett — a következő session már nem tudja
