@@ -1675,19 +1675,19 @@ git switch -c fix/masodik-hiba
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free align-top" id="s8b" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A fejlesztés lépései</span></div><h2> Négy lépés — a szándéktól a bizonyított kódig</h2></div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><h3>1 · Szándék → brief</h3></div><div class="body"><p>Egy prompt, akár „vibe&quot; szinten: <em>mit</em> akarunk és <em>miért</em>. Az AI ebből <strong>briefet és követelmény-vázlatot</strong> ír.</p>
+<div class="slide layout-flow align-top" id="s8b" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A fejlesztés lépései</span></div><h2> Négy lépés — a szándéktól a bizonyított kódig</h2></div><ol class="flow"><li class="flow-step accent-blue"><h3><svg class="i" aria-hidden="true"><use href="#i-lightbulb"/></svg> Szándék → brief</h3><div class="body"><p>Egy prompt, akár „vibe&quot; szinten: <em>mit</em> akarunk és <em>miért</em>. Az AI ebből <strong>briefet és követelmény-vázlatot</strong> ír.</p>
 <p>kimenet
 <strong>brief.md · requirements.md</strong> — az ember javítja és elfogadja</p>
-</div></article><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-file-text"/></svg><h3>2 · A teljes spec</h3></div><div class="body"><p>A vázlatból generált spec-mappa: SDD terv, EARS-kikötések, és minden kikötéshez a TdD-teszt leírása.</p>
+</div></li><li class="flow-step accent-teal"><h3><svg class="i" aria-hidden="true"><use href="#i-file-text"/></svg> A teljes spec</h3><div class="body"><p>A vázlatból generált spec-mappa: SDD terv, EARS-kikötések, és minden kikötéshez a TdD-teszt leírása.</p>
 <p>kimenet
 <strong>design · tasks · tests.md</strong> — commitolva, mielőtt kód születik (A8)</p>
-</div></article><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-code"/></svg><h3>3 · Implementáció</h3></div><div class="body"><p>Az AI a kódot <strong>három szint szerint</strong> írja: axióma (alaptörvény) → platform-szabály → a spec. Nem improvizál, nem bővít.</p>
+</div></li><li class="flow-step accent-mauve"><h3><svg class="i" aria-hidden="true"><use href="#i-code"/></svg> Implementáció</h3><div class="body"><p>Az AI a kódot <strong>három szint szerint</strong> írja: axióma (alaptörvény) → platform-szabály → a spec. Nem improvizál, nem bővít.</p>
 <p>kimenet
 <strong>kis diff</strong> — egy feladat, egy commit, visszakövethető a kikötésig (A10)</p>
-</div></article><article class="card accent-peach"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-check-circle"/></svg><h3>4 · TdD — piros → zöld</h3></div><div class="body"><p>A 2. lépésben a teszt <strong>leírása</strong> (<code>tests.md</code>) születik; a 3. lépés <strong>első commitja maga a teszt-kód</strong> (ember + AI írja) — lefut, és <strong>piros</strong>. A kód akkor kész, ha <strong>ugyanaz</strong> a teszt <strong>zöldre</strong> vált — nem akkor, ha lefordul.</p>
+</div></li><li class="flow-step accent-peach"><h3><svg class="i" aria-hidden="true"><use href="#i-check-circle"/></svg> TdD — piros → zöld</h3><div class="body"><p>A 2. lépésben a teszt <strong>leírása</strong> (<code>tests.md</code>) születik; a 3. lépés <strong>első commitja maga a teszt-kód</strong> (ember + AI írja) — lefut, és <strong>piros</strong>. A kód akkor kész, ha <strong>ugyanaz</strong> a teszt <strong>zöldre</strong> vált — nem akkor, ha lefordul.</p>
 <p>kimenet
 <strong>bizonyított „kész&quot;</strong> — gépi ellenőrzés, aztán a két emberi kapu (A9)</p>
-</div></article></div><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3> Szándék</h3><div class="body"><p><code>1 · EMBER</code> — prompt / vibe → brief</p>
+</div></li></ol><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3> Szándék</h3><div class="body"><p><code>1 · EMBER</code> — prompt / vibe → brief</p>
 </div></li><li class="flow-step"><h3> Spec</h3><div class="body"><p><code>2 · AI</code> — EARS + terv + teszt-leírás</p>
 </div></li><li class="flow-step"><h3> Spec elfogadva</h3><div class="body"><p><code>🔒 GATE</code> — ember jóváhagy, commit</p>
 </div></li><li class="flow-step"><h3> Teszt piros → kód</h3><div class="body"><p><code>3 · EMBER + AI</code> — teszt: ember + AI · kód: AI — axióma · szabály · spec szerint</p>
@@ -1701,19 +1701,19 @@ git switch -c fix/masodik-hiba
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free align-top" id="s8c" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A terület fejlődése</span></div><h2> Hogyan fejlődött a terület — és hol áll az infra-forge</h2></div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-chat-circle-dots"/></svg><h3>1 · Prompt engineering</h3></div><div class="body"><p>Egyetlen utasítás → egyetlen válasz; az AI megáll, és a következő promptra vár.</p>
+<div class="slide layout-flow align-top" id="s8c" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A terület fejlődése</span></div><h2> Hogyan fejlődött a terület — és hol áll az infra-forge</h2></div><ol class="flow"><li class="flow-step accent-blue"><h3><svg class="i" aria-hidden="true"><use href="#i-chat-circle-dots"/></svg> Prompt engineering</h3><div class="body"><p>Egyetlen utasítás → egyetlen válasz; az AI megáll, és a következő promptra vár.</p>
 <p>infra-forge
 <strong>Excel-leltár → DB</strong> — vSphere discover · CSV/seed → <code>infra.machine</code></p>
-</div></article><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-file-text"/></svg><h3>2 · Context engineering</h3></div><div class="body"><p>A megfelelő kontextus a prompt köré: spec, séma, szabály, minta.</p>
+</div></li><li class="flow-step accent-teal"><h3><svg class="i" aria-hidden="true"><use href="#i-file-text"/></svg> Context engineering</h3><div class="body"><p>A megfelelő kontextus a prompt köré: spec, séma, szabály, minta.</p>
 <p>infra-forge
 <strong>DB → BE → FE generálás</strong> — entity spec → <code>entitygen</code>/<code>lovgen</code> → stored function → HTMX</p>
-</div></article><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-gear"/></svg><h3>3 · Harness engineering</h3></div><div class="body"><p>Az agent köré épített környezet: eszközök, jogok, és a kontroll-kapuk.</p>
+</div></li><li class="flow-step accent-mauve"><h3><svg class="i" aria-hidden="true"><use href="#i-gear"/></svg> Harness engineering</h3><div class="body"><p>Az agent köré épített környezet: eszközök, jogok, és a kontroll-kapuk.</p>
 <p>infra-forge
 <strong>Emberi kapuk</strong> — GitLab-MR · hash-reveal · admin-grant</p>
-</div></article><article class="card accent-peach"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-target"/></svg><h3>4 · Loop engineering</h3></div><div class="body"><p>Felfedez · cselekszik · ellenőriz · ismétel — egy stabil cél felé, önállóan.</p>
+</div></li><li class="flow-step accent-peach"><h3><svg class="i" aria-hidden="true"><use href="#i-target"/></svg> Loop engineering</h3><div class="body"><p>Felfedez · cselekszik · ellenőriz · ismétel — egy stabil cél felé, önállóan.</p>
 <p>infra-forge
 <strong>AI-önkontroll</strong> — a <em>megcélzott</em> hurok: manifest → CI futtatja → <code>ops_validate_deployment</code> 0–100 → drift esetén újraépít. A remediációs ág ma <strong>áll</strong> (2026-09-09).</p>
-</div></article></div><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3> Observe</h3><div class="body"><p><code>DISCOVER</code> — collect → SCD2 artefakt</p>
+</div></li></ol><div class="after-block block-flow"><ol class="flow"><li class="flow-step"><h3> Observe</h3><div class="body"><p><code>DISCOVER</code> — collect → SCD2 artefakt</p>
 </div></li><li class="flow-step"><h3> Understand</h3><div class="body"><p><code>DISCOVER</code> — AI elemzés → findings</p>
 </div></li><li class="flow-step"><h3> Plan</h3><div class="body"><p><code>ACT</code> — OpenTofu <code>tfvars</code> / base-config manifest tervezet</p>
 </div></li><li class="flow-step"><h3> Emberi kapu</h3><div class="body"><p><code>🔒 GATE</code> — GitLab MR — ember jóváhagy</p>
@@ -1920,28 +1920,28 @@ tenant: _infra
 <div class="slide layout-free align-top" id="s10c" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Az alapelv — A5</span><span class="badge">infra-forge · kihagyható</span></div><h2> Felülről lefelé — adatbázis → backend → frontend → AI-felület</h2></div><div class="body"><blockquote>
 <p><svg class="i" aria-hidden="true"><use href="#i-info"/></svg> Adatmodell → vékony backend → ahol lehet, generált frontend → <strong>AI-felület</strong>. Soha ne írj kézzel olyat, amit feljebb egy spec már meghatároz. <em>A négy réteg együtt az alkalmazás.</em></p>
 </blockquote>
-</div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-database"/></svg><h3>1. DB — először az adatmodell</h3></div><div class="body"><ul>
+</div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-database"/></svg><h3>DB — először az adatmodell</h3></div><div class="body"><ul>
 <li>Entitásspec (<code>.md</code>) → DDL + tárolt függvények</li>
 <li>Minden CRUD tárolt függvényen át</li>
 <li>RLS az adatbázis rétegben, nem Go-ban</li>
 <li>DB-generált <code>now()</code>, UUID PK-k</li>
 <li><em>65 entitásspec + 70 kézi függvényfájl (<code>.md</code>)</em></li>
 </ul>
-</div></article><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-code"/></svg><h3>2. BE — vékony backend</h3></div><div class="body"><ul>
+</div></article><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-code"/></svg><h3>BE — vékony backend</h3></div><div class="body"><ul>
 <li>Handlerek tárolt függvényt hívnak — nincs üzleti logika Go-ban (5 közvetlen tábla-olvasás még kiváltásra vár)</li>
 <li>Routing, auth, session = a Go feladata</li>
 <li>Nincs ORM — <code>pgx/v5 + pgxpool</code> direktben</li>
 <li>Orchestráció → pipeline-fájl, nem Go-kód</li>
 <li><em><code>cmd/agent</code> route → <code>internal/</code> → tárolt fn</em></li>
 </ul>
-</div></article><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-eye"/></svg><h3>3. FE — ahol lehet, generált</h3></div><div class="body"><ul>
+</div></article><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-eye"/></svg><h3>FE — ahol lehet, generált</h3></div><div class="body"><ul>
 <li>HTMX fragmentek — nincs SPA, nincs build step</li>
 <li>Lista-oldalak entitásspecből generálva (9 oldal) — a többi 45 kézzel írt</li>
 <li>GoBI riport: Markdown katalógus-bejegyzés → HTMX tábla (47-ből 38 generált)</li>
 <li>Datagrid és sidebar adat-vezérelt</li>
 <li><em><code>ui/pages/</code> + <code>ui/pages/gen/</code> + GoBI <code>bi/**/*.md</code></em></li>
 </ul>
-</div></article><article class="card accent-peach"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-sparkle"/></svg><h3>4. AI — a felület, ami az AI keze</h3></div><div class="body"><ul>
+</div></article><article class="card accent-peach"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-sparkle"/></svg><h3>AI — a felület, ami az AI keze</h3></div><div class="body"><ul>
 <li>Skill, MCP-eszköz, persona — az alsó rétegeket <strong>hívja</strong> (pipeline, tárolt fn), saját logikája nincs</li>
 <li>Cél: <strong>generálni</strong> az alsó rétegekből — ma a 16 skill még kézzel írt <code>.md</code></li>
 <li>Olvasás önállóan, <strong>írás kapun</strong> (A6)</li>

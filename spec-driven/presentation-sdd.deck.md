@@ -745,27 +745,27 @@ hogy „mostantól angolul kell dolgozniuk", és az nem igaz:
 kereshető, és a kód felé úgyis fordítani kell. Ez mérési kérdés, nem identitás-kérdés.)*
 ```
 
-## Négy lépés — a szándéktól a bizonyított kódig {label="A fejlesztés lépései" skip=talk id=s8b}
+## Négy lépés — a szándéktól a bizonyított kódig {layout=flow label="A fejlesztés lépései" skip=talk id=s8b}
 
-### 1 · Szándék → brief {accent=blue}
+### :lightbulb: Szándék → brief {accent=blue}
 Egy prompt, akár „vibe" szinten: *mit* akarunk és *miért*. Az AI ebből **briefet és követelmény-vázlatot** ír.
 
 kimenet
 **brief.md · requirements.md** — az ember javítja és elfogadja
 
-### :file-text: 2 · A teljes spec {accent=teal}
+### :file-text: A teljes spec {accent=teal}
 A vázlatból generált spec-mappa: SDD terv, EARS-kikötések, és minden kikötéshez a TdD-teszt leírása.
 
 kimenet
 **design · tasks · tests.md** — commitolva, mielőtt kód születik (A8)
 
-### :code: 3 · Implementáció {accent=mauve}
+### :code: Implementáció {accent=mauve}
 Az AI a kódot **három szint szerint** írja: axióma (alaptörvény) → platform-szabály → a spec. Nem improvizál, nem bővít.
 
 kimenet
 **kis diff** — egy feladat, egy commit, visszakövethető a kikötésig (A10)
 
-### :check-circle: 4 · TdD — piros → zöld {accent=peach}
+### :check-circle: TdD — piros → zöld {accent=peach}
 A 2. lépésben a teszt **leírása** (`tests.md`) születik; a 3. lépés **első commitja maga a teszt-kód** (ember + AI írja) — lefut, és **piros**. A kód akkor kész, ha **ugyanaz** a teszt **zöldre** vált — nem akkor, ha lefordul.
 
 kimenet
@@ -797,27 +797,27 @@ kimenet
 
 > **A házon:** szándék → engedélyezési terv + a próbakocka előírása → kivitelezés → a kocka eltörik: bírja? · SdD-ben: brief → spec + `tests.md` → kód → TdD: piros → zöld.
 
-## Hogyan fejlődött a terület — és hol áll az infra-forge {label="A terület fejlődése" skip=talk id=s8c}
+## Hogyan fejlődött a terület — és hol áll az infra-forge {layout=flow label="A terület fejlődése" skip=talk id=s8c}
 
-### :chat-circle-dots: 1 · Prompt engineering {accent=blue}
+### :chat-circle-dots: Prompt engineering {accent=blue}
 Egyetlen utasítás → egyetlen válasz; az AI megáll, és a következő promptra vár.
 
 infra-forge
 **Excel-leltár → DB** — vSphere discover · CSV/seed → `infra.machine`
 
-### :file-text: 2 · Context engineering {accent=teal}
+### :file-text: Context engineering {accent=teal}
 A megfelelő kontextus a prompt köré: spec, séma, szabály, minta.
 
 infra-forge
 **DB → BE → FE generálás** — entity spec → `entitygen`/`lovgen` → stored function → HTMX
 
-### :gear: 3 · Harness engineering {accent=mauve}
+### :gear: Harness engineering {accent=mauve}
 Az agent köré épített környezet: eszközök, jogok, és a kontroll-kapuk.
 
 infra-forge
 **Emberi kapuk** — GitLab-MR · hash-reveal · admin-grant
 
-### :target: 4 · Loop engineering {accent=peach}
+### :target: Loop engineering {accent=peach}
 Felfedez · cselekszik · ellenőriz · ismétel — egy stabil cél felé, önállóan.
 
 infra-forge
@@ -1124,7 +1124,7 @@ alatt is megjelenik, és a lényeg egy mondatban elmondható.)*
 
 > :info: Adatmodell → vékony backend → ahol lehet, generált frontend → **AI-felület**. Soha ne írj kézzel olyat, amit feljebb egy spec már meghatároz. *A négy réteg együtt az alkalmazás.*
 
-### :database: 1. DB — először az adatmodell {accent=blue}
+### :database: DB — először az adatmodell {accent=blue}
 
 - Entitásspec (`.md`) → DDL + tárolt függvények
 - Minden CRUD tárolt függvényen át
@@ -1132,7 +1132,7 @@ alatt is megjelenik, és a lényeg egy mondatban elmondható.)*
 - DB-generált `now()`, UUID PK-k
 - *65 entitásspec + 70 kézi függvényfájl (`.md`)*
 
-### :code: 2. BE — vékony backend {accent=teal}
+### :code: BE — vékony backend {accent=teal}
 
 - Handlerek tárolt függvényt hívnak — nincs üzleti logika Go-ban (5 közvetlen tábla-olvasás még kiváltásra vár)
 - Routing, auth, session = a Go feladata
@@ -1140,7 +1140,7 @@ alatt is megjelenik, és a lényeg egy mondatban elmondható.)*
 - Orchestráció → pipeline-fájl, nem Go-kód
 - *`cmd/agent` route → `internal/` → tárolt fn*
 
-### :eye: 3. FE — ahol lehet, generált {accent=mauve}
+### :eye: FE — ahol lehet, generált {accent=mauve}
 
 - HTMX fragmentek — nincs SPA, nincs build step
 - Lista-oldalak entitásspecből generálva (9 oldal) — a többi 45 kézzel írt
@@ -1148,7 +1148,7 @@ alatt is megjelenik, és a lényeg egy mondatban elmondható.)*
 - Datagrid és sidebar adat-vezérelt
 - *`ui/pages/` + `ui/pages/gen/` + GoBI `bi/**/*.md`*
 
-### :sparkle: 4. AI — a felület, ami az AI keze {accent=peach}
+### :sparkle: AI — a felület, ami az AI keze {accent=peach}
 
 - Skill, MCP-eszköz, persona — az alsó rétegeket **hívja** (pipeline, tárolt fn), saját logikája nincs
 - Cél: **generálni** az alsó rétegekből — ma a 16 skill még kézzel írt `.md`
