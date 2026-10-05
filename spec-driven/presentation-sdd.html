@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spec-driven Development (SdD) — módszertan, gyakorlati példával (v5)</title>
 <link rel="icon" href="data:,">
-<!-- deck-engine sha256=f65bf4be0928799aae162b9df6f637edc862582236bacef6cb644c1b242baed8 -->
+<!-- deck-engine sha256=4da1cb18dea930fc9118e84eedabbf6b1e35cbda924c583259bfe8601e00e8fa -->
 <style></style>
 <style>/* deck-foundation engine — chrome + components (spec U1, U3).
  * Inlined verbatim into every generated deck, BEFORE the vibe and accent blocks, so a vibe
@@ -1038,6 +1038,20 @@ blockquote {
     break-after: page;
   }
 }
+
+/* ── storyboard DAG (increment-storyboard-dag) — tokens only; the vibe's own Mermaid look is bypassed ── */
+.mermaid-diagram svg.sb path.flowchart-link { stroke: var(--overlay1) !important; stroke-width: 1.5px !important; }
+.mermaid-diagram svg.sb path.flowchart-link.sb-primary { stroke: var(--accent) !important; stroke-width: 4px !important; }
+.mermaid-diagram svg.sb .sb-marker-primary path { fill: var(--accent); stroke: var(--accent); }
+.mermaid-diagram svg.sb .node .nodeLabel,
+.mermaid-diagram svg.sb .node .nodeLabel p,
+.mermaid-diagram svg.sb .edgeLabel { color: var(--text); fill: var(--text); font-family: var(--font-sans); }
+.mermaid-diagram svg.sb .node.sb-role rect,
+.mermaid-diagram svg.sb .node.sb-role path,
+.mermaid-diagram svg.sb .node.sb-role polygon { fill: var(--mantle) !important; stroke: var(--sb-accent) !important; stroke-width: 2.5px !important; }
+.mermaid-diagram svg.sb .sb-badge circle { fill: var(--sb-accent) !important; }
+.mermaid-diagram svg.sb .sb-badge use { color: var(--base); fill: currentColor; }
+.mermaid-diagram svg.sb { overflow: visible; }
 </style>
 <style>/* vibe: tech — dense, technical, dark-first (spec deck-foundation, U7).
  * Catppuccin Mocha (dark) + Latte (light). Source decks: knowledge-hub decks, fleet-ai-boundary.
@@ -2539,7 +2553,7 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 </tr>
 <tr>
 <td><strong>Hooks</strong></td>
-<td>A <strong>szabály-kapu blokkolja</strong> a szerkesztést, amíg a réteg szabályfájlját nem olvasta el; a pre-push audit secreteket és szabálysértést szűr. A main-re szerkesztésnél csak <em>figyelmeztet</em> — az szándékos.</td>
+<td>A <strong>szabály-kapu blokkolja</strong> a szerkesztést, amíg a réteg szabályfájlját nem olvasta el; a pre-push audit secreteket és szabálysértést szűr. A main-re szerkesztésnél csak <em>figyelmeztet</em> — az szándékos. A <strong>deploy-hook</strong> környezetenként más git-feltételt kér (lásd lent).</td>
 <td><strong>Betonozás előtti átvétel:</strong> amíg az ellenőr nem írta alá a vasszerelést, a mixer nem önt — nem kérés, hanem megállás.</td>
 </tr>
 <tr>
@@ -2565,7 +2579,81 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 <blockquote>
 <p>Az AI nem „szabad kezet&quot; kap, hanem <strong>keretrendszert</strong> — ahogy a brigád sem, hanem tervet, szabályzatot és ellenőrt.</p>
 </blockquote>
-</div>
+</div><details class="after-block drill block-cards"><summary>▸ Deploy-hookok: dev · test · prod</summary><div class="body after"><table>
+<thead>
+<tr>
+<th>Környezet</th>
+<th>Mit kér a deploy-hook a gittől</th>
+<th>A házon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>dev</strong></td>
+<td><strong>Nincs git-szabály</strong> — bármelyik ágról, akár commit nélkül is mehet.</td>
+<td><strong>Műhelyasztal:</strong> itt próbálgatnak, még nem a telken.</td>
+</tr>
+<tr>
+<td><strong>test</strong></td>
+<td><strong>Feature ág a remote-on</strong> — az ágnak push-olva kell lennie.</td>
+<td><strong>Próbafelvonulás a telken:</strong> csak a leadott, látható terv szerint.</td>
+</tr>
+<tr>
+<td><strong>prod</strong></td>
+<td><strong>Csak a <code>main</code>/<code>master</code> (origin) ágról, vagy verziózott release-ből.</strong></td>
+<td><strong>Használatbavétel:</strong> csak az átvett, jóváhagyott állapot kaphat engedélyt.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg> Minél közelebb az éleshez, annál szigorúbb a git-feltétel — és a hook <strong>gépiesen</strong> érvényesíti, nem emlékezetből. Éles deploy ágról, ami nincs a remote-on beolvasztva, nem indulhat.</p>
+</blockquote>
+</div></details><details class="after-block drill block-cards"><summary>▸ Mit tesz a hook: blokkol · figyelmeztet · tájékoztat</summary><div class="body after"><table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>Mikor fut</th>
+<th>Hatása</th>
+<th>A házon</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Szabály-kapu</strong></td>
+<td>szerkesztés előtt</td>
+<td><strong>blokkol</strong> — amíg a réteg szabályfájlját el nem olvasta</td>
+<td>az ellenőr nem írta alá a vasszerelést, nem öntenek</td>
+</tr>
+<tr>
+<td><strong>Pre-push audit</strong></td>
+<td>push előtt</td>
+<td><strong>blokkol</strong> — secretre és szabálysértésre</td>
+<td>átadás előtti bejárás: hibával nem adják át</td>
+</tr>
+<tr>
+<td><strong>Deploy-hook</strong></td>
+<td>deploy előtt</td>
+<td><strong>blokkol</strong> — a környezet git-feltétele szerint</td>
+<td>használatbavétel: csak az átvett állapotra</td>
+</tr>
+<tr>
+<td><strong><code>main</code>-szerkesztés</strong></td>
+<td>szerkesztéskor</td>
+<td><strong>figyelmeztet</strong> — szándékosan nem tilt</td>
+<td>a „Vigyázat, itt a napló!&quot; tábla — a direkt út megengedett</td>
+</tr>
+<tr>
+<td><strong>Session-start</strong></td>
+<td>a munka elején</td>
+<td><strong>tájékoztat</strong> — nyitott feladatok, lejáró határidők</td>
+<td>reggeli eligazítás a helyszínen</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><svg class="i" aria-hidden="true"><use href="#i-lock"/></svg> <strong>Két kulcs:</strong> az AI-ügynök a saját jogosultságát sosem emelheti, és titkot sosem oldhat fel — az emberi kulcs. Ahogy a vasszerelést sem a brigád írja alá magának.</p>
+</blockquote>
+</div></details>
 </div>
 <div class="slide layout-free align-top" id="s20" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">A bizonyíték · a Vishy-ház</span></div><h2> Az építési napló — a bizonyíték nem emlékezet, hanem bejegyzés</h2></div><div class="body"><blockquote>
 <p>A Vishy-ház építésén <strong>építési napló</strong> fut: minden nap bejegyzés arról, ki mit csinált, milyen anyagból, ki ellenőrizte. Ha a beköltözés után vita van — <em>„ez nem így volt megbeszélve&quot;</em> —, nem az emlékezet és nem a becslés dönt, hanem a <strong>napló</strong>.</p>
@@ -6009,13 +6097,94 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
   // the diagram's accessible name is chrome (deck/chrome.yaml): set once on every diagram, rendered or not
   document.querySelectorAll('.mermaid-diagram').forEach(box => box.setAttribute('aria-label', document.body.dataset.tDiagram));
 
+  // ── storyboard DAG (increment-storyboard-dag): classic look + a thin story layer over Mermaid's SVG ──
+  // The topology stays Mermaid's; this adds role icons, a highlighted path and token colours — nothing here
+  // moves a node. Roles (icon + accent) are data: deck/diagram-roles.yaml → body[data-roles].
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  const storyboardSlide = box => {
+    const slide = box.closest('.slide');
+    return slide && slide.dataset.diagramStyle === 'storyboard' ? slide : null;
+  };
+  function storyboardConfig() {
+    const cfg = mermaidConfig();
+    return Object.assign(cfg, { look: 'classic', flowchart: { curve: 'linear', htmlLabels: true } });
+  }
+  function storyboardRoles() {
+    try { return JSON.parse(document.body.dataset.roles || '{}'); } catch (err) { return {}; }
+  }
+  function applyStoryboard(box, slide) {
+    const original = box.firstElementChild && box.firstElementChild.cloneNode(true);
+    try {
+      const svg = box.querySelector('svg');
+      const path = (slide.dataset.highlightPath || '').split(',').filter(Boolean);
+      const roles = storyboardRoles();
+      const nodes = new Map();
+      svg.querySelectorAll('g.node').forEach(g => {
+        const m = /^flowchart-(.+)-\d+$/.exec(g.id);
+        if (m) nodes.set(m[1], g);
+      });
+      if (path.some(id => !nodes.has(id))) throw new Error('highlight path names an unknown node');
+      const edges = Array.from(svg.querySelectorAll('path.flowchart-link'));
+      const edgeOf = (a, b) => edges.find(e => new RegExp('^L_' + a + '_' + b + '_\\d+$').test(e.id));
+      const primary = [];
+      for (let i = 0; i + 1 < path.length; i++) {
+        const e = edgeOf(path[i], path[i + 1]);
+        if (!e) throw new Error('highlight path has no edge ' + path[i] + ' → ' + path[i + 1]);
+        primary.push(e);
+      }
+      // all lookups succeeded — only now mutate
+      svg.classList.add('sb');
+      const defs = svg.querySelector('defs') || svg.insertBefore(document.createElementNS(SVG_NS, 'defs'), svg.firstChild);
+      primary.forEach(e => {
+        e.classList.add('sb-primary');
+        const ref = /url\(["']?#([^"')]+)["']?\)/.exec(e.getAttribute('marker-end') || '');
+        const marker = ref && svg.querySelector('[id="' + ref[1] + '"]');
+        if (marker) {
+          const copy = marker.cloneNode(true);
+          copy.id = marker.id + '-sb';
+          copy.classList.add('sb-marker-primary');
+          defs.appendChild(copy);
+          e.setAttribute('marker-end', 'url(#' + copy.id + ')');
+        }
+      });
+      nodes.forEach((g, id) => {
+        const role = Object.keys(roles).find(r => g.classList.contains(r));
+        if (!role) return;
+        g.classList.add('sb-role');
+        g.style.setProperty('--sb-accent', 'var(--' + roles[role].accent + ')');
+        // the whole node's box (not one child's: a cylinder / diamond path has its own local origin);
+        // a diamond has no corner, so its badge sits on the top vertex
+        const bb = g.getBBox();
+        const diamond = Boolean(g.querySelector('polygon'));
+        const bx = diamond ? bb.x + bb.width / 2 : bb.x, by = bb.y;
+        const badge = document.createElementNS(SVG_NS, 'svg');
+        badge.setAttribute('class', 'sb-badge');
+        badge.setAttribute('x', String(bx - 10));
+        badge.setAttribute('y', String(by - 10));
+        badge.setAttribute('width', '22');
+        badge.setAttribute('height', '22');
+        badge.setAttribute('viewBox', '0 0 22 22');
+        const disc = document.createElementNS(SVG_NS, 'circle');
+        disc.setAttribute('cx', '11'); disc.setAttribute('cy', '11'); disc.setAttribute('r', '11');
+        const use = document.createElementNS(SVG_NS, 'use');
+        use.setAttribute('href', '#i-' + roles[role].icon);
+        use.setAttribute('x', '4'); use.setAttribute('y', '4'); use.setAttribute('width', '14'); use.setAttribute('height', '14');
+        badge.append(disc, use);
+        g.appendChild(badge);
+      });
+    } catch (err) {
+      if (original) box.replaceChildren(original);
+    }
+  }
+
   async function renderDiagrams(slide) {
     if (!slide || !window.mermaid) return;
     const boxes = Array.from(slide.querySelectorAll('.mermaid-diagram[data-mermaid]'))
       .filter(box => box.dataset.rendered !== themeKey());
     if (!boxes.length) return;
-    window.mermaid.initialize(mermaidConfig());
     for (const box of boxes) {
+      const sb = storyboardSlide(box);
+      window.mermaid.initialize(sb ? storyboardConfig() : mermaidConfig());
       box.dataset.rendered = themeKey();
       const id = 'deck-mmd-' + ++diagramSeq;
       try {
@@ -6024,6 +6193,7 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
         const source = box.dataset.mermaid.replace(/var\(\s*(--[a-z0-9-]+)\s*\)/g, (m, name) => token(name) || m);
         const { svg } = await window.mermaid.render(id, source);
         box.innerHTML = svg; // SVG produced by Mermaid (securityLevel strict), not string-assembled markup
+        if (sb) applyStoryboard(box, sb); // SB-X3: on any failure the ordinary SVG above stays
       } catch (err) {
         document.getElementById('d' + id)?.remove();
         const note = document.createElement('div');

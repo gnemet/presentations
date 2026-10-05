@@ -1725,7 +1725,7 @@ Az építkezésnek is van **kerete**, ami nem a brigád jóindulatán múlik. Cl
 | Mechanizmus | Mit csinál | A házon |
 |---|---|---|
 | **Szabálybetöltés** | A `CLAUDE.md` + az axiómák minden session elején a kontextusba kerülnek; a réteg szabályai akkor, amikor a munka eléri — ugyanaz a szerződés, mint az új kollégának. | Az **építési szabályzat és a tervrajz** reggel ott van a helyszínen — nem emlékezetből dolgoznak. |
-| **Hooks** | A **szabály-kapu blokkolja** a szerkesztést, amíg a réteg szabályfájlját nem olvasta el; a pre-push audit secreteket és szabálysértést szűr. A main-re szerkesztésnél csak *figyelmeztet* — az szándékos. | **Betonozás előtti átvétel:** amíg az ellenőr nem írta alá a vasszerelést, a mixer nem önt — nem kérés, hanem megállás. |
+| **Hooks** | A **szabály-kapu blokkolja** a szerkesztést, amíg a réteg szabályfájlját nem olvasta el; a pre-push audit secreteket és szabálysértést szűr. A main-re szerkesztésnél csak *figyelmeztet* — az szándékos. A **deploy-hook** környezetenként más git-feltételt kér (lásd lent). | **Betonozás előtti átvétel:** amíg az ellenőr nem írta alá a vasszerelést, a mixer nem önt — nem kérés, hanem megállás. |
 | **Skills** | Ismétlődő műveletek (`/vault`, `/regen-html`, a deploy-parancsok) dokumentált, paraméterezett eljárásként. | **Technológiai utasítás:** a szigetelés, a betonozás leírt, bevált menete — nem minden brigád találja ki újra. |
 | **MCP szerverek** | Az AI strukturált eszközökön át kérdez (pl. a flotta-keresés, KPI-k) — nem nyers SQL-lel. | **Mérőműszerek:** lézer, vízmérték, nedvességmérő — mérnek, nem szemre becsülnek. |
 | **Memory** | Projektszintű tanulságok session-ök között megmaradnak. | A **brigádvezető jegyzetei** és a napló: a tegnapi tanulság holnap is megvan. |
@@ -1734,6 +1734,28 @@ Az építkezésnek is van **kerete**, ami nem a brigád jóindulatán múlik. Cl
 
 > Az AI nem „szabad kezet" kap, hanem **keretrendszert** — ahogy a brigád sem, hanem tervet, szabályzatot és ellenőrt.
 
+--- {drill="▸ Deploy-hookok: dev · test · prod"}
+
+| Környezet | Mit kér a deploy-hook a gittől | A házon |
+|---|---|---|
+| **dev** | **Nincs git-szabály** — bármelyik ágról, akár commit nélkül is mehet. | **Műhelyasztal:** itt próbálgatnak, még nem a telken. |
+| **test** | **Feature ág a remote-on** — az ágnak push-olva kell lennie. | **Próbafelvonulás a telken:** csak a leadott, látható terv szerint. |
+| **prod** | **Csak a `main`/`master` (origin) ágról, vagy verziózott release-ből.** | **Használatbavétel:** csak az átvett, jóváhagyott állapot kaphat engedélyt. |
+
+> :shield: Minél közelebb az éleshez, annál szigorúbb a git-feltétel — és a hook **gépiesen** érvényesíti, nem emlékezetből. Éles deploy ágról, ami nincs a remote-on beolvasztva, nem indulhat.
+
+--- {drill="▸ Mit tesz a hook: blokkol · figyelmeztet · tájékoztat"}
+
+| Hook | Mikor fut | Hatása | A házon |
+|---|---|---|---|
+| **Szabály-kapu** | szerkesztés előtt | **blokkol** — amíg a réteg szabályfájlját el nem olvasta | az ellenőr nem írta alá a vasszerelést, nem öntenek |
+| **Pre-push audit** | push előtt | **blokkol** — secretre és szabálysértésre | átadás előtti bejárás: hibával nem adják át |
+| **Deploy-hook** | deploy előtt | **blokkol** — a környezet git-feltétele szerint | használatbavétel: csak az átvett állapotra |
+| **`main`-szerkesztés** | szerkesztéskor | **figyelmeztet** — szándékosan nem tilt | a „Vigyázat, itt a napló!" tábla — a direkt út megengedett |
+| **Session-start** | a munka elején | **tájékoztat** — nyitott feladatok, lejáró határidők | reggeli eligazítás a helyszínen |
+
+> :lock: **Két kulcs:** az AI-ügynök a saját jogosultságát sosem emelheti, és titkot sosem oldhat fel — az emberi kulcs. Ahogy a vasszerelést sem a brigád írja alá magának.
+
 ```notes
 ⏱ 26:15 — A táblázatból a **hookra** menj rá: *a kapu nem kérés, hanem mechanikus erő.* A házon: amíg az
 ellenőr nem vette át a vasszerelést, nem öntenek betont. Nálunk a **szabály-kapu** blokkolja a
@@ -1741,6 +1763,16 @@ szerkesztést, amíg az AI el nem olvasta a réteg szabályfájlját — nem gy�
 
 **Pontosan mondd:** a main-re szerkesztésnél a hook csak *figyelmeztet*, nem blokkol — ez
 szándékos (a direkt út megengedett ott, ahol a repó arra jogosult). A blokkoló kapu a szabály-kapu.
+
+**Deploy-hookok (ha kérdezik, vagy ha van idő):** három környezet, három git-feltétel. **dev:** nincs
+git-szabály. **test:** a feature ágnak fenn kell lennie a remote-on (push-olva). **prod:** csak a
+`main`/`master` (origin) ágról, vagy verziózott release-ből. Minél közelebb az éleshez, annál szigorúbb —
+és a hook kényszeríti, nem a fegyelem.
+
+**A hook-skála:** nem minden hook tilt. A szabály-kapu, a pre-push audit és a deploy-hook **blokkol**; a
+`main`-szerkesztés **figyelmeztet** (szándékos: a direkt út ott megengedett, ahol a repó arra jogosult);
+a session-start hook csak **tájékoztat** (nyitott feladatok, lejáró határidők). **Két kulcs:** az AI-ügynök
+a saját jogát nem emelheti, titkot nem oldhat fel — az az ember kulcsa.
 
 Vezetői olvasat: a szabály **kikényszerítve** van, nem remélve.
 ```

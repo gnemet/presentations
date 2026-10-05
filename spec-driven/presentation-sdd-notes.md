@@ -397,6 +397,16 @@ szerkesztést, amíg az AI el nem olvasta a réteg szabályfájlját — nem gy�
 **Pontosan mondd:** a main-re szerkesztésnél a hook csak *figyelmeztet*, nem blokkol — ez
 szándékos (a direkt út megengedett ott, ahol a repó arra jogosult). A blokkoló kapu a szabály-kapu.
 
+**Deploy-hookok (ha kérdezik, vagy ha van idő):** három környezet, három git-feltétel. **dev:** nincs
+git-szabály. **test:** a feature ágnak fenn kell lennie a remote-on (push-olva). **prod:** csak a
+`main`/`master` (origin) ágról, vagy verziózott release-ből. Minél közelebb az éleshez, annál szigorúbb —
+és a hook kényszeríti, nem a fegyelem.
+
+**A hook-skála:** nem minden hook tilt. A szabály-kapu, a pre-push audit és a deploy-hook **blokkol**; a
+`main`-szerkesztés **figyelmeztet** (szándékos: a direkt út ott megengedett, ahol a repó arra jogosult);
+a session-start hook csak **tájékoztat** (nyitott feladatok, lejáró határidők). **Két kulcs:** az AI-ügynök
+a saját jogát nem emelheti, titkot nem oldhat fel — az az ember kulcsa.
+
 Vezetői olvasat: a szabály **kikényszerítve** van, nem remélve.
 
 ## 28. Az építési napló — a bizonyíték nem emlékezet, hanem bejegyzés (#s20)
