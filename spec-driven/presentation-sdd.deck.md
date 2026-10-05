@@ -507,10 +507,10 @@ A git nálunk nem divat, hanem **a módszertan hordozója**. Ha az AI írja a k�
 ### :git-branch: A branch olcsó {accent=mauve}
 SVN-ben az ág szervezési döntés volt, és fájt. Gitben egy ág **egy kísérlet**: az AI-t ráengeded, megnézed, és vagy bejön, vagy eldobod. *Az eldobás nulla költségű* — ettől mersz kísérletezni.
 
-### A kis diff a review egysége {accent=teal}
+### :magnifying-glass: A kis diff a review egysége {accent=teal}
 Nem a kész terméket nézed át, hanem **egy kicsi, indokolt változást**. Egy **néhány tucat soros** diffet még érdemben át lehet nézni; egy **több száz soros** változásnál a review könnyen csak jóváhagyássá válik. A kettő között nem a figyelem vész el, hanem *a kapu maga*.
 
-### A history a bizonyíték {accent=green}
+### :clock: A history a bizonyíték {accent=green}
 Ki, mit, mikor, **és melyik spec alapján**. Az AI-val végzett munka auditálhatósága nem külön rendszer — *a git log maga az*. (Mindjárt látunk egy idővonalat pontosan ebből.)
 
 ---
