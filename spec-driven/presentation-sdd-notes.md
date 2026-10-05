@@ -356,7 +356,11 @@ _(no notes)_
 
 _(no notes)_
 
-## 24. „Ne ázzon be a pince" — egy igény végig a láncon (#s12)
+## 24. Tartalom és kontextus — mindkettő kell a jó RAG-sorrendhez (#rag-content-context)
+
+_(no notes)_
+
+## 25. „Ne ázzon be a pince" — egy igény végig a láncon (#s12)
 
 ⏱ 24:30 — Visszatérünk a Vishy-házhoz. A 2. dia azt mutatta, **ki** mit csinál; ez a dia **egyetlen igényt** követ
 végig — a család mondatától a műszaki ellenőrig. Szoftverismeret nem kell hozzá, ezért mindenki
@@ -378,13 +382,13 @@ akkor kell rögzíteni, amikor még meg lehet nézni.
 Az alsó két kártya a 2. dia két kapuját hívja vissza: a **műszaki ellenőr** a tervet nézi
 (verifikáció), a **család** az első eső után azt, hogy erre volt-e szüksége (validáció).
 
-## 25. Négy döntés, ami megformálta a házat (#s13)
+## 26. Négy döntés, ami megformálta a házat (#s13)
 
 ⏱ 25:15 — A négy kérdés–válasz pár lényege egyetlen mondatban: **minden döntés emberi döntés volt**, és
 mindegyik EARS-kikötésként került a tervre. A brigád — nálunk az AI — egyet sem hozott meg
 helyettünk. Ha van idő, a „két szint" kérdésnél mondd ki: *ez a legkisebb diff (A10) a házon.*
 
-## 26. Claude Code mint fejlesztőtárs — a fegyelmező keret (#s19)
+## 27. Claude Code mint fejlesztőtárs — a fegyelmező keret (#s19)
 
 ⏱ 26:15 — A táblázatból a **hookra** menj rá: *a kapu nem kérés, hanem mechanikus erő.* A házon: amíg az
 ellenőr nem vette át a vasszerelést, nem öntenek betont. Nálunk a **szabály-kapu** blokkolja a
@@ -395,7 +399,7 @@ szándékos (a direkt út megengedett ott, ahol a repó arra jogosult). A blokko
 
 Vezetői olvasat: a szabály **kikényszerítve** van, nem remélve.
 
-## 27. Az építési napló — a bizonyíték nem emlékezet, hanem bejegyzés (#s20)
+## 28. Az építési napló — a bizonyíték nem emlékezet, hanem bejegyzés (#s20)
 
 ⏱ 27:15 — Itt fizet vissza a 7. dia. A háznál mindenki tudja: vitában **az építési napló dönt**, nem az
 emlékezet és nem a kivitelező becslése. A mondat, ami átvisz a számokhoz: *„nálunk a git log
@@ -428,7 +432,7 @@ bizonyítékként. Ha rákérdeznek (*ki becsülte? milyen scope-pal? hány FTE?
 „nincs mögötte dokumentált WBS — ezért mondom nagyságrendnek." Ha nem akarod megvédeni,
 **hagyd ki**, és csak a git-számokat mondd; a dia enélkül is működik.
 
-## 28. És mi épült? — az alkalmazás, amit az IT-csoport használ (#s20b)
+## 29. És mi épült? — az alkalmazás, amit az IT-csoport használ (#s20b)
 
 ⏱ 28:00 — **Ez a dia a ház fényképe.** Eddig a tervrajzot, a brigádot és a naplót néztük — itt az, ami
 belőle lett. Ha egyetlen mondatot mondasz el róla: *„nem kódot írtunk, alkalmazást építettünk;
@@ -446,7 +450,7 @@ emberi kapun megy — a 18. dia ezt bontja ki. Ne mondd el itt előre.
 hagyd el, az úgyis a leggyengébb pont. Ez a dia válaszolja meg, amit a vezető valójában kérdez:
 *„és mi lett belőle?"*
 
-## 29. Három kapu a házon — és a két módszertani kapu (#s21)
+## 30. Három kapu a házon — és a két módszertani kapu (#s21)
 
 ⏱ 29:00 — A vezetők diaja. **Négy kapu, mindegyik mögött ember** — a házon három (engedély, kulcs, két
 aláírás); az engedély egyben a verifikációs kapu (MR: review, *aztán* merge), a validáció a negyedik. Az AI egyiket sem tudja megnyitni
@@ -463,7 +467,7 @@ jogosultsággal, önállóan futnak. Ez nem kibúvó, hanem a lényeg: **a kapu 
 rendszer megváltozik** — nem ott, ahol csak leírjuk, mit láttunk. Ha ezt nem mondod ki, egy
 figyelmes fejlesztő pont ezt fogja megkérdezni, és jogosan.
 
-## 30. Négy döntés, ami a vezetőé — és az első lépés holnap (#s22)
+## 31. Négy döntés, ami a vezetőé — és az első lépés holnap (#s22)
 
 ⏱ 29:45 — Ne foglald össze, amit már elmondtál — **négy döntést adj a vezetők kezébe**: hová teszik a
 kapacitást (review + átvétel, nem gépelés), hol van a tudás (dokumentumban, nem fejekben), mit
@@ -473,11 +477,11 @@ szándékosan nincs a listán: az a **következmény**, nem a cél.
 A zöld sávot mondd ki szó szerint, ez a hívás cselekvésre: *„egy kicsi, valódi igény, végigvive
 — nem pilot-program."* Ha kérdezik, mivel kezdjék: ezzel.
 
-## 31. Hogyan kezdj AI-fejlesztésbe? — útravaló (#s23)
+## 32. Hogyan kezdj AI-fejlesztésbe? — útravaló (#s23)
 
 _(no notes)_
 
-## 32. Köszönjük a figyelmet! (#s24)
+## 33. Köszönjük a figyelmet! (#s24)
 
 ⏱ 30:30 — Három mondat, aztán kérdések:
 
@@ -495,6 +499,6 @@ több **döntés, review és átvétel**. Ezek egyike sem delegálható gépnek 
 **„Honnan tudom, hogy nem hazudik?"** — Nem tudod a szövegéből, ezért nem is abból ellenőrzöd:
 zöld teszt, olvasható diff, futó rendszer. A 13. és 18. dia erről szól.
 
-## 33. Források & szabványok — minden technológia hivatkozva (#s25)
+## 34. Források & szabványok — minden technológia hivatkozva (#s25)
 
 _(no notes)_

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Spec-driven Development (SdD) — módszertan, gyakorlati példával (v5)</title>
 <link rel="icon" href="data:,">
-<!-- deck-engine sha256=2d338a50ea9608243ed17d1ce7b09d2e8e9ac757f523352bbe5b9cbfecc176ff -->
+<!-- deck-engine sha256=f65bf4be0928799aae162b9df6f637edc862582236bacef6cb644c1b242baed8 -->
 <style></style>
 <style>/* deck-foundation engine — chrome + components (spec U1, U3).
  * Inlined verbatim into every generated deck, BEFORE the vibe and accent blocks, so a vibe
@@ -235,11 +235,108 @@ kbd {
 }
 
 /* ── slides ─────────────────────────────────────────────────────────────── */
-.deck {
-  position: relative;
+/* The stage is the row between header and footer: the slides, and — when the deck has details —
+   the pane beside them (increment-details-pane). A closed pane is display:none, so it takes no
+   room and moves nothing (DP-U5). */
+.deck-stage {
   flex: 1;
   min-height: 0;
+  display: flex;
+}
+
+.deck {
+  position: relative;
+  flex: 1 1 0; /* basis 0: the pane keeps the width it was given, the slides take the rest */
+  min-width: 0;
+  min-height: 0;
   overflow: hidden;
+}
+
+/* ── details pane (increment-details-pane) ─────────────────────────────── */
+.details-pane {
+  flex: 0 0 auto;
+  width: var(--details-w, 24rem);
+  min-width: 16rem;
+  max-width: 60%;
+  padding: 1.5rem 1.5rem 2rem;
+  overflow-y: auto;
+  border-left: 1px solid var(--surface1);
+  background: var(--mantle);
+  scrollbar-width: thin;
+  scrollbar-color: var(--surface2) transparent;
+}
+
+.details-pane[hidden],
+.details-handle[hidden],
+.nav-exit[hidden] {
+  display: none;
+}
+
+/* a flex sibling in the gap, not a child of the pane: the pane scrolls, the handle must not */
+.details-handle {
+  flex: none;
+  width: 8px;
+  margin: 0 -4px;
+  z-index: 1;
+  cursor: col-resize;
+  background: transparent;
+  touch-action: none;
+}
+
+.details-handle:hover,
+.details-handle:focus-visible {
+  outline: none;
+  background: var(--accent);
+}
+
+body.details-resizing {
+  cursor: col-resize;
+  user-select: none;
+}
+
+.details-title {
+  margin: 0 0 0.9rem;
+  color: var(--text);
+  font-family: var(--deck-heading-font);
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+.details-text {
+  color: var(--subtext1);
+  font-size: 0.9rem;
+}
+
+.details-text p,
+.details-text ul {
+  margin: 0 0 0.75rem;
+}
+
+.details-text ul {
+  padding-left: 1.1rem;
+}
+
+.details-text li + li {
+  margin-top: 0.35rem;
+}
+
+.details-text strong {
+  color: var(--text);
+}
+
+.details-empty {
+  color: var(--overlay1);
+}
+
+/* ── host exit (increment-host-integration HI-E2): a labelled control, not a bare glyph ── */
+.nav-exit {
+  width: auto;
+  margin-left: 0.6rem;
+  padding: 0 0.6rem;
+  gap: 0.4rem;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 600;
 }
 
 .slide {
@@ -441,6 +538,37 @@ kbd {
   gap: 0.6rem;
 }
 
+.start-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0 1.4rem;
+  margin-top: 0.4rem;
+  border: 0;
+  border-radius: var(--deck-radius-pill);
+  background: var(--accent);
+  color: var(--crust);
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.start-btn:hover {
+  filter: brightness(1.08);
+}
+
+.start-btn:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+.start-btn .i {
+  width: 1.1em;
+  height: 1.1em;
+}
+
 .meta-chip {
   display: inline-flex;
   align-items: center;
@@ -587,6 +715,12 @@ kbd {
 
 .flow-step:not(:has(> h3))::before {
   content: counter(flow);
+}
+
+/* FI-U1: a step whose title starts with an icon shows the icon instead of the counter — the row
+   and its arrows already give the order. FI-O1: {numbers=on} on the slide keeps every counter. */
+.slide:not(.flow-numbers) .flow-step > h3:has(> .i:first-child)::before {
+  content: none;
 }
 
 .flow-step:not(:last-child)::after {
@@ -837,6 +971,10 @@ blockquote {
 
 /* ── print (E5): every slide, one landscape page each ───────────────────── */
 @media print {
+  .start-btn {
+    display: none;
+  }
+
   @page {
     size: A4 landscape;
     margin: 0;
@@ -852,8 +990,14 @@ blockquote {
   .pres-header,
   .pres-footer,
   .progress-bar,
-  .help-overlay {
+  .help-overlay,
+  .details-pane,
+  .details-handle {
     display: none;
+  }
+
+  .deck-stage {
+    display: block;
   }
 
   .deck {
@@ -967,7 +1111,7 @@ blockquote {
 </style>
 <style></style>
 </head>
-<body data-auto="0">
+<body data-auto="0" data-t-views="Views of the same thing" data-t-view-tip="Show this view (f cycles the views)" data-t-no-details="No details for this slide." data-t-diagram-error="Diagram error — " data-t-diagram="Diagram">
 <div class="deck-sprite" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 <symbol id="i-caret-double-left" viewBox="0 -960 1024 1024"><path d="M823 -151Q827 -146 829.5 -140.5Q832 -135 832 -128Q832 -115 822.5 -105.5Q813 -96 800 -96Q793 -96 787.5 -98.5Q782 -101 777 -105L457 -425Q453 -430 450.5 -435.5Q448 -441 448 -448Q448 -455 450.5 -460.5Q453 -466 457 -471L777 -791Q782 -795 787.5 -797.5Q793 -800 800 -800Q813 -800 822.5 -790.5Q832 -781 832 -768Q832 -761 829.5 -755.5Q827 -750 823 -745L525 -448ZM205 -448 503 -745Q507 -750 509.5 -755.5Q512 -761 512 -768Q512 -781 502.5 -790.5Q493 -800 480 -800Q473 -800 467.5 -797.5Q462 -795 457 -791L137 -471Q133 -466 130.5 -460.5Q128 -455 128 -448Q128 -441 130.5 -435.5Q133 -430 137 -425L457 -105Q462 -101 467.5 -98.5Q473 -96 480 -96Q493 -96 502.5 -105.5Q512 -115 512 -128Q512 -135 509.5 -140.5Q507 -146 503 -151Z"/></symbol>
 <symbol id="i-caret-left" viewBox="0 -960 1024 1024"><path d="M663 -151Q667 -146 669.5 -140.5Q672 -135 672 -128Q672 -115 662.5 -105.5Q653 -96 640 -96Q633 -96 627.5 -98.5Q622 -101 617 -105L297 -425Q293 -430 290.5 -435.5Q288 -441 288 -448Q288 -455 290.5 -460.5Q293 -466 297 -471L617 -791Q622 -795 627.5 -797.5Q633 -800 640 -800Q653 -800 662.5 -790.5Q672 -781 672 -768Q672 -761 669.5 -755.5Q667 -750 663 -745L365 -448Z"/></symbol>
@@ -1030,6 +1174,8 @@ blockquote {
 <symbol id="i-play-circle" viewBox="0 -960 1024 1024"><path d="M512 -864Q426 -864 350 -831Q274 -799 217.5 -742.5Q161 -686 129 -610Q96 -534 96 -448Q96 -362 129 -286Q161 -210 217.5 -153.5Q274 -97 350 -65Q426 -32 512 -32Q598 -32 674 -65Q750 -97 806.5 -153.5Q863 -210 895 -286Q928 -362 928 -448Q928 -534 895 -610Q862 -686 806.0 -742.0Q750 -798 674 -831Q598 -864 512 -864ZM512 -96Q439 -96 375 -124Q311 -151 263.0 -199.0Q215 -247 188 -311Q160 -375 160 -448Q160 -521 188 -585Q215 -649 263.0 -697.0Q311 -745 375 -772Q439 -800 512 -800Q585 -800 649 -772Q713 -745 761.0 -697.0Q809 -649 836 -585Q864 -521 864 -448Q864 -375 836 -311Q809 -247 761.0 -199.0Q713 -151 649 -124Q585 -96 512 -96ZM705 -475 449 -635Q445 -637 441.0 -638.5Q437 -640 432 -640Q419 -640 409.5 -630.5Q400 -621 400 -608V-288Q400 -275 409.5 -265.5Q419 -256 432 -256Q437 -256 441.0 -257.5Q445 -259 449 -261L705 -421Q712 -425 716.0 -432.0Q720 -439 720 -448Q720 -457 716.0 -464.0Q712 -471 705 -475ZM464 -346V-550L628 -448Z"/></symbol>
 <symbol id="i-rocket-launch" viewBox="0 -960 1024 1024"><path d="M895 -772Q894 -796 877.0 -813.0Q860 -830 836 -832H835Q817 -833 785 -831Q753 -829 714.0 -818.5Q675 -808 632 -786Q590 -763 550 -723L531 -704H297Q297 -704 297.0 -704.0Q297 -704 297 -704Q284 -704 272.5 -699.0Q261 -694 252 -685L115 -548Q106 -539 101.0 -527.5Q96 -516 96 -503Q96 -479 112.0 -461.0Q128 -443 151 -439L305 -418L482 -241L503 -87Q506 -69 517.5 -55.0Q529 -41 546 -36V-35Q551 -34 556.0 -33.0Q561 -32 567 -32Q567 -32 567.0 -32.0Q567 -32 567 -32Q580 -32 591.5 -37.0Q603 -42 612 -51L749 -188Q758 -197 763.0 -208.5Q768 -220 768 -233Q768 -233 768.0 -233.0Q768 -233 768 -233V-467L787 -486Q827 -526 849 -568Q872 -611 882.5 -650.0Q893 -689 895 -721Q897 -753 895 -772ZM297 -640H467L309 -482L160 -503ZM595 -678Q637 -720 693.0 -744.0Q749 -768 813 -768Q818 -768 822.5 -768.0Q827 -768 832 -768Q832 -763 832.0 -758.0Q832 -753 832 -748Q832 -684 808.0 -628.5Q784 -573 742 -531L512 -301L365 -448ZM704 -233 567 -96 546 -245 704 -403ZM407 -195Q394 -166 340.5 -115.0Q287 -64 160 -64Q147 -64 137.5 -73.5Q128 -83 128 -96Q128 -223 179.0 -276.5Q230 -330 259 -343Q262 -345 265.5 -345.5Q269 -346 273 -346Q286 -346 295.5 -337.0Q305 -328 305 -314Q305 -305 299.5 -297.0Q294 -289 286 -285Q267 -276 234.0 -242.5Q201 -209 194 -130Q273 -137 306.5 -170.0Q340 -203 349 -222Q353 -230 361.0 -235.5Q369 -241 378 -241Q392 -241 401.0 -231.5Q410 -222 410 -209Q410 -205 409.5 -201.5Q409 -198 407 -195Z"/></symbol>
 <symbol id="i-hand" viewBox="0 -960 1024 1024"><path d="M752 -768Q752 -768 752.0 -768.0Q752 -768 752 -768Q739 -768 726.5 -765.0Q714 -762 703 -757H704V-784Q704 -784 704.0 -784.0Q704 -784 704 -784Q704 -830 671.0 -863.0Q638 -896 592 -896Q555 -896 526.0 -874.5Q497 -853 486 -819L485 -818Q474 -825 460.5 -828.5Q447 -832 432 -832Q386 -832 353.0 -799.0Q320 -766 320 -720V-464L305 -489Q290 -514 264.5 -529.0Q239 -544 208 -544Q161 -544 128.5 -511.5Q96 -479 96 -432Q96 -417 100.0 -403.0Q104 -389 111 -377H110Q134 -327 156 -283Q178 -240 199.5 -203.5Q221 -167 242 -138Q263 -109 285 -86Q330 -41 384.0 -20.5Q438 0 512 0Q585 0 649 -28Q713 -55 761.0 -103.0Q809 -151 836 -215Q864 -279 864 -352V-656Q864 -702 831.0 -735.0Q798 -768 752 -768ZM800 -352Q800 -292 777 -240Q755 -188 715.5 -148.5Q676 -109 624 -87Q572 -64 512 -64Q451 -64 408.5 -79.5Q366 -95 331 -131Q291 -172 252.5 -240.0Q214 -308 168 -406Q167 -406 167.0 -407.0Q167 -408 166 -408Q163 -413 161.5 -419.0Q160 -425 160 -432Q160 -452 174.0 -466.0Q188 -480 208 -480Q221 -480 232.0 -473.5Q243 -467 249 -456H250Q250 -456 250.0 -455.5Q250 -455 250 -455L325 -335Q329 -328 336.0 -324.0Q343 -320 352 -320Q365 -320 374.5 -329.5Q384 -339 384 -352Q384 -352 384.0 -352.0Q384 -352 384 -352V-720Q384 -740 398.0 -754.0Q412 -768 432 -768Q452 -768 466.0 -754.0Q480 -740 480 -720V-480Q480 -467 489.5 -457.5Q499 -448 512 -448Q525 -448 534.5 -457.5Q544 -467 544 -480V-784Q544 -804 558.0 -818.0Q572 -832 592 -832Q612 -832 626.0 -818.0Q640 -804 640 -784V-480Q640 -467 649.5 -457.5Q659 -448 672 -448Q685 -448 694.5 -457.5Q704 -467 704 -480V-656Q704 -676 718.0 -690.0Q732 -704 752 -704Q772 -704 786.0 -690.0Q800 -676 800 -656Z"/></symbol>
+<symbol id="i-plus" viewBox="0 -960 1024 1024"><path d="M896 -448Q896 -435 886.5 -425.5Q877 -416 864 -416H544V-96Q544 -83 534.5 -73.5Q525 -64 512 -64Q499 -64 489.5 -73.5Q480 -83 480 -96V-416H160Q147 -416 137.5 -425.5Q128 -435 128 -448Q128 -461 137.5 -470.5Q147 -480 160 -480H480V-800Q480 -813 489.5 -822.5Q499 -832 512 -832Q525 -832 534.5 -822.5Q544 -813 544 -800V-480H864Q877 -480 886.5 -470.5Q896 -461 896 -448Z"/></symbol>
+<symbol id="i-copy" viewBox="0 -960 1024 1024"><path d="M864 -832H352Q339 -832 329.5 -822.5Q320 -813 320 -800V-640H160Q147 -640 137.5 -630.5Q128 -621 128 -608V-96Q128 -83 137.5 -73.5Q147 -64 160 -64H672Q685 -64 694.5 -73.5Q704 -83 704 -96V-256H864Q877 -256 886.5 -265.5Q896 -275 896 -288V-800Q896 -813 886.5 -822.5Q877 -832 864 -832ZM640 -128H192V-576H640ZM832 -320H704V-608Q704 -621 694.5 -630.5Q685 -640 672 -640H384V-768H832Z"/></symbol>
 </svg>
 </div>
 
@@ -1043,11 +1189,12 @@ blockquote {
     <button type="button" class="nav-btn" id="btn-talk" data-action="talk" aria-pressed="false" title="Talk mode — skip optional slides" aria-label="Talk mode"><svg class="i" aria-hidden="true"><use href="#i-fast-forward"/></svg></button>
     <button type="button" class="nav-btn" data-action="help" title="Keyboard shortcuts (?)" aria-label="Keyboard shortcuts"><svg class="i" aria-hidden="true"><use href="#i-question"/></svg></button>
     <button type="button" class="nav-btn" id="theme-toggle" data-action="theme" title="Toggle theme (t)" aria-label="Toggle theme"><svg class="i" aria-hidden="true"><use href="#i-sun"/></svg></button>
-    <span class="slide-counter" aria-live="polite"><span data-cur>1</span> / <span data-tot>33</span></span>
+    <span class="slide-counter" aria-live="polite"><span data-cur>1</span> / <span data-tot>34</span></span>
   </nav>
 </header>
 <div class="progress-bar"><div class="progress-fill"></div></div>
 
+<div class="deck-stage">
 <main class="deck">
 <div class="slide layout-title title-slide align-top" id="s1" aria-roledescription="slide">
 <h1 class="big-title">Spec-driven Development (SdD)</h1><div class="big-sub"><p>A specifikáció a szerződés, a dokumentum a kód — az ember dönt, az AI végrehajt.
@@ -2273,6 +2420,53 @@ Nem önálló tervrajz: az <strong>EARS a BRD (követelmény-réteg) mondattana<
 </blockquote>
 </div></div>
 </div>
+<div class="slide layout-free align-top" id="rag-content-context" data-skip="talk" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">AI-infrastruktúra · a visszakeresés rétegei</span><span class="badge">infra-forge · kihagyható</span></div><h2> Tartalom és kontextus — mindkettő kell a jó RAG-sorrendhez</h2></div><div class="body"><blockquote>
+<p>A vektor-adatbázis a <strong>tartalom-bázis</strong>: <em>mit mond</em> egy szövegrészlet. Az él-gráf a <strong>kontextus-bázis</strong>: <em>hogyan viszonyul a többihez</em> — mi hivatkozik rá, mi váltotta le, melyik szabály erősebb. Helyes <strong>rangsorolt</strong> találathoz mindkettő kell.</p>
+</blockquote>
+</div><div class="content-grid"><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-database"/></svg><h3>Tartalom-bázis — vektor</h3></div><div class="body"><p><em>Ma · él</em></p>
+<p><strong>Releváns-e?</strong> A kérdéshez <strong>cosine</strong>-közeli chunkok, jelentés szerint. Magától nem látja, hogy a találat <em>elavult</em>, <em>felülírt</em>, vagy <em>egy másik spec</em> része.</p>
+</div></article><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-graph"/></svg><h3>Kontextus-bázis — él-gráf</h3></div><div class="body"><p><em>Ma · él (<code>dev.doc_edges</code> · <code>rag.cross_refs</code>)</em></p>
+<p><strong>Mi a súlya?</strong> Hivatkozás, tartalmazás, leváltás, szerző. Magától nem tudja, <em>miről szól</em> a kérdés — nincs belépési pontja, amíg a vektor nem ad magot.</p>
+</div></article></div><div class="after-block block-flow"><div class="body after"><p><strong>Egy rangsorolt találat útja</strong></p>
+</div><ol class="flow"><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-magnifying-glass"/></svg> Magok</h3><div class="body"><p><code>VEKTOR</code> — a kérdéshez legközelebbi chunkok, hasonlósági pontszámmal</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-graph"/></svg> Szomszédok</h3><div class="body"><p><code>ÉL</code> — a magok 1 ugrásnyi szomszédai: a másképp megfogalmazott, de kapcsolódó anyag</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-list-checks"/></svg> Szűrés</h3><div class="body"><p><code>ÉL</code> — a leváltott / elavult csomópont kiesik; az alacsonyabb rendű forrás hátrébb kerül</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-git-branch"/></svg> Fúzió</h3><div class="body"><p><code>TERV</code> — hasonlóság + tekintély + összekötöttség, súlyok konfigból (A3)</p>
+</div></li><li class="flow-step"><h3><svg class="i" aria-hidden="true"><use href="#i-chart-bar"/></svg> Rangsor</h3><div class="body"><p><code>TERV</code> — a végső sorrend; az újrarangsorolás (rerank) ma <strong>ki van kapcsolva</strong></p>
+</div></li></ol></div><details class="after-block drill block-cards"><summary>▸ Mit rontana el egyedül a vektor, illetve az él?</summary><div class="body after"><table>
+<thead>
+<tr>
+<th>Jel</th>
+<th>Honnan</th>
+<th>Egyedül mit rontana el</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Relevancia</strong> — mennyire felel a kérdésre</td>
+<td>tartalom · vektor</td>
+<td>a leváltott, majdnem-azonos változat ugyanolyan előkelő helyre kerül</td>
+</tr>
+<tr>
+<td><strong>Állás</strong> — friss, mérvadó, a találatok közelében van</td>
+<td>kontextus · él-gráf</td>
+<td>belépési pont nélkül nem tud mit rangsorolni; a nem összekötött anyag kimarad</td>
+</tr>
+<tr>
+<td><strong>Együtt</strong></td>
+<td>fúzió</td>
+<td>a közepesen hasonló, de három erős találattal összekötött csomópont jogosan előzi a magányos, magasabb pontszámút</td>
+</tr>
+</tbody>
+</table>
+</div></details><div class="after-block block-cards"><div class="body after"><blockquote>
+<p><svg class="i" aria-hidden="true"><use href="#i-warning"/></svg> <strong>Ma vs terv.</strong> A fejlesztői RAG-ban a vektor és az él <strong>két külön lépés</strong> (<code>/rag-search</code>, majd <code>/rag-connections</code>), amit az ember és Claude kapcsol össze. A <strong>beépített fúziós rangsor terv</strong> — a súlyok a konfigban lesznek, és csak akkor kerül élesbe, ha a kiértékelés javulást mutat. A „kontextus&quot; szó két dolgot jelent: itt a <em>kapcsolati</em> kontextus; az LLM <em>munkakontextusa</em> a végeredmény.</p>
+</blockquote>
+<blockquote>
+<p><strong>A házon:</strong> A tervtár és a mutató együtt: a rajz megmondja, mi van a lapon; a mutató, hogy melyik érvényes, és mi mire épül. · SdD-ben: tartalom = mit mond a spec, kontextus = mi hivatkozik rá és mi váltotta le.</p>
+</blockquote>
+</div></div>
+</div>
 <div class="slide layout-free align-top" id="s12" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Esettanulmány · a Vishy-ház</span></div><h2> „Ne ázzon be a pince&#34; — egy igény végig a láncon</h2></div><div class="body"><blockquote>
 <p>A 2. dián azt láttuk, <strong>ki</strong> mit csinál. Most <strong>egyetlen igényt</strong> követünk végig a Vishy család házán: a család mondatától a műszaki ellenőrig — és megnézzük, hol dönt benne az ember.</p>
 </blockquote>
@@ -2556,6 +2750,7 @@ A téglát az AI rakja — a három emberi kalap <em>egy emberen van</em>, de a 
 </div></article></div>
 </div>
 </main>
+</div>
 
 <footer class="pres-footer">
   <span><kbd>←</kbd> <kbd>→</kbd> navigate · <kbd>?</kbd> help · <kbd>t</kbd> theme</span>
@@ -5431,7 +5626,11 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
  * .after-block.face-pane[data-face] (consecutive panes form a face group; the engine inserts the
  * .face-bar with [data-action="face"] buttons) · details.drill (native toggle, opened for print) ·
  * .progress-fill · .help-overlay[hidden] · [data-action] buttons · .mermaid-diagram[data-mermaid] ·
- * body[data-auto] (seconds, 0 = off). Colours and the Mermaid look come from the inlined vibe tokens.
+ * body[data-auto] (seconds, 0 = off) · #deck-details[data-details] (JSON {slide id: {title, blocks}}) with
+ * #details-pane (.details-title, .details-text), .details-handle and the details toggle button, all inside
+ * .deck-stage — present only when the deck has a details file · #btn-exit (the exit action), present
+ * only for a host-served deck and revealed when window.deckBuild.next is a local path.
+ * Colours and the Mermaid look come from the inlined vibe tokens.
  */
 (() => {
   'use strict';
@@ -5486,6 +5685,7 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
     if (slideId) slideId.textContent = '#' + current.id; // SG-U2: the stable name, not the position
     if (progress) progress.style.width = (pos / vis.length) * 100 + '%';
     setPressed('talk', talk);
+    renderPane(); // DP-E1: the open pane follows the slide
     writeHash();
     schedule(current);
   }
@@ -5512,7 +5712,7 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
     const bar = document.createElement('div');
     bar.className = 'face-bar';
     bar.setAttribute('role', 'group');
-    bar.setAttribute('aria-label', 'Views of the same thing');
+    bar.setAttribute('aria-label', document.body.dataset.tViews);
     const group = { panes, bar, active: 0 };
     panes.forEach((p, i) => {
       const b = document.createElement('button');
@@ -5520,7 +5720,7 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
       b.className = 'face-btn';
       b.dataset.action = 'face';
       b.textContent = p.dataset.face || String(i + 1);
-      b.title = 'Show this view (f cycles the views)';
+      b.title = document.body.dataset.tViewTip;
       b.addEventListener('click', () => showFace(group, i));
       bar.appendChild(b);
     });
@@ -5540,6 +5740,156 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
   function cycleFace() {
     const group = faceGroups.find(g => current && current.contains(g.bar));
     if (group) showFace(group, (group.active + 1) % group.panes.length);
+  }
+
+  // ── details pane (increment-details-pane) ───────────────────────────────
+  // The build inlines the deck's details as DATA in one attribute; the pane is built from it with
+  // createElement + textContent only (DP-U3) — a detail can never become markup.
+  const stage = document.querySelector('.deck-stage');
+  const pane = document.getElementById('details-pane');
+  const paneHandle = document.querySelector('.details-handle');
+  const PANE_KEY = 'deck-details-w';
+  const details = (() => {
+    const el = document.getElementById('deck-details');
+    if (!el || !pane) return null;
+    try {
+      return JSON.parse(el.dataset.details);
+    } catch (e) {
+      return null; // unreadable data: the deck behaves as one without details
+    }
+  })();
+  let paneOpen = false;
+
+  function appendRuns(target, runs) {
+    (runs || []).forEach(r => {
+      if (r.b) {
+        const strong = document.createElement('strong');
+        strong.textContent = r.x;
+        target.appendChild(strong);
+      } else {
+        target.appendChild(document.createTextNode(r.x));
+      }
+    });
+  }
+
+  function renderPane() {
+    if (!details || !paneOpen || !current) return;
+    const section = details[current.id];
+    const heading = current.querySelector('h1, h2');
+    pane.querySelector('.details-title').textContent = section ? section.title : heading ? heading.textContent.trim() : '';
+    const text = pane.querySelector('.details-text');
+    text.replaceChildren();
+    if (!section) {
+      const none = document.createElement('p');
+      none.className = 'details-empty';
+      none.textContent = document.body.dataset.tNoDetails; // never the previous slide's text
+      text.appendChild(none);
+    } else {
+      section.blocks.forEach(block => {
+        if (block.t === 'ul') {
+          const list = document.createElement('ul');
+          (block.items || []).forEach(item => {
+            const li = document.createElement('li');
+            appendRuns(li, item);
+            list.appendChild(li);
+          });
+          text.appendChild(list);
+        } else {
+          const p = document.createElement('p');
+          appendRuns(p, block.runs);
+          text.appendChild(p);
+        }
+      });
+    }
+    pane.scrollTop = 0;
+  }
+
+  // DP-U4: the width lives in --details-w on the stage; CSS holds the default and the clamp bounds
+  // (the pane's own min-width / max-width — getComputedStyle keeps a percentage as written).
+  function paneBounds() {
+    const cs = getComputedStyle(pane);
+    const whole = stage.clientWidth;
+    const px = v => (String(v).endsWith('%') ? (parseFloat(v) / 100) * whole : parseFloat(v));
+    return [px(cs.minWidth) || 0, px(cs.maxWidth) || whole];
+  }
+  function setPaneWidth(width, persist) {
+    const [lo, hi] = paneBounds();
+    const w = Math.round(Math.min(hi, Math.max(lo, width)));
+    stage.style.setProperty('--details-w', w + 'px');
+    if (!persist) return;
+    try {
+      localStorage.setItem(PANE_KEY, String(w));
+    } catch (e) {
+      /* storage disabled: the width still holds for this view */
+    }
+  }
+  function resetPaneWidth() {
+    stage.style.removeProperty('--details-w');
+    try {
+      localStorage.removeItem(PANE_KEY);
+    } catch (e) {
+      /* storage disabled */
+    }
+  }
+  function setPane(open) {
+    if (!details) return;
+    paneOpen = open;
+    pane.hidden = !open;
+    if (paneHandle) paneHandle.hidden = !open;
+    setPressed('details', open);
+    if (!open) return;
+    let stored = NaN;
+    try {
+      stored = parseInt(localStorage.getItem(PANE_KEY), 10);
+    } catch (e) {
+      /* storage disabled */
+    }
+    if (stored > 0) setPaneWidth(stored, false); // clamped again: the window may have changed
+    renderPane();
+  }
+  if (details && paneHandle) {
+    let dragging = false;
+    const widthAt = e => stage.getBoundingClientRect().right - e.clientX;
+    paneHandle.addEventListener('pointerdown', e => {
+      dragging = true;
+      paneHandle.setPointerCapture(e.pointerId);
+      document.body.classList.add('details-resizing');
+      e.preventDefault();
+    });
+    paneHandle.addEventListener('pointermove', e => {
+      if (dragging) setPaneWidth(widthAt(e), false);
+    });
+    const release = e => {
+      if (!dragging) return;
+      dragging = false;
+      document.body.classList.remove('details-resizing');
+      setPaneWidth(widthAt(e), true);
+    };
+    paneHandle.addEventListener('pointerup', release);
+    paneHandle.addEventListener('pointercancel', release);
+    paneHandle.addEventListener('dblclick', resetPaneWidth);
+    paneHandle.addEventListener('keydown', e => {
+      const stepPx = e.shiftKey ? 64 : 16;
+      if (e.key === 'ArrowLeft') setPaneWidth(pane.getBoundingClientRect().width + stepPx, true);
+      else if (e.key === 'ArrowRight') setPaneWidth(pane.getBoundingClientRect().width - stepPx, true);
+      else if (e.key === 'Home') resetPaneWidth();
+      else return; // Escape and everything else go on to the deck's own handler
+      e.preventDefault();
+      e.stopPropagation(); // the arrows size the pane here; they must not also turn the slide
+    });
+  }
+
+  // ── host exit (increment-host-integration HI-E2) ────────────────────────
+  // A host that serves the deck may hand over where the reader goes next (window.deckBuild.next).
+  // Only a same-site path is honoured; opened from disk there is no host and no control.
+  const hostNext = (() => {
+    const next = window.deckBuild && window.deckBuild.next;
+    return typeof next === 'string' && /^\/(?!\/)[^\\\s]*$/.test(next) ? next : null;
+  })();
+  const exitBtn = document.getElementById('btn-exit');
+  if (exitBtn && hostNext) exitBtn.hidden = false;
+  function exitToHost() {
+    if (hostNext) location.assign(hostNext);
   }
 
   // ── deep links (E6, SG-E1): #<slide id>, #talk, or #talk,<slide id> — any id a slide carries
@@ -5656,6 +6006,9 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
     };
   }
 
+  // the diagram's accessible name is chrome (deck/chrome.yaml): set once on every diagram, rendered or not
+  document.querySelectorAll('.mermaid-diagram').forEach(box => box.setAttribute('aria-label', document.body.dataset.tDiagram));
+
   async function renderDiagrams(slide) {
     if (!slide || !window.mermaid) return;
     const boxes = Array.from(slide.querySelectorAll('.mermaid-diagram[data-mermaid]'))
@@ -5675,7 +6028,7 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
         document.getElementById('d' + id)?.remove();
         const note = document.createElement('div');
         note.className = 'mermaid-error';
-        note.textContent = 'Diagram error — ' + String((err && err.message) || err).split('\n')[0];
+        note.textContent = document.body.dataset.tDiagramError + String((err && err.message) || err).split('\n')[0];
         box.replaceChildren(note);
       }
     }
@@ -5734,12 +6087,17 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
   };
 
   document.addEventListener('keydown', e => {
+    const t = e.target;
+    const typing = Boolean(t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)));
     if (e.key === 'Escape') {
-      setHelp(false); // Escape always closes, even while typing
+      // Escape always closes, even while typing — innermost first: help, then the details pane
+      // (DP-S1); only with nothing open does it leave for the host (HI-E2), and never from a field.
+      if (help && !help.hidden) setHelp(false);
+      else if (paneOpen) setPane(false);
+      else if (!typing) exitToHost();
       return;
     }
-    const t = e.target;
-    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return; // S1
+    if (typing) return; // S1
     if (e.ctrlKey || e.metaKey || e.altKey) return;
     if (e.key === '?') {
       e.preventDefault();
@@ -5758,6 +6116,9 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
     } else if (e.key === 'f' || e.key === 'F') {
       e.preventDefault();
       cycleFace(); // FD-E2
+    } else if (e.key === 'd' || e.key === 'D') {
+      e.preventDefault();
+      setPane(!paneOpen); // DP-E1
     }
   });
 
@@ -5771,6 +6132,8 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
     help: () => setHelp(true),
     'help-close': () => setHelp(false),
     theme: toggleTheme,
+    details: () => setPane(!paneOpen),
+    exit: exitToHost,
   };
 
   document.addEventListener('click', e => {

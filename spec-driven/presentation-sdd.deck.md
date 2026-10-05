@@ -1557,6 +1557,53 @@ Az **éleket** (X hivatkozik Y-ra; ugyanaz a személy két forrásban) külön g
 
 > **A házon:** A tervtár mutatója: nem csak mi van benne, hanem mi mire hivatkozik (statika → alaprajz → anyaglista). · SdD-ben: Vektor = jelentés, él = kapcsolat — melyik spec mire épül, mit érint egy változás.
 
+## Tartalom és kontextus — mindkettő kell a jó RAG-sorrendhez {label="AI-infrastruktúra · a visszakeresés rétegei" skip=talk badge="infra-forge · kihagyható" id=rag-content-context}
+
+> A vektor-adatbázis a **tartalom-bázis**: *mit mond* egy szövegrészlet. Az él-gráf a **kontextus-bázis**: *hogyan viszonyul a többihez* — mi hivatkozik rá, mi váltotta le, melyik szabály erősebb. Helyes **rangsorolt** találathoz mindkettő kell.
+
+### :database: Tartalom-bázis — vektor {accent=teal}
+*Ma · él*
+
+**Releváns-e?** A kérdéshez **cosine**-közeli chunkok, jelentés szerint. Magától nem látja, hogy a találat *elavult*, *felülírt*, vagy *egy másik spec* része.
+
+### :graph: Kontextus-bázis — él-gráf {accent=green}
+*Ma · él (`dev.doc_edges` · `rag.cross_refs`)*
+
+**Mi a súlya?** Hivatkozás, tartalmazás, leváltás, szerző. Magától nem tudja, *miről szól* a kérdés — nincs belépési pontja, amíg a vektor nem ad magot.
+
+--- {layout=flow}
+
+**Egy rangsorolt találat útja**
+
+### :magnifying-glass: Magok
+`VEKTOR` — a kérdéshez legközelebbi chunkok, hasonlósági pontszámmal
+
+### :graph: Szomszédok
+`ÉL` — a magok 1 ugrásnyi szomszédai: a másképp megfogalmazott, de kapcsolódó anyag
+
+### :list-checks: Szűrés
+`ÉL` — a leváltott / elavult csomópont kiesik; az alacsonyabb rendű forrás hátrébb kerül
+
+### :git-branch: Fúzió
+`TERV` — hasonlóság + tekintély + összekötöttség, súlyok konfigból (A3)
+
+### :chart-bar: Rangsor
+`TERV` — a végső sorrend; az újrarangsorolás (rerank) ma **ki van kapcsolva**
+
+--- {drill="▸ Mit rontana el egyedül a vektor, illetve az él?"}
+
+| Jel | Honnan | Egyedül mit rontana el |
+|---|---|---|
+| **Relevancia** — mennyire felel a kérdésre | tartalom · vektor | a leváltott, majdnem-azonos változat ugyanolyan előkelő helyre kerül |
+| **Állás** — friss, mérvadó, a találatok közelében van | kontextus · él-gráf | belépési pont nélkül nem tud mit rangsorolni; a nem összekötött anyag kimarad |
+| **Együtt** | fúzió | a közepesen hasonló, de három erős találattal összekötött csomópont jogosan előzi a magányos, magasabb pontszámút |
+
+---
+
+> :warning: **Ma vs terv.** A fejlesztői RAG-ban a vektor és az él **két külön lépés** (`/rag-search`, majd `/rag-connections`), amit az ember és Claude kapcsol össze. A **beépített fúziós rangsor terv** — a súlyok a konfigban lesznek, és csak akkor kerül élesbe, ha a kiértékelés javulást mutat. A „kontextus" szó két dolgot jelent: itt a *kapcsolati* kontextus; az LLM *munkakontextusa* a végeredmény.
+
+> **A házon:** A tervtár és a mutató együtt: a rajz megmondja, mi van a lapon; a mutató, hogy melyik érvényes, és mi mire épül. · SdD-ben: tartalom = mit mond a spec, kontextus = mi hivatkozik rá és mi váltotta le.
+
 ## „Ne ázzon be a pince" — egy igény végig a láncon {label="Esettanulmány · a Vishy-ház" id=s12}
 
 > A 2. dián azt láttuk, **ki** mit csinál. Most **egyetlen igényt** követünk végig a Vishy család házán: a család mondatától a műszaki ellenőrig — és megnézzük, hol dönt benne az ember.
