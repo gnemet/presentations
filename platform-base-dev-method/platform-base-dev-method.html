@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>platform-base — Fejlesztési módszer</title>
 <link rel="icon" href="data:,">
-<!-- deck-engine sha256=efc3a0e276b668be23a89238843cb0a7677db91a4f5a73b3de075c6c6d61eebd -->
+<!-- deck-engine sha256=4da1cb18dea930fc9118e84eedabbf6b1e35cbda924c583259bfe8601e00e8fa -->
 <style></style>
 <style>/* deck-foundation engine — chrome + components (spec U1, U3).
  * Inlined verbatim into every generated deck, BEFORE the vibe and accent blocks, so a vibe
@@ -160,6 +160,70 @@ body {
   font-size: 0.75rem;
 }
 
+/* FD-U1/FD-U3: face group — one pane at a time, a token-only button bar the engine builds */
+.face-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.face-btn {
+  padding: 0.35rem 0.8rem;
+  border: 1px solid var(--surface1);
+  border-radius: var(--deck-radius);
+  background: var(--surface0);
+  color: var(--subtext1);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.face-btn:hover,
+.face-btn:focus-visible {
+  color: var(--text);
+  border-color: var(--overlay0);
+  outline: none;
+}
+
+.face-btn[aria-pressed='true'] {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.face-pane[hidden] {
+  display: none;
+}
+
+/* FD-U2: drill — closed detail; the author's summary text is the only marker */
+details.drill > summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-weight: 600;
+  list-style: none;
+}
+
+details.drill > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.drill > summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+details.drill[open] > summary {
+  margin-bottom: var(--deck-gap);
+}
+
+/* SG-U2: the current slide's stable id, bottom right */
+.slide-id {
+  min-width: 4rem;
+  color: var(--overlay1);
+  font-family: var(--font-mono);
+  text-align: right;
+}
+
 kbd {
   padding: 0.05rem 0.35rem;
   border: 1px solid var(--surface1);
@@ -171,11 +235,108 @@ kbd {
 }
 
 /* ── slides ─────────────────────────────────────────────────────────────── */
-.deck {
-  position: relative;
+/* The stage is the row between header and footer: the slides, and — when the deck has details —
+   the pane beside them (increment-details-pane). A closed pane is display:none, so it takes no
+   room and moves nothing (DP-U5). */
+.deck-stage {
   flex: 1;
   min-height: 0;
+  display: flex;
+}
+
+.deck {
+  position: relative;
+  flex: 1 1 0; /* basis 0: the pane keeps the width it was given, the slides take the rest */
+  min-width: 0;
+  min-height: 0;
   overflow: hidden;
+}
+
+/* ── details pane (increment-details-pane) ─────────────────────────────── */
+.details-pane {
+  flex: 0 0 auto;
+  width: var(--details-w, 24rem);
+  min-width: 16rem;
+  max-width: 60%;
+  padding: 1.5rem 1.5rem 2rem;
+  overflow-y: auto;
+  border-left: 1px solid var(--surface1);
+  background: var(--mantle);
+  scrollbar-width: thin;
+  scrollbar-color: var(--surface2) transparent;
+}
+
+.details-pane[hidden],
+.details-handle[hidden],
+.nav-exit[hidden] {
+  display: none;
+}
+
+/* a flex sibling in the gap, not a child of the pane: the pane scrolls, the handle must not */
+.details-handle {
+  flex: none;
+  width: 8px;
+  margin: 0 -4px;
+  z-index: 1;
+  cursor: col-resize;
+  background: transparent;
+  touch-action: none;
+}
+
+.details-handle:hover,
+.details-handle:focus-visible {
+  outline: none;
+  background: var(--accent);
+}
+
+body.details-resizing {
+  cursor: col-resize;
+  user-select: none;
+}
+
+.details-title {
+  margin: 0 0 0.9rem;
+  color: var(--text);
+  font-family: var(--deck-heading-font);
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+.details-text {
+  color: var(--subtext1);
+  font-size: 0.9rem;
+}
+
+.details-text p,
+.details-text ul {
+  margin: 0 0 0.75rem;
+}
+
+.details-text ul {
+  padding-left: 1.1rem;
+}
+
+.details-text li + li {
+  margin-top: 0.35rem;
+}
+
+.details-text strong {
+  color: var(--text);
+}
+
+.details-empty {
+  color: var(--overlay1);
+}
+
+/* ── host exit (increment-host-integration HI-E2): a labelled control, not a bare glyph ── */
+.nav-exit {
+  width: auto;
+  margin-left: 0.6rem;
+  padding: 0 0.6rem;
+  gap: 0.4rem;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 600;
 }
 
 .slide {
@@ -377,6 +538,37 @@ kbd {
   gap: 0.6rem;
 }
 
+.start-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0 1.4rem;
+  margin-top: 0.4rem;
+  border: 0;
+  border-radius: var(--deck-radius-pill);
+  background: var(--accent);
+  color: var(--crust);
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.start-btn:hover {
+  filter: brightness(1.08);
+}
+
+.start-btn:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+.start-btn .i {
+  width: 1.1em;
+  height: 1.1em;
+}
+
 .meta-chip {
   display: inline-flex;
   align-items: center;
@@ -511,11 +703,24 @@ kbd {
   counter-increment: flow;
 }
 
-.flow-step::before {
-  content: counter(flow);
+/* FN-U1: the counter sits in the title line (1 · Title); an untitled step still shows its number */
+.flow-step > h3::before,
+.flow-step:not(:has(> h3))::before {
+  content: counter(flow) ' · ';
+  margin-right: 0.15em;
   color: var(--card-accent, var(--accent));
   font-size: 0.8rem;
   font-weight: 700;
+}
+
+.flow-step:not(:has(> h3))::before {
+  content: counter(flow);
+}
+
+/* FI-U1: a step whose title starts with an icon shows the icon instead of the counter — the row
+   and its arrows already give the order. FI-O1: {numbers=on} on the slide keeps every counter. */
+.slide:not(.flow-numbers) .flow-step > h3:has(> .i:first-child)::before {
+  content: none;
 }
 
 .flow-step:not(:last-child)::after {
@@ -766,6 +971,10 @@ blockquote {
 
 /* ── print (E5): every slide, one landscape page each ───────────────────── */
 @media print {
+  .start-btn {
+    display: none;
+  }
+
   @page {
     size: A4 landscape;
     margin: 0;
@@ -781,12 +990,36 @@ blockquote {
   .pres-header,
   .pres-footer,
   .progress-bar,
-  .help-overlay {
+  .help-overlay,
+  .details-pane,
+  .details-handle {
     display: none;
+  }
+
+  .deck-stage {
+    display: block;
   }
 
   .deck {
     overflow: visible;
+  }
+
+  /* FD-E3: print shows every face (captioned) — drills are opened by the engine's beforeprint */
+  .face-bar {
+    display: none;
+  }
+
+  .face-pane[hidden] {
+    display: block;
+  }
+
+  .face-pane::before {
+    content: attr(data-face);
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--overlay1);
+    font-size: 0.75rem;
+    font-weight: 600;
   }
 
   /* CP-E1: print shows every line */
@@ -805,6 +1038,20 @@ blockquote {
     break-after: page;
   }
 }
+
+/* ── storyboard DAG (increment-storyboard-dag) — tokens only; the vibe's own Mermaid look is bypassed ── */
+.mermaid-diagram svg.sb path.flowchart-link { stroke: var(--overlay1) !important; stroke-width: 1.5px !important; }
+.mermaid-diagram svg.sb path.flowchart-link.sb-primary { stroke: var(--accent) !important; stroke-width: 4px !important; }
+.mermaid-diagram svg.sb .sb-marker-primary path { fill: var(--accent); stroke: var(--accent); }
+.mermaid-diagram svg.sb .node .nodeLabel,
+.mermaid-diagram svg.sb .node .nodeLabel p,
+.mermaid-diagram svg.sb .edgeLabel { color: var(--text); fill: var(--text); font-family: var(--font-sans); }
+.mermaid-diagram svg.sb .node.sb-role rect,
+.mermaid-diagram svg.sb .node.sb-role path,
+.mermaid-diagram svg.sb .node.sb-role polygon { fill: var(--mantle) !important; stroke: var(--sb-accent) !important; stroke-width: 2.5px !important; }
+.mermaid-diagram svg.sb .sb-badge circle { fill: var(--sb-accent) !important; }
+.mermaid-diagram svg.sb .sb-badge use { color: var(--base); fill: currentColor; }
+.mermaid-diagram svg.sb { overflow: visible; }
 </style>
 <style>/* vibe: chalkboard — playful, hand-drawn, workshop feel (spec deck-foundation, U7).
  * Dark = chalk on slate (lookin configs/chalkboard.json palette); light = ink on paper.
@@ -883,7 +1130,7 @@ blockquote {
 </style>
 <style></style>
 </head>
-<body data-auto="0">
+<body data-auto="0" data-t-views="Views of the same thing" data-t-view-tip="Show this view (f cycles the views)" data-t-no-details="No details for this slide." data-t-diagram-error="Diagram error — " data-t-diagram="Diagram">
 <div class="deck-sprite" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 <symbol id="i-caret-double-left" viewBox="0 -960 1024 1024"><path d="M823 -151Q827 -146 829.5 -140.5Q832 -135 832 -128Q832 -115 822.5 -105.5Q813 -96 800 -96Q793 -96 787.5 -98.5Q782 -101 777 -105L457 -425Q453 -430 450.5 -435.5Q448 -441 448 -448Q448 -455 450.5 -460.5Q453 -466 457 -471L777 -791Q782 -795 787.5 -797.5Q793 -800 800 -800Q813 -800 822.5 -790.5Q832 -781 832 -768Q832 -761 829.5 -755.5Q827 -750 823 -745L525 -448ZM205 -448 503 -745Q507 -750 509.5 -755.5Q512 -761 512 -768Q512 -781 502.5 -790.5Q493 -800 480 -800Q473 -800 467.5 -797.5Q462 -795 457 -791L137 -471Q133 -466 130.5 -460.5Q128 -455 128 -448Q128 -441 130.5 -435.5Q133 -430 137 -425L457 -105Q462 -101 467.5 -98.5Q473 -96 480 -96Q493 -96 502.5 -105.5Q512 -115 512 -128Q512 -135 509.5 -140.5Q507 -146 503 -151Z"/></symbol>
 <symbol id="i-caret-left" viewBox="0 -960 1024 1024"><path d="M663 -151Q667 -146 669.5 -140.5Q672 -135 672 -128Q672 -115 662.5 -105.5Q653 -96 640 -96Q633 -96 627.5 -98.5Q622 -101 617 -105L297 -425Q293 -430 290.5 -435.5Q288 -441 288 -448Q288 -455 290.5 -460.5Q293 -466 297 -471L617 -791Q622 -795 627.5 -797.5Q633 -800 640 -800Q653 -800 662.5 -790.5Q672 -781 672 -768Q672 -761 669.5 -755.5Q667 -750 663 -745L365 -448Z"/></symbol>
@@ -946,6 +1193,8 @@ blockquote {
 <symbol id="i-play-circle" viewBox="0 -960 1024 1024"><path d="M512 -864Q426 -864 350 -831Q274 -799 217.5 -742.5Q161 -686 129 -610Q96 -534 96 -448Q96 -362 129 -286Q161 -210 217.5 -153.5Q274 -97 350 -65Q426 -32 512 -32Q598 -32 674 -65Q750 -97 806.5 -153.5Q863 -210 895 -286Q928 -362 928 -448Q928 -534 895 -610Q862 -686 806.0 -742.0Q750 -798 674 -831Q598 -864 512 -864ZM512 -96Q439 -96 375 -124Q311 -151 263.0 -199.0Q215 -247 188 -311Q160 -375 160 -448Q160 -521 188 -585Q215 -649 263.0 -697.0Q311 -745 375 -772Q439 -800 512 -800Q585 -800 649 -772Q713 -745 761.0 -697.0Q809 -649 836 -585Q864 -521 864 -448Q864 -375 836 -311Q809 -247 761.0 -199.0Q713 -151 649 -124Q585 -96 512 -96ZM705 -475 449 -635Q445 -637 441.0 -638.5Q437 -640 432 -640Q419 -640 409.5 -630.5Q400 -621 400 -608V-288Q400 -275 409.5 -265.5Q419 -256 432 -256Q437 -256 441.0 -257.5Q445 -259 449 -261L705 -421Q712 -425 716.0 -432.0Q720 -439 720 -448Q720 -457 716.0 -464.0Q712 -471 705 -475ZM464 -346V-550L628 -448Z"/></symbol>
 <symbol id="i-rocket-launch" viewBox="0 -960 1024 1024"><path d="M895 -772Q894 -796 877.0 -813.0Q860 -830 836 -832H835Q817 -833 785 -831Q753 -829 714.0 -818.5Q675 -808 632 -786Q590 -763 550 -723L531 -704H297Q297 -704 297.0 -704.0Q297 -704 297 -704Q284 -704 272.5 -699.0Q261 -694 252 -685L115 -548Q106 -539 101.0 -527.5Q96 -516 96 -503Q96 -479 112.0 -461.0Q128 -443 151 -439L305 -418L482 -241L503 -87Q506 -69 517.5 -55.0Q529 -41 546 -36V-35Q551 -34 556.0 -33.0Q561 -32 567 -32Q567 -32 567.0 -32.0Q567 -32 567 -32Q580 -32 591.5 -37.0Q603 -42 612 -51L749 -188Q758 -197 763.0 -208.5Q768 -220 768 -233Q768 -233 768.0 -233.0Q768 -233 768 -233V-467L787 -486Q827 -526 849 -568Q872 -611 882.5 -650.0Q893 -689 895 -721Q897 -753 895 -772ZM297 -640H467L309 -482L160 -503ZM595 -678Q637 -720 693.0 -744.0Q749 -768 813 -768Q818 -768 822.5 -768.0Q827 -768 832 -768Q832 -763 832.0 -758.0Q832 -753 832 -748Q832 -684 808.0 -628.5Q784 -573 742 -531L512 -301L365 -448ZM704 -233 567 -96 546 -245 704 -403ZM407 -195Q394 -166 340.5 -115.0Q287 -64 160 -64Q147 -64 137.5 -73.5Q128 -83 128 -96Q128 -223 179.0 -276.5Q230 -330 259 -343Q262 -345 265.5 -345.5Q269 -346 273 -346Q286 -346 295.5 -337.0Q305 -328 305 -314Q305 -305 299.5 -297.0Q294 -289 286 -285Q267 -276 234.0 -242.5Q201 -209 194 -130Q273 -137 306.5 -170.0Q340 -203 349 -222Q353 -230 361.0 -235.5Q369 -241 378 -241Q392 -241 401.0 -231.5Q410 -222 410 -209Q410 -205 409.5 -201.5Q409 -198 407 -195Z"/></symbol>
 <symbol id="i-hand" viewBox="0 -960 1024 1024"><path d="M752 -768Q752 -768 752.0 -768.0Q752 -768 752 -768Q739 -768 726.5 -765.0Q714 -762 703 -757H704V-784Q704 -784 704.0 -784.0Q704 -784 704 -784Q704 -830 671.0 -863.0Q638 -896 592 -896Q555 -896 526.0 -874.5Q497 -853 486 -819L485 -818Q474 -825 460.5 -828.5Q447 -832 432 -832Q386 -832 353.0 -799.0Q320 -766 320 -720V-464L305 -489Q290 -514 264.5 -529.0Q239 -544 208 -544Q161 -544 128.5 -511.5Q96 -479 96 -432Q96 -417 100.0 -403.0Q104 -389 111 -377H110Q134 -327 156 -283Q178 -240 199.5 -203.5Q221 -167 242 -138Q263 -109 285 -86Q330 -41 384.0 -20.5Q438 0 512 0Q585 0 649 -28Q713 -55 761.0 -103.0Q809 -151 836 -215Q864 -279 864 -352V-656Q864 -702 831.0 -735.0Q798 -768 752 -768ZM800 -352Q800 -292 777 -240Q755 -188 715.5 -148.5Q676 -109 624 -87Q572 -64 512 -64Q451 -64 408.5 -79.5Q366 -95 331 -131Q291 -172 252.5 -240.0Q214 -308 168 -406Q167 -406 167.0 -407.0Q167 -408 166 -408Q163 -413 161.5 -419.0Q160 -425 160 -432Q160 -452 174.0 -466.0Q188 -480 208 -480Q221 -480 232.0 -473.5Q243 -467 249 -456H250Q250 -456 250.0 -455.5Q250 -455 250 -455L325 -335Q329 -328 336.0 -324.0Q343 -320 352 -320Q365 -320 374.5 -329.5Q384 -339 384 -352Q384 -352 384.0 -352.0Q384 -352 384 -352V-720Q384 -740 398.0 -754.0Q412 -768 432 -768Q452 -768 466.0 -754.0Q480 -740 480 -720V-480Q480 -467 489.5 -457.5Q499 -448 512 -448Q525 -448 534.5 -457.5Q544 -467 544 -480V-784Q544 -804 558.0 -818.0Q572 -832 592 -832Q612 -832 626.0 -818.0Q640 -804 640 -784V-480Q640 -467 649.5 -457.5Q659 -448 672 -448Q685 -448 694.5 -457.5Q704 -467 704 -480V-656Q704 -676 718.0 -690.0Q732 -704 752 -704Q772 -704 786.0 -690.0Q800 -676 800 -656Z"/></symbol>
+<symbol id="i-plus" viewBox="0 -960 1024 1024"><path d="M896 -448Q896 -435 886.5 -425.5Q877 -416 864 -416H544V-96Q544 -83 534.5 -73.5Q525 -64 512 -64Q499 -64 489.5 -73.5Q480 -83 480 -96V-416H160Q147 -416 137.5 -425.5Q128 -435 128 -448Q128 -461 137.5 -470.5Q147 -480 160 -480H480V-800Q480 -813 489.5 -822.5Q499 -832 512 -832Q525 -832 534.5 -822.5Q544 -813 544 -800V-480H864Q877 -480 886.5 -470.5Q896 -461 896 -448Z"/></symbol>
+<symbol id="i-copy" viewBox="0 -960 1024 1024"><path d="M864 -832H352Q339 -832 329.5 -822.5Q320 -813 320 -800V-640H160Q147 -640 137.5 -630.5Q128 -621 128 -608V-96Q128 -83 137.5 -73.5Q147 -64 160 -64H672Q685 -64 694.5 -73.5Q704 -83 704 -96V-256H864Q877 -256 886.5 -265.5Q896 -275 896 -288V-800Q896 -813 886.5 -822.5Q877 -832 864 -832ZM640 -128H192V-576H640ZM832 -320H704V-608Q704 -621 694.5 -630.5Q685 -640 672 -640H384V-768H832Z"/></symbol>
 </svg>
 </div>
 
@@ -964,6 +1213,7 @@ blockquote {
 </header>
 <div class="progress-bar"><div class="progress-fill"></div></div>
 
+<div class="deck-stage">
 <main class="deck">
 <div class="slide layout-title title-slide" id="s1" aria-roledescription="slide"><svg class="i title-icon" aria-hidden="true"><use href="#i-package"/></svg>
 <h1 class="big-title">platform-base — Fejlesztési módszer</h1><div class="big-sub"><p>Document = Code · Declarative Logic · Four Engines</p>
@@ -971,7 +1221,7 @@ blockquote {
 </div><div class="meta-row"><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-code"/></svg>entity-forge</span><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-flow-arrow"/></svg>pipeline-forge</span><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-chart-bar"/></svg>GoBI</span><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-database"/></svg>PostgreSQL</span><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-robot"/></svg>ai-chat</span><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-magnifying-glass"/></svg>RAG</span><span class="meta-chip"><svg class="i" aria-hidden="true"><use href="#i-eye"/></svg>lookin</span></div>
 </div>
 <div class="slide layout-cards" id="s2" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Alapelvek</span></div><h2> Három alapillér</h2></div>
-<div class="content-grid cols-3"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-file-text"/></svg><h3>1. Document = Code</h3></div><div class="body"><p><strong>Spec = Futtatható</strong></p>
+<div class="content-grid cols-3"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-file-text"/></svg><h3>Document = Code</h3></div><div class="body"><p><strong>Spec = Futtatható</strong></p>
 <ul>
 <li>Az <code>.md</code> fájl egyszerre emberi spec és motor-input</li>
 <li>Nincs külön dokumentáció — a spec önmagyarázó</li>
@@ -979,7 +1229,7 @@ blockquote {
 <li>Komment a mirértet magyarázza, nem a mit</li>
 </ul>
 <p>Artefaktok: <code>entities/EN-*.md</code> · <code>lov/*.md</code> · <code>pipelines/*.md</code></p>
-</div></article><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-flow-arrow"/></svg><h3>2. Logic in Pipelines</h3></div><div class="body"><p><strong>Üzleti logika ≠ Go kód</strong></p>
+</div></article><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-flow-arrow"/></svg><h3>Logic in Pipelines</h3></div><div class="body"><p><strong>Üzleti logika ≠ Go kód</strong></p>
 <ul>
 <li>Többlépéses folyamatok → <code>pipelines/*.md</code></li>
 <li>Go/Python = motor (engine), nem orchestrátor</li>
@@ -987,7 +1237,7 @@ blockquote {
 <li>Egységes retry, audit, suspend/resume minden folyamatra</li>
 </ul>
 <p>Motor: pipeline-forge <code>bin/pf</code></p>
-</div></article><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-database"/></svg><h3>3. Data &gt; Hardcode</h3></div><div class="body"><p><strong>Konfiguráció = adat</strong></p>
+</div></article><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-database"/></svg><h3>Data &gt; Hardcode</h3></div><div class="body"><p><strong>Konfiguráció = adat</strong></p>
 <ul>
 <li>Model neveket, tenant értékeket, label-eket soha ne hardcode-olj</li>
 <li>DB registry / config YAML az igazság forrása</li>
@@ -1010,7 +1260,7 @@ blockquote {
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free" id="s3" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Motor összehasonlítás</span></div><h2> entity-forge vs pipeline-forge — mikor melyiket?</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" aria-label="Diagram" data-mermaid="flowchart LR
+<div class="slide layout-free" id="s3" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Motor összehasonlítás</span></div><h2> entity-forge vs pipeline-forge — mikor melyiket?</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="flowchart LR
     EN[&#34;entities/EN-*.md&lt;br/&gt;lov/lov_*.md&#34;] --&gt; EF
     PM[&#34;pipelines/*.md&lt;br/&gt;deklaratív lépések&#34;] --&gt; PF
 
@@ -1050,7 +1300,7 @@ blockquote {
 </ul>
 </div></article></div>
 </div>
-<div class="slide layout-free" id="s4" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Kód generálás</span></div><h2> entity spec → kész alkalmazás — az egész folyamat</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" aria-label="Diagram" data-mermaid="%%{init: {&#39;flowchart&#39;: {&#39;fontSize&#39;: 18}}}%%
+<div class="slide layout-free" id="s4" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Kód generálás</span></div><h2> entity spec → kész alkalmazás — az egész folyamat</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="%%{init: {&#39;flowchart&#39;: {&#39;fontSize&#39;: 18}}}%%
 graph LR
     subgraph IN[&#34;Specifikáció  (bemenet)&#34;]
         EN[&#34;EN-*.md&lt;br/&gt;entity spec&#34;]
@@ -1101,7 +1351,7 @@ graph LR
 </ul>
 </div></article></div>
 </div>
-<div class="slide layout-free" id="s5" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Tudásbázis</span></div><h2> RAG pipeline — dokumentumokból AI tudás</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" aria-label="Diagram" data-mermaid="%%{init: {&#39;flowchart&#39;: {&#39;fontSize&#39;: 18}}}%%
+<div class="slide layout-free" id="s5" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Tudásbázis</span></div><h2> RAG pipeline — dokumentumokból AI tudás</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="%%{init: {&#39;flowchart&#39;: {&#39;fontSize&#39;: 18}}}%%
 graph LR
     subgraph SRC[&#34;Forrás dokumentumok&#34;]
         CF[&#34;Confluence&lt;br/&gt;oldalak&#34;]
@@ -1143,7 +1393,7 @@ graph LR
 </ul>
 </div></article></div>
 </div>
-<div class="slide layout-free" id="s6" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">AI chat</span></div><h2> AI chat futás — kérdéstől a válaszig</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" aria-label="Diagram" data-mermaid="%%{init: {&#39;flowchart&#39;: {&#39;fontSize&#39;: 18}}}%%
+<div class="slide layout-free" id="s6" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">AI chat</span></div><h2> AI chat futás — kérdéstől a válaszig</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="%%{init: {&#39;flowchart&#39;: {&#39;fontSize&#39;: 18}}}%%
 graph LR
     USR([&#34;Felhasználó&#34;])
     subgraph JO[&#34;Chat felület  —  SSO &#43; WebSocket&#34;]
@@ -1362,7 +1612,7 @@ rls: true
 </section>
 </div>
 </div>
-<div class="slide layout-free" id="s9" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">entity-forge</span></div><h2> Generálás folyamata — Entity spec → Production kód</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" aria-label="Diagram" data-mermaid="flowchart LR
+<div class="slide layout-free" id="s9" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">entity-forge</span></div><h2> Generálás folyamata — Entity spec → Production kód</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="flowchart LR
     SPEC[&#34;entities/&lt;br/&gt;EN-018_*.md&#34;] --&gt; PARSER[&#34;entity-forge&lt;br/&gt;parser &#43; generator&lt;br/&gt;(Go)&#34;]
     PARSER --&gt; SQL[&#34;database/generated/&lt;br/&gt;*.sql&lt;br/&gt;(DDL &#43; CRUD fn-ek)&#34;]
     PARSER --&gt; CAT[&#34;internal/catalog/&lt;br/&gt;*.json&lt;br/&gt;(datagrid config)&#34;]
@@ -1606,7 +1856,7 @@ ${TODAY}           # beepitett valtozo
 </div>
 </div>
 <div class="slide layout-free" id="s12" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">pipeline-forge</span></div><h2> Workflow pipeline-ok — Suspend / Resume emberi jóváhagyással</h2></div>
-<div class="side-diagram ratio-60-40"><div class="diagram-col"><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" aria-label="Diagram" data-mermaid="sequenceDiagram
+<div class="side-diagram ratio-60-40"><div class="diagram-col"><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="sequenceDiagram
     participant Handler as Go Handler
     participant Engine as pipeline-forge
     participant DB as PostgreSQL
@@ -1649,19 +1899,19 @@ res, err = pipelines.ResumeWorkflow(
 </code></pre>
 </div></article></div>
 </div>
-</div><div class="after-block"><div class="content-grid after-grid cols-3"><article class="card accent-green"><div class="card-head"><h3>Pipeline családok</h3></div><div class="body"><ul>
+</div><div class="after-block"><div class="content-grid after-grid cols-3"><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-flow-arrow"/></svg><h3>Pipeline családok</h3></div><div class="body"><ul>
 <li>FY — üzleti folyamat</li>
 <li>INT — integráció</li>
 <li>WF — workflow scaffold (entitygen)</li>
 <li>RULE — üzleti szabályok</li>
 </ul>
-</div></article><article class="card accent-teal"><div class="card-head"><h3>Megfigyelhetőség</h3></div><div class="body"><ul>
+</div></article><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-eye"/></svg><h3>Megfigyelhetőség</h3></div><div class="body"><ul>
 <li>Minden futás → <code>meta.pipeline_run</code> sor</li>
 <li>GELF strukturált logging stdout-ra</li>
 <li><code>bin/pf --dry-run pipeline.md</code></li>
 <li><code>on_error: named_step</code> fallback routing</li>
 </ul>
-</div></article><article class="card accent-yellow"><div class="card-head"><h3>Trigger típusok</h3></div><div class="body"><ul>
+</div></article><article class="card accent-yellow"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-calendar"/></svg><h3>Trigger típusok</h3></div><div class="body"><ul>
 <li><code>manual</code> — kézi / API indítás</li>
 <li><code>cron</code> — ütemezett (cron kifejezés)</li>
 <li><code>event</code> — esemény-vezérelt</li>
@@ -1777,7 +2027,7 @@ cur.execute(
     &quot;SELECT dwh.user_get_key(%s)&quot;, (name,))
 </code></pre>
 </div></article>
-</div><div class="after-block"><div class="content-grid after-grid cols-2"><article class="card accent-sapphire scroll-panel"><div class="card-head"><h3>JSONB function minta (SQL)</h3></div><div class="body"><pre><code class="language-sql">CREATE OR REPLACE FUNCTION app.entity_list(p_data jsonb)
+</div><div class="after-block"><div class="content-grid after-grid cols-2"><article class="card accent-sapphire scroll-panel"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-code"/></svg><h3>JSONB function minta (SQL)</h3></div><div class="body"><pre><code class="language-sql">CREATE OR REPLACE FUNCTION app.entity_list(p_data jsonb)
 RETURNS jsonb
 LANGUAGE sql STABLE SECURITY DEFINER
 SET search_path = pg_catalog, app, meta AS $fn$
@@ -1796,7 +2046,7 @@ SET search_path = pg_catalog, app, meta AS $fn$
     ) r;
 $fn$;
 </code></pre>
-</div></article><article class="card accent-teal"><div class="card-head"><h3>Miért JSONB?</h3></div><div class="body"><ul>
+</div></article><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-info"/></svg><h3>Miért JSONB?</h3></div><div class="body"><ul>
 <li>Mező hozzáadás = csak JSON payload változik</li>
 <li>Nincs function signature change</li>
 <li>Nincs Go/Python caller change</li>
@@ -1891,7 +2141,7 @@ CREATE POLICY p_write
 </div></div>
 </div>
 <div class="slide layout-free" id="s16" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">RAG</span></div><h2> RAG architektúra — 3 rétegű MCP tudásszerver</h2></div>
-<div class="side-diagram ratio-60-40"><div class="diagram-col"><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" aria-label="Diagram" data-mermaid="graph TB
+<div class="side-diagram ratio-60-40"><div class="diagram-col"><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="graph TB
     subgraph T1[&#34;1. reteg -- MCP Server&#34;]
         MCP[&#34;MCP szerver&lt;br/&gt;Nev-feloldas, cache&lt;br/&gt;Link rendering&#34;]
     end
@@ -1954,19 +2204,19 @@ CREATE POLICY p_write
 </ol>
 </div></article></div>
 </div>
-</div><div class="after-block"><div class="content-grid after-grid cols-3"><article class="card accent-peach"><div class="card-head"><h3>Embedding</h3></div><div class="body"><ul>
+</div><div class="after-block"><div class="content-grid after-grid cols-3"><article class="card accent-peach"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-cpu"/></svg><h3>Embedding</h3></div><div class="body"><ul>
 <li>Ollama <code>snowflake-arctic-embed2</code></li>
 <li>GPU szerver (Ollama)</li>
 <li>pgvector HNSW index</li>
 <li>Reranker: cross-encoder (llama-swap)</li>
 </ul>
-</div></article><article class="card accent-sky"><div class="card-head"><h3>Search logic helye</h3></div><div class="body"><ul>
+</div></article><article class="card accent-sky"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-magnifying-glass"/></svg><h3>Search logic helye</h3></div><div class="body"><ul>
 <li>Keresési logika: <code>pipelines/*.md</code></li>
 <li>MCP szerver = engine, nem search</li>
 <li>Link rendering a szerverben</li>
 <li><code>pf</code> binary: PF_BIN → bin/pf → PATH</li>
 </ul>
-</div></article><article class="card accent-green"><div class="card-head"><h3>DWH hozzáférés</h3></div><div class="body"><ul>
+</div></article><article class="card accent-green"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-database"/></svg><h3>DWH hozzáférés</h3></div><div class="body"><ul>
 <li>Csak <code>dwh.*</code> SECURITY DEFINER function</li>
 <li>Nincs <code>SELECT</code> a <code>dim_*</code> táblákon</li>
 <li>LDAP tilos — DWH tükrözi az attribútumokat</li>
@@ -1975,7 +2225,7 @@ CREATE POLICY p_write
 </div></article></div></div>
 </div>
 <div class="slide layout-free" id="s17" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Biztonság</span></div><h2> Biztonsági modell — Védelemben mélység (Defense in Depth)</h2></div>
-<div class="side-diagram ratio-60-40"><div class="diagram-col"><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" aria-label="Diagram" data-mermaid="%%{init: {&#39;flowchart&#39;: {&#39;fontSize&#39;: 18}}}%%
+<div class="side-diagram ratio-60-40"><div class="diagram-col"><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="%%{init: {&#39;flowchart&#39;: {&#39;fontSize&#39;: 18}}}%%
 graph LR
     subgraph L1[&#34;1. Titkositas -- GPG Vault&#34;]
         GPG[&#34;.env.gpg (commitalt)&lt;br/&gt;csapat vault_pass&lt;br/&gt;scripts/vault.sh lock/unlock&#34;]
@@ -2015,19 +2265,19 @@ graph LR
 </ul>
 </div></article></div>
 </div>
-</div><div class="after-block"><div class="content-grid after-grid cols-3"><article class="card accent-teal"><div class="card-head"><h3>SECURITY DEFINER</h3></div><div class="body"><ul>
+</div><div class="after-block"><div class="content-grid after-grid cols-3"><article class="card accent-teal"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-lock"/></svg><h3>SECURITY DEFINER</h3></div><div class="body"><ul>
 <li>App role: <code>EXECUTE</code> jogosultság</li>
 <li>Nincs <code>SELECT</code> a <code>dim_*</code> táblákon</li>
 <li>Function: <code>search_path = pg_catalog, schema</code></li>
 <li>AI SQL: <code>default_transaction_read_only=on</code></li>
 </ul>
-</div></article><article class="card accent-mauve"><div class="card-head"><h3>Tenant izoláció</h3></div><div class="body"><ul>
+</div></article><article class="card accent-mauve"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-buildings"/></svg><h3>Tenant izoláció</h3></div><div class="body"><ul>
 <li>RLS: <code>meta.has_tenant_access(tenant_code)</code></li>
 <li>App soha ne re-számolja a filtert</li>
 <li>GUC: <code>SET app.tenant_code = $1</code> session-ben</li>
 <li>SCD2 btree_gist izoláció</li>
 </ul>
-</div></article><article class="card accent-blue"><div class="card-head"><h3>Web biztonság</h3></div><div class="body"><ul>
+</div></article><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-shield"/></svg><h3>Web biztonság</h3></div><div class="body"><ul>
 <li><code>X-Frame-Options: DENY</code></li>
 <li><code>X-Content-Type-Options: nosniff</code></li>
 <li>WebSocket: origin allowlist, soha <code>return true</code></li>
@@ -2084,10 +2334,12 @@ python -m pytest
 </div>
 </div>
 </main>
+</div>
 
 <footer class="pres-footer">
   <span><kbd>←</kbd> <kbd>→</kbd> navigate · <kbd>?</kbd> help · <kbd>t</kbd> theme</span>
   <span>platform-base — Fejlesztési módszer</span>
+  <span class="slide-id" title="Slide id — stable across talk mode; #id in the URL opens this slide">#s1</span>
 </footer>
 
 <div class="help-overlay" hidden role="dialog" aria-modal="true" aria-label="Keyboard shortcuts">
@@ -4953,9 +5205,16 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
  * Inlined verbatim into every generated deck by DOC-deck_build; never edit a generated copy.
  * Spec: claude-base docs/specs/deck-foundation/ · rule: docs/rules/02_coding_implementation/presentation_decks.md
  *
- * Contract with shell.html.tmpl: .slide#sN[data-skip] · .slide-counter [data-cur]/[data-tot] ·
+ * Contract with shell.html.tmpl: .slide[id][data-skip] (id = "s<index>" or the slide's own name) ·
+ * .slide-counter [data-cur]/[data-tot] · .slide-id (footer readout of the current id) ·
+ * .after-block.face-pane[data-face] (consecutive panes form a face group; the engine inserts the
+ * .face-bar with [data-action="face"] buttons) · details.drill (native toggle, opened for print) ·
  * .progress-fill · .help-overlay[hidden] · [data-action] buttons · .mermaid-diagram[data-mermaid] ·
- * body[data-auto] (seconds, 0 = off). Colours and the Mermaid look come from the inlined vibe tokens.
+ * body[data-auto] (seconds, 0 = off) · #deck-details[data-details] (JSON {slide id: {title, blocks}}) with
+ * #details-pane (.details-title, .details-text), .details-handle and the details toggle button, all inside
+ * .deck-stage — present only when the deck has a details file · #btn-exit (the exit action), present
+ * only for a host-served deck and revealed when window.deckBuild.next is a local path.
+ * Colours and the Mermaid look come from the inlined vibe tokens.
  */
 (() => {
   'use strict';
@@ -4964,6 +5223,7 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
   const slides = Array.from(document.querySelectorAll('.slide'));
   const counterCur = document.querySelector('.slide-counter [data-cur]');
   const counterTot = document.querySelector('.slide-counter [data-tot]');
+  const slideId = document.querySelector('.slide-id');
   const progress = document.querySelector('.progress-fill');
   const help = document.querySelector('.help-overlay');
   const THEME_KEY = 'deck-theme';
@@ -5006,8 +5266,10 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
     const pos = vis.indexOf(current) + 1;
     if (counterCur) counterCur.textContent = String(pos);
     if (counterTot) counterTot.textContent = String(vis.length);
+    if (slideId) slideId.textContent = '#' + current.id; // SG-U2: the stable name, not the position
     if (progress) progress.style.width = (pos / vis.length) * 100 + '%';
     setPressed('talk', talk);
+    renderPane(); // DP-E1: the open pane follows the slide
     writeHash();
     schedule(current);
   }
@@ -5023,12 +5285,203 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
     if (vis.length) show(last ? vis[vis.length - 1] : vis[0]);
   }
 
-  // ── deep links (E6): #sN, #talk, or #talk,sN ────────────────────────────
+  // ── faces (FD-U1, FD-E2): consecutive .face-pane siblings form a group — one visible, a bar to switch
+  const faceGroups = [];
+  function showFace(group, i) {
+    group.active = i;
+    group.panes.forEach((p, k) => { p.hidden = k !== i; });
+    Array.from(group.bar.children).forEach((b, k) => b.setAttribute('aria-pressed', String(k === i)));
+  }
+  function buildFaceGroup(panes) {
+    const bar = document.createElement('div');
+    bar.className = 'face-bar';
+    bar.setAttribute('role', 'group');
+    bar.setAttribute('aria-label', document.body.dataset.tViews);
+    const group = { panes, bar, active: 0 };
+    panes.forEach((p, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'face-btn';
+      b.dataset.action = 'face';
+      b.textContent = p.dataset.face || String(i + 1);
+      b.title = document.body.dataset.tViewTip;
+      b.addEventListener('click', () => showFace(group, i));
+      bar.appendChild(b);
+    });
+    panes[0].parentNode.insertBefore(bar, panes[0]);
+    faceGroups.push(group);
+    showFace(group, 0);
+  }
+  slides.forEach(slide => {
+    let run = [];
+    const flush = () => { if (run.length) buildFaceGroup(run); run = []; };
+    slide.querySelectorAll('.face-pane').forEach(p => {
+      if (run.length && p.previousElementSibling !== run[run.length - 1]) flush();
+      run.push(p);
+    });
+    flush();
+  });
+  function cycleFace() {
+    const group = faceGroups.find(g => current && current.contains(g.bar));
+    if (group) showFace(group, (group.active + 1) % group.panes.length);
+  }
+
+  // ── details pane (increment-details-pane) ───────────────────────────────
+  // The build inlines the deck's details as DATA in one attribute; the pane is built from it with
+  // createElement + textContent only (DP-U3) — a detail can never become markup.
+  const stage = document.querySelector('.deck-stage');
+  const pane = document.getElementById('details-pane');
+  const paneHandle = document.querySelector('.details-handle');
+  const PANE_KEY = 'deck-details-w';
+  const details = (() => {
+    const el = document.getElementById('deck-details');
+    if (!el || !pane) return null;
+    try {
+      return JSON.parse(el.dataset.details);
+    } catch (e) {
+      return null; // unreadable data: the deck behaves as one without details
+    }
+  })();
+  let paneOpen = false;
+
+  function appendRuns(target, runs) {
+    (runs || []).forEach(r => {
+      if (r.b) {
+        const strong = document.createElement('strong');
+        strong.textContent = r.x;
+        target.appendChild(strong);
+      } else {
+        target.appendChild(document.createTextNode(r.x));
+      }
+    });
+  }
+
+  function renderPane() {
+    if (!details || !paneOpen || !current) return;
+    const section = details[current.id];
+    const heading = current.querySelector('h1, h2');
+    pane.querySelector('.details-title').textContent = section ? section.title : heading ? heading.textContent.trim() : '';
+    const text = pane.querySelector('.details-text');
+    text.replaceChildren();
+    if (!section) {
+      const none = document.createElement('p');
+      none.className = 'details-empty';
+      none.textContent = document.body.dataset.tNoDetails; // never the previous slide's text
+      text.appendChild(none);
+    } else {
+      section.blocks.forEach(block => {
+        if (block.t === 'ul') {
+          const list = document.createElement('ul');
+          (block.items || []).forEach(item => {
+            const li = document.createElement('li');
+            appendRuns(li, item);
+            list.appendChild(li);
+          });
+          text.appendChild(list);
+        } else {
+          const p = document.createElement('p');
+          appendRuns(p, block.runs);
+          text.appendChild(p);
+        }
+      });
+    }
+    pane.scrollTop = 0;
+  }
+
+  // DP-U4: the width lives in --details-w on the stage; CSS holds the default and the clamp bounds
+  // (the pane's own min-width / max-width — getComputedStyle keeps a percentage as written).
+  function paneBounds() {
+    const cs = getComputedStyle(pane);
+    const whole = stage.clientWidth;
+    const px = v => (String(v).endsWith('%') ? (parseFloat(v) / 100) * whole : parseFloat(v));
+    return [px(cs.minWidth) || 0, px(cs.maxWidth) || whole];
+  }
+  function setPaneWidth(width, persist) {
+    const [lo, hi] = paneBounds();
+    const w = Math.round(Math.min(hi, Math.max(lo, width)));
+    stage.style.setProperty('--details-w', w + 'px');
+    if (!persist) return;
+    try {
+      localStorage.setItem(PANE_KEY, String(w));
+    } catch (e) {
+      /* storage disabled: the width still holds for this view */
+    }
+  }
+  function resetPaneWidth() {
+    stage.style.removeProperty('--details-w');
+    try {
+      localStorage.removeItem(PANE_KEY);
+    } catch (e) {
+      /* storage disabled */
+    }
+  }
+  function setPane(open) {
+    if (!details) return;
+    paneOpen = open;
+    pane.hidden = !open;
+    if (paneHandle) paneHandle.hidden = !open;
+    setPressed('details', open);
+    if (!open) return;
+    let stored = NaN;
+    try {
+      stored = parseInt(localStorage.getItem(PANE_KEY), 10);
+    } catch (e) {
+      /* storage disabled */
+    }
+    if (stored > 0) setPaneWidth(stored, false); // clamped again: the window may have changed
+    renderPane();
+  }
+  if (details && paneHandle) {
+    let dragging = false;
+    const widthAt = e => stage.getBoundingClientRect().right - e.clientX;
+    paneHandle.addEventListener('pointerdown', e => {
+      dragging = true;
+      paneHandle.setPointerCapture(e.pointerId);
+      document.body.classList.add('details-resizing');
+      e.preventDefault();
+    });
+    paneHandle.addEventListener('pointermove', e => {
+      if (dragging) setPaneWidth(widthAt(e), false);
+    });
+    const release = e => {
+      if (!dragging) return;
+      dragging = false;
+      document.body.classList.remove('details-resizing');
+      setPaneWidth(widthAt(e), true);
+    };
+    paneHandle.addEventListener('pointerup', release);
+    paneHandle.addEventListener('pointercancel', release);
+    paneHandle.addEventListener('dblclick', resetPaneWidth);
+    paneHandle.addEventListener('keydown', e => {
+      const stepPx = e.shiftKey ? 64 : 16;
+      if (e.key === 'ArrowLeft') setPaneWidth(pane.getBoundingClientRect().width + stepPx, true);
+      else if (e.key === 'ArrowRight') setPaneWidth(pane.getBoundingClientRect().width - stepPx, true);
+      else if (e.key === 'Home') resetPaneWidth();
+      else return; // Escape and everything else go on to the deck's own handler
+      e.preventDefault();
+      e.stopPropagation(); // the arrows size the pane here; they must not also turn the slide
+    });
+  }
+
+  // ── host exit (increment-host-integration HI-E2) ────────────────────────
+  // A host that serves the deck may hand over where the reader goes next (window.deckBuild.next).
+  // Only a same-site path is honoured; opened from disk there is no host and no control.
+  const hostNext = (() => {
+    const next = window.deckBuild && window.deckBuild.next;
+    return typeof next === 'string' && /^\/(?!\/)[^\\\s]*$/.test(next) ? next : null;
+  })();
+  const exitBtn = document.getElementById('btn-exit');
+  if (exitBtn && hostNext) exitBtn.hidden = false;
+  function exitToHost() {
+    if (hostNext) location.assign(hostNext);
+  }
+
+  // ── deep links (E6, SG-E1): #<slide id>, #talk, or #talk,<slide id> — any id a slide carries
   function readHash() {
     const parts = location.hash.replace(/^#/, '').split(',').filter(Boolean);
     talk = parts.includes('talk');
-    const id = parts.find(p => /^s\d+$/.test(p));
-    return (id && document.getElementById(id)) || slides[0];
+    const target = parts.map(p => document.getElementById(p)).find(el => el && slides.includes(el));
+    return target || slides[0];
   }
 
   function writeHash() {
@@ -5137,13 +5590,97 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
     };
   }
 
+  // the diagram's accessible name is chrome (deck/chrome.yaml): set once on every diagram, rendered or not
+  document.querySelectorAll('.mermaid-diagram').forEach(box => box.setAttribute('aria-label', document.body.dataset.tDiagram));
+
+  // ── storyboard DAG (increment-storyboard-dag): classic look + a thin story layer over Mermaid's SVG ──
+  // The topology stays Mermaid's; this adds role icons, a highlighted path and token colours — nothing here
+  // moves a node. Roles (icon + accent) are data: deck/diagram-roles.yaml → body[data-roles].
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  const storyboardSlide = box => {
+    const slide = box.closest('.slide');
+    return slide && slide.dataset.diagramStyle === 'storyboard' ? slide : null;
+  };
+  function storyboardConfig() {
+    const cfg = mermaidConfig();
+    return Object.assign(cfg, { look: 'classic', flowchart: { curve: 'linear', htmlLabels: true } });
+  }
+  function storyboardRoles() {
+    try { return JSON.parse(document.body.dataset.roles || '{}'); } catch (err) { return {}; }
+  }
+  function applyStoryboard(box, slide) {
+    const original = box.firstElementChild && box.firstElementChild.cloneNode(true);
+    try {
+      const svg = box.querySelector('svg');
+      const path = (slide.dataset.highlightPath || '').split(',').filter(Boolean);
+      const roles = storyboardRoles();
+      const nodes = new Map();
+      svg.querySelectorAll('g.node').forEach(g => {
+        const m = /^flowchart-(.+)-\d+$/.exec(g.id);
+        if (m) nodes.set(m[1], g);
+      });
+      if (path.some(id => !nodes.has(id))) throw new Error('highlight path names an unknown node');
+      const edges = Array.from(svg.querySelectorAll('path.flowchart-link'));
+      const edgeOf = (a, b) => edges.find(e => new RegExp('^L_' + a + '_' + b + '_\\d+$').test(e.id));
+      const primary = [];
+      for (let i = 0; i + 1 < path.length; i++) {
+        const e = edgeOf(path[i], path[i + 1]);
+        if (!e) throw new Error('highlight path has no edge ' + path[i] + ' → ' + path[i + 1]);
+        primary.push(e);
+      }
+      // all lookups succeeded — only now mutate
+      svg.classList.add('sb');
+      const defs = svg.querySelector('defs') || svg.insertBefore(document.createElementNS(SVG_NS, 'defs'), svg.firstChild);
+      primary.forEach(e => {
+        e.classList.add('sb-primary');
+        const ref = /url\(["']?#([^"')]+)["']?\)/.exec(e.getAttribute('marker-end') || '');
+        const marker = ref && svg.querySelector('[id="' + ref[1] + '"]');
+        if (marker) {
+          const copy = marker.cloneNode(true);
+          copy.id = marker.id + '-sb';
+          copy.classList.add('sb-marker-primary');
+          defs.appendChild(copy);
+          e.setAttribute('marker-end', 'url(#' + copy.id + ')');
+        }
+      });
+      nodes.forEach((g, id) => {
+        const role = Object.keys(roles).find(r => g.classList.contains(r));
+        if (!role) return;
+        g.classList.add('sb-role');
+        g.style.setProperty('--sb-accent', 'var(--' + roles[role].accent + ')');
+        // the whole node's box (not one child's: a cylinder / diamond path has its own local origin);
+        // a diamond has no corner, so its badge sits on the top vertex
+        const bb = g.getBBox();
+        const diamond = Boolean(g.querySelector('polygon'));
+        const bx = diamond ? bb.x + bb.width / 2 : bb.x, by = bb.y;
+        const badge = document.createElementNS(SVG_NS, 'svg');
+        badge.setAttribute('class', 'sb-badge');
+        badge.setAttribute('x', String(bx - 10));
+        badge.setAttribute('y', String(by - 10));
+        badge.setAttribute('width', '22');
+        badge.setAttribute('height', '22');
+        badge.setAttribute('viewBox', '0 0 22 22');
+        const disc = document.createElementNS(SVG_NS, 'circle');
+        disc.setAttribute('cx', '11'); disc.setAttribute('cy', '11'); disc.setAttribute('r', '11');
+        const use = document.createElementNS(SVG_NS, 'use');
+        use.setAttribute('href', '#i-' + roles[role].icon);
+        use.setAttribute('x', '4'); use.setAttribute('y', '4'); use.setAttribute('width', '14'); use.setAttribute('height', '14');
+        badge.append(disc, use);
+        g.appendChild(badge);
+      });
+    } catch (err) {
+      if (original) box.replaceChildren(original);
+    }
+  }
+
   async function renderDiagrams(slide) {
     if (!slide || !window.mermaid) return;
     const boxes = Array.from(slide.querySelectorAll('.mermaid-diagram[data-mermaid]'))
       .filter(box => box.dataset.rendered !== themeKey());
     if (!boxes.length) return;
-    window.mermaid.initialize(mermaidConfig());
     for (const box of boxes) {
+      const sb = storyboardSlide(box);
+      window.mermaid.initialize(sb ? storyboardConfig() : mermaidConfig());
       box.dataset.rendered = themeKey();
       const id = 'deck-mmd-' + ++diagramSeq;
       try {
@@ -5152,11 +5689,12 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
         const source = box.dataset.mermaid.replace(/var\(\s*(--[a-z0-9-]+)\s*\)/g, (m, name) => token(name) || m);
         const { svg } = await window.mermaid.render(id, source);
         box.innerHTML = svg; // SVG produced by Mermaid (securityLevel strict), not string-assembled markup
+        if (sb) applyStoryboard(box, sb); // SB-X3: on any failure the ordinary SVG above stays
       } catch (err) {
         document.getElementById('d' + id)?.remove();
         const note = document.createElement('div');
         note.className = 'mermaid-error';
-        note.textContent = 'Diagram error — ' + String((err && err.message) || err).split('\n')[0];
+        note.textContent = document.body.dataset.tDiagramError + String((err && err.message) || err).split('\n')[0];
         box.replaceChildren(note);
       }
     }
@@ -5180,6 +5718,9 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
   // ── print (E5): light theme, every diagram rendered, one slide per page (CSS) ──
   let themeBeforePrint = null;
   window.addEventListener('beforeprint', () => {
+    // FD-E3: print shows every face and every drill open
+    faceGroups.forEach(g => g.panes.forEach(p => { p.hidden = false; }));
+    document.querySelectorAll('details.drill').forEach(d => { d.dataset.wasOpen = String(d.open); d.open = true; });
     themeBeforePrint = root.dataset.theme || '';
     if (themeKey() !== 'light') {
       applyTheme('light');
@@ -5188,6 +5729,8 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
     slides.forEach(schedule);
   });
   window.addEventListener('afterprint', () => {
+    faceGroups.forEach(g => showFace(g, g.active));
+    document.querySelectorAll('details.drill').forEach(d => { d.open = d.dataset.wasOpen === 'true'; delete d.dataset.wasOpen; });
     if (themeBeforePrint === null) return;
     const restore = themeBeforePrint;
     themeBeforePrint = null;
@@ -5210,12 +5753,17 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
   };
 
   document.addEventListener('keydown', e => {
+    const t = e.target;
+    const typing = Boolean(t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)));
     if (e.key === 'Escape') {
-      setHelp(false); // Escape always closes, even while typing
+      // Escape always closes, even while typing — innermost first: help, then the details pane
+      // (DP-S1); only with nothing open does it leave for the host (HI-E2), and never from a field.
+      if (help && !help.hidden) setHelp(false);
+      else if (paneOpen) setPane(false);
+      else if (!typing) exitToHost();
       return;
     }
-    const t = e.target;
-    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return; // S1
+    if (typing) return; // S1
     if (e.ctrlKey || e.metaKey || e.altKey) return;
     if (e.key === '?') {
       e.preventDefault();
@@ -5231,6 +5779,12 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
     } else if (e.key === 't' || e.key === 'T') {
       e.preventDefault();
       toggleTheme();
+    } else if (e.key === 'f' || e.key === 'F') {
+      e.preventDefault();
+      cycleFace(); // FD-E2
+    } else if (e.key === 'd' || e.key === 'D') {
+      e.preventDefault();
+      setPane(!paneOpen); // DP-E1
     }
   });
 
@@ -5244,6 +5798,8 @@ globalThis["mermaid"] = globalThis.__esbuild_esm_mermaid_nm["mermaid"].default;
     help: () => setHelp(true),
     'help-close': () => setHelp(false),
     theme: toggleTheme,
+    details: () => setPane(!paneOpen),
+    exit: exitToHost,
   };
 
   document.addEventListener('click', e => {
