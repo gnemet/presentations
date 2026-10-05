@@ -10,6 +10,8 @@ Open a deck straight from disk (`file://…`) or through GitHub Pages at
 
 ## Decks
 
+<!-- decks:start -->
+<!-- generated from decks.yaml by DOCS-publish_presentations — edit decks.yaml, not this table -->
 | Folder | Deck | Title | Origin |
 |---|---|---|---|
 | `spec-driven/` | [`presentation-sdd.html`](spec-driven/presentation-sdd.html) · [notes](spec-driven/presentation-sdd-notes.md) | Spec-driven Development (SdD) — módszertan, gyakorlati példával (v5) · HU · ~30 min talk / ~45 min full | moved here from infra-forge `docs/presentation/` on 2026-09-28 (last copy there: `de66d842`); infra-forge's About page links here |
@@ -17,18 +19,21 @@ Open a deck straight from disk (`file://…`) or through GitHub Pages at
 | `ai-orchestration-human-gates/` | [`ai-orchestration-human-gates.html`](ai-orchestration-human-gates/ai-orchestration-human-gates.html) · [notes](ai-orchestration-human-gates/ai-orchestration-human-gates-notes.md) | From Intent to Accepted — AI-orchestrated delivery with human gates (EN, 50 min, 33 slides) | moved here from claude-base `docs/presentation/` on 2026-10-05 (companion brief stays there: `ai-orchestration-human-gates.md`) |
 | `kovacs-muhely/` | [`kovacs-muhely-01.html`](kovacs-muhely/kovacs-muhely-01.html) · [notes](kovacs-muhely/kovacs-muhely-01-notes.md) | kovacs-muhely (HU, 14 slides) | moved here from kovacs-muhely `docs/presentation/` on 2026-10-05; internal hostnames, ports and database names generalised for the public repo. Content predates the rag3 name retirement — see kovacs-muhely `docs/specs/rag3-name-retirement/` |
 | `platform-base-dev-method/` | [`platform-base-dev-method.html`](platform-base-dev-method/platform-base-dev-method.html) | platform-base — Fejlesztési módszer (HU, 18 slides, chalkboard) | **HTML only** — the source `.deck.md` and the notes stay in the private lookin repo (`docs/presentation/platform-base-dev-method.deck.md`, built at lookin `7872fe0`); rebuild there with `OUT_DIR` pointing at this folder. Renamed from `jirada-dev-method` on 2026-10-05; internal hosts, databases and customer names generalised |
+<!-- decks:end -->
 
 Each folder holds `<topic>.deck.md` (the source of truth), `<topic>.html` and `<topic>-notes.md`
-(both generated — never hand-edited). Exception: a deck whose source lives in a private repo publishes its `.html` here only (the
-row's Origin names the source path and commit).
+(both generated — never hand-edited). A deck whose source lives in another repo keeps its source and
+notes there and has only its `.html` here (`repo` + `path` in `decks.yaml`).
 
 ## Editing a deck
 
-1. Edit `<folder>/<topic>.deck.md`.
-2. Rebuild in place with the platform deck pipeline (`/deck build <abs path to the .deck.md>` in
-   a claude-base session); it rewrites the `.html` and `-notes.md` beside the source.
-3. Run the deck smoke (`claude-base/docs/presentation/render/smoke-deck.mjs <html>`), review dark and
-   light screenshots, then commit all three files together and push `main`.
+1. Edit `<folder>/<topic>.deck.md` (or its private source), commit and push `main`. A new deck also
+   gets a row in `decks.yaml`.
+2. Publish from a claude-base session with the `DOCS-publish_presentations` pipeline
+   (`claude-base/pipelines/docs/`). It rebuilds every listed deck with foundation-ui `origin/main`,
+   scans each source against the public-safety term list, runs the deck smoke, regenerates this
+   table and the index page, and pushes the site to `gh-pages`. Any failure publishes nothing.
+3. GitHub Pages serves `gh-pages`, so a push to `main` alone is not live.
 
 This repo is **public**: keep credentials, internal hostnames, server names and customer data out of
 every deck; a deck that needs them belongs behind a project's authenticated route, not here.

@@ -1,0 +1,5 @@
+| Folder | Deck | Title | Origin |
+|---|---|---|---|
+{{- range .decks}}
+| `{{.folder}}/` | [`{{.topic}}.html`]({{.folder}}/{{.topic}}.html){{if not .repo}} · [notes]({{.folder}}/{{.topic}}-notes.md){{end}} | {{.title}} ({{upper .lang}}, {{.summary}}) | {{.origin}} |
+{{- end}}

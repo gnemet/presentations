@@ -1478,7 +1478,7 @@ Nem könyvtár, hanem **hordozható módszer**: a spec maga a definíció. Ugyan
 **A repó a kollekció**: minden platform-repo egy gyűjtemény. Claude Code ebből keresi vissza a releváns szabályt / doc-ot / spec-et — nem a teljes fát olvassa. **Ez a dev-láb.**
 
 ### Termék-RAG — a termék saját éles adatbázisában {accent=sky}
-Nincs központi RAG-adatbázis: minden termék a **saját éles DB-jében** tartja a beágyazásait, tenantonként (`iier01_db`, `it_akos01_db`…). A tudás ott van, ahol az adat — és a jogosultság is ott érvényesül. **A dev-láb és a termék-láb sosem keveredik.**
+Nincs központi RAG-adatbázis: minden termék a **saját éles DB-jében** tartja a beágyazásait, tenantonként külön adatbázisban. A tudás ott van, ahol az adat — és a jogosultság is ott érvényesül. **A dev-láb és a termék-láb sosem keveredik.**
 
 ---
 
@@ -1511,10 +1511,10 @@ Az **éleket** (X hivatkozik Y-ra; ugyanaz a személy két forrásban) külön g
 
 | Hol | Mi fut | Eredmény |
 |---|---|---|
-| éles szerver · `19/infraforge` :5440, csak loopback | az infra-forge függőségi gráfja (`infra_graph_db`) **natív property-graphban** | **élesben** 2026-09-15 óta — beta3, tudatosan vállalt kockázat |
-| éles szerver · `19/search` :5435, csak loopback | az ügyfél-RAG keresőrétege side-carban, éjszakai szinkronnal (439 685 él) | ugyanazon a vason: PG19 **15–40%-kal gyorsabb**; a hangolt gráf-lekérdezés **döntetlen** (34,8 vs 32,2 ms) → az éles keresés a hordozható formán marad |
+| éles szerver · `19/infraforge`, csak loopback | az infra-forge függőségi gráfja (`infra_graph_db`) **natív property-graphban** | **élesben** 2026-09-15 óta — beta3, tudatosan vállalt kockázat |
+| éles szerver · `19/search`, csak loopback | az ügyfél-RAG keresőrétege side-carban, éjszakai szinkronnal (439 685 él) | ugyanazon a vason: PG19 **15–40%-kal gyorsabb**; a hangolt gráf-lekérdezés **döntetlen** (34,8 vs 32,2 ms) → az éles keresés a hordozható formán marad |
 | fejlesztői gép · 19 beta3 | valós wiki-gráf másolata (7 347 él) | 1–2 ugrás **azonos** a mai CTE-vel; 2-ugrásos lánc gyorsabb (0,29 vs 0,42 ms); irányítatlan él lassú (18–115×), nincs változó hosszú út |
-| éles szerver · fő RAG-klaszter | `iier01_db` — **461 752** `cross_refs` él, PG 18.4 — **az iiriki élesben használja**: `/iier2/value-graph` | **élesben**, hordozható SQL-lel: minden találatnál ott a gráf-útvonal (SharePoint-hely → mappa → dokumentum → tábla); egy kapcsolóval ugyanez a keresés a `19/search` side-caron SQL/PGQ-val fut, a két idő egymás mellett. **Még hátra:** a klaszter frissítése a 19 GA után; az alap PG ≥ 16 marad, a natív gráf-lekérdezés csak 19+ szerveren |
+| éles szerver · fő RAG-klaszter | egy tenant éles DB-je — **461 752** `cross_refs` él, PG 18.4 — **az iiriki élesben használja**: `/iier2/value-graph` | **élesben**, hordozható SQL-lel: minden találatnál ott a gráf-útvonal (SharePoint-hely → mappa → dokumentum → tábla); egy kapcsolóval ugyanez a keresés a `19/search` side-caron SQL/PGQ-val fut, a két idő egymás mellett. **Még hátra:** a klaszter frissítése a 19 GA után; az alap PG ≥ 16 marad, a natív gráf-lekérdezés csak 19+ szerveren |
 
 --- {layout=flow}
 
@@ -1546,7 +1546,7 @@ Az **éleket** (X hivatkozik Y-ra; ugyanaz a személy két forrásban) külön g
 |  | :code: Fejlesztői RAG | :buildings: Ügyfél-RAG (a termék) |
 |---|---|---|
 | **Mit tárol?** | a saját kódunk, szabályaink, specjeink, dokumentumaink — **repónként egy gyűjtemény** | az ügyfél üzleti dokumentumai (Jira, Confluence, …) — **tenantonként** elkülönítve |
-| **Hol él?** | lokális fejlesztői DB, a fejlesztő gépén | a termék **saját éles DB-je** tenantonként (`iier01_db`, `it_akos01_db`) — házon belüli szerveren |
+| **Hol él?** | lokális fejlesztői DB, a fejlesztő gépén | a termék **saját éles DB-je** tenantonként — házon belüli szerveren |
 | **Embedding** | két vektor chunkonként: irodában `snowflake-arctic-embed2` a belső GPU-n, irodán kívül felhő-modell — *csak a saját fejlesztői anyagunkra* | `snowflake-arctic-embed2` (1024 dim, erős magyar, **az ékezet megmarad**), **csak házon belüli GPU-n** |
 | **A modell neve** | a környezet választja (elérhetőség szerint), nem a kód | egyetlen DB-regiszter dönti el (`rag.collection_model`) — sosem hardcode (A1 + A3) |
 | **Élek** | `dev.doc_edges` — dokumentum- és kódkapcsolatok | `rag.cross_refs` — személyek, hivatkozások, tartalmazás (hely → mappa → dokumentum → tábla) |

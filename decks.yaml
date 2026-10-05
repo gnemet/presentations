@@ -1,0 +1,46 @@
+# decks.yaml — the published deck list: the one home of what goes public (A1).
+#
+# Read by claude-base pipelines/docs/DOCS-publish_presentations.md, which rebuilds each deck,
+# gates it (smoke + public-safety scan) and publishes the site to the gh-pages branch. The index
+# page and the README deck table are generated from this list. A folder not listed here is never
+# published. Spec: claude-base docs/specs/presentations-publish-pf/.
+#
+# folder / topic: the deck is <folder>/<topic>.html on the site.
+# repo + path:    set only when the source lives in another repo (resolved as
+#                 <workspace>/<repo>/<path>); its notes stay there. Otherwise the source is
+#                 <folder>/<topic>.deck.md in this repo.
+# title, lang, summary: shown on the index page. origin: the README "Origin" column.
+
+decks:
+  - folder: spec-driven
+    topic: presentation-sdd
+    title: "Spec-driven Development (SdD) — módszertan, gyakorlati példával (v5)"
+    lang: hu
+    summary: "~30 min talk / ~45 min full"
+    origin: "moved here from infra-forge `docs/presentation/` on 2026-09-28 (last copy there: `de66d842`); infra-forge's About page links here"
+  - folder: request-to-product-kmtr
+    topic: request-to-product-kmtr
+    title: "Kéréstől a termékig — a KMTR tudástár esete"
+    lang: hu
+    summary: "30 min, 24 slides, talk cut 18"
+    origin: "claude-base session 2026-09-30, frissítve 2026-10-01 (kapuk, éles-alak tanulság, 2. nap többlete)"
+  - folder: ai-orchestration-human-gates
+    topic: ai-orchestration-human-gates
+    title: "From Intent to Accepted — AI-orchestrated delivery with human gates"
+    lang: en
+    summary: "50 min, 33 slides"
+    origin: "moved here from claude-base `docs/presentation/` on 2026-10-05 (companion brief stays there: `ai-orchestration-human-gates.md`)"
+  - folder: kovacs-muhely
+    topic: kovacs-muhely-01
+    title: "kovacs-muhely"
+    lang: hu
+    summary: "14 slides"
+    origin: "moved here from kovacs-muhely `docs/presentation/` on 2026-10-05; internal hostnames, ports and database names generalised for the public repo. Content predates the rag3 name retirement — see kovacs-muhely `docs/specs/rag3-name-retirement/`"
+  - folder: platform-base-dev-method
+    topic: platform-base-dev-method
+    repo: lookin
+    path: docs/presentation/platform-base-dev-method.deck.md
+    title: "platform-base — Fejlesztési módszer"
+    lang: hu
+    summary: "18 slides, chalkboard"
+    origin: "**HTML only** — source and notes live in the lookin repo (`docs/presentation/platform-base-dev-method.deck.md`). Renamed from `jirada-dev-method` on 2026-10-05; internal hosts, databases and customer names generalised"

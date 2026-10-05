@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Presentations</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <main class="page">
+    <header class="page-head">
+      <h1>Presentations</h1>
+      <p class="lead">Decks of the platform-base project. Open one, then use ←/→ to move, <kbd>?</kbd> for help, <kbd>t</kbd> for the theme.</p>
+    </header>
+    <ul class="decks">
+      {{- range .decks}}
+      <li class="deck">
+        <a class="deck-link" href="{{.folder}}/{{.topic}}.html">{{.title}}</a>
+        <span class="deck-meta"><span class="chip">{{upper .lang}}</span> {{.summary}}</span>
+      </li>
+      {{- end}}
+    </ul>
+  </main>
+</body>
+</html>
