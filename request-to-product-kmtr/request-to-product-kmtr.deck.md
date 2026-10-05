@@ -15,7 +15,7 @@ meta: [{icon: calendar, text: "2026. szeptember–október"}, {icon: users, text
 
 ## Kéréstől a termékig {layout=title id=s1}
 
-Egy valódi kérés — *„a KMTR is legyen az IIER tudástár része"* — és ami vele egy nap alatt történt: mérés, döntés, specifikáció, tesztek, mechanizmus; majd másnap a kapuk, egyenként, emberi kézzel.
+Egy valódi kérés — *„a KMTR is legyen az IIER tudástár része"* — és ami vele öt nap alatt történt: az első napon mérés, döntés, specifikáció, tesztek, mechanizmus; a másodikon a kapuk, egyenként, emberi kézzel; utána az éles éjszakák, mind a három forrással.
 
 **nem ígéret, hanem mérés** · **spec előbb, mint kód** · **piros teszt előbb, mint mechanizmus** · **az ember tart minden kaput**
 
@@ -180,7 +180,7 @@ megáll" → egy teszt, ami beír egy KMTR-oldalt a sor nélkül, és elvárja a
 
 ## Tesztek előbb — pirosan, aztán zölden {layout=cards label="A bizonyíték a kód előtt" id=s9 skip=talk}
 
-A teszteket a mechanizmus **előtt** írtuk meg és tettük be a verziókezelőbe. Az első napon pirosak voltak — pontosan ott, ahol kellett; másnapra zöldek.
+A teszteket a mechanizmus **előtt** írtuk meg és tettük be a verziókezelőbe. Az első napon pirosak voltak — pontosan ott, ahol kellett; az első nap estéjére zöldek, a JIRA-hozzáférési teszt a 2. nap délutánján.
 
 ### :check-circle: útválasztás {accent=green}
 „KMTR-forrás → kmtr tenant" — piros volt, amíg az útválasztó sorok migrációja nem létezett. Ma zöld, az éles adatbázison is.
