@@ -1598,9 +1598,29 @@ Az **éleket** (X hivatkozik Y-ra; ugyanaz a személy két forrásban) külön g
 | **Állás** — friss, mérvadó, a találatok közelében van | kontextus · él-gráf | belépési pont nélkül nem tud mit rangsorolni; a nem összekötött anyag kimarad |
 | **Együtt** | fúzió | a közepesen hasonló, de három erős találattal összekötött csomópont jogosan előzi a magányos, magasabb pontszámút |
 
+--- {drill="▸ Hasonlat: a mechanikus óra"}
+
+### :gear: Tartalom — az alkatrészek {accent=teal}
+Egy szép mechanikus óra fogaskerékből, rugóból, tengelyből és mutatóból áll. Szétszedve **csak a tartalom marad**: minden alkatrész megvan, de az óra **időt nem mutat**.
+
+### :graph: Kontextus — az összeépítés {accent=green}
+Az **összeépítés maga a kontextus**: melyik fogaskerék melyiket hajtja, mi mihez illeszkedik. Ez adja vissza a funkciót — ezért működik az óra, és teszi a dolgát.
+
+> :info: **RAG-ban ugyanez:** a vektor-adatbázis az alkatrészek sokasága — megtalálja a hasonlókat, de **önmagában nem ad rendezett választ**. Az él-gráf az összeszerelés: megmondja, mi hogyan kapcsolódik, mi a friss, mi hajt mit. **Alkatrész + összeépítés = rangsorolt, működő válasz.**
+
 ---
 
 > :warning: **Ma vs terv.** A fejlesztői RAG-ban a vektor és az él **két külön lépés** (`/rag-search`, majd `/rag-connections`), amit az ember és Claude kapcsol össze. A **beépített fúziós rangsor terv** — a súlyok a konfigban lesznek, és csak akkor kerül élesbe, ha a kiértékelés javulást mutat. A „kontextus" szó két dolgot jelent: itt a *kapcsolati* kontextus; az LLM *munkakontextusa* a végeredmény.
+
+```notes
+⏱ 24:30 — Egy mondat: **a vektor azt mondja meg, mit mond a szöveg, az él azt, hogyan áll a többihez** — jó
+rangsorhoz mindkettő kell. Ha van idő, a **mechanikus órával** mondd el: egy szép óra működik, mert benne
+van a **tartalom** (az alkatrészek) és a **kontextus** (az összeépítés). Szétszedve csak a tartalom
+marad — minden megvan, időt mégsem mutat. **Az összeépítés maga a kontextus**: az adja vissza a funkciót.
+A RAG-ban a vektor-adatbázis az alkatrészek halmaza, az él-gráf az összeszerelés. Mondd ki őszintén a
+**ma / terv** különbséget: a fejlesztői RAG-ban a kettőt ma az ember és Claude kapcsolja össze; a beépített
+fúziós rangsor terv.
+```
 
 > **A házon:** A tervtár és a mutató együtt: a rajz megmondja, mi van a lapon; a mutató, hogy melyik érvényes, és mi mire épül. · SdD-ben: tartalom = mit mond a spec, kontextus = mi hivatkozik rá és mi váltotta le.
 

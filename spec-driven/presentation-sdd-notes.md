@@ -358,7 +358,13 @@ _(no notes)_
 
 ## 24. Tartalom és kontextus — mindkettő kell a jó RAG-sorrendhez (#rag-content-context)
 
-_(no notes)_
+⏱ 24:30 — Egy mondat: **a vektor azt mondja meg, mit mond a szöveg, az él azt, hogyan áll a többihez** — jó
+rangsorhoz mindkettő kell. Ha van idő, a **mechanikus órával** mondd el: egy szép óra működik, mert benne
+van a **tartalom** (az alkatrészek) és a **kontextus** (az összeépítés). Szétszedve csak a tartalom
+marad — minden megvan, időt mégsem mutat. **Az összeépítés maga a kontextus**: az adja vissza a funkciót.
+A RAG-ban a vektor-adatbázis az alkatrészek halmaza, az él-gráf az összeszerelés. Mondd ki őszintén a
+**ma / terv** különbséget: a fejlesztői RAG-ban a kettőt ma az ember és Claude kapcsolja össze; a beépített
+fúziós rangsor terv.
 
 ## 25. „Ne ázzon be a pince" — egy igény végig a láncon (#s12)
 
