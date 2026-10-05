@@ -1,7 +1,7 @@
 ---
 title: Kéréstől a termékig — a KMTR tudástár esete
 project: claude-base
-vibe: pitch
+vibe: chalkboard
 lang: hu
 audience: KMTR kérők · Ulyssys kollégák
 duration: 30 min
