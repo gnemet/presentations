@@ -1130,7 +1130,7 @@ blockquote {
 </style>
 <style></style>
 </head>
-<body data-auto="0" data-t-views="Views of the same thing" data-t-view-tip="Show this view (f cycles the views)" data-t-no-details="No details for this slide." data-t-diagram-error="Diagram error — " data-t-diagram="Diagram">
+<body data-roles="{&#34;decision&#34;:{&#34;accent&#34;:&#34;peach&#34;,&#34;icon&#34;:&#34;tree-structure&#34;},&#34;error&#34;:{&#34;accent&#34;:&#34;red&#34;,&#34;icon&#34;:&#34;warning&#34;},&#34;external&#34;:{&#34;accent&#34;:&#34;lavender&#34;,&#34;icon&#34;:&#34;cloud&#34;},&#34;gate&#34;:{&#34;accent&#34;:&#34;yellow&#34;,&#34;icon&#34;:&#34;user-circle&#34;},&#34;output&#34;:{&#34;accent&#34;:&#34;green&#34;,&#34;icon&#34;:&#34;check-circle&#34;},&#34;process&#34;:{&#34;accent&#34;:&#34;sapphire&#34;,&#34;icon&#34;:&#34;gear&#34;},&#34;source&#34;:{&#34;accent&#34;:&#34;blue&#34;,&#34;icon&#34;:&#34;arrow-right&#34;},&#34;storage&#34;:{&#34;accent&#34;:&#34;teal&#34;,&#34;icon&#34;:&#34;database&#34;}}" data-auto="0" data-t-views="Views of the same thing" data-t-view-tip="Show this view (f cycles the views)" data-t-no-details="No details for this slide." data-t-diagram-error="Diagram error — " data-t-diagram="Diagram">
 <div class="deck-sprite" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 <symbol id="i-caret-double-left" viewBox="0 -960 1024 1024"><path d="M823 -151Q827 -146 829.5 -140.5Q832 -135 832 -128Q832 -115 822.5 -105.5Q813 -96 800 -96Q793 -96 787.5 -98.5Q782 -101 777 -105L457 -425Q453 -430 450.5 -435.5Q448 -441 448 -448Q448 -455 450.5 -460.5Q453 -466 457 -471L777 -791Q782 -795 787.5 -797.5Q793 -800 800 -800Q813 -800 822.5 -790.5Q832 -781 832 -768Q832 -761 829.5 -755.5Q827 -750 823 -745L525 -448ZM205 -448 503 -745Q507 -750 509.5 -755.5Q512 -761 512 -768Q512 -781 502.5 -790.5Q493 -800 480 -800Q473 -800 467.5 -797.5Q462 -795 457 -791L137 -471Q133 -466 130.5 -460.5Q128 -455 128 -448Q128 -441 130.5 -435.5Q133 -430 137 -425L457 -105Q462 -101 467.5 -98.5Q473 -96 480 -96Q493 -96 502.5 -105.5Q512 -115 512 -128Q512 -135 509.5 -140.5Q507 -146 503 -151Z"/></symbol>
 <symbol id="i-caret-left" viewBox="0 -960 1024 1024"><path d="M663 -151Q667 -146 669.5 -140.5Q672 -135 672 -128Q672 -115 662.5 -105.5Q653 -96 640 -96Q633 -96 627.5 -98.5Q622 -101 617 -105L297 -425Q293 -430 290.5 -435.5Q288 -441 288 -448Q288 -455 290.5 -460.5Q293 -466 297 -471L617 -791Q622 -795 627.5 -797.5Q633 -800 640 -800Q653 -800 662.5 -790.5Q672 -781 672 -768Q672 -761 669.5 -755.5Q667 -750 663 -745L365 -448Z"/></symbol>
@@ -1260,7 +1260,7 @@ blockquote {
 </blockquote>
 </div></div>
 </div>
-<div class="slide layout-free" id="s3" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Motor összehasonlítás</span></div><h2> entity-forge vs pipeline-forge — mikor melyiket?</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="flowchart LR
+<div class="slide layout-free" id="s3" data-diagram-style="storyboard" data-highlight-path="EN,EF,SQL,PG" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Motor összehasonlítás</span></div><h2> entity-forge vs pipeline-forge — mikor melyiket?</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="flowchart LR
     EN[&#34;entities/EN-*.md&lt;br/&gt;lov/lov_*.md&#34;] --&gt; EF
     PM[&#34;pipelines/*.md&lt;br/&gt;deklaratív lépések&#34;] --&gt; PF
 
@@ -1281,14 +1281,10 @@ blockquote {
     GOH --&gt; APP[&#34;Go App&lt;br/&gt;generált&#34;]
     DBO --&gt; PG
 
-    classDef blue fill:var(--surface0),stroke:var(--blue),color:var(--text)
-    classDef mauve fill:var(--surface0),stroke:var(--mauve),color:var(--text)
-    classDef teal fill:var(--surface0),stroke:var(--teal),color:var(--text)
-    classDef green fill:var(--surface0),stroke:var(--green),color:var(--text)
-    class EF blue
-    class PF mauve
-    class PG teal
-    class APP green"></div></div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-gear"/></svg><h3>entity-forge — mikor?</h3></div><div class="body"><ul>
+    class EN,PM source
+    class EF,PF process
+    class PG storage
+    class APP output"></div></div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-gear"/></svg><h3>entity-forge — mikor?</h3></div><div class="body"><ul>
 <li>Új entitás, LOV, form, BI nézet tervezésekor</li>
 <li>DDL + Go CRUD + HTMX template egyszerre kell</li>
 <li>A spec (<code>EN-*.md</code>) generálja az összeset</li>
@@ -1300,7 +1296,7 @@ blockquote {
 </ul>
 </div></article></div>
 </div>
-<div class="slide layout-free" id="s4" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Kód generálás</span></div><h2> entity spec → kész alkalmazás — az egész folyamat</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="%%{init: {&#39;flowchart&#39;: {&#39;fontSize&#39;: 18}}}%%
+<div class="slide layout-free" id="s4" data-diagram-style="storyboard" data-highlight-path="EN,EF,GH,APP" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Kód generálás</span></div><h2> entity spec → kész alkalmazás — az egész folyamat</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="%%{init: {&#39;flowchart&#39;: {&#39;fontSize&#39;: 18}}}%%
 graph LR
     subgraph IN[&#34;Specifikáció  (bemenet)&#34;]
         EN[&#34;EN-*.md&lt;br/&gt;entity spec&#34;]
@@ -1327,14 +1323,10 @@ graph LR
     GH --&gt; APP
     CJ --&gt; APP
     PF --&gt; APP
-    classDef blue fill:var(--surface0),stroke:var(--blue),color:var(--text)
-    classDef mauve fill:var(--surface0),stroke:var(--mauve),color:var(--text)
-    classDef teal fill:var(--surface0),stroke:var(--teal),color:var(--text)
-    classDef green fill:var(--surface0),stroke:var(--green),color:var(--text)
-    class EF blue
-    class PF mauve
-    class PG teal
-    class APP green"></div></div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-file-text"/></svg><h3>Bemenet: spec fájl</h3></div><div class="body"><ul>
+    class EN,LV source
+    class EF,PF process
+    class PG storage
+    class APP output"></div></div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-file-text"/></svg><h3>Bemenet: spec fájl</h3></div><div class="body"><ul>
 <li>1 db <code>EN-*.md</code> — tábla, mezők, CRUD, form, AI kontextus</li>
 <li>Emberi olvasásra szánt, ez a forrás az igazsághoz</li>
 <li>LOV spec: szótár táblák, enum értékek</li>
@@ -1351,7 +1343,7 @@ graph LR
 </ul>
 </div></article></div>
 </div>
-<div class="slide layout-free" id="s5" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Tudásbázis</span></div><h2> RAG pipeline — dokumentumokból AI tudás</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="%%{init: {&#39;flowchart&#39;: {&#39;fontSize&#39;: 18}}}%%
+<div class="slide layout-free" id="s5" data-diagram-style="storyboard" data-highlight-path="CF,PF,OL,RD,AK" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Tudásbázis</span></div><h2> RAG pipeline — dokumentumokból AI tudás</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="%%{init: {&#39;flowchart&#39;: {&#39;fontSize&#39;: 18}}}%%
 graph LR
     subgraph SRC[&#34;Forrás dokumentumok&#34;]
         CF[&#34;Confluence&lt;br/&gt;oldalak&#34;]
@@ -1371,12 +1363,10 @@ graph LR
     PF --&gt; OL
     OL --&gt; RD
     RD --&gt; AK &amp; IT
-    classDef mauve fill:var(--surface0),stroke:var(--mauve),color:var(--text)
-    classDef teal fill:var(--surface0),stroke:var(--teal),color:var(--text)
-    classDef green fill:var(--surface0),stroke:var(--green),color:var(--text)
-    class PF mauve
-    class RD teal
-    class AK,IT green"></div></div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-books"/></svg><h3>Forrás: vállalati tudás</h3></div><div class="body"><ul>
+    class CF,JI,UR source
+    class PF,OL process
+    class RD storage
+    class AK,IT output"></div></div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-books"/></svg><h3>Forrás: vállalati tudás</h3></div><div class="body"><ul>
 <li>Confluence: specifikációk, döntések, leírások</li>
 <li>JIRA: ticketek, kommentek, státuszok</li>
 <li>URL: külső dokumentumok, API leírások</li>
@@ -1393,7 +1383,7 @@ graph LR
 </ul>
 </div></article></div>
 </div>
-<div class="slide layout-free" id="s6" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">AI chat</span></div><h2> AI chat futás — kérdéstől a válaszig</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="%%{init: {&#39;flowchart&#39;: {&#39;fontSize&#39;: 18}}}%%
+<div class="slide layout-free" id="s6" data-diagram-style="storyboard" data-highlight-path="USR,AUTH,ORCH,MCP" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">AI chat</span></div><h2> AI chat futás — kérdéstől a válaszig</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="%%{init: {&#39;flowchart&#39;: {&#39;fontSize&#39;: 18}}}%%
 graph LR
     USR([&#34;Felhasználó&#34;])
     subgraph JO[&#34;Chat felület  —  SSO &#43; WebSocket&#34;]
@@ -1413,14 +1403,9 @@ graph LR
     ORCH --&gt; MCP &amp; SQL
     MCP &amp; SQL --&gt; LLM
     LLM --&gt;|&#34;válasz&#34;| USR
-    classDef blue fill:var(--surface0),stroke:var(--blue),color:var(--text)
-    classDef mauve fill:var(--surface0),stroke:var(--mauve),color:var(--text)
-    classDef teal fill:var(--surface0),stroke:var(--teal),color:var(--text)
-    classDef green fill:var(--surface0),stroke:var(--green),color:var(--text)
-    class AUTH,ORCH blue
-    class MCP green
-    class SQL teal
-    class OLM,GMN mauve"></div></div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-chat-circle-dots"/></svg><h3>Chat felület — belépési pont</h3></div><div class="body"><ul>
+    class USR source
+    class AUTH,ORCH,MCP,SQL,OLM process
+    class GMN external"></div></div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><svg class="i" aria-hidden="true"><use href="#i-chat-circle-dots"/></svg><h3>Chat felület — belépési pont</h3></div><div class="body"><ul>
 <li>SSO autentikáció — multi-corporate</li>
 <li>WebSocket: valós idejű chat felület</li>
 <li>Persona-alapú személyre szabás</li>
@@ -1612,7 +1597,7 @@ rls: true
 </section>
 </div>
 </div>
-<div class="slide layout-free" id="s9" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">entity-forge</span></div><h2> Generálás folyamata — Entity spec → Production kód</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="flowchart LR
+<div class="slide layout-free" id="s9" data-diagram-style="storyboard" data-highlight-path="SPEC,PARSER,SQL,DB" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">entity-forge</span></div><h2> Generálás folyamata — Entity spec → Production kód</h2></div><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="flowchart LR
     SPEC[&#34;entities/&lt;br/&gt;EN-018_*.md&#34;] --&gt; PARSER[&#34;entity-forge&lt;br/&gt;parser &#43; generator&lt;br/&gt;(Go)&#34;]
     PARSER --&gt; SQL[&#34;database/generated/&lt;br/&gt;*.sql&lt;br/&gt;(DDL &#43; CRUD fn-ek)&#34;]
     PARSER --&gt; CAT[&#34;internal/catalog/&lt;br/&gt;*.json&lt;br/&gt;(datagrid config)&#34;]
@@ -1626,12 +1611,10 @@ rls: true
     HDL --&gt;|&#34;go build&#34;| BIN[&#34;server binary&#34;]
     UI  --&gt;|&#34;go:embed&#34;| BIN
     BI  --&gt; GOBI[&#34;GoBI engine&#34;]
-    classDef blue fill:var(--surface0),stroke:var(--blue),color:var(--text)
-    classDef mauve fill:var(--surface0),stroke:var(--mauve),color:var(--text)
-    classDef teal fill:var(--surface0),stroke:var(--teal),color:var(--text)
-    class SPEC blue
-    class PARSER mauve
-    class DB teal"></div></div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><h3>1. Spec szerkesztése</h3></div><div class="body"><ul>
+    class SPEC source
+    class PARSER process
+    class DB storage
+    class BIN output"></div></div><div class="content-grid"><article class="card accent-blue"><div class="card-head"><h3>1. Spec szerkesztése</h3></div><div class="body"><ul>
 <li>Mező hozzáadás/módosítás az <code>EN-*.md</code>-ben</li>
 <li>LOV hivatkozás, sensitivity, scd2 flag</li>
 <li>Form variáns, CRUD műveletek</li>
@@ -1855,7 +1838,7 @@ ${TODAY}           # beepitett valtozo
 </section>
 </div>
 </div>
-<div class="slide layout-free" id="s12" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">pipeline-forge</span></div><h2> Workflow pipeline-ok — Suspend / Resume emberi jóváhagyással</h2></div>
+<div class="slide layout-free" id="s12" data-diagram-style="storyboard" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">pipeline-forge</span></div><h2> Workflow pipeline-ok — Suspend / Resume emberi jóváhagyással</h2></div>
 <div class="side-diagram ratio-60-40"><div class="diagram-col"><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="sequenceDiagram
     participant Handler as Go Handler
     participant Engine as pipeline-forge
@@ -2140,7 +2123,7 @@ CREATE POLICY p_write
 </table>
 </div></div>
 </div>
-<div class="slide layout-free" id="s16" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">RAG</span></div><h2> RAG architektúra — 3 rétegű MCP tudásszerver</h2></div>
+<div class="slide layout-free" id="s16" data-diagram-style="storyboard" data-highlight-path="CC,MCP,PF,P1,RAG" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">RAG</span></div><h2> RAG architektúra — 3 rétegű MCP tudásszerver</h2></div>
 <div class="side-diagram ratio-60-40"><div class="diagram-col"><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="graph TB
     subgraph T1[&#34;1. reteg -- MCP Server&#34;]
         MCP[&#34;MCP szerver&lt;br/&gt;Nev-feloldas, cache&lt;br/&gt;Link rendering&#34;]
@@ -2163,14 +2146,10 @@ CREATE POLICY p_write
     P2 --&gt;|&#34;dwh.user_*&#34;| DWH
     P3 --&gt;|&#34;Audit loop&#34;| JIRA
     P3 --&gt;|&#34;audit row&#34;| DWH
-    classDef blue fill:var(--surface0),stroke:var(--blue),color:var(--text)
-    classDef mauve fill:var(--surface0),stroke:var(--mauve),color:var(--text)
-    classDef teal fill:var(--surface0),stroke:var(--teal),color:var(--text)
-    classDef green fill:var(--surface0),stroke:var(--green),color:var(--text)
-    class MCP mauve
-    class PF blue
-    class RAG teal
-    class DWH green"></div></div></div>
+    class CC source
+    class MCP,PF process
+    class RAG,DWH storage
+    class JIRA external"></div></div></div>
 <div class="content-col"><div class="content-grid"><article class="card accent-blue"><div class="card-head"><h3>RAG collectionök</h3></div><div class="body"><table>
 <thead>
 <tr>
@@ -2224,7 +2203,7 @@ CREATE POLICY p_write
 </ul>
 </div></article></div></div>
 </div>
-<div class="slide layout-free" id="s17" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Biztonság</span></div><h2> Biztonsági modell — Védelemben mélység (Defense in Depth)</h2></div>
+<div class="slide layout-free" id="s17" data-diagram-style="storyboard" data-highlight-path="DEV,GPG,APP,SEC" aria-roledescription="slide"><div class="slide-head"><div class="label-row"><span class="slide-label">Biztonság</span></div><h2> Biztonsági modell — Védelemben mélység (Defense in Depth)</h2></div>
 <div class="side-diagram ratio-60-40"><div class="diagram-col"><div class="mermaid-wrap"><div class="mermaid-diagram" role="img" data-mermaid="%%{init: {&#39;flowchart&#39;: {&#39;fontSize&#39;: 18}}}%%
 graph LR
     subgraph L1[&#34;1. Titkositas -- GPG Vault&#34;]
@@ -2244,12 +2223,9 @@ graph LR
     APP --&gt;|&#34;EXECUTE only&#34;| SEC
     RLS --&gt; SEC
     APP --&gt;|&#34;sslmode=require&#34;| TLS
-    classDef yellow fill:var(--surface0),stroke:var(--yellow),color:var(--text)
-    classDef green fill:var(--surface0),stroke:var(--green),color:var(--text)
-    classDef teal fill:var(--surface0),stroke:var(--teal),color:var(--text)
-    class GPG yellow
-    class RLS green
-    class SEC teal"></div></div></div>
+    class DEV source
+    class GPG storage
+    class APP,SEC,RLS process"></div></div></div>
 <div class="content-col"><div class="content-grid"><article class="card accent-yellow"><div class="card-head"><h3>GPG Vault szabályok</h3></div><div class="body"><ul>
 <li>Commitálva: <code>.env.gpg</code> (titkosított)</li>
 <li>Gitignore: <code>.env</code> — soha ne commitáld</li>
