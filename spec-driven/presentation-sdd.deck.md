@@ -855,7 +855,7 @@ infra-forge
 
 Ugyanaz a pipeline fut az alkalmazásban és az AI kezében: *egy logika, két hívó*.
 
-### :hand: A kontroll nálunk marad {accent=mauve}
+### :user-circle: A kontroll nálunk marad {accent=mauve}
 Az ember tartja a **kapukat** (MR / hash-reveal / admin-grant). Az `agent` principal sosem ad magának jogot, sosem old fel titkot.
 
 ### :quotes: Az AI anyanyelve: Markdown + angol {accent=sky}
