@@ -6,54 +6,73 @@
 
 _(no notes)_
 
-## 2. Két projekt, egy adatbázis — ki mit tesz?
+## 2. Két oldal, egy adatbázis — ki mit tesz? (#s2)
 
-_(no notes)_
+⏱ 1:30 — A legfontosabb mondat: a kovacs-muhely tölt, az iier-tudastar olvas, és a kettő között
+egyetlen adatbázis van tenantonként. A végfelhasználó semmit nem telepít a saját gépére a
+Claude-on kívül: a tool-ok a távoli pf-mcpd tenant-útvonalain élnek.
 
-## 3. Mi van a dobozban?
+## 3. Mi van a dobozban? (#s3)
 
-_(no notes)_
+⏱ 3:00 — Három dolog számít: a bundle-olt pf (a host nem fordít), a pipeline-ok mint dokumentumok,
+és hogy a repo teljesen Python-mentes — minden lépés pf-adapter.
 
-## 4. 9 pipeline — embed, KV, Jira, compact
+## 4. Tenantok — kik élnek ma? (#s4)
 
-_(no notes)_
+⏱ 4:30 — A kmtr a iier2 másolata: ugyanaz a séma, ugyanazok a pipeline-ok, más scope. Ez a
+multi-tenancy bizonyítéka — a második tenant nem kért egyetlen sor új kódot sem.
 
-## 5. Orchestrator, letiltott template, számok
+## 5. Egy tenant pipeline-jai — iier2 / kmtr (#s5)
 
-_(no notes)_
+⏱ 6:30 — Balról jobbra a forrásoktól a származtatott rétegig: előbb a jogosultság (LDAP), aztán a
+három forrás, aztán ami ezekből épül (klaszter, élek), végül a kereső és a wiki.
 
-## 6. Mindennapi munka — manuális futtatás (pilot)
+## 6. Hozzáférés — a jog a sorban él, nem az alkalmazásban (#s6)
 
-_(no notes)_
+⏱ 8:30 — A jog nem az alkalmazás kódjában van, hanem minden sorban. Ugyanaz a lekérdezés két
+felhasználónak két eredményt ad — és ezt az adatbázis dönti el, nem a kliens.
 
-## 7. Mikor melyiket?
+## 7. SharePoint v2 — registry-vezérelt crawl, táblák mint adat (#s7)
 
-_(no notes)_
+⏱ 10:30 — A táblázat nem szövegként vész el: sorai adatként tárolódnak, és a keresőből pontos
+értékre is rá lehet kérdezni. A crawl külön idősávja mérési tanulság, nem preferencia.
 
-## 8. 4 szkript a napi üzemeltetéshez
+## 8. Ütemezés — a pf-worker kezeli (#s8)
 
-_(no notes)_
+⏱ 12:00 — A sorrend logikus: előbb a jog (ACL), aztán a SharePoint külön, aztán a fő embed, végül a
+reggeli összesítő és a watchdog — ami nem futott, az reggel már látszik.
 
-## 9. End-user kérés workflow — egy URL-től a chunkokig
+## 9. Embedding és keresés (#s9)
 
-_(no notes)_
+⏱ 13:30 — Egy modell, egy forrás a modell nevéhez: így nem fordulhat elő, hogy két pipeline más
+modellel embedel ugyanabba a gyűjteménybe.
 
-## 10. Új tenant scaffolding — gépies átírás + manuális kapcsolás
+## 10. Mindennapi munka (#s10)
 
-_(no notes)_
+⏱ 15:00 — A napi munka nagy része nem futtatás, hanem ellenőrzés: a reggeli összesítő és a
+watchdog megmondja, mit kell kézzel újrafuttatni.
 
-## 11. Egy Confluence pages futás belülről — 7 step
+## 11. Végfelhasználói kérés — egy forrástól a találatig (#s11)
 
-_(no notes)_
+⏱ 16:30 — Senki nem szerkeszt pipeline-t egy új forrásért. A forráslista adat, a jog az admin
+exportjából jön, a következő éjszaka végzi a munkát.
 
-## 12. Telepítés és újraépítés
+## 12. Új tenant — adat és másolat, nem kód (#s12)
 
-_(no notes)_
+⏱ 18:00 — Hat lépés, egyik sem kód: egy migráció, egy mappamásolat, kulcsok, menetrend, útvonal,
+manifest. Ez a „generikus motor, logika a specben” elv egy tenant szintjén.
 
-## 13. Ütemezés — pipeline-forge kezeli
+## 13. Számok — a kmtr az első héten (#s13)
 
-_(no notes)_
+⏱ 19:00 — Valódi, dátummal rögzített számok a bevezetés naplójából. A 30 wiki-cikk AI-vázlat:
+ember hagyja jóvá, mielőtt véglegesnek számít.
 
-## 14. Mit kapunk a builder-oldali toolkit-tel?
+## 14. Telepítés és migráció (#s14)
 
-_(no notes)_
+⏱ 20:30 — A telepítés sem kézi lépéssor: a manifest mondja meg, mi megy ki, a pipeline végzi, és
+előtte-utána egy-egy ellenőrzés fut.
+
+## 15. Mit ad a builder-oldali toolkit? (#s15)
+
+⏱ 22:00 — Négy mondat, amit érdemes hazavinni: dokumentum a lépés, adat a jog, másolat a tenant,
+és a csend nem siker — a watchdog reggel szól.
