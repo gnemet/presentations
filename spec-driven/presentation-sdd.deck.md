@@ -252,13 +252,13 @@ Enélkül a terem azt viheti haza, hogy az EARS, a Markdown, a git és a Claude 
 ### :brain: LLM {accent=blue}
 Nagy nyelvi **modell** — egy *modelltípus* a sok közül (van beágyazó-, rerank-, látómodell is). Szövegből szöveget jósol. A **súlyai nem változnak** attól, hogy beszélgetsz vele — magától nem szerez új tudást; amit tud, az a tanítás + amit most a kontextusába tettek.
 
-### Token {accent=teal}
+### :quotes: Token {accent=teal}
 A szöveg „atomja" (~¾ szó). Minden bemenet és kimenet tokenekben mérődik — és tokenekben kerül pénzbe.
 
-### Context window — az aranyhal {accent=mauve}
+### :brain: Context window — az aranyhal {accent=mauve}
 Amit a modell *egyszerre lát* — és semmi mást. **Nem végtelen:** néhány száz oldalnyi szöveg fér bele, a repónk ennek a sokszorosa. Ami nincs benne, az a modell számára **nem létezik** — hiába van a repóban. A session végén **kiürül** — de nem a tudás vész el, hanem a *munkamemória*: a következő session a repóból, a szabályfájlokból és a memóriából **újraépíti**.
 
-### Prompt {accent=peach}
+### :chat-circle-dots: Prompt {accent=peach}
 A teljes bemenet: feladat + szabályok + kontextus. A „prompt engineering" valójában *kontextus-szerkesztés*.
 
 --- {layout=flow}
@@ -625,7 +625,7 @@ a teremben az MR az, amit holnap látni fognak.
 >
 > **Fontos:** ez a **mi saját megoldásunk**, nem szabvány és nem iparági előírás — bevált gyakorlatokból összeállított házirend. Kötelező *ránk*, itt, ebben a platformban; aki átveszi, a sajátját írja meg. A módszer (spec-first, teszt-first, kis diff, emberi kapuk) az általános — ez a tizenegy mondat már a mi megfogalmazásunk.
 
-### Alap · A1–A4 {accent=blue}
+### :stack: Alap · A1–A4 {accent=blue}
 
 **A1 · Egy igazság! — SSOT.** Minden tény egy helyen — no hardcode, no duplication; entity spec, pipeline `.md`, LOV az authoritative source; a többi generálódik vagy hivatkozza. [→ s10b ↗](#s10b)
 
@@ -635,7 +635,7 @@ a teremben az MR az, amit holnap látni fognak.
 
 **A4 · Általános motor, logika a specben! — Generic engine, logic in specs.** Két spec-típus, különböző szerep: **SDD spec** = tervrajz a fejlesztéshez (design, requirements, tasks); **pf-pipeline spec** = futtatható operatív logika (a motor értelmezi futásidőben). Négy motor (pipeline-forge, entity-forge, GoBI, datagrid) — ötödik nincs; extend via adapters / features / catalog entries, never fork.
 
-### Irány / szerep · A5–A7 {accent=mauve}
+### :users: Irány / szerep · A5–A7 {accent=mauve}
 
 **A5 · Felülről lefelé! — DB→BE→FE→AI.** DB first (entity spec → tárolt funkciók, no inline DML) → thin BE → generated FE → **AI-felület legvégül** (skill · MCP · persona, generálva); sosem kézzel, amit feljebb spec birtokol. [→ s10c ↗](#s10c)
 
@@ -643,7 +643,7 @@ a teremben az MR az, amit holnap látni fognak.
 
 **A7 · Markdownul és angolul! — Markdown + English.** Logic lives in readable docs, not hidden in compiled code; infra naming in English, business domain in Hungarian — AI-native format.
 
-### Folyamat + együttműködés · A8–A11 {accent=green}
+### :handshake: Folyamat + együttműködés · A8–A11 {accent=green}
 
 **A8 · Előbb a tervrajz, előbb a teszt! — Spec-first + test-first; SDD + BRD + TdD.** Intent → EARS requirements → design.md → tasks → tests → code; spec folder committed before first implementation file, and each requirement's test committed **red** before its code. Hard gate — no exceptions.
 
@@ -673,12 +673,12 @@ A fizikát nem lehet kicselezni — ha megsérted, nem áll össze a rendszer, a
 
 ## Miért kontextus-alapú a fejlesztés? — erősítő vs. rövidítés {label="A tézis" id=s8}
 
-### Szilárd híd — az erősítő {accent=green}
+### :shield: Szilárd híd — az erősítő {accent=green}
 - **Kontextus + szabály + terv** → megbízható architektúra.
 - Az AI a meglévő mintázatokra épít, nem nulláról találgat.
 - A gyorsaság a fegyelemből jön, nem a fegyelem ellenére.
 
-### Kártyavár — a rövidítés {accent=red}
+### :warning: Kártyavár — a rövidítés {accent=red}
 - **Prompt → beillesztés → remény.** Nincs terv, nincs szabály.
 - Az első változtatásnál összedől — senki nem ismeri a tartóelemeket.
 - A „gyorsabb" itt valójában a lassú: a hibát is gyorsan termeli.
@@ -855,10 +855,10 @@ infra-forge
 
 Ugyanaz a pipeline fut az alkalmazásban és az AI kezében: *egy logika, két hívó*.
 
-### A kontroll nálunk marad {accent=mauve}
+### :hand: A kontroll nálunk marad {accent=mauve}
 Az ember tartja a **kapukat** (MR / hash-reveal / admin-grant). Az `agent` principal sosem ad magának jogot, sosem old fel titkot.
 
-### Az AI anyanyelve: Markdown + angol {accent=sky}
+### :quotes: Az AI anyanyelve: Markdown + angol {accent=sky}
 Ezért él a logika olvasható dokumentumban (pipeline, spec, szabály) — ez a *miért* a Document=Code mögött.
 
 --- {layout=flow}
@@ -1088,28 +1088,28 @@ alatt is megjelenik, és a lényeg egy mondatban elmondható.)*
 
 ## Egy igazságforrás + a dokumentum a kód — nem kettő, nem nulla {label="Az alapelv — A1 + A2" skip=talk id=s10b}
 
-### Az adatbázis az igazságforrás (A1) {accent=blue}
+### :database: Az adatbázis az igazságforrás (A1) {accent=blue}
 
 - Minden gépállapot az `infra.*`-ban él — egy helyen, egy verzió
 - Entitásspec (`.md`) → DDL → tárolt függvény → RLS — a CRUD-lánc generált (`bin/ef-cli`); az üzleti függvények kézzel írt `.md`-k (70 db)
 - Írás csak tárolt függvényen át — a handlerekben nincs inline DML
 - LOV-táblák (`lov.*`) = SSOT minden legördülő értékhez
 
-### A pipeline .md = az orchestráció igazságforrása {accent=teal}
+### :flow-arrow: A pipeline .md = az orchestráció igazságforrása {accent=teal}
 
 - A markdown pipeline-fájl **maga a logika** — nem dokumentálja azt
 - Lépés hozzáadása = pipeline-fájl szerkesztése; nincs Go-fordítás
 - Egy forrás uralja az ütemezést, a lépéseket, a hibakezelést, az audit trailt
 - 122 `pipelines/*.md` — a fájl törlése = a képesség törlése
 
-### Document = Code (A2) — mélyebben {accent=mauve}
+### :file-text: Document = Code (A2) — mélyebben {accent=mauve}
 
 - A `.md` spec egyszerre az igazságforrás *és* a generátor/futtatható bemenet
 - Entitásspec → entitygen → SQL DDL + CRUD tárolt függvények + RLS + LOV seed (mind generált; a Go handler és a sablon kézzel írt)
 - Ha a kód eltér a spectől, a spec nyer — a kód újragenerálódik
 - A szabály is dokumentum: diff-elhető, git-verziózott, az AI minden sessionben elolvassa
 
-### Miért fontos ez az infra-forge-ban {accent=green}
+### :lightbulb: Miért fontos ez az infra-forge-ban {accent=green}
 
 - 65 entitásspec (`entities/IF-*.md`) = a séma hiteles forrása — nem az adatbázis
 - 122 pipeline-fájl = a folyamat hiteles forrása — nem a Go-kód
@@ -1168,7 +1168,7 @@ alatt is megjelenik, és a lényeg egy mondatban elmondható.)*
 ### :git-branch: Másik megoldás
 `3 · HA NEM` — lassú vagy drága → a szomszéd rétegben (BE)
 
-### A „miért" a specbe
+### :question: A „miért" a specbe
 `4 · RÖGZÍTÉS` — design.md: mi bukott el, miért itt lett
 
 ---
@@ -1183,7 +1183,7 @@ alatt is megjelenik, és a lényeg egy mondatban elmondható.)*
 >
 > **SdD ⊃ { SDD, BRD (+EARS), TdD }** — a módszertan a keret; alatta a két tervrajz (az EARS a BRD kikötés-nyelve, nem külön dokumentum) és a bizonyíték. Az alábbi három csempe ezt a hármat bontja ki.
 
-### SDD — Software Design Description (IEEE 1016-2009, referencia-modell) {accent=blue}
+### :tree-structure: SDD — Software Design Description (IEEE 1016-2009, referencia-modell) {accent=blue}
 Szabvány: [IEEE 1016-2009](https://standards.ieee.org/ieee/1016/4502/).
 
 A *technikai* tervrajz: architektúra, adatmodellek, interfészek, komponens-viselkedés — a híd az üzleti igény és a kód között.
@@ -1205,7 +1205,7 @@ Az *üzleti* tervrajz: célok, scope, üzleti követelmények — *mit* érjen e
 
 forrás: ISO/IEC/IEEE 29148
 
-### TdD — Test-Driven Development (Beck, 2002) {accent=red}
+### :list-checks: TdD — Test-Driven Development (Beck, 2002) {accent=red}
 **Nem harmadik tervrajz — a tervrajz *bizonyítéka*.** A blueprint megmondja, mit jelent a „kész"; a teszt **megmutatja, hogy az**. Az EARS-kikötés gépi fele.
 
 - **Régen:** a fejlesztő fegyelmét pótolta — és gyakran a kód *után* született
@@ -1391,13 +1391,13 @@ Záró: spec, teszt és kód **ugyanannak az állításnak három alakja**.
 ### :git-branch: pipeline-forge {accent=peach}
 A folyamat-motor: minden orchestráció `.md` pipeline. Bővítés ← **új adapter**, nem új Go-folyamat.
 
-### entity-forge {accent=mauve}
+### :code: entity-forge {accent=mauve}
 Entitás-specből DDL + tárolt funkció + CRUD. Bővítés ← **új feature**, az engine generál.
 
 ### :chart-bar: GoBI {accent=blue}
 Riportok, KPI-k Markdown-katalógusban (`bi/**/*.md`, YAML-blokkokkal). Bővítés ← **katalógus-bejegyzés**: új riport = adatváltozás, nem Go-kód.
 
-### datagrid {accent=teal}
+### :chart-bar: datagrid {accent=teal}
 Oszlopok, szűrők, pivotok katalógusból; téma `--dg-*` tokennel. Bővítés ← **katalógus-bejegyzés**.
 
 ---
@@ -1443,13 +1443,13 @@ Nem könyvtár, hanem **hordozható módszer**: a spec maga a definíció. Ugyan
 
 > :warning: A context window **néhány száz oldal**; a korpusz ~8 MB — **milliós nagyságrendű token, a context window sokszorosa**. Ezért a kérdés nem az, hogy *betöltjük-e* a tudást, hanem hogy **mit, mikor és milyen sorrendben**: az alaptörvény mindig, a többi csak akkor, amikor a feladat eléri.
 
-### Túl sok a szabály, doc, spec {accent=red}
+### :warning: Túl sok a szabály, doc, spec {accent=red}
 *Probléma — véges a kontextus*
 
 - A platform szabályai, doc-jai és spec-jei **nem férnek** egyszerre a context window-ba (lásd 5. dia).
 - Ha mindent bezúdítanánk, az LLM elveszne a zajban — vagy hallucinálna.
 
-### Csak a releváns kontextust keresd elő {accent=green}
+### :magnifying-glass: Csak a releváns kontextust keresd elő {accent=green}
 *Megoldás — RAG*
 
 - A kérdésre **előbb a releváns chunkokat** keresi vissza — nem az egész repót.
@@ -1490,17 +1490,17 @@ Nincs központi RAG-adatbázis: minden termék a **saját éles DB-jében** tart
 
 > A lapos vektor-keresés a „**miről szól?**" kérdésre jó: a szöveg → sűrű **jelentés-vektor**, a kérdéshez **cosine**-közeli chunkok jönnek vissza — nem kulcsszó, hanem *jelentés* („Dell laptop" megtalálja a „hordozható számítógép"-et is). De a „**mi mire hivatkozik?**", „**ki ért hozzá?**" kérdés **kapcsolat** — azt gráffal kérdezzük.
 
-### pgvector — csomópontok {accent=teal}
+### :database: pgvector — csomópontok {accent=teal}
 *Ma · él*
 
 A **chunkokat** (csomópontokat) ágyazzuk be a szemantikus kereséshez — ez a jelentés-réteg.
 
-### Élek — külön gráf-réteg {accent=green}
+### :graph: Élek — külön gráf-réteg {accent=green}
 *Ma · él*
 
 Az **éleket** (X hivatkozik Y-ra; ugyanaz a személy két forrásban) külön gráf-rétegben tartjuk — fejlesztésben `dev.doc_edges`, az ügyfél-RAG-ban `rag.cross_refs`. A „mi fogyasztja a `datagrid`-et?" **gráf-lekérdezés**, nem vektor-keresés.
 
-### Natív property-graph (SQL/PGQ) {accent=sky}
+### :tree-structure: Natív property-graph (SQL/PGQ) {accent=sky}
 *Folyamatban · PostgreSQL 19*
 
 `CREATE PROPERTY GRAPH` a **meglévő** tábláink fölé — nincs új tár —, lekérdezés `GRAPH_TABLE(… MATCH …)` mintával, SQL:2023. A `cross_refs` élek gráfra költöztetése **folyamatban**.
@@ -1630,7 +1630,7 @@ fúziós rangsor terv.
 
 **Az igénynek két lába van — más kérdésre válaszolnak**
 
-### :magnifying-glass: ① Felmérés — kívülről {accent=sky}
+### :magnifying-glass: Felmérés — kívülről {accent=sky}
 **„Mi van a telken?"** — mielőtt bárki falat rajzolna.
 
 - **Talajmechanikai szakvélemény:** próbafúrás — milyen a talaj, és **milyen magasan áll a talajvíz**.
@@ -1639,7 +1639,7 @@ fúziós rangsor terv.
 
 **Nálunk (SdD):** a `brief.md` és a kutatás — a *tények*, amire a spec épül (infra-forge-ban: a flotta-gyűjtés, csak olvas). Ebből születik a BRD (mi a cél, mi a korlát) és az SDD (hogyan).
 
-### ② Kivitelezés — belülről {accent=teal}
+### :gear: Kivitelezés — belülről {accent=teal}
 **„Mi kerül a falba?"** — a terv szerint, nem improvizálva.
 
 - **Szigetelés** a pincefalon és a padló alatt, **szivárgó** (drén) a fal tövében.
@@ -1680,11 +1680,11 @@ kötés, aztán törik a próbakocka
 
 ---
 
-### Verifikáció — „jól építettük meg?" {accent=blue}
+### :check-circle: Verifikáció — „jól építettük meg?" {accent=blue}
 
 A **műszaki ellenőr** a visszatöltés előtt összeveti a szigetelést a **tervvel** — és a nyomáspróba jegyzőkönyvével.
 
-### Validáció — „a jót építettük meg?" {accent=green}
+### :target: Validáció — „a jót építettük meg?" {accent=green}
 
 Az **első nagy eső** után a **család** lemegy a pincébe: az lett-e, amire szükségük volt? Ha nem — új szándék.
 
@@ -1801,7 +1801,7 @@ Vezetői olvasat: a szabály **kikényszerítve** van, nem remélve.
 
 > A Vishy-ház építésén **építési napló** fut: minden nap bejegyzés arról, ki mit csinált, milyen anyagból, ki ellenőrizte. Ha a beköltözés után vita van — *„ez nem így volt megbeszélve"* —, nem az emlékezet és nem a becslés dönt, hanem a **napló**.
 
-### Minden lépés egy bejegyzés {accent=blue}
+### :list-checks: Minden lépés egy bejegyzés {accent=blue}
 Dátum, ki, mit, miért — a betonozás napja, a próbakocka száma, a műszaki ellenőr aláírása.
 
 **Nálunk:** minden változás egy commit — szerző, dátum, üzenet.
@@ -1811,7 +1811,7 @@ A tegnapi bejegyzést nem javítják ki csendben — új bejegyzés mondja meg, 
 
 **Nálunk:** a `main` védett ág — nincs force-push, a beolvasztás MR-en át megy, a javítás is új commit. A history technikailag átírható; nem fizika védi, hanem **szabály és jogosultság** — vagyis ez is egy kapu.
 
-### Vitában ez dönt {accent=peach}
+### :shield: Vitában ez dönt {accent=peach}
 „Mennyi ideig tartott?" „Ki döntött a pincéről?" — a napló megmondja. A kivitelező becslése nem bizonyíték.
 
 **Nálunk:** a lenti számok a git logból jönnek — bárki újraszámolhatja.
@@ -1889,10 +1889,10 @@ bizonyítékként. Ha rákérdeznek (*ki becsülte? milyen scope-pal? hány FTE?
 
 **Az alapfunkciók**
 
-### Látja a flottát {accent=blue}
+### :eye: Látja a flottát {accent=blue}
 Kereshető nyilvántartás a ~500 gépről: OS, csomagok, felhasználók, szolgáltatások, hálózat — és a **változás története** (SCD2), nem csak a mai állapot.
 
-### Magától frissül {accent=teal}
+### :clock: Magától frissül {accent=teal}
 6 óránként lefut a flotta-ciklus: SSH-ping → gyűjtés → mentés. Elérhetetlen gép nem állítja meg — naplózza és megy tovább.
 
 ### :sparkle: Kérdezni lehet tőle {accent=peach}
@@ -1949,7 +1949,7 @@ hagyd el, az úgyis a leggyengébb pont. Ez a dia válaszolja meg, amit a vezet�
 
 > A ház építésénél is van három pont, ahol a brigád **nem mehet tovább egyedül** — nem bizalmatlanságból, hanem mert ott a döntés következménye visszafordíthatatlan. A szoftverben ugyanez a három pont van.
 
-### Építési engedély {accent=blue}
+### :file-text: Építési engedély {accent=blue}
 *Kapu ① · változtatás*
 
 Fal áthelyezése, tetőtér-beépítés, új szint — **az építész és a hatóság** hagyja jóvá, a brigád nem dönthet róla. Az **építési naplóba** viszont szabadon ír: mérés, észlelés, mi történt ma — az nem változtat a házon.
@@ -1963,7 +1963,7 @@ A kulcsot és a riasztókódot **csak megnevezett ember** kapja meg, **átadás-
 
 **Nálunk:** az eredeti érték feltárása szerepkör + napló + korlát mögött; az AI sosem kérheti.
 
-### Két aláírás {accent=red}
+### :users: Két aláírás {accent=red}
 *Kapu ③ · jogosultság*
 
 A lakáshitel következő részletét a bank csak **mindkét házastárs aláírásával** folyósítja. Meghatalmazást senki nem írhat alá **saját magának**.
@@ -2134,7 +2134,7 @@ A bemutatóban említett minden szabvány és technológia a **hiteles forrásá
 - [PostgreSQL 19 (devel)](https://www.postgresql.org/docs/devel/) — natív property-graph: `CREATE PROPERTY GRAPH` + `GRAPH_TABLE(… MATCH …)`, az **SQL/PGQ** (ISO/IEC 9075-16:2023, SQL:2023) szerint
 - **Él-gráf réteg** — `dev.doc_edges` (fejlesztés) · `rag.cross_refs` (ügyfél-RAG): a *kapcsolat* külön tárolva, nem vektor-hasonlóság
 
-### Biztonság & compliance {accent=red}
+### :shield: Biztonság & compliance {accent=red}
 - [AES-GCM](https://csrc.nist.gov/pubs/sp/800/38/d/final) · [SHA-256](https://csrc.nist.gov/pubs/fips/180-4/upd1/final) · [HMAC](https://csrc.nist.gov/pubs/fips/198/1/final)
 - [CVE](https://www.cve.org/) · [OSV.dev](https://osv.dev/)
 - [GDPR](https://gdpr.eu/) · [ISO 27001](https://www.iso.org/isoiec-27001-information-security.html)
