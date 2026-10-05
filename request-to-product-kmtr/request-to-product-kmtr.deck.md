@@ -56,9 +56,9 @@ flowchart LR
   K --> W[Wikipédia<br/>generált szócikkek]
   W --> LA[Laura<br/>asszisztens]
   Q --> LA
-  classDef src fill:var(--blue),stroke:var(--blue),color:var(--base)
-  classDef core fill:var(--mauve),stroke:var(--mauve),color:var(--base)
-  classDef out fill:var(--green),stroke:var(--green),color:var(--base)
+  classDef src fill:var(--crust),stroke:var(--blue),stroke-width:3px,color:var(--text)
+  classDef core fill:var(--crust),stroke:var(--mauve),stroke-width:3px,color:var(--text)
+  classDef out fill:var(--crust),stroke:var(--green),stroke-width:3px,color:var(--text)
   class S1,S2,S3,A src
   class L,K core
   class Q,W,LA out
@@ -216,8 +216,8 @@ flowchart TD
   C --> K[(korpusz<br/>tenant = kmtr)]
   S[(útválasztó sorok<br/>KMTR → kmtr)] --> C
   G[(hozzáférési sor<br/>fiók → kmtr)] --> K
-  classDef data fill:var(--green),stroke:var(--green),color:var(--base)
-  classDef eng fill:var(--mauve),stroke:var(--mauve),color:var(--base)
+  classDef data fill:var(--crust),stroke:var(--green),stroke-width:3px,color:var(--text)
+  classDef eng fill:var(--crust),stroke:var(--mauve),stroke-width:3px,color:var(--text)
   class M,R,U,S,G,K data
   class V,C eng
 ```
@@ -243,9 +243,9 @@ flowchart TD
   AL --> ER[HIBA-sor a naplóban]
   ER --> X[a futás hibával zárul]
   WD[reggeli őr] -. 48 órája nincs siker-sor .-> AL
-  classDef good fill:var(--green),stroke:var(--green),color:var(--base)
-  classDef bad fill:var(--red),stroke:var(--red),color:var(--base)
-  classDef step fill:var(--blue),stroke:var(--blue),color:var(--base)
+  classDef good fill:var(--crust),stroke:var(--green),stroke-width:3px,color:var(--text)
+  classDef bad fill:var(--crust),stroke:var(--red),stroke-width:3px,color:var(--text)
+  classDef step fill:var(--crust),stroke:var(--blue),stroke-width:3px,color:var(--text)
   class F,C,VA,AP step
   class OK good
   class AL,ER,X,WD bad
